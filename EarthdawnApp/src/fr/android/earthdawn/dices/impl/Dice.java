@@ -1,47 +1,48 @@
 /**
  * 
  */
-package fr.android.earthdawn.dices;
+package fr.android.earthdawn.dices.impl;
 
 import java.util.Random;
 
+import fr.android.earthdawn.dices.Rollable;
+
 /**
- * @author DrMabulle
+ * @author Administrateur
  *
  */
-public class Dice implements Comparable<Dice>
+public class Dice implements Rollable
 {
-    // Compteur pour ID
-    private static int cpt = 0;
-
     private static final Random RAND = new Random();
 
     private final int maxValue;
     private int result;
-    private final int id;
 
     public Dice(final int aMaxValue)
     {
         maxValue = aMaxValue;
-        id = cpt++;
     }
 
+    @Override
     public int roll()
     {
         result = RAND.nextInt(maxValue) + 1;
         return result;
     }
 
+    @Override
     public int getPreviousResult()
     {
         return result;
     }
 
+    @Override
     public boolean isMaxValue()
     {
         return result == maxValue;
     }
 
+    @Override
     public boolean isMinValue()
     {
         return result == 1;
@@ -53,15 +54,16 @@ public class Dice implements Comparable<Dice>
         final StringBuilder builder = new StringBuilder();
         builder.append("D");
         builder.append(maxValue);
-        builder.append("(");
-        builder.append(id);
-        builder.append(")");
         return builder.toString();
     }
 
     @Override
-    public int compareTo(final Dice dice)
+    public int compareTo(final Rollable dice)
     {
-        return this.maxValue - dice.maxValue;
+        if (dice.getClass() == this.getClass())
+        {
+            return this.maxValue - ((Dice) dice).maxValue;
+        }
+        return 1;
     }
 }

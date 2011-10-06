@@ -7,16 +7,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.android.earthdawn.dices.impl.Dice;
+import fr.android.earthdawn.dices.impl.FixedValueDice;
+
 import android.util.Log;
 
 /**
- * @author DrMabulle
+ * @author Administrateur
  *
  */
 public class DicesLauncher
 {
     private static final String TAG = "DicesLauncher";
-    private static final String REGEX = "([0-9]+D[0-9]+[ ]*)+";
+    private static final String REGEX = "([0-9]+D[0-9]+[ ]*)+(-[0-9]+)*";
 
     private final StringBuilder logs = new StringBuilder(256);
 
@@ -25,22 +28,38 @@ public class DicesLauncher
         return dicesInfos != null && dicesInfos.length() > 0 && dicesInfos.matches(REGEX);
     }
 
-    public List<Dice> parseDicesInfos(final String dicesInfos)
+    public int rollDices(final int rank)
+    {
+        return rollDices(parseDicesInfos(RankManager.getDicesFromRank(rank)));
+    }
+
+    public int rollDices(final String dicesInfos)
+    {
+        return rollDices(parseDicesInfos(dicesInfos));
+    }
+
+    private List<Rollable> parseDicesInfos(final String dicesInfos)
     {
         Log.d(TAG, "parsing dices infos");
-        final List<Dice> dices = new ArrayList<Dice>(6);
+        // Full exemple of infos : 2D20 1D12 -2
+        final List<Rollable> dices = new ArrayList<Rollable>(6);
 
-        final String[] split = dicesInfos.split(" ");
+        final String[] dicesAndMod = dicesInfos.split("-");
+        final String[] dicesDescription = dicesAndMod[0].split(" ");
 
-        for (final String infos : split)
+        for (final String infos : dicesDescription)
         {
             instanciateDices(infos, dices);
+        }
+        if (dicesAndMod.length == 2)
+        {
+            dices.add(new FixedValueDice(-Integer.parseInt(dicesAndMod[1])));
         }
 
         return dices;
     }
 
-    private void instanciateDices(final String infos, final List<Dice> dices)
+    private void instanciateDices(final String infos, final List<Rollable> dices)
     {
         final String[] split = infos.split("D");
         if (split.length == 2)
@@ -55,26 +74,26 @@ public class DicesLauncher
         }
     }
 
-    public int rollDices(final List<Dice> dices)
+    public int rollDices(final List<Rollable> dices)
     {
         Log.d(TAG, "rollDices");
         logs.setLength(0);
-        // lancer une première fois les dés et additionner les résultats.
+        // lancer une premiï¿½re fois les dï¿½s et additionner les rï¿½sultats.
         int result = simpleRoll(dices);
 
-        // Gérer les relances spécifiques au système EarthDawn
+        // Gï¿½rer les relances spï¿½cifiques au systï¿½me EarthDawn
         result += manageRerolls(dices);
 
-        // Somme des dés après relances
+        // Somme des dï¿½s aprï¿½s relances
         return result;
     }
 
-    private int simpleRoll(final List<Dice> dices)
+    private int simpleRoll(final List<Rollable> dices)
     {
         Log.d(TAG, "simpleRoll");
-        // Lancer les dés et additionner les résultats
+        // Lancer les dï¿½s et additionner les rï¿½sultats
         int sum = 0;
-        for (final Dice dice : dices)
+        for (final Rollable dice : dices)
         {
             sum += dice.roll();
 
@@ -86,15 +105,15 @@ public class DicesLauncher
         return sum;
     }
 
-    private int manageRerolls(final List<Dice> dices)
+    private int manageRerolls(final List<Rollable> dices)
     {
         Log.d(TAG, "manageRerolls");
-        final List<Dice> maxDices = new ArrayList<Dice>(6);
-        final List<Dice> minDices = new ArrayList<Dice>(6);
+        final List<Rollable> maxDices = new ArrayList<Rollable>(6);
+        final List<Rollable> minDices = new ArrayList<Rollable>(6);
         int result = 0;
 
-        // Récupérer les Max et Min
-        for (final Dice dice : dices)
+        // RÃ©cupÃ©rer les Max et Min
+        for (final Rollable dice : dices)
         {
             if (dice.isMaxValue())
             {
@@ -128,11 +147,10 @@ public class DicesLauncher
         return result;
     }
 
-    private void removeCancelledDices(final List<Dice> maxDices,
-            final List<Dice> minDices)
+    private void removeCancelledDices(final List<Rollable> maxDices, final List<Rollable> minDices)
     {
         Log.d(TAG, "removeCancelledDices");
-        // Trier les listes par ordre décroissant
+        // Trier les listes par ordre dï¿½croissant
         Collections.sort(maxDices);
         Collections.reverse(maxDices);
         Collections.sort(minDices);
@@ -148,18 +166,18 @@ public class DicesLauncher
 
     }
 
-    private int rerollMaxs(final List<Dice> maxDices)
+    private int rerollMaxs(final List<Rollable> maxDices)
     {
         Log.d(TAG, "rerollMaxs");
         int sum = 0;
         while (!maxDices.isEmpty())
         {
-            // relancer les dés et ajouter les résultats
+            // relancer les dï¿½s et ajouter les rï¿½sultats
             sum += simpleRoll(maxDices);
 
             logs.append("------\n");
 
-            // Ne garder que les dés qui ont fait un maximum (pour relance)
+            // Ne garder que les dï¿½s qui ont fait un maximum (pour relance)
             for (int i = maxDices.size() - 1; i >= 0; i--)
             {
                 if (!maxDices.get(i).isMaxValue())
@@ -171,18 +189,18 @@ public class DicesLauncher
         return sum;
     }
 
-    private int rerollMins(final List<Dice> minDices)
+    private int rerollMins(final List<Rollable> minDices)
     {
         Log.d(TAG, "rerollMins");
         int sum = 0;
         while (!minDices.isEmpty())
         {
-            // relancer les dés et soustraire les résultats
+            // relancer les dï¿½s et soustraire les rï¿½sultats
             sum -= simpleRoll(minDices);
 
             logs.append("------\n");
 
-            // Ne garder que les dés qui ont fait un maximum (pour relance)
+            // Ne garder que les dï¿½s qui ont fait un maximum (pour relance)
             for (int i = minDices.size() - 1; i >= 0; i--)
             {
                 if (!minDices.get(i).isMinValue())

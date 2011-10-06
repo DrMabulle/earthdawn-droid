@@ -2,4 +2,10 @@
 <resources>
     <string name="hello">Hello World, EarthDawnActivity!</string>
     <string name="app_name">EarthDawn</string>
+    <string name="roller_popup_title">Résultat du jet de dés :</string>
+    <string name="roller_format_error">Le format est incorrect.\nLe format attendu est xDy, répété à l\'envie, séparé par un espace.\nExemples :\n1D20\n1D20 2D12\n1D20 1D12 2D10 1D8 1D6 3D4\n1D4 -2</string>
+    <string name="roller_invalid_input">Vous avez jeté : %1$s \nRésultat : %2$d \n\nDétails du lancé : \n %3$s</string>
+    <string name="roller_radio_dice">Dice</string>
+    <string name="roller_radio_rank">Rank</string>
+    
 </resources>

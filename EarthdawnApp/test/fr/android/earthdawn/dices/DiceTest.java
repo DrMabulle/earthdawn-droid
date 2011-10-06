@@ -6,15 +6,17 @@ package fr.android.earthdawn.dices;
 import org.junit.Assert;
 import org.junit.Test;
 
+import fr.android.earthdawn.dices.impl.Dice;
+
 /**
- * @author DrMabulle
+ * @author Administrateur
  *
  */
 public class DiceTest
 {
 
     /**
-     * Test method for {@link fr.android.earthdawn.dices.Dice#roll()}.
+     * Test method for {@link fr.android.earthdawn.dices.impl.Dice#roll()}.
      */
     @Test
     public void testRoll()
@@ -43,7 +45,7 @@ public class DiceTest
     }
 
     /**
-     * Test method for {@link fr.android.earthdawn.dices.Dice#getPreviousResult()}.
+     * Test method for {@link fr.android.earthdawn.dices.impl.Dice#getPreviousResult()}.
      */
     @Test
     public void testGetPreviousResult()
@@ -82,7 +84,7 @@ public class DiceTest
     }
 
     /**
-     * Test method for {@link fr.android.earthdawn.dices.Dice#isMaxValue()}.
+     * Test method for {@link fr.android.earthdawn.dices.impl.Dice#isMaxValue()}.
      */
     @Test
     public void testIsMaxValue()
@@ -101,7 +103,7 @@ public class DiceTest
     }
 
     /**
-     * Test method for {@link fr.android.earthdawn.dices.Dice#isMinValue()}.
+     * Test method for {@link fr.android.earthdawn.dices.impl.Dice#isMinValue()}.
      */
     @Test
     public void testIsMinValue()
