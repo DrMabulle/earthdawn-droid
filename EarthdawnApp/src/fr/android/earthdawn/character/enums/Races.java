@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.android.earthdawn.character;
+package fr.android.earthdawn.character.enums;
 
 /**
  * @author DrMabulle
@@ -9,14 +9,14 @@ package fr.android.earthdawn.character;
  */
 public enum Races
 {
-    elf("Elfe", 2, 0, -2, 1, 1, 1, 4, 0, 0, 0),
-    humain("Humain", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0),
-    nain("Nain", 0, 2, 3, 0, 0, -2, 4, 0, 0, 0),
-    obsidien("Obsidien", -2, 6, 4, -1, 0, -1, 3, 0, 3, 3),
-    ork("Ork", 0, 3, 1, 0, -2, -1, 5, 0, 0, 0),
-    sylphelin("Sylphelin", 1, -4, -3, 1, 0, 2, 6, 3, 0, 0),
-    troll("Troll", 0, 4, 2, -1, 1, 0, 3, 0, 0, 0),
-    tskrang("T'skrang", 1, 0, 1, 0, 0, 1, 4, 0, 0, 0);
+    Elfe("Elfe", 2, 0, -2, 1, 1, 1, 4, 0, 0, 0),
+    Humain("Humain", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0),
+    Nain("Nain", 0, 2, 3, 0, 0, -2, 4, 0, 0, 0),
+    Obsidien("Obsidien", -2, 6, 4, -1, 0, -1, 3, 0, 3, 3),
+    Ork("Ork", 0, 3, 1, 0, -2, -1, 5, 0, 0, 0),
+    Sylphelin("Sylphelin", 1, -4, -3, 1, 0, 2, 6, 3, 0, 0),
+    Troll("Troll", 0, 4, 2, -1, 1, 0, 3, 0, 0, 0),
+    Tskrang("T'skrang", 1, 0, 1, 0, 0, 1, 4, 0, 0, 0);
 
     private String name;
     private int bonusDex;

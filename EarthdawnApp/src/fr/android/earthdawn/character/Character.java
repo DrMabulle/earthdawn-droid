@@ -4,6 +4,7 @@
 package fr.android.earthdawn.character;
 
 import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Races;
 
 /**
  * @author DrMabulle
@@ -22,10 +23,10 @@ public class Character
 
     private final Attribut[] attributs = new Attribut[6];
 
-    public Character(final String name, final String sex, final int age, final int height, final int weight, final Races race,
-            final int dexInd, final int dexEvol, final int strInd, final int strEvol,
-            final int endInd, final int endEvol, final int perInd, final int perEvol,
-            final int volInd, final int volEvol, final int chaInd, final int chaEvol)
+    public Character(final String name, final String sex, final int age, final int height, final int weight,
+            final Races race, final int dexInd, final int dexEvol, final int strInd, final int strEvol,
+            final int endInd, final int endEvol, final int perInd, final int perEvol, final int volInd,
+            final int volEvol, final int chaInd, final int chaEvol)
     {
         super();
         this.name = name;
@@ -35,53 +36,132 @@ public class Character
         this.weight = weight;
         this.race = race;
 
-        // TODO Gérer les bonus raciaux
         // Dextérité
-        attributs[Attributs.dex.getId()] = new Attribut(dexInd + race.getBonusDex(), dexEvol);
+        attributs[Attributs.DEX.getId()] = new Attribut(dexInd + race.getBonusDex(), dexEvol);
         // Force
-        attributs[Attributs.str.getId()] = new Attribut(strInd + race.getBonusStr(), strEvol);
+        attributs[Attributs.STR.getId()] = new Attribut(strInd + race.getBonusStr(), strEvol);
         // Endurance
-        attributs[Attributs.end.getId()] = new Attribut(endInd + race.getBonusEnd(), endEvol);
+        attributs[Attributs.END.getId()] = new Attribut(endInd + race.getBonusEnd(), endEvol);
         // Perception
-        attributs[Attributs.per.getId()] = new Attribut(perInd + race.getBonusPer(), perEvol);
+        attributs[Attributs.PER.getId()] = new Attribut(perInd + race.getBonusPer(), perEvol);
         // Velonté
-        attributs[Attributs.vol.getId()] = new Attribut(volInd + race.getBonusVol(), volEvol);
+        attributs[Attributs.VOL.getId()] = new Attribut(volInd + race.getBonusVol(), volEvol);
         // Charisme
-        attributs[Attributs.cha.getId()] = new Attribut(chaInd + race.getBonusCha(), chaEvol);
+        attributs[Attributs.CHA.getId()] = new Attribut(chaInd + race.getBonusCha(), chaEvol);
     }
 
+    /**
+     * @return the name
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * @return the sex
+     */
+    public String getSex()
+    {
+        return sex;
+    }
+
+    /**
+     * @return the age
+     */
+    public int getAge()
+    {
+        return age;
+    }
+
+    /**
+     * @return the height
+     */
+    public int getHeight()
+    {
+        return height;
+    }
+
+    /**
+     * @return the weight
+     */
+    public int getWeight()
+    {
+        return weight;
+    }
+
+    /**
+     * @return the race
+     */
+    public Races getRace()
+    {
+        return race;
+    }
+
+    /**
+     * @return the attribut
+     */
+    public Attribut getAttribut(final Attributs attribut)
+    {
+        return attributs[attribut.getId()];
+    }
 
     public int getPhysicalDefense()
     {
-        return race.getBonusPhyDef() + computeIndiceDefense(attributs[Attributs.dex.getId()]);
+        return race.getBonusPhyDef() + computeIndiceDefense(attributs[Attributs.DEX.getId()].getResultingIndice());
     }
-
-    public int getDeathCeil()
+    public int getMagicalDefense()
     {
-        return computeDeathCeil(attributs[Attributs.end.getId()].getResultingIndice());
+        return computeIndiceDefense(attributs[Attributs.PER.getId()].getResultingIndice());
     }
-
-    protected int computeDeathCeil(final int indice)
+    public int getSocialDefense()
     {
-        return (int) (indice + 18 + Math.floor(indice / 3));
+        return computeIndiceDefense(attributs[Attributs.CHA.getId()].getResultingIndice());
     }
-
-    protected int computeUncounciousnessCeil(final int indice)
+    public int getMysticArmor()
     {
-        return (int) (indice + 9 + Math.floor(indice / 3) + Math.floor((indice - 1) / 10));
+        return computeMysticArmor(attributs[Attributs.VOL.getId()].getResultingIndice());
     }
 
-    protected int computeWoundCeil(final int indice)
+    public int getDeathThreshold()
     {
-        return (int) (Math.ceil(indice  / 2) + 3 - Math.floor(indice / 22) - Math.floor(indice / 27));
+        return computeDeathThreshold(attributs[Attributs.END.getId()].getResultingIndice());
     }
 
-
-    protected int computeIndiceDefense(final Attribut attribut)
+    public int getUnconsciousnessThreshold()
     {
-        attribut.getResultingIndice();
-        return 0;
+        return computeUnconsciousnessThreshold(attributs[Attributs.END.getId()].getResultingIndice());
     }
 
+    public int getWoundThreshold()
+    {
+        return computeWoundThreshold(attributs[Attributs.END.getId()].getResultingIndice()) + race.getBonusWound();
+    }
+
+
+    protected static int computeDeathThreshold(final int indice)
+    {
+        return (int) (indice + 18 + Math.ceil(indice / 3));
+    }
+
+    protected static int computeUnconsciousnessThreshold(final int indice)
+    {
+        return (int) (indice + 9 + Math.ceil(indice / 3) + Math.ceil((indice - 1) / 10));
+    }
+
+    protected static int computeWoundThreshold(final int indice)
+    {
+        return (int) Math.ceil(indice / 2.0 + 2.5 - Math.ceil((indice + 1) / 22) / 2.0 - Math.ceil(indice / 27) / 2.0);
+    }
+
+    protected static int computeIndiceDefense(final int indice)
+    {
+        return (int) Math.ceil(indice / 2.0 + 1.5 - Math.ceil((indice + 1) / 7) / 2.0);
+    }
+
+    protected static int computeMysticArmor(final int indice)
+    {
+        return (int) Math.ceil(Math.max(indice - 10, 0)  / 3.0);
+    }
 
 }

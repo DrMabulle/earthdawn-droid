@@ -1,96 +1,226 @@
 package fr.android.earthdawn.character;
 
-import static org.junit.Assert.fail;
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
+
+import fr.android.earthdawn.character.enums.Races;
 
 public class CharacterTest
 {
 
-    Character character;
-    @Before
-    public void setUp() throws Exception
-    {
-        character = new Character("Malack", "Mâle", 120, 225, 421, Races.obsidien, 17, 1, 15, 1, 13, 1, 13, 1, 11, 0, 8, 0);
-    }
+    Character elfe =             new Character("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
+    Character humain =       new Character("humain", "Mâle", 120, 225, 421, Races.Humain, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
+    Character nain =             new Character("nain", "Mâle", 120, 225, 421, Races.Nain, 17, 0, 15, 0, 13, 0, 12, 0, 11, 0, 8, 0);
+    Character obsidien = new Character("obsidien", "Mâle", 120, 225, 421, Races.Obsidien, 17, 0, 15, 0, 13, 0, 12, 0, 11, 0, 8, 0);
+    Character ork =                new Character("ork", "Mâle", 120, 225, 421, Races.Ork, 17, 0, 15, 0, 13, 0, 10, 0, 11, 0, 8, 0);
+    Character sylphe = new Character("sylphelin", "Mâle", 120, 225, 421, Races.Sylphelin, 17, 0, 11, 0, 13, 0, 14, 0, 11, 0, 12, 0);
+    Character troll =          new Character("troll", "Mâle", 120, 225, 421, Races.Troll, 17, 0, 15, 0, 13, 0, 10, 0, 11, 0, 8, 0);
+    Character tskrang =    new Character("tskrang", "Mâle", 120, 225, 421, Races.Tskrang, 17, 0, 15, 0, 13, 0, 10, 0, 11, 0, 8, 0);
 
     @Test
     public void testGetPhysicalDefense()
     {
-        fail("Not yet implemented");
+        Assert.assertEquals(10, elfe.getPhysicalDefense());
+        Assert.assertEquals(9, humain.getPhysicalDefense());
+        Assert.assertEquals(9, nain.getPhysicalDefense());
+        Assert.assertEquals(8, obsidien.getPhysicalDefense());
+        Assert.assertEquals(9, ork.getPhysicalDefense());
+        Assert.assertEquals(13, sylphe.getPhysicalDefense());
+        Assert.assertEquals(9, troll.getPhysicalDefense());
+        Assert.assertEquals(10, tskrang.getPhysicalDefense());
+    }
+    @Test
+    public void testGetMagicalDefense()
+    {
+        Assert.assertEquals(8, elfe.getMagicalDefense());
+        Assert.assertEquals(7, humain.getMagicalDefense());
+        Assert.assertEquals(7, nain.getMagicalDefense());
+        Assert.assertEquals(7, obsidien.getMagicalDefense());
+        Assert.assertEquals(6, ork.getMagicalDefense());
+        Assert.assertEquals(8, sylphe.getMagicalDefense());
+        Assert.assertEquals(6, troll.getMagicalDefense());
+        Assert.assertEquals(6, tskrang.getMagicalDefense());
+    }
+    @Test
+    public void testGetSocialDefense()
+    {
+        Assert.assertEquals(6, elfe.getSocialDefense());
+        Assert.assertEquals(5, humain.getSocialDefense());
+        Assert.assertEquals(4, nain.getSocialDefense());
+        Assert.assertEquals(5, obsidien.getSocialDefense());
+        Assert.assertEquals(5, ork.getSocialDefense());
+        Assert.assertEquals(8, sylphe.getSocialDefense());
+        Assert.assertEquals(5, troll.getSocialDefense());
+        Assert.assertEquals(6, tskrang.getSocialDefense());
+    }
+    @Test
+    public void testGetMysticArmor()
+    {
+        Assert.assertEquals(1, elfe.getMysticArmor());
+        Assert.assertEquals(1, humain.getMysticArmor());
+        Assert.assertEquals(1, nain.getMysticArmor());
+        Assert.assertEquals(1, obsidien.getMysticArmor());
+        Assert.assertEquals(0, ork.getMysticArmor());
+        Assert.assertEquals(1, sylphe.getMysticArmor());
+        Assert.assertEquals(1, troll.getMysticArmor());
+        Assert.assertEquals(1, tskrang.getMysticArmor());
     }
 
     @Test
-    public void testGetDeathCeil()
+    public void testGetDeathThreshold()
     {
-        Assert.assertEquals(42, character.getDeathCeil());
+        Assert.assertEquals(32, elfe.getDeathThreshold());
+        Assert.assertEquals(35, humain.getDeathThreshold());
+        Assert.assertEquals(39, nain.getDeathThreshold());
+        Assert.assertEquals(40, obsidien.getDeathThreshold());
+        Assert.assertEquals(36, ork.getDeathThreshold());
+        Assert.assertEquals(31, sylphe.getDeathThreshold());
+        Assert.assertEquals(38, troll.getDeathThreshold());
+        Assert.assertEquals(36, tskrang.getDeathThreshold());
     }
 
     @Test
-    public void testComputeDeathCeil()
+    public void testGetUnconsciousnessThreshold()
     {
-        Assert.assertEquals(19, character.computeDeathCeil(1));
-        Assert.assertEquals(20, character.computeDeathCeil(2));
-        Assert.assertEquals(22, character.computeDeathCeil(3));
-        Assert.assertEquals(23, character.computeDeathCeil(4));
-        Assert.assertEquals(34, character.computeDeathCeil(12));
-        Assert.assertEquals(35, character.computeDeathCeil(13));
-        Assert.assertEquals(36, character.computeDeathCeil(14));
-        Assert.assertEquals(42, character.computeDeathCeil(18));
-        Assert.assertEquals(43, character.computeDeathCeil(19));
-        Assert.assertEquals(44, character.computeDeathCeil(20));
-        Assert.assertEquals(55, character.computeDeathCeil(28));
-        Assert.assertEquals(56, character.computeDeathCeil(29));
-        Assert.assertEquals(58, character.computeDeathCeil(30));
+        Assert.assertEquals(24, elfe.getUnconsciousnessThreshold());
+        Assert.assertEquals(27, humain.getUnconsciousnessThreshold());
+        Assert.assertEquals(31, nain.getUnconsciousnessThreshold());
+        Assert.assertEquals(32, obsidien.getUnconsciousnessThreshold());
+        Assert.assertEquals(28, ork.getUnconsciousnessThreshold());
+        Assert.assertEquals(22, sylphe.getUnconsciousnessThreshold());
+        Assert.assertEquals(30, troll.getUnconsciousnessThreshold());
+        Assert.assertEquals(28, tskrang.getUnconsciousnessThreshold());
     }
 
     @Test
-    public void testComputeUncounciousnessCeil()
+    public void testGetWoundThreshold()
     {
-        Assert.assertEquals(10, character.computeUncounciousnessCeil(1));
-        Assert.assertEquals(11, character.computeUncounciousnessCeil(2));
-        Assert.assertEquals(13, character.computeUncounciousnessCeil(3));
-        Assert.assertEquals(14, character.computeUncounciousnessCeil(4));
-        Assert.assertEquals(21, character.computeUncounciousnessCeil(9));
-        Assert.assertEquals(22, character.computeUncounciousnessCeil(10));
-        Assert.assertEquals(24, character.computeUncounciousnessCeil(11));
-        Assert.assertEquals(26, character.computeUncounciousnessCeil(12));
-        Assert.assertEquals(27, character.computeUncounciousnessCeil(13));
-        Assert.assertEquals(28, character.computeUncounciousnessCeil(14));
-        Assert.assertEquals(34, character.computeUncounciousnessCeil(18));
-        Assert.assertEquals(35, character.computeUncounciousnessCeil(19));
-        Assert.assertEquals(36, character.computeUncounciousnessCeil(20));
-        Assert.assertEquals(39, character.computeUncounciousnessCeil(21));
-        Assert.assertEquals(40, character.computeUncounciousnessCeil(22));
-        Assert.assertEquals(48, character.computeUncounciousnessCeil(28));
-        Assert.assertEquals(49, character.computeUncounciousnessCeil(29));
-        Assert.assertEquals(51, character.computeUncounciousnessCeil(30));
+        Assert.assertEquals(8, elfe.getWoundThreshold());
+        Assert.assertEquals(9, humain.getWoundThreshold());
+        Assert.assertEquals(11, nain.getWoundThreshold());
+        Assert.assertEquals(14, obsidien.getWoundThreshold());
+        Assert.assertEquals(10, ork.getWoundThreshold());
+        Assert.assertEquals(8, sylphe.getWoundThreshold());
+        Assert.assertEquals(10, troll.getWoundThreshold());
+        Assert.assertEquals(10, tskrang.getWoundThreshold());
+    }
+
+    @Test
+    public void testComputeDeathThreshold()
+    {
+        Assert.assertEquals(19, Character.computeDeathThreshold(1));
+        Assert.assertEquals(20, Character.computeDeathThreshold(2));
+        Assert.assertEquals(22, Character.computeDeathThreshold(3));
+        Assert.assertEquals(23, Character.computeDeathThreshold(4));
+        Assert.assertEquals(34, Character.computeDeathThreshold(12));
+        Assert.assertEquals(35, Character.computeDeathThreshold(13));
+        Assert.assertEquals(36, Character.computeDeathThreshold(14));
+        Assert.assertEquals(42, Character.computeDeathThreshold(18));
+        Assert.assertEquals(43, Character.computeDeathThreshold(19));
+        Assert.assertEquals(44, Character.computeDeathThreshold(20));
+        Assert.assertEquals(55, Character.computeDeathThreshold(28));
+        Assert.assertEquals(56, Character.computeDeathThreshold(29));
+        Assert.assertEquals(58, Character.computeDeathThreshold(30));
+    }
+
+    @Test
+    public void testComputeUncounciousnessThreshold()
+    {
+        Assert.assertEquals(10, Character.computeUnconsciousnessThreshold(1));
+        Assert.assertEquals(11, Character.computeUnconsciousnessThreshold(2));
+        Assert.assertEquals(13, Character.computeUnconsciousnessThreshold(3));
+        Assert.assertEquals(14, Character.computeUnconsciousnessThreshold(4));
+        Assert.assertEquals(21, Character.computeUnconsciousnessThreshold(9));
+        Assert.assertEquals(22, Character.computeUnconsciousnessThreshold(10));
+        Assert.assertEquals(24, Character.computeUnconsciousnessThreshold(11));
+        Assert.assertEquals(26, Character.computeUnconsciousnessThreshold(12));
+        Assert.assertEquals(27, Character.computeUnconsciousnessThreshold(13));
+        Assert.assertEquals(28, Character.computeUnconsciousnessThreshold(14));
+        Assert.assertEquals(34, Character.computeUnconsciousnessThreshold(18));
+        Assert.assertEquals(35, Character.computeUnconsciousnessThreshold(19));
+        Assert.assertEquals(36, Character.computeUnconsciousnessThreshold(20));
+        Assert.assertEquals(39, Character.computeUnconsciousnessThreshold(21));
+        Assert.assertEquals(40, Character.computeUnconsciousnessThreshold(22));
+        Assert.assertEquals(48, Character.computeUnconsciousnessThreshold(28));
+        Assert.assertEquals(49, Character.computeUnconsciousnessThreshold(29));
+        Assert.assertEquals(51, Character.computeUnconsciousnessThreshold(30));
     }
 
 
     @Test
-    public void testComputeWoundCeil()
+    public void testComputeWoundThreshold()
     {
-        Assert.assertEquals(3, character.computeWoundCeil(1));
-        Assert.assertEquals(4, character.computeWoundCeil(2));
-        Assert.assertEquals(4, character.computeWoundCeil(3));
-        Assert.assertEquals(5, character.computeWoundCeil(4));
-        Assert.assertEquals(7, character.computeWoundCeil(9));
-        Assert.assertEquals(8, character.computeWoundCeil(10));
-        Assert.assertEquals(8, character.computeWoundCeil(11));
-        Assert.assertEquals(9, character.computeWoundCeil(12));
-        Assert.assertEquals(12, character.computeWoundCeil(18));
-        Assert.assertEquals(12, character.computeWoundCeil(19));
-        Assert.assertEquals(13, character.computeWoundCeil(20));
-        Assert.assertEquals(13, character.computeWoundCeil(21));
-        Assert.assertEquals(13, character.computeWoundCeil(22));
-        Assert.assertEquals(15, character.computeWoundCeil(25));
-        Assert.assertEquals(15, character.computeWoundCeil(27));
-        Assert.assertEquals(16, character.computeWoundCeil(28));
-        Assert.assertEquals(16, character.computeWoundCeil(29));
-        Assert.assertEquals(17, character.computeWoundCeil(30));
+        Assert.assertEquals(3, Character.computeWoundThreshold(1));
+        Assert.assertEquals(4, Character.computeWoundThreshold(2));
+        Assert.assertEquals(4, Character.computeWoundThreshold(3));
+        Assert.assertEquals(5, Character.computeWoundThreshold(4));
+        Assert.assertEquals(5, Character.computeWoundThreshold(5));
+        Assert.assertEquals(6, Character.computeWoundThreshold(6));
+        Assert.assertEquals(6, Character.computeWoundThreshold(7));
+        Assert.assertEquals(7, Character.computeWoundThreshold(9));
+        Assert.assertEquals(8, Character.computeWoundThreshold(10));
+        Assert.assertEquals(8, Character.computeWoundThreshold(11));
+        Assert.assertEquals(9, Character.computeWoundThreshold(12));
+        Assert.assertEquals(12, Character.computeWoundThreshold(18));
+        Assert.assertEquals(12, Character.computeWoundThreshold(19));
+        Assert.assertEquals(13, Character.computeWoundThreshold(20));
+        Assert.assertEquals(13, Character.computeWoundThreshold(21));
+        Assert.assertEquals(13, Character.computeWoundThreshold(22));
+        Assert.assertEquals(14, Character.computeWoundThreshold(23));
+        Assert.assertEquals(14, Character.computeWoundThreshold(24));
+        Assert.assertEquals(15, Character.computeWoundThreshold(25));
+        Assert.assertEquals(15, Character.computeWoundThreshold(26));
+        Assert.assertEquals(15, Character.computeWoundThreshold(27));
+        Assert.assertEquals(16, Character.computeWoundThreshold(28));
+        Assert.assertEquals(16, Character.computeWoundThreshold(29));
+        Assert.assertEquals(17, Character.computeWoundThreshold(30));
+    }
+
+    @Test
+    public void testComputeIndiceDefense()
+    {
+        Assert.assertEquals(2, Character.computeIndiceDefense(1));
+        Assert.assertEquals(3, Character.computeIndiceDefense(2));
+        Assert.assertEquals(3, Character.computeIndiceDefense(3));
+        Assert.assertEquals(4, Character.computeIndiceDefense(4));
+        Assert.assertEquals(4, Character.computeIndiceDefense(5));
+        Assert.assertEquals(4, Character.computeIndiceDefense(6));
+        Assert.assertEquals(5, Character.computeIndiceDefense(7));
+        Assert.assertEquals(5, Character.computeIndiceDefense(8));
+        Assert.assertEquals(6, Character.computeIndiceDefense(9));
+        Assert.assertEquals(6, Character.computeIndiceDefense(10));
+        Assert.assertEquals(7, Character.computeIndiceDefense(11));
+        Assert.assertEquals(7, Character.computeIndiceDefense(12));
+        Assert.assertEquals(7, Character.computeIndiceDefense(13));
+        Assert.assertEquals(9, Character.computeIndiceDefense(17));
+        Assert.assertEquals(10, Character.computeIndiceDefense(18));
+        Assert.assertEquals(10, Character.computeIndiceDefense(19));
+        Assert.assertEquals(10, Character.computeIndiceDefense(20));
+        Assert.assertEquals(11, Character.computeIndiceDefense(21));
+        Assert.assertEquals(12, Character.computeIndiceDefense(23));
+        Assert.assertEquals(13, Character.computeIndiceDefense(27));
+        Assert.assertEquals(14, Character.computeIndiceDefense(28));
+        Assert.assertEquals(14, Character.computeIndiceDefense(29));
+        Assert.assertEquals(15, Character.computeIndiceDefense(30));
+    }
+
+    @Test
+    public void testComputeMysticArmor()
+    {
+        Assert.assertEquals(0, Character.computeMysticArmor(1));
+        Assert.assertEquals(0, Character.computeMysticArmor(5));
+        Assert.assertEquals(0, Character.computeMysticArmor(10));
+        Assert.assertEquals(1, Character.computeMysticArmor(11));
+        Assert.assertEquals(1, Character.computeMysticArmor(12));
+        Assert.assertEquals(1, Character.computeMysticArmor(13));
+        Assert.assertEquals(2, Character.computeMysticArmor(14));
+        Assert.assertEquals(2, Character.computeMysticArmor(15));
+        Assert.assertEquals(2, Character.computeMysticArmor(16));
+        Assert.assertEquals(6, Character.computeMysticArmor(27));
+        Assert.assertEquals(6, Character.computeMysticArmor(28));
+        Assert.assertEquals(7, Character.computeMysticArmor(29));
+        Assert.assertEquals(7, Character.computeMysticArmor(30));
     }
 
 }
