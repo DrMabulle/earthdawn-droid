@@ -1,10 +1,13 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.character;
 
 import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Discipline;
+import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Races;
+import fr.android.earthdawn.character.enums.Talents;
 
 /**
  * @author DrMabulle
@@ -21,7 +24,11 @@ public class Character
 
     private final Races race;
 
-    private final Attribut[] attributs = new Attribut[6];
+    private final Attribut[] attributs = new Attribut[7];
+
+    private Discipline discipline1;
+    private Discipline discipline2;
+    private Discipline discipline3;
 
     public Character(final String name, final String sex, final int age, final int height, final int weight,
             final Races race, final int dexInd, final int dexEvol, final int strInd, final int strEvol,
@@ -48,6 +55,49 @@ public class Character
         attributs[Attributs.VOL.getId()] = new Attribut(volInd + race.getBonusVol(), volEvol);
         // Charisme
         attributs[Attributs.CHA.getId()] = new Attribut(chaInd + race.getBonusCha(), chaEvol);
+        // Null
+        attributs[Attributs.NUL.getId()] = new Attribut(0, 0);
+    }
+
+    public Discipline getMainDiscipline()
+    {
+        return discipline1;
+    }
+    public Discipline getSecondDiscipline()
+    {
+        return discipline2;
+    }
+    public Discipline getThridDiscipline()
+    {
+        return discipline3;
+    }
+
+    public boolean setMainDiscipline(final Disciplines discicpline, final int circle)
+    {
+        if(checkCircle(circle))
+        {
+            discipline1 = new Discipline(discicpline, circle);
+            return true;
+        }
+        return false;
+    }
+    public boolean setSecondDiscipline(final Disciplines discicpline, final int circle)
+    {
+        if(checkCircle(circle) && checkCircles(circle, discipline1.getCircle()))
+        {
+            discipline2 = new Discipline(discicpline, circle);
+            return true;
+        }
+        return false;
+    }
+    public boolean setThirdDiscipline(final Disciplines discicpline, final int circle)
+    {
+        if(checkCircle(circle) && checkCircles(circle, discipline2.getCircle()))
+        {
+            discipline3 = new Discipline(discicpline, circle);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -138,6 +188,11 @@ public class Character
         return computeWoundThreshold(attributs[Attributs.END.getId()].getResultingIndice()) + race.getBonusWound();
     }
 
+    public int getTalentRank(final Talents talent)
+    {
+        return attributs[talent.getAttribut().getId()].getRank(); // XXX + rang du talent
+    }
+
 
     protected static int computeDeathThreshold(final int indice)
     {
@@ -162,6 +217,18 @@ public class Character
     protected static int computeMysticArmor(final int indice)
     {
         return (int) Math.ceil(Math.max(indice - 10, 0)  / 3.0);
+    }
+
+    protected static boolean checkCircle(final int circle)
+    {
+        // Circle must be between 1 and 15
+        return circle > 0 && circle < 16;
+    }
+
+    protected static boolean checkCircles(final int circle1, final int circle2)
+    {
+        // Both circles must be correct and circle1 must be greater than or equal to circle 2
+        return checkCircle(circle1)&& checkCircle(circle2) && circle2<=circle1;
     }
 
 }

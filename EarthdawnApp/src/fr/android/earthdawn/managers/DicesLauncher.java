@@ -1,16 +1,16 @@
 /**
  * 
  */
-package fr.android.earthdawn.dices;
+package fr.android.earthdawn.managers;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.android.earthdawn.dices.RankManager;
+import fr.android.earthdawn.dices.Rollable;
 import fr.android.earthdawn.dices.impl.Dice;
 import fr.android.earthdawn.dices.impl.FixedValueDice;
-
-import android.util.Log;
 
 /**
  * @author Administrateur
@@ -40,7 +40,6 @@ public class DicesLauncher
 
     private List<Rollable> parseDicesInfos(final String dicesInfos)
     {
-        Log.d(TAG, "parsing dices infos");
         // Full exemple of infos : 2D20 1D12 -2
         final List<Rollable> dices = new ArrayList<Rollable>(6);
 
@@ -76,7 +75,6 @@ public class DicesLauncher
 
     public int rollDices(final List<Rollable> dices)
     {
-        Log.d(TAG, "rollDices");
         logs.setLength(0);
         // lancer une premi�re fois les d�s et additionner les r�sultats.
         int result = simpleRoll(dices);
@@ -90,7 +88,6 @@ public class DicesLauncher
 
     private int simpleRoll(final List<Rollable> dices)
     {
-        Log.d(TAG, "simpleRoll");
         // Lancer les d�s et additionner les r�sultats
         int sum = 0;
         for (final Rollable dice : dices)
@@ -107,7 +104,6 @@ public class DicesLauncher
 
     private int manageRerolls(final List<Rollable> dices)
     {
-        Log.d(TAG, "manageRerolls");
         final List<Rollable> maxDices = new ArrayList<Rollable>(6);
         final List<Rollable> minDices = new ArrayList<Rollable>(6);
         int result = 0;
@@ -149,7 +145,6 @@ public class DicesLauncher
 
     private void removeCancelledDices(final List<Rollable> maxDices, final List<Rollable> minDices)
     {
-        Log.d(TAG, "removeCancelledDices");
         // Trier les listes par ordre d�croissant
         Collections.sort(maxDices);
         Collections.reverse(maxDices);
@@ -168,7 +163,6 @@ public class DicesLauncher
 
     private int rerollMaxs(final List<Rollable> maxDices)
     {
-        Log.d(TAG, "rerollMaxs");
         int sum = 0;
         while (!maxDices.isEmpty())
         {
@@ -191,7 +185,6 @@ public class DicesLauncher
 
     private int rerollMins(final List<Rollable> minDices)
     {
-        Log.d(TAG, "rerollMins");
         int sum = 0;
         while (!minDices.isEmpty())
         {

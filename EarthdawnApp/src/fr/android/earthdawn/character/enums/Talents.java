@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.character.enums;
 
@@ -11,7 +11,12 @@ public enum Talents
 {
     AbriVegetal("Abri Végétal", Attributs.CHA, true, false, 167),
     AcrobatiesEnSelle("Acrobaties en selle", Attributs.DEX, false, false, 168),
-    AffolementTroupeaux("Affolement des troupeaux", Attributs.VOL, true, false, 168);
+    AffolementTroupeaux("Affolement des troupeaux", Attributs.VOL, true, false, 168),
+
+    ArmeMelee("Arme de Mélée", Attributs.DEX, true, false, 168),
+
+    RituelKarmique("Rituel Karmique", Attributs.NUL, true, false, 168),
+    Longevite("Longévité", Attributs.NUL, false, false, 168);
 
 
     private String label;

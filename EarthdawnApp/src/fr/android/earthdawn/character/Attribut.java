@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.character;
 
@@ -9,8 +9,8 @@ package fr.android.earthdawn.character;
  */
 public class Attribut
 {
-    private final int indice;
-    private final int evol;
+    private int indice;
+    private int evol;
 
     /**
      * @param indice indice de base
@@ -28,8 +28,17 @@ public class Attribut
         return indice + evol;
     }
 
+    public void incrementIndice()
+    {
+        indice++;
+    }
+    public void incrementEvol()
+    {
+        evol++;
+    }
+
     public int getRank()
     {
-        return (int) (Math.ceil((indice + evol) / 3) + 1);
+        return (int) (Math.ceil((indice + evol) / 3.0) + 1);
     }
 }

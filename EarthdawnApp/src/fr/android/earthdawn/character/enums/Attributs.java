@@ -14,7 +14,8 @@ public enum Attributs
     END(2, "Endurance"),
     PER(3, "Perception"),
     VOL(4, "Volonté"),
-    CHA(5, "Charisme");
+    CHA(5, "Charisme"),
+    NUL(6, "Aucun");
 
 
     private int id;

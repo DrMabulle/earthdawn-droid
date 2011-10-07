@@ -223,4 +223,48 @@ public class CharacterTest
         Assert.assertEquals(7, Character.computeMysticArmor(30));
     }
 
+    @Test
+    public void testCheckCircle()
+    {
+        // Valeurs acceptées
+        Assert.assertTrue(Character.checkCircle(1));
+        Assert.assertTrue(Character.checkCircle(5));
+        Assert.assertTrue(Character.checkCircle(9));
+        Assert.assertTrue(Character.checkCircle(13));
+        Assert.assertTrue(Character.checkCircle(15));
+        // Valeurs négatives
+        Assert.assertFalse(Character.checkCircle(-1));
+        Assert.assertFalse(Character.checkCircle(-5));
+        Assert.assertFalse(Character.checkCircle(-9));
+        Assert.assertFalse(Character.checkCircle(-13));
+        Assert.assertFalse(Character.checkCircle(-15));
+        // Valeurs trop grandes ou trop petites
+        Assert.assertFalse(Character.checkCircle(0));
+        Assert.assertFalse(Character.checkCircle(16));
+        Assert.assertFalse(Character.checkCircle(22));
+    }
+
+    @Test
+    public void testCheckCircles()
+    {
+        // Valeurs acceptées
+        Assert.assertTrue(Character.checkCircles(6, 3));
+        Assert.assertTrue(Character.checkCircles(9, 6));
+        Assert.assertTrue(Character.checkCircles(10, 10));
+        Assert.assertTrue(Character.checkCircles(15, 1));
+        Assert.assertTrue(Character.checkCircles(2, 1));
+        // Valeurs négatives
+        Assert.assertFalse(Character.checkCircles(-1, 3));
+        Assert.assertFalse(Character.checkCircles(5, -2));
+        Assert.assertFalse(Character.checkCircles(-9, 4));
+        Assert.assertFalse(Character.checkCircles(6, -13));
+        Assert.assertFalse(Character.checkCircles(-15, 10));
+        // Valeurs trop grandes ou trop petites
+        Assert.assertFalse(Character.checkCircles(0, 2));
+        Assert.assertFalse(Character.checkCircles(2, 0));
+        Assert.assertFalse(Character.checkCircles(15, 16));
+        Assert.assertFalse(Character.checkCircles(16, 15));
+    }
+
+
 }

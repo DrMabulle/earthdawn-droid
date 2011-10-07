@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import fr.android.earthdawn.R;
-import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.dices.RankManager;
+import fr.android.earthdawn.managers.DicesLauncher;
 
 public class RollerActivity extends Activity
 {

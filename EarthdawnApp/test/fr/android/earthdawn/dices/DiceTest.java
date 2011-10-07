@@ -9,7 +9,7 @@ import org.junit.Test;
 import fr.android.earthdawn.dices.impl.Dice;
 
 /**
- * @author Administrateur
+ * @author DrMabulle
  *
  */
 public class DiceTest
