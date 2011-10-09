@@ -1,22 +1,26 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.character.enums;
+
+import java.io.Serializable;
+
+import fr.android.earthdawn.R;
 
 /**
  * @author DrMabulle
  *
  */
-public enum Races
+public enum Races implements Serializable
 {
-    Elfe("Elfe", 2, 0, -2, 1, 1, 1, 4, 0, 0, 0),
-    Humain("Humain", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0),
-    Nain("Nain", 0, 2, 3, 0, 0, -2, 4, 0, 0, 0),
-    Obsidien("Obsidien", -2, 6, 4, -1, 0, -1, 3, 0, 3, 3),
-    Ork("Ork", 0, 3, 1, 0, -2, -1, 5, 0, 0, 0),
-    Sylphelin("Sylphelin", 1, -4, -3, 1, 0, 2, 6, 3, 0, 0),
-    Troll("Troll", 0, 4, 2, -1, 1, 0, 3, 0, 0, 0),
-    Tskrang("T'skrang", 1, 0, 1, 0, 0, 1, 4, 0, 0, 0);
+    Elfe("Elfe", 2, 0, -2, 1, 1, 1, 4, 0, 0, 0, 1, R.string.apt1),
+    Humain("Humain", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, R.string.apt3),
+    Nain("Nain", 0, 2, 3, 0, 0, -2, 4, 0, 0, 0, -2, R.string.apt2),
+    Obsidien("Obsidien", -2, 6, 4, -1, 0, -1, 3, 0, 3, 3, -3, R.string.apt4, R.string.apt5, R.string.apt6),
+    Ork("Ork", 0, 3, 1, 0, -2, -1, 5, 0, 0, 0, 1, R.string.apt7, R.string.apt1),
+    Sylphelin("Sylphelin", 1, -4, -3, 1, 0, 2, 6, 3, 0, 0, 2, R.string.apt8, R.string.apt9, R.string.apt10, R.string.apt11),
+    Troll("Troll", 0, 4, 2, -1, 1, 0, 3, 0, 0, 0, 0, R.string.apt12, R.string.apt13, R.string.apt2),
+    Tskrang("T'skrang", 1, 0, 1, 0, 0, 1, 4, 0, 0, 0, 0, R.string.apt14);
 
     private String name;
     private int bonusDex;
@@ -29,6 +33,8 @@ public enum Races
     private int bonusPhyDef;
     private int bonusPhyArm;
     private int bonusWound;
+    private int bonusMvt;
+    private int[] aptitudes;
 
 
     /**
@@ -43,7 +49,8 @@ public enum Races
      */
     private Races(final String name, final int bonusDex, final int bonusStr, final int bonusEnd, final int bonusPer,
             final int bonusVol, final int bonusCha, final int karmaRank,
-            final int bonusPhyDef, final int bonusPhyArm, final int bonusWound)
+            final int bonusPhyDef, final int bonusPhyArm, final int bonusWound,
+            final int bonusMvt, final int... aptitudes)
     {
         this.name = name;
         this.bonusDex = bonusDex;
@@ -56,7 +63,8 @@ public enum Races
         this.bonusPhyDef = bonusPhyDef;
         this.bonusPhyArm = bonusPhyArm;
         this.bonusWound = bonusWound;
-
+        this.bonusMvt = bonusMvt;
+        this.aptitudes = aptitudes;
     }
 
     /**
@@ -145,6 +153,22 @@ public enum Races
     public final int getBonusWound()
     {
         return bonusWound;
+    }
+
+    /**
+     * @return the aptitudes
+     */
+    public int[] getAptitudes()
+    {
+        return aptitudes;
+    }
+
+    /**
+     * @return the bonusMvt
+     */
+    public int getBonusMvt()
+    {
+        return bonusMvt;
     }
 
 }

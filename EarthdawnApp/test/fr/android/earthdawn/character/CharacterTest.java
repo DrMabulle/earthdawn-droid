@@ -107,6 +107,48 @@ public class CharacterTest
     }
 
     @Test
+    public void testGetMouvement()
+    {
+        Assert.assertEquals(40, elfe.getCombatMouvement());
+        Assert.assertEquals(80, elfe.getRunningMouvement());
+        Assert.assertEquals(34, humain.getCombatMouvement());
+        Assert.assertEquals(68, humain.getRunningMouvement());
+        Assert.assertEquals(30, nain.getCombatMouvement());
+        Assert.assertEquals(60, nain.getRunningMouvement());
+        Assert.assertEquals(24, obsidien.getCombatMouvement());
+        Assert.assertEquals(48, obsidien.getRunningMouvement());
+        Assert.assertEquals(36, ork.getCombatMouvement());
+        Assert.assertEquals(72, ork.getRunningMouvement());
+        Assert.assertEquals(40, sylphe.getCombatMouvement());
+        Assert.assertEquals(80, sylphe.getRunningMouvement());
+        Assert.assertEquals(34, troll.getCombatMouvement());
+        Assert.assertEquals(68, troll.getRunningMouvement());
+        Assert.assertEquals(36, tskrang.getCombatMouvement());
+        Assert.assertEquals(72, tskrang.getRunningMouvement());
+    }
+
+    @Test
+    public void testGetTransportCapacity()
+    {
+        Assert.assertEquals(140, elfe.getLiftingCapacity());
+        Assert.assertEquals(70, elfe.getCarryingCapacity());
+        Assert.assertEquals(140, humain.getLiftingCapacity());
+        Assert.assertEquals(70, humain.getCarryingCapacity());
+        Assert.assertEquals(180, nain.getLiftingCapacity());
+        Assert.assertEquals(90, nain.getCarryingCapacity());
+        Assert.assertEquals(290, obsidien.getLiftingCapacity());
+        Assert.assertEquals(145, obsidien.getCarryingCapacity());
+        Assert.assertEquals(200, ork.getLiftingCapacity());
+        Assert.assertEquals(100, ork.getCarryingCapacity());
+        Assert.assertEquals(40, sylphe.getLiftingCapacity());
+        Assert.assertEquals(20, sylphe.getCarryingCapacity());
+        Assert.assertEquals(230, troll.getLiftingCapacity());
+        Assert.assertEquals(115, troll.getCarryingCapacity());
+        Assert.assertEquals(140, tskrang.getLiftingCapacity());
+        Assert.assertEquals(70, tskrang.getCarryingCapacity());
+    }
+
+    @Test
     public void testComputeDeathThreshold()
     {
         Assert.assertEquals(19, Character.computeDeathThreshold(1));
@@ -224,15 +266,103 @@ public class CharacterTest
     }
 
     @Test
+    public void testComputeCombatMouvement()
+    {
+        Assert.assertEquals(6, Character.computeCombatMouvement(1));
+        Assert.assertEquals(7, Character.computeCombatMouvement(2));
+        Assert.assertEquals(8, Character.computeCombatMouvement(3));
+        Assert.assertEquals(9, Character.computeCombatMouvement(4));
+        Assert.assertEquals(10, Character.computeCombatMouvement(5));
+        Assert.assertEquals(12, Character.computeCombatMouvement(6));
+        Assert.assertEquals(14, Character.computeCombatMouvement(7));
+        Assert.assertEquals(24, Character.computeCombatMouvement(12));
+        Assert.assertEquals(34, Character.computeCombatMouvement(17));
+        Assert.assertEquals(38, Character.computeCombatMouvement(19));
+        Assert.assertEquals(40, Character.computeCombatMouvement(20));
+        Assert.assertEquals(43, Character.computeCombatMouvement(21));
+        Assert.assertEquals(46, Character.computeCombatMouvement(22));
+        Assert.assertEquals(61, Character.computeCombatMouvement(27));
+        Assert.assertEquals(64, Character.computeCombatMouvement(28));
+        Assert.assertEquals(67, Character.computeCombatMouvement(29));
+        Assert.assertEquals(70, Character.computeCombatMouvement(30));
+    }
+
+    @Test
+    public void testComputeRunningMouvement()
+    {
+        Assert.assertEquals(12, Character.computeRunningMouvement(1));
+        Assert.assertEquals(14, Character.computeRunningMouvement(2));
+        Assert.assertEquals(16, Character.computeRunningMouvement(3));
+        Assert.assertEquals(18, Character.computeRunningMouvement(4));
+        Assert.assertEquals(20, Character.computeRunningMouvement(5));
+        Assert.assertEquals(24, Character.computeRunningMouvement(6));
+        Assert.assertEquals(28, Character.computeRunningMouvement(7));
+        Assert.assertEquals(48, Character.computeRunningMouvement(12));
+        Assert.assertEquals(68, Character.computeRunningMouvement(17));
+        Assert.assertEquals(76, Character.computeRunningMouvement(19));
+        Assert.assertEquals(80, Character.computeRunningMouvement(20));
+        Assert.assertEquals(86, Character.computeRunningMouvement(21));
+        Assert.assertEquals(92, Character.computeRunningMouvement(22));
+        Assert.assertEquals(122, Character.computeRunningMouvement(27));
+        Assert.assertEquals(128, Character.computeRunningMouvement(28));
+        Assert.assertEquals(134, Character.computeRunningMouvement(29));
+        Assert.assertEquals(140, Character.computeRunningMouvement(30));
+    }
+
+    @Test
+    public void testComputeLiftingCapacity()
+    {
+        Assert.assertEquals(5, Character.computeLiftingCapacity(1));
+        Assert.assertEquals(15, Character.computeLiftingCapacity(3));
+        Assert.assertEquals(30, Character.computeLiftingCapacity(6));
+        Assert.assertEquals(40, Character.computeLiftingCapacity(7));
+        Assert.assertEquals(80, Character.computeLiftingCapacity(11));
+        Assert.assertEquals(95, Character.computeLiftingCapacity(12));
+        Assert.assertEquals(140, Character.computeLiftingCapacity(15));
+        Assert.assertEquals(160, Character.computeLiftingCapacity(16));
+        Assert.assertEquals(200, Character.computeLiftingCapacity(18));
+        Assert.assertEquals(230, Character.computeLiftingCapacity(19));
+        Assert.assertEquals(290, Character.computeLiftingCapacity(21));
+        Assert.assertEquals(330, Character.computeLiftingCapacity(22));
+        Assert.assertEquals(410, Character.computeLiftingCapacity(24));
+        Assert.assertEquals(460, Character.computeLiftingCapacity(25));
+        Assert.assertEquals(560, Character.computeLiftingCapacity(27));
+        Assert.assertEquals(620, Character.computeLiftingCapacity(28));
+        Assert.assertEquals(740, Character.computeLiftingCapacity(30));
+    }
+
+    @Test
+    public void testComputeCarryingCapacity()
+    {
+        Assert.assertEquals(3, Character.computeCarryingCapacity(1));
+        Assert.assertEquals(8, Character.computeCarryingCapacity(3));
+        Assert.assertEquals(15, Character.computeCarryingCapacity(6));
+        Assert.assertEquals(20, Character.computeCarryingCapacity(7));
+        Assert.assertEquals(40, Character.computeCarryingCapacity(11));
+        Assert.assertEquals(48, Character.computeCarryingCapacity(12));
+        Assert.assertEquals(70, Character.computeCarryingCapacity(15));
+        Assert.assertEquals(80, Character.computeCarryingCapacity(16));
+        Assert.assertEquals(100, Character.computeCarryingCapacity(18));
+        Assert.assertEquals(115, Character.computeCarryingCapacity(19));
+        Assert.assertEquals(145, Character.computeCarryingCapacity(21));
+        Assert.assertEquals(165, Character.computeCarryingCapacity(22));
+        Assert.assertEquals(205, Character.computeCarryingCapacity(24));
+        Assert.assertEquals(230, Character.computeCarryingCapacity(25));
+        Assert.assertEquals(280, Character.computeCarryingCapacity(27));
+        Assert.assertEquals(310, Character.computeCarryingCapacity(28));
+        Assert.assertEquals(370, Character.computeCarryingCapacity(30));
+    }
+
+    @Test
     public void testCheckCircle()
     {
-        // Valeurs acceptées
+        // Valeurs acceptï¿½es
         Assert.assertTrue(Character.checkCircle(1));
         Assert.assertTrue(Character.checkCircle(5));
         Assert.assertTrue(Character.checkCircle(9));
         Assert.assertTrue(Character.checkCircle(13));
         Assert.assertTrue(Character.checkCircle(15));
-        // Valeurs négatives
+        // Valeurs nï¿½gatives
         Assert.assertFalse(Character.checkCircle(-1));
         Assert.assertFalse(Character.checkCircle(-5));
         Assert.assertFalse(Character.checkCircle(-9));
@@ -247,13 +377,13 @@ public class CharacterTest
     @Test
     public void testCheckCircles()
     {
-        // Valeurs acceptées
+        // Valeurs acceptï¿½es
         Assert.assertTrue(Character.checkCircles(6, 3));
         Assert.assertTrue(Character.checkCircles(9, 6));
         Assert.assertTrue(Character.checkCircles(10, 10));
         Assert.assertTrue(Character.checkCircles(15, 1));
         Assert.assertTrue(Character.checkCircles(2, 1));
-        // Valeurs négatives
+        // Valeurs nï¿½gatives
         Assert.assertFalse(Character.checkCircles(-1, 3));
         Assert.assertFalse(Character.checkCircles(5, -2));
         Assert.assertFalse(Character.checkCircles(-9, 4));

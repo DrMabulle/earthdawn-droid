@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:weightSum="1">
+    android:weightSum="1" 
+    android:orientation="vertical"
+    android:gravity="center">
+    
+    <Button android:layout_width="300dp" 
+    	android:id="@+id/m_sheet" 
+    	android:layout_height="wrap_content" 
+    	android:text="@string/main_character" 
+    	android:layout_gravity="center">
+    </Button>
+    <Button android:layout_width="300dp" 
+    	android:id="@+id/m_new"
+		android:layout_height="wrap_content" 
+		android:text="@string/main_new_char"
+		android:layout_marginTop="30px" 
+		android:layout_gravity="center">
+	</Button>
+    <Button android:layout_width="300dp" 
+    	android:id="@+id/m_map" 
+    	android:layout_height="wrap_content" 
+    	android:text="@string/main_map"
+    	android:layout_marginTop="30px" 
+    	android:layout_gravity="center">
+    </Button>
+    <Button android:layout_width="300dp" 
+    	android:id="@+id/m_tests" 
+    	android:layout_height="wrap_content" 
+    	android:text="@string/main_roller"
+    	android:layout_marginTop="30px" 
+    	android:layout_gravity="center">
+    </Button>
 </LinearLayout>

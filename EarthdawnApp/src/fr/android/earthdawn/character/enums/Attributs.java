@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.character.enums;
 
@@ -9,13 +9,13 @@ package fr.android.earthdawn.character.enums;
  */
 public enum Attributs
 {
-    DEX(0, "Dextérité"),
-    STR(1, "Force"),
-    END(2, "Endurance"),
-    PER(3, "Perception"),
-    VOL(4, "Volonté"),
-    CHA(5, "Charisme"),
-    NUL(6, "Aucun");
+    DEX(0, "DEX"),
+    STR(1, "FOR"),
+    END(2, "END"),
+    PER(3, "PER"),
+    VOL(4, "VOL"),
+    CHA(5, "CHA"),
+    NUL(6, "");
 
 
     private int id;

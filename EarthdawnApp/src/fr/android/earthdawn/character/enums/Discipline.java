@@ -3,6 +3,7 @@
  */
 package fr.android.earthdawn.character.enums;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,8 +12,10 @@ import java.util.List;
  * @author DrMabulle
  *
  */
-public class Discipline
+public class Discipline implements Serializable
 {
+    private static final long serialVersionUID = -2384352988631922220L;
+
     private final Disciplines discipline;
     private int circle;
 
@@ -37,9 +40,9 @@ public class Discipline
         circle++;
     }
 
-    public Disciplines getDiscipline()
+    public String getName()
     {
-        return discipline;
+        return discipline.getLabel();
     }
 
     public List<Talent> getTalentsUpTo(final int circle)

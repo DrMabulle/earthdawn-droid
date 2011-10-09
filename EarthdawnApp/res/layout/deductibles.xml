@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  android:orientation="horizontal" 
+	android:id="@+id/sheet_deductibles" android:layout_height="wrap_content" android:layout_width="match_parent"
+	android:layout_margin="3dp">
+	
+	<LinearLayout android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_margin="4dp">
+		
+		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
+		    android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sheet_defenses"/>
+	    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_def_phy" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
+				    android:id="@+id/sheet_def_phy" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_def_mag" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
+				    android:id="@+id/sheet_def_mag" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_def_soc" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_def_soc" android:padding="4dp"/>
+	        </TableRow>
+	    </TableLayout>
+	    
+	    <TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
+		    android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sheet_equipement"
+		    android:layout_marginTop="10dp"/>
+	    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_equ_tra" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_equ_tra" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_equ_lev" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_equ_lev" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_equ_car" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_equ_car" android:padding="4dp"/>
+	        </TableRow>
+	    </TableLayout>
+	    
+	    <TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
+		    android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sheet_initiative"
+		    android:layout_marginTop="10dp"/>
+	    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_init_dex" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_init_dex" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_init_pen" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_init_pen" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_init_lvl" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_init_lvl" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_init_roll" android:padding="4dp"
+				    android:layout_gravity="center_vertical"/>
+	        	<ImageButton android:id="@+id/roll_initiative" android:src="@drawable/dice" 
+	        		android:layout_height="wrap_content" android:layout_width="wrap_content"></ImageButton>
+	        </TableRow>
+	    </TableLayout>
+	    
+   	</LinearLayout>
+   	
+   	
+   	
+   	
+   	<LinearLayout android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="wrap_content" 
+   		android:layout_margin="4dp" android:layout_marginLeft="20dp" >
+   		
+   		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="match_parent" 
+   			android:layout_height="wrap_content" android:text="@string/sheet_armor" android:gravity="center_horizontal"/>
+	    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_arm_type" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_arm_type" android:padding="4dp"/>
+	        </TableRow>
+	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_arm_phy" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_arm_phy" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_arm_mag" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_arm_mag" android:padding="4dp"/>
+	        </TableRow>
+	    </TableLayout>
+	    
+	    <TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
+		    android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sheet_mouvement"
+		    android:layout_marginTop="10dp"/>
+	    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_mvn_run" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_mvn_run" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_mvn_cbt" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_mvn_cbt" android:padding="4dp"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_mvn_mel" android:padding="4dp"/>
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_mvn_mel" android:padding="4dp"/>
+	        </TableRow>
+	    </TableLayout>
+	    
+	    <TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
+		    android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sheet_racial"
+		    android:layout_marginTop="10dp"/>
+	    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" 
+				    android:id="@+id/sheet_racial_apt1" android:padding="4dp" android:text=" "/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" 
+				    android:id="@+id/sheet_racial_apt2" android:padding="4dp" android:text=" "/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:id="@+id/sheet_racial_apt3" android:padding="4dp" android:text=" "/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:id="@+id/sheet_racial_apt4" android:padding="4dp" android:text=" "/>
+	        </TableRow>
+	    </TableLayout>
+	    
+   	</LinearLayout>
+   	
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_margin="3dp"
+	android:id="@+id/sheet_disciplines" android:layout_height="wrap_content" android:layout_width="match_parent">>
+	
+    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+    
+    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
+			    android:padding="4dp" android:text="@string/sheet_disciplines"/>
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
+			    android:padding="4dp" android:text="@string/sheet_circle"/>
+        </TableRow>
+        
+        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_width="wrap_content" android:layout_height="wrap_content"
+			    android:id="@+id/sheet_main_discipline" android:padding="4dp"/>    
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+			    android:id="@+id/sheet_main_circle" android:padding="4dp"/>    
+        </TableRow>
+        
+        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_width="wrap_content" android:layout_height="wrap_content"
+			    android:id="@+id/sheet_second_discipline" android:padding="4dp"/>    
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+			    android:id="@+id/sheet_second_circle" android:padding="4dp"/>    
+        </TableRow>
+        
+        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_width="wrap_content" android:layout_height="wrap_content"
+			    android:id="@+id/sheet_third_discipline" android:padding="4dp"/>    
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+			    android:id="@+id/sheet_third_circle" android:padding="4dp"/>    
+        </TableRow>
+        
+    </TableLayout>
+   
+</LinearLayout>

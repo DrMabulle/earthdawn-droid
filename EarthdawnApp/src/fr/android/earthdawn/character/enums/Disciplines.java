@@ -3,6 +3,7 @@
  */
 package fr.android.earthdawn.character.enums;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,48 +11,55 @@ import java.util.List;
  * @author DrMabulle
  *
  */
-public enum Disciplines
+public enum Disciplines implements Serializable
 {
-    Archer("Archer", Arrays.asList(new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    Archer("Archer", Arrays.asList(new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
     Cavalier("Cavalier",
-        Arrays.asList(new Talent(Talents.ArmeMelee, 1), new Talent(Talents.RituelKarmique, 2),
-            new Talent(Talents.Longevite, 2))),
+        Arrays.asList(new Talent(Talents.ArmesMelee, 1, false), new Talent(Talents.RituelKarmique, 1, false),
+            new Talent(Talents.Longevite, 2, false))),
 
-    Eclaireur("Eclaireur", Arrays.asList(new Talent(Talents.ArmeMelee, 1), new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    Eclaireur("Eclaireur", Arrays.asList(new Talent(Talents.ArmesMelee, 1, false), new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
-    EcumeurDuCiel("Ecumeur du Ciel", Arrays.asList(new Talent(Talents.ArmeMelee, 1), new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    EcumeurDuCiel("Ecumeur du Ciel", Arrays.asList(new Talent(Talents.ArmesMelee, 1, false), new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
-    Elementaliste("Elémentaliste", Arrays.asList(new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    Elementaliste("Elémentaliste",
+        Arrays.asList(new Talent(Talents.Incantation, 1, true),  new Talent(Talents.RituelKarmique, 1, false),
+                new Talent(Talents.LectureEcriture, 1, false), new Talent(Talents.LectureEcritureMagie, 1, false),
+                new Talent(Talents.Matrice, 1, false), new Talent(Talents.Matrice, 1, false),
+                new Talent(Talents.Tissage, 1, true),
+                new Talent(Talents.Longevite, 2, false))),
 
-    Forgeron("Forgeron", Arrays.asList(new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    Forgeron("Forgeron", Arrays.asList(new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
     Guerrier("Guerrier",
-        Arrays.asList(new Talent(Talents.ArmeMelee, 1), new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2),
-                new Talent(Talents.ArmeMelee, 3), new Talent(Talents.ArmeMelee, 4), new Talent(Talents.ArmeMelee, 5),
-                new Talent(Talents.ArmeMelee, 6), new Talent(Talents.ArmeMelee, 7), new Talent(Talents.ArmeMelee, 8),
-                new Talent(Talents.ArmeMelee, 9), new Talent(Talents.ArmeMelee, 10), new Talent(Talents.ArmeMelee, 11),
-                new Talent(Talents.ArmeMelee, 12), new Talent(Talents.ArmeMelee, 13), new Talent(Talents.ArmeMelee, 14),
-                new Talent(Talents.ArmeMelee, 15))),
+        Arrays.asList(new Talent(Talents.ArmesMelee, 1, true), new Talent(Talents.AttaqueAccro, 1, false),
+                new Talent(Talents.CombatMainsNues, 1, true), new Talent(Talents.DanseAir, 1, false),
+                new Talent(Talents.PeauBois, 1, true), new Talent(Talents.RituelKarmique, 1, false),
+                new Talent(Talents.Longevite, 2, false), new Talent(Talents.ArmesJet, 2, false), new Talent(Talents.Anticipation, 2, true),
+                new Talent(Talents.Esquive, 3, true), new Talent(Talents.VivaciteTigre, 3, false),
+                new Talent(Talents.AttaquePlongeante, 4, true), new Talent(Talents.Tissage, 4, true),
+                new Talent(Talents.CoupDouble, 5, true), new Talent(Talents.Envol, 5, true),
+                new Talent(Talents.ArmesTrait, 6, false), new Talent(Talents.UltimeSursaut, 6, false))),
 
-    Illusionniste("Illusionniste", Arrays.asList(new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    Illusionniste("Illusionniste", Arrays.asList(new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
-    MaitreArmes("Maitre d'Armes", Arrays.asList(new Talent(Talents.ArmeMelee, 1), new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    MaitreArmes("Maitre d'Armes", Arrays.asList(new Talent(Talents.ArmesMelee, 1, false), new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
-    MaitreAnimaux("Maitre des Animaux", Arrays.asList(new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    MaitreAnimaux("Maitre des Animaux", Arrays.asList(new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
-    NavigateurCiel("Navigateur du Ciel", Arrays.asList(new Talent(Talents.ArmeMelee, 1), new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    NavigateurCiel("Navigateur du Ciel", Arrays.asList(new Talent(Talents.ArmesMelee, 1, false), new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
-    Necromancien("Nécromancien", Arrays.asList(new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    Necromancien("Nécromancien", Arrays.asList(new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
-    Sorcieur("Sorcier", Arrays.asList(new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    Sorcieur("Sorcier", Arrays.asList(new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
-    Troubadour("Troubadour", Arrays.asList(new Talent(Talents.ArmeMelee, 1), new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2))),
+    Troubadour("Troubadour", Arrays.asList(new Talent(Talents.ArmesMelee, 1, false), new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false))),
 
-    Voleur("Voleur", Arrays.asList(new Talent(Talents.ArmeMelee, 1), new Talent(Talents.RituelKarmique, 2), new Talent(Talents.Longevite, 2)));
+    Voleur("Voleur", Arrays.asList(new Talent(Talents.ArmesMelee, 1, false), new Talent(Talents.RituelKarmique, 1, false), new Talent(Talents.Longevite, 2, false)));
 
-    public String label;
-    public List<Talent> talents;
+    private String label;
+    private List<Talent> talents;
 
     private Disciplines(final String label, final List<Talent> talents)
     {

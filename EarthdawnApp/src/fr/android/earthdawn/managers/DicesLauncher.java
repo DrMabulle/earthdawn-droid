@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.managers;
 
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import fr.android.earthdawn.dices.RankManager;
 import fr.android.earthdawn.dices.Rollable;
 import fr.android.earthdawn.dices.impl.Dice;
 import fr.android.earthdawn.dices.impl.FixedValueDice;
@@ -18,7 +17,6 @@ import fr.android.earthdawn.dices.impl.FixedValueDice;
  */
 public class DicesLauncher
 {
-    private static final String TAG = "DicesLauncher";
     private static final String REGEX = "([0-9]+D[0-9]+[ ]*)+(-[0-9]+)*";
 
     private final StringBuilder logs = new StringBuilder(256);
@@ -76,19 +74,19 @@ public class DicesLauncher
     public int rollDices(final List<Rollable> dices)
     {
         logs.setLength(0);
-        // lancer une premi�re fois les d�s et additionner les r�sultats.
+        // lancer une première fois les dés et additionner les résultats.
         int result = simpleRoll(dices);
 
-        // G�rer les relances sp�cifiques au syst�me EarthDawn
+        // Gérer les relances spécifiques au système EarthDawn
         result += manageRerolls(dices);
 
-        // Somme des d�s apr�s relances
+        // Somme des dés après relances
         return result;
     }
 
     private int simpleRoll(final List<Rollable> dices)
     {
-        // Lancer les d�s et additionner les r�sultats
+        // Lancer les dés et additionner les résultats
         int sum = 0;
         for (final Rollable dice : dices)
         {
@@ -145,7 +143,7 @@ public class DicesLauncher
 
     private void removeCancelledDices(final List<Rollable> maxDices, final List<Rollable> minDices)
     {
-        // Trier les listes par ordre d�croissant
+        // Trier les listes par ordre décroissant
         Collections.sort(maxDices);
         Collections.reverse(maxDices);
         Collections.sort(minDices);
@@ -166,12 +164,12 @@ public class DicesLauncher
         int sum = 0;
         while (!maxDices.isEmpty())
         {
-            // relancer les d�s et ajouter les r�sultats
+            // relancer les dés et ajouter les résultats
             sum += simpleRoll(maxDices);
 
             logs.append("------\n");
 
-            // Ne garder que les d�s qui ont fait un maximum (pour relance)
+            // Ne garder que les dés qui ont fait un maximum (pour relance)
             for (int i = maxDices.size() - 1; i >= 0; i--)
             {
                 if (!maxDices.get(i).isMaxValue())
@@ -188,12 +186,12 @@ public class DicesLauncher
         int sum = 0;
         while (!minDices.isEmpty())
         {
-            // relancer les d�s et soustraire les r�sultats
+            // relancer les dés et soustraire les résultats
             sum -= simpleRoll(minDices);
 
             logs.append("------\n");
 
-            // Ne garder que les d�s qui ont fait un maximum (pour relance)
+            // Ne garder que les dés qui ont fait un maximum (pour relance)
             for (int i = minDices.size() - 1; i >= 0; i--)
             {
                 if (!minDices.get(i).isMinValue())

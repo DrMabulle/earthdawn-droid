@@ -12,16 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import fr.android.earthdawn.R;
-import fr.android.earthdawn.dices.RankManager;
 import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.managers.RankManager;
+import fr.android.earthdawn.utils.Constants;
 
 public class RollerActivity extends Activity
 {
     private static final String LOGS = "logs";
     private static final String RESULT = "result";
     private static final String DICES_INFOS = "DicesInfos";
-    private static final int DIALOG_SHOW_ERROR = 1;
-    private static final int DIALOG_SHOW_RESULT = 2;
 
     private final DicesLauncher launcher = new DicesLauncher();
 
@@ -56,7 +55,7 @@ public class RollerActivity extends Activity
                 if (!isInputCorrect)
                 {
                     // Open error popup
-                    showDialog(DIALOG_SHOW_ERROR, null);
+                    showDialog(Constants.DIALOG_SHOW_ERROR, null);
                 }
                 else
                 {
@@ -66,7 +65,7 @@ public class RollerActivity extends Activity
                     args.putString(DICES_INFOS, dicesInfos);
                     args.putInt(RESULT, rollingResult);
                     args.putString(LOGS, launcher.getLogs());
-                    showDialog(DIALOG_SHOW_RESULT, args);
+                    showDialog(Constants.DIALOG_SHOW_RESULT, args);
                 }
             }
             else
@@ -77,10 +76,10 @@ public class RollerActivity extends Activity
                 // Open result popup
                 final int rollingResult = launcher.rollDices(rank);
                 final Bundle args = new Bundle(3);
-                args.putString(DICES_INFOS, "rang " + rank + " : " + RankManager.getDicesFromRank(rank));
+                args.putString(DICES_INFOS, getString(R.string.roller_rank_msg, rank, RankManager.getDicesFromRank(rank)));
                 args.putInt(RESULT, rollingResult);
                 args.putString(LOGS, launcher.getLogs());
-                showDialog(DIALOG_SHOW_RESULT, args);
+                showDialog(Constants.DIALOG_SHOW_RESULT, args);
             }
 
         }
@@ -91,9 +90,9 @@ public class RollerActivity extends Activity
     {
         switch (id)
         {
-            case DIALOG_SHOW_ERROR:
+            case Constants.DIALOG_SHOW_ERROR:
                 final Builder builder = new AlertDialog.Builder(this);
-                builder.setIcon(android.R.drawable.ic_dialog_alert);
+                builder.setIcon(android.R.drawable.ic_dialog_info);
                 builder.setTitle("Erreur de saisie");
                 builder.setMessage(this.getString(R.string.roller_format_error));
                 builder.setNeutralButton("Close", new DialogInterface.OnClickListener()
@@ -106,7 +105,7 @@ public class RollerActivity extends Activity
                 });
                 return builder.create();
 
-            case DIALOG_SHOW_RESULT:
+            case Constants.DIALOG_SHOW_RESULT:
                 final Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setIcon(android.R.drawable.ic_dialog_alert);
                 builder2.setTitle(this.getString(R.string.roller_popup_title));
@@ -128,14 +127,14 @@ public class RollerActivity extends Activity
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see android.app.Activity#onPrepareDialog(int, android.app.Dialog,
      * android.os.Bundle)
      */
     @Override
     protected void onPrepareDialog(final int id, final Dialog dialog, final Bundle args)
     {
-        if (id == DIALOG_SHOW_RESULT)
+        if (id == Constants.DIALOG_SHOW_RESULT)
         {
             ((AlertDialog) dialog).setMessage(buildMessage(args));
         }
@@ -145,6 +144,6 @@ public class RollerActivity extends Activity
 
     private String buildMessage(final Bundle args)
     {
-        return this.getString(R.string.roller_invalid_input, args.get(DICES_INFOS), args.get(RESULT), args.get(LOGS));
+        return this.getString(R.string.roller_message, args.get(DICES_INFOS), args.get(RESULT), args.get(LOGS));
     }
 }

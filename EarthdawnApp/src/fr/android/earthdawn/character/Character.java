@@ -3,6 +3,8 @@
  */
 package fr.android.earthdawn.character;
 
+import java.io.Serializable;
+
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
@@ -13,8 +15,9 @@ import fr.android.earthdawn.character.enums.Talents;
  * @author DrMabulle
  *
  */
-public class Character
+public class Character implements Serializable
 {
+    private static final long serialVersionUID = -2501068072861443147L;
 
     private final String name;
     private final String sex;
@@ -67,9 +70,34 @@ public class Character
     {
         return discipline2;
     }
-    public Discipline getThridDiscipline()
+    public Discipline getThirdDiscipline()
     {
         return discipline3;
+    }
+    public String getMainDisciplineDisplay()
+    {
+        return discipline1 != null ? discipline1.getName() : "";
+    }
+    public String getSecondDisciplineDisplay()
+    {
+        return discipline2 != null ? discipline2.getName() : "";
+    }
+    public String getThirdDisciplineDisplay()
+    {
+        return discipline3 != null ? discipline3.getName() : "";
+    }
+
+    public String getMainCircleDisplay()
+    {
+        return discipline1 != null ? Integer.toString(discipline1.getCircle()) : "";
+    }
+    public String getSecondCircleDisplay()
+    {
+        return discipline2 != null ? Integer.toString(discipline2.getCircle()) : "";
+    }
+    public String getThirdCircleDisplay()
+    {
+        return discipline3 != null ? Integer.toString(discipline3.getCircle()) : "";
     }
 
     public boolean setMainDiscipline(final Disciplines discicpline, final int circle)
@@ -83,7 +111,7 @@ public class Character
     }
     public boolean setSecondDiscipline(final Disciplines discicpline, final int circle)
     {
-        if(checkCircle(circle) && checkCircles(circle, discipline1.getCircle()))
+        if(checkCircle(circle) && checkCircles(discipline1.getCircle(), circle))
         {
             discipline2 = new Discipline(discicpline, circle);
             return true;
@@ -92,7 +120,7 @@ public class Character
     }
     public boolean setThirdDiscipline(final Disciplines discicpline, final int circle)
     {
-        if(checkCircle(circle) && checkCircles(circle, discipline2.getCircle()))
+        if(checkCircle(circle) && checkCircles(discipline2.getCircle(), circle))
         {
             discipline3 = new Discipline(discicpline, circle);
             return true;
@@ -188,6 +216,32 @@ public class Character
         return computeWoundThreshold(attributs[Attributs.END.getId()].getResultingIndice()) + race.getBonusWound();
     }
 
+    public int getLiftingCapacity()
+    {
+        return computeLiftingCapacity(attributs[Attributs.STR.getId()].getResultingIndice());
+    }
+
+    public int getCarryingCapacity()
+    {
+        return computeCarryingCapacity(attributs[Attributs.STR.getId()].getResultingIndice());
+    }
+
+    public int getRunningMouvement()
+    {
+        return computeRunningMouvement(attributs[Attributs.DEX.getId()].getResultingIndice() + race.getBonusMvt());
+    }
+
+    public int getCombatMouvement()
+    {
+        return computeCombatMouvement(attributs[Attributs.DEX.getId()].getResultingIndice() + race.getBonusMvt());
+    }
+
+    public int getInitiativeLevel()
+    {
+        // TODO manage penalities
+        return attributs[Attributs.DEX.getId()].getRank();
+    }
+
     public int getTalentRank(final Talents talent)
     {
         return attributs[talent.getAttribut().getId()].getRank(); // XXX + rang du talent
@@ -219,6 +273,43 @@ public class Character
         return (int) Math.ceil(Math.max(indice - 10, 0)  / 3.0);
     }
 
+    protected static int computeCarryingCapacity(final int indice)
+    {
+        return (int) Math.ceil(computeLiftingCapacity(indice) / 2.0);
+    }
+
+    protected static int computeLiftingCapacity(final int indice)
+    {
+        if (indice <= 6) return 5 * indice;
+        else if (indice <= 11) return 10 * indice - 30;
+        else if (indice <= 15) return 15 * indice - 85;
+        else if (indice <= 18) return 20 * indice - 160;
+        else if (indice <= 21) return 30 * indice - 340;
+        else if (indice <= 24) return 40 * indice - 550;
+        else if (indice <= 27) return 50 * indice - 790;
+        else return 60 * indice - 1060;
+    }
+
+    protected static int computeRunningMouvement(final int indice)
+    {
+        return computeCombatMouvement(indice) * 2;
+    }
+    protected static int computeCombatMouvement(final int indice)
+    {
+        if (indice < 6)
+        {
+            return indice + 5;
+        }
+        else if (indice < 21)
+        {
+            return indice * 2;
+        }
+        else
+        {
+            return indice * 3 - 20;
+        }
+    }
+
     protected static boolean checkCircle(final int circle)
     {
         // Circle must be between 1 and 15
@@ -230,5 +321,4 @@ public class Character
         // Both circles must be correct and circle1 must be greater than or equal to circle 2
         return checkCircle(circle1)&& checkCircle(circle2) && circle2<=circle1;
     }
-
 }
