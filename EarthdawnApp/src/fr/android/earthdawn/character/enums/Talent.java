@@ -82,4 +82,9 @@ public class Talent implements Serializable
     {
         return talent.getEffort();
     }
+
+    public boolean isSameTalentAs(final Talents talent)
+    {
+        return this.talent.equals(talent);
+    }
 }

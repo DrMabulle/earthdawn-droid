@@ -18,6 +18,7 @@ public class Discipline implements Serializable
 
     private final Disciplines discipline;
     private int circle;
+    private final int[] ranks;
 
     /**
      * @param discipline
@@ -28,6 +29,7 @@ public class Discipline implements Serializable
         super();
         this.discipline = discipline;
         this.circle = circle;
+        this.ranks = new int[discipline.getTalents().size()];
     }
 
     public int getCircle()
@@ -58,4 +60,31 @@ public class Discipline implements Serializable
     {
         return getTalentsUpTo(circle);
     }
+
+    public int getTalentRank(final Talent talent)
+    {
+        return ranks[discipline.getTalents().indexOf(talent)];
+    }
+
+    public void setTalentRank(final Talent talent, final int rank)
+    {
+        ranks[discipline.getTalents().indexOf(talent)] = rank;
+    }
+    public void incrementTalentRank(final Talent talent)
+    {
+        ranks[discipline.getTalents().indexOf(talent)] += 1;
+    }
+
+    public Talent findTalent(final Talents talent)
+    {
+        for (final Talent tmp : discipline.getTalents())
+        {
+            if (tmp.isSameTalentAs(talent))
+            {
+                return tmp;
+            }
+        }
+        return null;
+    }
+
 }

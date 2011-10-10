@@ -29,7 +29,7 @@ public enum Talents implements Serializable
     Incantation("Incantation", Attributs.PER, true, false, 0, 168),
     LectureEcriture("Lecture et Ecriture", Attributs.PER, true, false, 0, 168),
     LectureEcritureMagie("Lecture et Ecriture de la Magie", Attributs.PER, true, false, 0, 168),
-    Longevite("Longévité", Attributs.NUL, false, false, 0, 168),
+    Longevite("Longévité", Attributs.NUL, false, false, false, 0, 168),
 
     Matrice("Matrice de sort", Attributs.NUL, false, false, false, 0, 168),
     PeauBois("Peau de Bois", Attributs.END, true, false, 0, 168),

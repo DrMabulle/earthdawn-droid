@@ -31,7 +31,7 @@ public class TalentsFragment extends Fragment implements View.OnClickListener
         final Discipline discicpline = (Discipline) this.getArguments().get(Constants.BUNDLE_DISCIPLINE);
 
         final ListView listV = (ListView) view.findViewById(R.id.sheet_talent_list);
-        final TalentAdapter talentAdpater = new TalentAdapter(getActivity(), discicpline.getKnownTalents(), this);
+        final TalentAdapter talentAdpater = new TalentAdapter(getActivity(), character, discicpline, this);
         listV.setAdapter(talentAdpater);
 
         return view;

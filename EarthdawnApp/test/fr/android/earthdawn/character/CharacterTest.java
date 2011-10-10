@@ -4,7 +4,11 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import fr.android.earthdawn.character.enums.Discipline;
+import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Races;
+import fr.android.earthdawn.character.enums.Talent;
+import fr.android.earthdawn.character.enums.Talents;
 
 public class CharacterTest
 {
@@ -17,6 +21,27 @@ public class CharacterTest
     Character sylphe = new Character("sylphelin", "Mâle", 120, 225, 421, Races.Sylphelin, 17, 0, 11, 0, 13, 0, 14, 0, 11, 0, 12, 0);
     Character troll =          new Character("troll", "Mâle", 120, 225, 421, Races.Troll, 17, 0, 15, 0, 13, 0, 10, 0, 11, 0, 8, 0);
     Character tskrang =    new Character("tskrang", "Mâle", 120, 225, 421, Races.Tskrang, 17, 0, 15, 0, 13, 0, 10, 0, 11, 0, 8, 0);
+
+    @Test
+    public void testGetTalentRank()
+    {
+        obsidien.setMainDiscipline(Disciplines.Guerrier, 6);
+        final Discipline discipline = obsidien.getMainDiscipline();
+        final Talent armesMelee = discipline.findTalent(Talents.ArmesMelee);
+        final Talent longevite = discipline.findTalent(Talents.Longevite);
+
+        discipline.setTalentRank(armesMelee, 7);
+        discipline.setTalentRank(longevite, 5);
+
+        Assert.assertEquals(7, obsidien.getTalentRank(armesMelee, discipline));
+        Assert.assertEquals(5, obsidien.getTalentRank(longevite, discipline));
+
+        // increment
+        obsidien.incrementTalentRank(armesMelee, discipline);
+
+        Assert.assertEquals(8, obsidien.getTalentRank(armesMelee, discipline));
+        Assert.assertEquals(5, obsidien.getTalentRank(longevite, discipline));
+    }
 
     @Test
     public void testGetPhysicalDefense()

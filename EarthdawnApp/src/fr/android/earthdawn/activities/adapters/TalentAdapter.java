@@ -16,6 +16,8 @@ import android.widget.ListAdapter;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
+import fr.android.earthdawn.character.Character;
+import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Talent;
 
 /**
@@ -27,11 +29,15 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
     private final LayoutInflater inflater;
     private final List<Talent> talents;
     private final OnClickListener listener;
+    private final Discipline discipline;
+    private final Character character;
 
-    public TalentAdapter(final Context context, final List<Talent> talents, final OnClickListener listener)
+    public TalentAdapter(final Context context, final Character character, final Discipline discipline, final OnClickListener listener)
     {
         this.listener = listener;
-        this.talents = talents;
+        this.character = character;
+        this.discipline = discipline;
+        this.talents = discipline.getKnownTalents();
         // Cache the LayoutInflate to avoid asking for a new one each time.
         inflater = LayoutInflater.from(context);
     }
@@ -66,7 +72,7 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
         // TODO
         ((TextView) convertView.findViewById(R.id.talents_talent)).setText(talent.getName());
         ((TextView) convertView.findViewById(R.id.talents_circle)).setText(Integer.toString(talent.getCircle()));
-        ((TextView) convertView.findViewById(R.id.talents_rank)).setText("TODO");
+        ((TextView) convertView.findViewById(R.id.talents_rank)).setText(Integer.toString(character.getTalentRank(talent, discipline)));
         ((TextView) convertView.findViewById(R.id.talents_attribut)).setText(talent.getAttribut().getLabel());
         ((RadioButton) convertView.findViewById(R.id.talents_discipline)).setChecked(talent.isDiscipline());
         ((RadioButton) convertView.findViewById(R.id.talents_karma)).setChecked(talent.isKarmaMandatory());
@@ -75,7 +81,7 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
         if (talent.isRollable())
         {
             ((ImageButton) convertView.findViewById(R.id.talent_roll)).setOnClickListener(listener);
-            ((TextView) convertView.findViewById(R.id.talents_level)).setText("16"); // TODO calculate this please
+            ((TextView) convertView.findViewById(R.id.talents_level)).setText(Integer.toString(character.getTalentLevel(talent, discipline)));
         }
         else
         {

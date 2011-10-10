@@ -9,7 +9,7 @@ import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Races;
-import fr.android.earthdawn.character.enums.Talents;
+import fr.android.earthdawn.character.enums.Talent;
 
 /**
  * @author DrMabulle
@@ -242,9 +242,17 @@ public class Character implements Serializable
         return attributs[Attributs.DEX.getId()].getRank();
     }
 
-    public int getTalentRank(final Talents talent)
+    public int getTalentLevel(final Talent talent, final Discipline discipline)
     {
-        return attributs[talent.getAttribut().getId()].getRank(); // XXX + rang du talent
+        return attributs[talent.getAttribut().getId()].getRank() + getTalentRank(talent, discipline);
+    }
+    public int getTalentRank(final Talent talent, final Discipline discipline)
+    {
+        return discipline.getTalentRank(talent);
+    }
+    public void incrementTalentRank(final Talent talent, final Discipline discipline)
+    {
+        discipline.incrementTalentRank(talent);
     }
 
 
@@ -280,14 +288,38 @@ public class Character implements Serializable
 
     protected static int computeLiftingCapacity(final int indice)
     {
-        if (indice <= 6) return 5 * indice;
-        else if (indice <= 11) return 10 * indice - 30;
-        else if (indice <= 15) return 15 * indice - 85;
-        else if (indice <= 18) return 20 * indice - 160;
-        else if (indice <= 21) return 30 * indice - 340;
-        else if (indice <= 24) return 40 * indice - 550;
-        else if (indice <= 27) return 50 * indice - 790;
-        else return 60 * indice - 1060;
+        if (indice <= 6)
+        {
+            return 5 * indice;
+        }
+        else if (indice <= 11)
+        {
+            return 10 * indice - 30;
+        }
+        else if (indice <= 15)
+        {
+            return 15 * indice - 85;
+        }
+        else if (indice <= 18)
+        {
+            return 20 * indice - 160;
+        }
+        else if (indice <= 21)
+        {
+            return 30 * indice - 340;
+        }
+        else if (indice <= 24)
+        {
+            return 40 * indice - 550;
+        }
+        else if (indice <= 27)
+        {
+            return 50 * indice - 790;
+        }
+        else
+        {
+            return 60 * indice - 1060;
+        }
     }
 
     protected static int computeRunningMouvement(final int indice)
