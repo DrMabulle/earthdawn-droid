@@ -31,10 +31,11 @@ import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import fr.android.earthdawn.R;
+import fr.android.earthdawn.activities.fragments.CharacterFragment;
+import fr.android.earthdawn.activities.fragments.TalentsFragment;
 import fr.android.earthdawn.character.Character;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.DicesLauncher;
-import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.Constants;
 
 /**
@@ -45,7 +46,6 @@ public class ActionBarTabsPager extends Activity
 {
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
-    private final DicesLauncher launcher = new DicesLauncher();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState)
@@ -115,12 +115,10 @@ public class ActionBarTabsPager extends Activity
     @Override
     protected Dialog onCreateDialog(final int id, final Bundle args)
     {
-        final String msg = rollDices(args);
-
         final Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(android.R.drawable.ic_dialog_info);
         builder.setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
-        builder.setMessage(msg);
+        builder.setMessage(DicesLauncher.get().getDetailedMessage(this));
         builder.setNeutralButton("Close", new DialogInterface.OnClickListener()
         {
             @Override
@@ -135,37 +133,10 @@ public class ActionBarTabsPager extends Activity
     @Override
     protected void onPrepareDialog(final int id, final Dialog dialog, final Bundle args)
     {
-        if (id == Constants.DIALOG_SHOW_RESULT)
-        {
-            final String msg = rollDices(args);
-
-            ((AlertDialog) dialog).setMessage(msg);
-            ((AlertDialog) dialog).setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
-        }
+        ((AlertDialog) dialog).setMessage(DicesLauncher.get().getDetailedMessage(this));
+        ((AlertDialog) dialog).setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
 
         super.onPrepareDialog(id, dialog, args);
-    }
-
-    private String rollDices(final Bundle args)
-    {
-        final int rank = args.getInt(Constants.BUNDLE_RANK);
-        final String dices = args.getString(Constants.BUNDLE_DICES);
-
-        int result;
-        String dicesInfos;
-        if (dices != null)
-        {
-            result = launcher.rollDices(dices);
-            dicesInfos = dices;
-        }
-        else
-        {
-            result = launcher.rollDices(rank);
-            dicesInfos = getString(R.string.roller_rank_msg, rank, RankManager.getDicesFromRank(rank));
-        }
-
-        final String msg = getString(R.string.roller_message, dicesInfos, result, launcher.getLogs());
-        return msg;
     }
 
     /**

@@ -1,6 +1,5 @@
-package fr.android.earthdawn.activities;
+package fr.android.earthdawn.activities.fragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +11,11 @@ import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.TalentAdapter;
 import fr.android.earthdawn.character.Character;
 import fr.android.earthdawn.character.enums.Discipline;
+import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.Constants;
 
-public class TalentsFragment extends Fragment implements View.OnClickListener
+public class TalentsFragment extends AbstractRollingFragment implements View.OnClickListener
 {
     private Character character;
     /**
@@ -55,17 +55,17 @@ public class TalentsFragment extends Fragment implements View.OnClickListener
                 final String dices = RankManager.getDicesFromRank(level);
                 final String karmaDice = RankManager.getDicesFromRank(character.getRace().getKarmaRank());
                 // Mettre le karma en premier pour éviter les problème avec les modificateurs
-                args.putString(Constants.BUNDLE_DICES, karmaDice + " " + dices);
+                DicesLauncher.get().rollDices(karmaDice + " " + dices);
             }
             else
             {
                 // Définir le niveau à lancer
-                args.putInt(Constants.BUNDLE_RANK, level);
+                DicesLauncher.get().rollDices(level);
             }
             // Nom du talent
             args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, ((TextView) parent.findViewById(R.id.talents_talent)).getText());
 
-            getActivity().showDialog(Constants.DIALOG_SHOW_RESULT,  args);
+            showDialogResult(args);
         }
     }
 }

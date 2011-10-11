@@ -1,6 +1,5 @@
-package fr.android.earthdawn.activities;
+package fr.android.earthdawn.activities.fragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +10,10 @@ import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.Character;
 import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.utils.Constants;
 
-public class CharacterFragment extends Fragment implements View.OnClickListener
+public class CharacterFragment extends AbstractRollingFragment implements View.OnClickListener
 {
     private Character character;
     /**
@@ -142,43 +142,43 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(final View view)
     {
-        final Bundle args = new Bundle(2);
+        final Bundle args = new Bundle(1);
         switch (view.getId())
         {
             case R.id.sheet_dex_roll:
-                args.putInt(Constants.BUNDLE_RANK, character.getAttribut(Attributs.DEX).getRank());
+                DicesLauncher.get().rollDices(character.getAttribut(Attributs.DEX).getRank());
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_dex));
-                getActivity().showDialog(Constants.DIALOG_SHOW_RESULT,  args);
+                showDialogResult(args);
                 break;
             case R.id.sheet_str_roll:
-                args.putInt(Constants.BUNDLE_RANK, character.getAttribut(Attributs.STR).getRank());
+                DicesLauncher.get().rollDices(character.getAttribut(Attributs.STR).getRank());
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_str));
-                getActivity().showDialog(Constants.DIALOG_SHOW_RESULT,  args);
+                showDialogResult(args);
                 break;
             case R.id.sheet_end_roll:
-                args.putInt(Constants.BUNDLE_RANK, character.getAttribut(Attributs.END).getRank());
+                DicesLauncher.get().rollDices(character.getAttribut(Attributs.END).getRank());
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_end));
-                getActivity().showDialog(Constants.DIALOG_SHOW_RESULT,  args);
+                showDialogResult(args);
                 break;
             case R.id.sheet_per_roll:
-                args.putInt(Constants.BUNDLE_RANK, character.getAttribut(Attributs.PER).getRank());
+                DicesLauncher.get().rollDices(character.getAttribut(Attributs.PER).getRank());
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_per));
-                getActivity().showDialog(Constants.DIALOG_SHOW_RESULT,  args);
+                showDialogResult(args);
                 break;
             case R.id.sheet_vol_roll:
-                args.putInt(Constants.BUNDLE_RANK, character.getAttribut(Attributs.VOL).getRank());
+                DicesLauncher.get().rollDices(character.getAttribut(Attributs.VOL).getRank());
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_vol));
-                getActivity().showDialog(Constants.DIALOG_SHOW_RESULT,  args);
+                showDialogResult(args);
                 break;
             case R.id.sheet_cha_roll:
-                args.putInt(Constants.BUNDLE_RANK, character.getAttribut(Attributs.CHA).getRank());
+                DicesLauncher.get().rollDices(character.getAttribut(Attributs.CHA).getRank());
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_cha));
-                getActivity().showDialog(Constants.DIALOG_SHOW_RESULT,  args);
+                showDialogResult(args);
                 break;
             case R.id.roll_initiative:
-                args.putInt(Constants.BUNDLE_RANK, character.getInitiativeLevel());
+                DicesLauncher.get().rollDices(character.getInitiativeLevel());
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_initiative));
-                getActivity().showDialog(Constants.DIALOG_SHOW_RESULT,  args);
+                showDialogResult(args);
                 break;
         }
     }

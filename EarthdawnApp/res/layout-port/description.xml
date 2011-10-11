@@ -3,16 +3,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:weightSum="1" 
     android:orientation="horizontal">
     
-    <LinearLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" >
+    <LinearLayout android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="wrap_content" android:orientation="vertical" >
     	<include layout="@layout/character" />
     	<include layout="@layout/attributs" />
-    	
     </LinearLayout>
     
-    <LinearLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" >
+    <LinearLayout android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="wrap_content" android:orientation="vertical" >
     	<include layout="@layout/disciplines" />
     	<include layout="@layout/deductibles" />
     </LinearLayout>

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -12,18 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import fr.android.earthdawn.R;
+import fr.android.earthdawn.activities.fragments.ShowResultFragment;
 import fr.android.earthdawn.managers.DicesLauncher;
-import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.Constants;
 
 public class RollerActivity extends Activity
 {
-    private static final String LOGS = "logs";
-    private static final String RESULT = "result";
-    private static final String DICES_INFOS = "DicesInfos";
-
-    private final DicesLauncher launcher = new DicesLauncher();
-
     /** Called when the activity is first created. */
     @Override
     public void onCreate(final Bundle savedInstanceState)
@@ -50,7 +46,7 @@ public class RollerActivity extends Activity
             if (dicesInfos != null && dicesInfos.length() > 0)
             {
 
-                final boolean isInputCorrect = launcher.testInputDicesInfos(dicesInfos);
+                final boolean isInputCorrect = DicesLauncher.get().testInputDicesInfos(dicesInfos);
 
                 if (!isInputCorrect)
                 {
@@ -60,12 +56,8 @@ public class RollerActivity extends Activity
                 else
                 {
                     // Open result popup
-                    final int rollingResult = launcher.rollDices(dicesInfos);
-                    final Bundle args = new Bundle(3);
-                    args.putString(DICES_INFOS, dicesInfos);
-                    args.putInt(RESULT, rollingResult);
-                    args.putString(LOGS, launcher.getLogs());
-                    showDialog(Constants.DIALOG_SHOW_RESULT, args);
+                    DicesLauncher.get().rollDices(dicesInfos);
+                    showDialogResult();
                 }
             }
             else
@@ -74,14 +66,24 @@ public class RollerActivity extends Activity
                 final int rank = rankPicker.getValue();
 
                 // Open result popup
-                final int rollingResult = launcher.rollDices(rank);
-                final Bundle args = new Bundle(3);
-                args.putString(DICES_INFOS, getString(R.string.roller_rank_msg, rank, RankManager.getDicesFromRank(rank)));
-                args.putInt(RESULT, rollingResult);
-                args.putString(LOGS, launcher.getLogs());
-                showDialog(Constants.DIALOG_SHOW_RESULT, args);
+                DicesLauncher.get().rollDices(rank);
+                showDialogResult();
             }
 
+        }
+
+        private void showDialogResult()
+        {
+            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+            final Fragment prev = getFragmentManager().findFragmentByTag("ShowResult");
+            if (prev != null) {
+                ft.remove(prev);
+            }
+            ft.addToBackStack(null);
+
+            // Create and show the dialog.
+            final ShowResultFragment newFragment = ShowResultFragment.newInstance(null);
+            newFragment.show(ft, "ShowResult");
         }
     };
 
@@ -105,12 +107,12 @@ public class RollerActivity extends Activity
                 });
                 return builder.create();
 
-            case Constants.DIALOG_SHOW_RESULT:
+            case Constants.DIALOG_SHOW_DETAILS:
                 final Builder builder2 = new AlertDialog.Builder(this);
-                builder2.setIcon(android.R.drawable.ic_dialog_alert);
+                builder2.setIcon(android.R.drawable.ic_dialog_info);
                 builder2.setTitle(this.getString(R.string.roller_popup_title));
 
-                builder2.setMessage(buildMessage(args));
+                builder2.setMessage(buildMessage());
 
                 builder2.setNeutralButton("Close", new DialogInterface.OnClickListener()
                 {
@@ -134,16 +136,16 @@ public class RollerActivity extends Activity
     @Override
     protected void onPrepareDialog(final int id, final Dialog dialog, final Bundle args)
     {
-        if (id == Constants.DIALOG_SHOW_RESULT)
+        if (id == Constants.DIALOG_SHOW_DETAILS)
         {
-            ((AlertDialog) dialog).setMessage(buildMessage(args));
+            ((AlertDialog) dialog).setMessage(buildMessage());
         }
 
         super.onPrepareDialog(id, dialog, args);
     }
 
-    private String buildMessage(final Bundle args)
+    private String buildMessage()
     {
-        return this.getString(R.string.roller_message, args.get(DICES_INFOS), args.get(RESULT), args.get(LOGS));
+        return  DicesLauncher.get().getDetailedMessage(this);
     }
 }

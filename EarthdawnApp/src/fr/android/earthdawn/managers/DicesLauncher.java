@@ -7,32 +7,61 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import android.content.Context;
+import fr.android.earthdawn.R;
 import fr.android.earthdawn.dices.Rollable;
 import fr.android.earthdawn.dices.impl.Dice;
 import fr.android.earthdawn.dices.impl.FixedValueDice;
 
 /**
- * @author Administrateur
+ * @author DrMabulle
  *
+ * Not thread safe at all, but the way the program uses this it doesn't matter
  */
 public class DicesLauncher
 {
-    private static final String REGEX = "([0-9]+D[0-9]+[ ]*)+(-[0-9]+)*";
 
+    private final String REGEX = "([0-9]+D[0-9]+[ ]*)+(-[0-9]+)*";
+
+    private static final DicesLauncher INSTANCE = new DicesLauncher();
     private final StringBuilder logs = new StringBuilder(256);
+    private int result = 0;
+    private int rank = 0;
+    private String dicesInfos = null;
+
+    private DicesLauncher() {}
+
+    public static DicesLauncher get()
+    {
+        return INSTANCE;
+    }
+
+    public int getRank()
+    {
+        return rank;
+    }
+
+    public String getDicesInfos()
+    {
+        return dicesInfos;
+    }
 
     public boolean testInputDicesInfos(final String dicesInfos)
     {
         return dicesInfos != null && dicesInfos.length() > 0 && dicesInfos.matches(REGEX);
     }
 
-    public int rollDices(final int rank)
+    public int rollDices(final int aRank)
     {
+        rank = aRank;
+        dicesInfos = null;
         return rollDices(parseDicesInfos(RankManager.getDicesFromRank(rank)));
     }
 
-    public int rollDices(final String dicesInfos)
+    public int rollDices(final String aDicesInfos)
     {
+        rank = 0;
+        dicesInfos = aDicesInfos;
         return rollDices(parseDicesInfos(dicesInfos));
     }
 
@@ -75,7 +104,7 @@ public class DicesLauncher
     {
         logs.setLength(0);
         // lancer une première fois les dés et additionner les résultats.
-        int result = simpleRoll(dices);
+        result = simpleRoll(dices);
 
         // Gérer les relances spécifiques au système EarthDawn
         result += manageRerolls(dices);
@@ -203,8 +232,28 @@ public class DicesLauncher
         return sum;
     }
 
-    public String getLogs()
+    public String getRollLogs()
     {
         return logs.toString();
+    }
+
+    public int getRollResult()
+    {
+        return result;
+    }
+
+    public String getDetailedMessage(final Context ctx)
+    {
+        String msg = null;
+        if (DicesLauncher.get().getDicesInfos() != null)
+        {
+            msg = DicesLauncher.get().getDicesInfos();
+        }
+        else
+        {
+            final int rank = DicesLauncher.get().getRank();
+            msg = ctx.getString(R.string.roller_rank_msg, rank, RankManager.getDicesFromRank(rank));
+        }
+        return ctx.getString(R.string.roller_message, msg, DicesLauncher.get().getRollResult(), DicesLauncher.get().getRollLogs());
     }
 }

@@ -29,7 +29,7 @@ public class DisciplineTest
     {
         final Discipline discipline = new Discipline(Disciplines.Guerrier, 10);
         final Talent armesMelee = discipline.findTalent(Talents.ArmesMelee);
-        final Talent longevite = discipline.findTalent(Talents.Longevite);
+        final Talent longevite = discipline.findTalent(Talents.Endurance);
 
         // Initial state
         Assert.assertEquals(0, discipline.getTalentRank(armesMelee));

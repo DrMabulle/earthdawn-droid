@@ -18,6 +18,9 @@ package fr.android.earthdawn.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.webkit.WebSettings;
+import android.webkit.WebSettings.ZoomDensity;
+import android.webkit.WebView;
 import fr.android.earthdawn.R;
 
 
@@ -28,5 +31,12 @@ public class MapViewActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mapview);
+
+        final WebView wv = (WebView) findViewById(R.id.barsaivemap);
+        final WebSettings ws = wv.getSettings();
+        ws.setBuiltInZoomControls(true);
+        ws.setDisplayZoomControls(false);
+        ws.setDefaultZoom(ZoomDensity.FAR);
+        wv.loadUrl("file:///android_asset/barsaivemap.jpg");
     }
 }

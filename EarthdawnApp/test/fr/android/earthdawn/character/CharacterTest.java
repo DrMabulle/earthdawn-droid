@@ -28,7 +28,7 @@ public class CharacterTest
         obsidien.setMainDiscipline(Disciplines.Guerrier, 6);
         final Discipline discipline = obsidien.getMainDiscipline();
         final Talent armesMelee = discipline.findTalent(Talents.ArmesMelee);
-        final Talent longevite = discipline.findTalent(Talents.Longevite);
+        final Talent longevite = discipline.findTalent(Talents.Endurance);
 
         discipline.setTalentRank(armesMelee, 7);
         discipline.setTalentRank(longevite, 5);
