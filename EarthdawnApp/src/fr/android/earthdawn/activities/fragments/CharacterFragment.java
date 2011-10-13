@@ -120,13 +120,13 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         // TODO Initiative
         ((TextView) view.findViewById(R.id.sheet_init_dex)).setText(Integer.toString(character.getAttribut(Attributs.DEX).getRank()));
         ((TextView) view.findViewById(R.id.sheet_init_pen)).setText("TODO"); // see equipment
-        ((TextView) view.findViewById(R.id.sheet_init_lvl)).setText("TODO");
+        ((TextView) view.findViewById(R.id.sheet_init_lvl)).setText(Integer.toString(character.getInitiativeLevel()));
         ((ImageButton) view.findViewById(R.id.roll_initiative)).setOnClickListener(this);
 
         // TODO Armor
         ((TextView) view.findViewById(R.id.sheet_arm_type)).setText("TODO"); // see equipment
         ((TextView) view.findViewById(R.id.sheet_arm_phy)).setText("TODO"); // see equipment
-        ((TextView) view.findViewById(R.id.sheet_arm_mag)).setText("TODO"); // see equipment
+        ((TextView) view.findViewById(R.id.sheet_arm_mag)).setText(Integer.toString(character.getMysticArmor())); // see equipment
 
         // Mouvement
         ((TextView) view.findViewById(R.id.sheet_mvn_run)).setText(Integer.toString(character.getRunningMouvement()));
@@ -192,8 +192,8 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_health_points)).setText(Integer.toString(character.getHealthPoints()));
         ((TextView) view.findViewById(R.id.sheet_h_blood_magic)).setText("TODO"); // TODO with equipment
         ((TextView) view.findViewById(R.id.sheet_h_inconsciousness)).setText(Integer.toString(character.getUnconsciousnessPoints()));
-        ((TextView) view.findViewById(R.id.sheet_h_restore_dices)).setText(Integer.toString(character.getNbRestoreDices()));
-        ((TextView) view.findViewById(R.id.sheet_h_restore_dices_infos)).setText(character.getRestoreDicesLevel());
+        ((TextView) view.findViewById(R.id.sheet_h_restore_dices)).setText(Double.toString(character.getNbRecoveryTests()));
+        ((TextView) view.findViewById(R.id.sheet_h_restore_dices_infos)).setText(character.getRecoveryDices());
         ((TextView) view.findViewById(R.id.sheet_h_wound_threshold)).setText(Integer.toString(character.getWoundThreshold()));
     }
 }

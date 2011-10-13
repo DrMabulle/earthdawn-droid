@@ -188,19 +188,19 @@ public class Character implements Serializable
 
     public int getPhysicalDefense()
     {
-        return race.getBonusPhyDef() + computeIndiceDefense(attributs[Attributs.DEX.getId()].getResultingIndice());
+        return race.getBonusPhyDef() + computeIndiceDefense(attributs[Attributs.DEX.getId()].getResultingIndice()); // TODO + equipment
     }
     public int getMagicalDefense()
     {
-        return computeIndiceDefense(attributs[Attributs.PER.getId()].getResultingIndice());
+        return computeIndiceDefense(attributs[Attributs.PER.getId()].getResultingIndice()); // TODO + equipment
     }
     public int getSocialDefense()
     {
-        return computeIndiceDefense(attributs[Attributs.CHA.getId()].getResultingIndice());
+        return computeIndiceDefense(attributs[Attributs.CHA.getId()].getResultingIndice()); // TODO + equipment
     }
     public int getMysticArmor()
     {
-        return computeMysticArmor(attributs[Attributs.VOL.getId()].getResultingIndice());
+        return computeMysticArmor(attributs[Attributs.VOL.getId()].getResultingIndice()); // TODO + equipment
     }
 
     public int getDeathThreshold()
@@ -246,7 +246,7 @@ public class Character implements Serializable
 
     public int getTalentLevel(final Talent talent, final Discipline discipline)
     {
-        return attributs[talent.getAttribut().getId()].getRank() + getTalentRank(talent, discipline);
+        return attributs[talent.getAttribut().getId()].getRank() + getTalentRank(talent, discipline); // TODO + equipment
     }
     public int getTalentRank(final Talent talent, final Discipline discipline)
     {
@@ -368,13 +368,35 @@ public class Character implements Serializable
         return getUnconsciousnessThreshold() + (Integer) endurance.getAdditionnalInfos()[1] * getTalentRank(endurance, discipline1);
     }
 
-    public String getRestoreDicesLevel()
+    public String getRecoveryDices()
     {
         return DiceMapping.getDicesToThrow(getAttribut(Attributs.END).getRank());
     }
 
-    public int getNbRestoreDices()
+    public double getNbRecoveryTests()
     {
-        return 0; // TODO
+        // 1 et 2 : 0.5
+        // 3 - 7 : 1
+        // 8 - 13 : 2
+        // 14 - 19 : 3
+        // 20+ : 4
+        final int endIndice = getAttribut(Attributs.END).getResultingIndice();
+        if (endIndice < 3)
+        {
+            return 0.5;
+        }
+        else if (endIndice < 8)
+        {
+            return 1;
+        }
+        else if (endIndice < 14)
+        {
+            return 2;
+        }
+        else if (endIndice < 20)
+        {
+            return 3;
+        }
+        return 4;
     }
 }

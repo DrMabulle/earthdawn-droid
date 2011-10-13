@@ -69,7 +69,6 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
         }
         final Talent talent = talents.get(position);
 
-        // TODO
         ((TextView) convertView.findViewById(R.id.talents_talent)).setText(talent.getName());
         ((TextView) convertView.findViewById(R.id.talents_circle)).setText(Integer.toString(talent.getCircle()));
         ((TextView) convertView.findViewById(R.id.talents_rank)).setText(Integer.toString(character.getTalentRank(talent, discipline)));

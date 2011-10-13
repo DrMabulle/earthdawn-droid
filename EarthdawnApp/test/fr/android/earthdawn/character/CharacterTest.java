@@ -93,32 +93,6 @@ public class CharacterTest
     }
 
     @Test
-    public void testGetDeathThreshold()
-    {
-        Assert.assertEquals(32, elfe.getDeathThreshold());
-        Assert.assertEquals(35, humain.getDeathThreshold());
-        Assert.assertEquals(39, nain.getDeathThreshold());
-        Assert.assertEquals(40, obsidien.getDeathThreshold());
-        Assert.assertEquals(36, ork.getDeathThreshold());
-        Assert.assertEquals(31, sylphe.getDeathThreshold());
-        Assert.assertEquals(38, troll.getDeathThreshold());
-        Assert.assertEquals(36, tskrang.getDeathThreshold());
-    }
-
-    @Test
-    public void testGetUnconsciousnessThreshold()
-    {
-        Assert.assertEquals(24, elfe.getUnconsciousnessThreshold());
-        Assert.assertEquals(27, humain.getUnconsciousnessThreshold());
-        Assert.assertEquals(31, nain.getUnconsciousnessThreshold());
-        Assert.assertEquals(32, obsidien.getUnconsciousnessThreshold());
-        Assert.assertEquals(28, ork.getUnconsciousnessThreshold());
-        Assert.assertEquals(22, sylphe.getUnconsciousnessThreshold());
-        Assert.assertEquals(30, troll.getUnconsciousnessThreshold());
-        Assert.assertEquals(28, tskrang.getUnconsciousnessThreshold());
-    }
-
-    @Test
     public void testGetWoundThreshold()
     {
         Assert.assertEquals(8, elfe.getWoundThreshold());
@@ -421,5 +395,81 @@ public class CharacterTest
         Assert.assertFalse(Character.checkCircles(16, 15));
     }
 
+    @Test
+    public void testGetHealth()
+    {
 
+        elfe.setMainDiscipline(Disciplines.Archer, 6);
+        Discipline disc = elfe.getMainDiscipline();
+        Talent endurance = disc.findTalent(Talents.Endurance);
+        disc.setTalentRank(endurance, 6);
+        humain.setMainDiscipline(Disciplines.Eclaireur, 6);
+        disc = humain.getMainDiscipline();
+        endurance = disc.findTalent(Talents.Endurance);
+        disc.setTalentRank(endurance, 6);
+        nain.setMainDiscipline(Disciplines.Forgeron, 6);
+        disc = nain.getMainDiscipline();
+        endurance = disc.findTalent(Talents.Endurance);
+        disc.setTalentRank(endurance, 6);
+        obsidien.setMainDiscipline(Disciplines.Guerrier, 6);
+        disc = obsidien.getMainDiscipline();
+        endurance = disc.findTalent(Talents.Endurance);
+        disc.setTalentRank(endurance, 6);
+        ork.setMainDiscipline(Disciplines.Cavalier, 6);
+        disc = ork.getMainDiscipline();
+        endurance = disc.findTalent(Talents.Endurance);
+        disc.setTalentRank(endurance, 6);
+        sylphe.setMainDiscipline(Disciplines.MaitreAnimaux, 6);
+        disc = sylphe.getMainDiscipline();
+        endurance = disc.findTalent(Talents.Endurance);
+        disc.setTalentRank(endurance, 6);
+        troll.setMainDiscipline(Disciplines.EcumeurDuCiel, 6);
+        disc = troll.getMainDiscipline();
+        endurance = disc.findTalent(Talents.Endurance);
+        disc.setTalentRank(endurance, 6);
+        tskrang.setMainDiscipline(Disciplines.Necromancien, 6);
+        disc = tskrang.getMainDiscipline();
+        endurance = disc.findTalent(Talents.Endurance);
+        disc.setTalentRank(endurance, 6);
+
+        // Death threshold
+        Assert.assertEquals(32, elfe.getDeathThreshold());
+        Assert.assertEquals(35, humain.getDeathThreshold());
+        Assert.assertEquals(39, nain.getDeathThreshold());
+        Assert.assertEquals(40, obsidien.getDeathThreshold());
+        Assert.assertEquals(36, ork.getDeathThreshold());
+        Assert.assertEquals(31, sylphe.getDeathThreshold());
+        Assert.assertEquals(38, troll.getDeathThreshold());
+        Assert.assertEquals(36, tskrang.getDeathThreshold());
+
+        // Health points
+        Assert.assertEquals(32+6*6, elfe.getHealthPoints());
+        Assert.assertEquals(35+6*6, humain.getHealthPoints());
+        Assert.assertEquals(39+6*6, nain.getHealthPoints());
+        Assert.assertEquals(40+6*9, obsidien.getHealthPoints());
+        Assert.assertEquals(36+6*7, ork.getHealthPoints());
+        Assert.assertEquals(31+6*7, sylphe.getHealthPoints());
+        Assert.assertEquals(38+6*8, troll.getHealthPoints());
+        Assert.assertEquals(36+6*4, tskrang.getHealthPoints());
+
+        // Unconsciousness Threshold
+        Assert.assertEquals(24, elfe.getUnconsciousnessThreshold());
+        Assert.assertEquals(27, humain.getUnconsciousnessThreshold());
+        Assert.assertEquals(31, nain.getUnconsciousnessThreshold());
+        Assert.assertEquals(32, obsidien.getUnconsciousnessThreshold());
+        Assert.assertEquals(28, ork.getUnconsciousnessThreshold());
+        Assert.assertEquals(22, sylphe.getUnconsciousnessThreshold());
+        Assert.assertEquals(30, troll.getUnconsciousnessThreshold());
+        Assert.assertEquals(28, tskrang.getUnconsciousnessThreshold());
+
+        // Unconsicousness Points
+        Assert.assertEquals(24+6*5, elfe.getUnconsciousnessPoints());
+        Assert.assertEquals(27+6*5, humain.getUnconsciousnessPoints());
+        Assert.assertEquals(31+6*5, nain.getUnconsciousnessPoints());
+        Assert.assertEquals(32+6*7, obsidien.getUnconsciousnessPoints());
+        Assert.assertEquals(28+6*6, ork.getUnconsciousnessPoints());
+        Assert.assertEquals(22+6*6, sylphe.getUnconsciousnessPoints());
+        Assert.assertEquals(30+6*6, troll.getUnconsciousnessPoints());
+        Assert.assertEquals(28+6*3, tskrang.getUnconsciousnessPoints());
+    }
 }
