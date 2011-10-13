@@ -10,6 +10,8 @@ import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Races;
 import fr.android.earthdawn.character.enums.Talent;
+import fr.android.earthdawn.character.enums.Talents;
+import fr.android.earthdawn.dices.utils.DiceMapping;
 
 /**
  * @author DrMabulle
@@ -352,5 +354,27 @@ public class Character implements Serializable
     {
         // Both circles must be correct and circle1 must be greater than or equal to circle 2
         return checkCircle(circle1)&& checkCircle(circle2) && circle2<=circle1;
+    }
+
+    public int getHealthPoints()
+    {
+        final Talent endurance = discipline1.findTalent(Talents.Endurance);
+        return getDeathThreshold() + (Integer) endurance.getAdditionnalInfos()[0] * getTalentRank(endurance, discipline1);
+    }
+
+    public int getUnconsciousnessPoints()
+    {
+        final Talent endurance = discipline1.findTalent(Talents.Endurance);
+        return getUnconsciousnessThreshold() + (Integer) endurance.getAdditionnalInfos()[1] * getTalentRank(endurance, discipline1);
+    }
+
+    public String getRestoreDicesLevel()
+    {
+        return DiceMapping.getDicesToThrow(getAttribut(Attributs.END).getRank());
+    }
+
+    public int getNbRestoreDices()
+    {
+        return 0; // TODO
     }
 }

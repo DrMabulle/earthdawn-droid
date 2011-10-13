@@ -16,12 +16,14 @@ public class Talent implements Serializable
     private final Talents talent;
     private final int circle;
     private final boolean isDiscipline;
+    private final Object[] additionnalInfos;
 
-    public Talent(final Talents aTalent, final int aCircle, final boolean isDiscipline)
+    public Talent(final Talents aTalent, final int aCircle, final boolean isDiscipline, final Object...objects )
     {
         talent = aTalent;
         circle = aCircle;
         this.isDiscipline = isDiscipline;
+        additionnalInfos = objects;
     }
 
     public int getCircle()
@@ -86,5 +88,13 @@ public class Talent implements Serializable
     public boolean isSameTalentAs(final Talents talent)
     {
         return this.talent.equals(talent);
+    }
+
+    /**
+     * @return the additionnalInfos
+     */
+    public Object[] getAdditionnalInfos()
+    {
+        return additionnalInfos;
     }
 }

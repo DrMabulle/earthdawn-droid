@@ -39,6 +39,9 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         // Fill Deductibles with character infos
         fillDeductibles(view, character);
 
+        // Fill health infos
+        fillHealthInfos(view, character);
+
 
         return view;
     }
@@ -181,5 +184,16 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
                 showDialogResult(args);
                 break;
         }
+    }
+
+    private void fillHealthInfos(final View view, final Character character)
+    {
+        view.findViewById(R.id.sheet_health).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
+        ((TextView) view.findViewById(R.id.sheet_health_points)).setText(Integer.toString(character.getHealthPoints()));
+        ((TextView) view.findViewById(R.id.sheet_h_blood_magic)).setText("TODO"); // TODO with equipment
+        ((TextView) view.findViewById(R.id.sheet_h_inconsciousness)).setText(Integer.toString(character.getUnconsciousnessPoints()));
+        ((TextView) view.findViewById(R.id.sheet_h_restore_dices)).setText(Integer.toString(character.getNbRestoreDices()));
+        ((TextView) view.findViewById(R.id.sheet_h_restore_dices_infos)).setText(character.getRestoreDicesLevel());
+        ((TextView) view.findViewById(R.id.sheet_h_wound_threshold)).setText(Integer.toString(character.getWoundThreshold()));
     }
 }

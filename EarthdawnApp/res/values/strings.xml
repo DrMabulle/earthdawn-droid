@@ -93,6 +93,15 @@
     <string name="apt12">Endurance minimum 11</string>
     <string name="apt13">Force minimum 11</string>
     <string name="apt14">Attaque caudale</string>
+    
     <string name="popup_close">Fermer</string>
     <string name="popup_details">Détails</string>
+    
+    <string name="sheet_health_title">Santé</string>
+    <string name="sheet_health_points">Points de Vie</string>
+    <string name="sheet_h_blood_magic">Magie du Sang</string>
+    <string name="sheet_h_inconsciousness">"Seuil d'inconscience"</string>
+    <string name="sheet_h_restore_dices">Jets de récupération</string>
+    <string name="sheet_h_restore_dices_infos">Dés récupération</string>
+    <string name="sheet_h_wound_threshold">Seuil de blessure grave</string>
 </resources>
