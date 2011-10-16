@@ -16,7 +16,19 @@ import fr.android.earthdawn.character.enums.Talent;
  */
 public class CharacterManager
 {
-    public static Character loadCharacter(final String id)
+    private static Character CHAR = null;
+
+    public static Character getCharacter(final String id)
+    {
+        if (CHAR == null)
+        {
+            CHAR = loadCharacter(id);
+        }
+        return CHAR;
+    }
+
+
+    private static Character loadCharacter(final String id)
     {
         final Character malack = new Character("Malack", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 1, 13, 1, 11, 0, 8, 0);
         malack.setMainDiscipline(Disciplines.Guerrier, 6);

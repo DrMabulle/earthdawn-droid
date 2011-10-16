@@ -104,4 +104,7 @@
     <string name="sheet_h_restore_dices">Jets de récupération</string>
     <string name="sheet_h_restore_dices_infos">Dés récupération</string>
     <string name="sheet_h_wound_threshold">Seuil de blessure grave</string>
+    
+    <string name="equipment_title">Liste de vos possessions</string>
+    <string name="equipment_no_data">Aucun équipement</string>
 </resources>

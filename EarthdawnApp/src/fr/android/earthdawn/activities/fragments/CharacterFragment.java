@@ -13,6 +13,7 @@ import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.utils.Constants;
+import fr.android.earthdawn.utils.NumberUtils;
 
 public class CharacterFragment extends AbstractRollingFragment implements View.OnClickListener
 {
@@ -191,7 +192,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_health_points)).setText(Integer.toString(character.getHealthPoints()));
         ((TextView) view.findViewById(R.id.sheet_h_blood_magic)).setText(Integer.toString(character.computeBonusesInt(Pointcuts.BLOOD_MAGIC)));
         ((TextView) view.findViewById(R.id.sheet_h_inconsciousness)).setText(Integer.toString(character.getUnconsciousnessPoints()));
-        ((TextView) view.findViewById(R.id.sheet_h_restore_dices)).setText(Double.toString(character.getNbRecoveryTests()));
+        ((TextView) view.findViewById(R.id.sheet_h_restore_dices)).setText(NumberUtils.format(character.getNbRecoveryTests()));
         ((TextView) view.findViewById(R.id.sheet_h_restore_dices_infos)).setText(character.getRecoveryDices());
         ((TextView) view.findViewById(R.id.sheet_h_wound_threshold)).setText(Integer.toString(character.getWoundThreshold()));
     }

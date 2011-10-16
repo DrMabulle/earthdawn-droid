@@ -3,11 +3,13 @@
  */
 package fr.android.earthdawn.character.enums;
 
+import java.io.Serializable;
+
 /**
  * @author DrMabulle
  *
  */
-public enum Pointcuts
+public enum Pointcuts implements Serializable
 {
     DEF_PHY("Défense physique"),
     DEF_MAG("Défense magique"),

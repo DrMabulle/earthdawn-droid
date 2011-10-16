@@ -5,6 +5,7 @@ package fr.android.earthdawn.character;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fr.android.earthdawn.character.enums.Attributs;
@@ -141,6 +142,15 @@ public class Character implements Serializable
         return false;
     }
 
+
+    /**
+     * Get the list of possessions
+     * @return a read-only list of Equipment
+     */
+    public List<Equipment> getEquipment()
+    {
+        return Collections.unmodifiableList(equipment);
+    }
     public void addEquipment(final Equipment equip)
     {
         equipment.add(equip);

@@ -475,6 +475,11 @@ public enum Talents implements Serializable
         return isRollable;
     }
 
+    @Override
+    public String toString()
+    {
+        return label;
+    }
 
 
 }

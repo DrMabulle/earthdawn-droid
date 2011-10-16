@@ -32,6 +32,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.fragments.CharacterFragment;
+import fr.android.earthdawn.activities.fragments.EquipmentFragment;
 import fr.android.earthdawn.activities.fragments.TalentsFragment;
 import fr.android.earthdawn.character.Character;
 import fr.android.earthdawn.managers.CharacterManager;
@@ -63,7 +64,7 @@ public class ActionBarTabsPager extends Activity
         mTabsAdapter = new TabsAdapter(this, mViewPager);
 
         // Load character and store it in bundle
-        final Character character = CharacterManager.loadCharacter("test");
+        final Character character = CharacterManager.getCharacter("test");
         Bundle bundle;
 
         // Infos générales
@@ -93,7 +94,9 @@ public class ActionBarTabsPager extends Activity
             mTabsAdapter.addTab(bar.newTab().setText(character.getThirdDiscipline().getName()), TalentsFragment.class, bundle);
         }
         // Equipement
-
+        bundle = new Bundle(2);
+        bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
+        mTabsAdapter.addTab(bar.newTab().setText("Equipement"), EquipmentFragment.class, bundle);
         // Grimoire
 
         // Trésors magiques
