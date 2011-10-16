@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     >
     
-    <TextView android:layout_height="match_parent" 
+    <TextView android:layout_height="wrap_content" 
 	    android:id="@+id/popup_result" android:layout_width="match_parent"
 	    android:gravity="center" android:textSize="100sp"
     	android:layout_weight="8" />

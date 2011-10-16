@@ -16,12 +16,12 @@
     <string name="roller_or">OU</string>
     
     <string name="sheet_infos_title">Informations générales</string>
-    <string name="sheet_name">Nom : </string>
-    <string name="sheet_race">Race : </string>
-    <string name="sheet_age">Age : </string>
-    <string name="sheet_sex">Sexe : </string>
-    <string name="sheet_height">Taille : </string>
-    <string name="sheet_weight">Poids : </string>
+    <string name="sheet_name">Nom</string>
+    <string name="sheet_race">Race</string>
+    <string name="sheet_age">Age</string>
+    <string name="sheet_sex">Sexe</string>
+    <string name="sheet_height">Taille</string>
+    <string name="sheet_weight">Poids</string>
     
     <string name="sheet_attributs">Attributs</string>
     <string name="sheet_evol">Evolution</string>

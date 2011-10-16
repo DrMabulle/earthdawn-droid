@@ -11,6 +11,7 @@ import java.io.Serializable;
  */
 public enum Talents implements Serializable
 {
+
     AbriVegetal("Abri végétal", Attributs.CHA, true, false, 0, 167),
     AcrobatiesEnSelle("Acrobaties en selle", Attributs.DEX, false, false, 0, 168),
     AffolementTroupeaux("Affolement des troupeaux", Attributs.VOL, true, false, 0, 168),
@@ -18,6 +19,7 @@ public enum Talents implements Serializable
     AmeliorationLame("Amélioration de lame", Attributs.PER, true, true, 0, 168),
     AmeliorationArmure("Amélioration d'armure", Attributs.PER, true, true, 0, 168),
     AnalyseCreature("Analyse de créature", Attributs.PER, true, false, 1, 169),
+    AnalyseIndices("Analyse des indices", Attributs.PER, true, false, 1, 169),
     AnimationObjet("Animation d'objet", Attributs.VOL, true, true, 0, 169),
     Anticipation("Anticipation", Attributs.PER, false, false, 1, 170),
     AppelMonture("Appel de monture", Attributs.VOL, true, false, 1, 170),
@@ -72,7 +74,7 @@ public enum Talents implements Serializable
     ChutePlume("Chute de plume", Attributs.VOL, true, false, 0, 176),
 
     // bonus de rang en déf sociale et magique contre la peur et l'intimidation
-    CoeurLion("Coeur de lion", Attributs.NUL, false, false, false, 0, 176),
+    CoeurLion("Coeur de lion", Attributs.VOL, false, false, false, 0, 176),
 
     CombatMainsNues("Combat à mains nues", Attributs.DEX, true, false, 0, 176),
     Commandement("Commandement", Attributs.CHA, true, true, 0, 176),
@@ -97,6 +99,7 @@ public enum Talents implements Serializable
     DefenseAmelioree("Défense améliorée", Attributs.DEX, true, true, 1, 179),
     DefenseTournoyante("Défense tournoyante", Attributs.DEX, false, false, 1, 179),
     DefiChampion("Défi du champion", Attributs.CHA, true, true, 0, 179),
+    DeguisementMagique("Déguisement magique", Attributs.PER, true, true, 0, 179),
     DeplacementSilencieux("Déplacement silencieux", Attributs.DEX, false, false, 0, 179),
 
     // voir livre : pièges magiques : karma obligatoire
@@ -146,7 +149,8 @@ public enum Talents implements Serializable
     Enracinement("Enracinement", Attributs.STR, false, false, 1, 185),
     Escalade("Escalade", Attributs.DEX, true, false, 0, 185),
     Escamotage("Escamotage", Attributs.DEX, true, true, 0, 186),
-    Espritguetteur("Esprit guetteur", Attributs.PER, true, true, 0, 186),
+    EspritGuetteur("Esprit guetteur", Attributs.PER, true, true, 0, 186),
+    EspritLion("Esprit du lion", Attributs.NUL, false, false, false, 0, 2),
     Esquive("Esquive", Attributs.DEX, false, false, 1, 186),
     EsquivePieges("Esquive des pièges", Attributs.DEX, false, false, 1, 186),
     ExtensionTrame("extension de trame", Attributs.PER, true, false, 1, 186),
@@ -261,7 +265,7 @@ public enum Talents implements Serializable
 
     RappelFleches("Rappel des flèches", Attributs.PER, true, false, 1, 202),
     Recel("Recel", Attributs.CHA, true, false, 0, 202),
-    Reconstitution("W", Attributs.PER, true, true, 0, 202),
+    Reconstitution("Reconstitution", Attributs.PER, true, true, 0, 202),
 
     // se substitue à la CON pour les jets de récup
     RecuperationBestiale("Récupération bestiale", Attributs.END, true, false, false, 0, 203),
@@ -269,7 +273,7 @@ public enum Talents implements Serializable
     RegardFroid("Regard froid", Attributs.CHA, true, false, 1, 203),
     RegardTerrifiant("Regard terrifiant", Attributs.VOL, true, true, 0, 203),
     RegardTerrifiantMaitre("Regard terrifiant du maître", Attributs.CHA, true, true, 0, 203),
-    RejetResponsabilité("Rejet de responsabilité", Attributs.CHA, true, true, 1, 203),
+    RejetResponsabilite("Rejet de responsabilité", Attributs.CHA, true, true, 1, 203),
     RemodelageObjet("Remodelage d'objet", Attributs.VOL, true, false, 2, 203),
 
     ResistancePoison("Résistance au poison", Attributs.END, false, false, 0, 204),
@@ -278,7 +282,7 @@ public enum Talents implements Serializable
     Riposte("Riposte", Attributs.DEX, false, false, 2, 204),
     RireEncourageant("Rire encourageant", Attributs.CHA, true, true, 0, 204),
     RituelKarma("Rituel de karma", Attributs.NUL, false, false, false, 0, 204),
-    RituelMaitrefantome("Rituel du maître fantôme", Attributs.PER, true, true, 2, 205),
+    RituelMaitreFantome("Rituel du maître fantôme", Attributs.PER, true, true, 2, 205),
     RugissementGuerre("Rugissement de guerre", Attributs.CHA, false, false, 1, 205),
 
     // remplace et coûte un test de récup
@@ -291,7 +295,7 @@ public enum Talents implements Serializable
     SensSerrures("Sens des serrures", Attributs.PER, true, false, 1, 206),
 
     // possibilité d'augmenter la durée sur 1 an => 1 pt de dommage permanent
-    SensEmpathique("W", Attributs.CHA, false, false, 1, 206),
+    SensEmpathique("Sens empathique", Attributs.CHA, false, false, 1, 206),
 
     // remplace et coûte un test de récup
     SoinCompagnonAnimal("Soin de compagnon animal", Attributs.END, true, false, 0, 206),

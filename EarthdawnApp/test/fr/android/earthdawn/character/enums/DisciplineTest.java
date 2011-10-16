@@ -17,7 +17,7 @@ public class DisciplineTest
         final List<Talent> talent10 = discipline.getTalentsUpTo(6);
 
         Assert.assertTrue(talent10 != null && talent10.size() > 0);
-        Assert.assertTrue(talent10.size() == 17);
+        Assert.assertTrue(talent10.size() == 18);
         for (final Talent talent : talent10)
         {
             Assert.assertTrue(talent.getCircle() < 7);

@@ -2,6 +2,11 @@ package fr.android.earthdawn.managers;
 
 public final class RankManager
 {
+    public static final int getRank(final int indice)
+    {
+        return (int) (Math.ceil(indice / 3.0) + 1);
+    }
+
     public static final String getDicesFromRank(final int rank)
     {
         switch (rank)

@@ -52,6 +52,10 @@ public class CharacterManager
         discipline.setTalentRank(talents.get(5), 2); // Matrice
         discipline.setTalentRank(talents.get(6), 4); // Tissage
 
+        malack.addEquipment(EquipmentManager.getWeaponList().get(4));
+        malack.addEquipment(EquipmentManager.getArmorList().get(7));
+        malack.addEquipment(EquipmentManager.getArmorList().get(11));
+
         return malack;
     }
 

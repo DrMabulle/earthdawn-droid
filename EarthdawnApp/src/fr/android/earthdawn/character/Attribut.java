@@ -40,12 +40,6 @@ public class Attribut implements Serializable
     {
         evol++;
     }
-
-    public int getRank()
-    {
-        return (int) (Math.ceil((indice + evol) / 3.0) + 1);
-    }
-
     /**
      * @return the evol
      */

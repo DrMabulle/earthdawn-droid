@@ -1,62 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_margin="3dp"
-	android:id="@+id/sheet_health" android:layout_height="wrap_content" android:layout_width="match_parent" >
-		
-	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
-	    android:layout_width="match_parent" android:layout_height="wrap_content"
-	    android:gravity="center_horizontal" android:text="@string/sheet_health_title"/>
-	
-    <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-    
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:layout_width="match_parent" android:layout_height="wrap_content"
+    	android:id="@+id/sheet_health" >
+    	
+    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+    		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
+	    		android:layout_width="match_parent" android:layout_height="wrap_content" 
+	    		android:text="@string/sheet_health_title" android:padding="2dp" android:layout_span="2" android:layout_weight="5"/>
+    	</TableRow>
         <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
         	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:padding="4dp" android:layout_weight="2" android:text="@string/sheet_health_points"/>
+			    android:padding="2dp" android:layout_weight="2" android:text="@string/sheet_health_points"/>
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:id="@+id/sheet_health_points" android:padding="4dp" android:layout_weight="3"/> 
+			    android:id="@+id/sheet_health_points" android:padding="2dp" android:layout_weight="3"/> 
         </TableRow>
         <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        <TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:padding="4dp" android:layout_weight="2" android:text="@string/sheet_h_blood_magic"/>
+			    android:padding="2dp" android:layout_weight="2" android:text="@string/sheet_h_blood_magic"/>
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:id="@+id/sheet_h_blood_magic" android:padding="4dp" android:layout_weight="3"/> 
+			    android:id="@+id/sheet_h_blood_magic" android:padding="2dp" android:layout_weight="3"/> 
         </TableRow>
         <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	       	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:padding="4dp" android:layout_weight="2" android:text="@string/sheet_h_inconsciousness"/>
+			    android:padding="2dp" android:layout_weight="2" android:text="@string/sheet_h_inconsciousness"/>
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:id="@+id/sheet_h_inconsciousness" android:padding="4dp" android:layout_weight="3"/> 
+			    android:id="@+id/sheet_h_inconsciousness" android:padding="2dp" android:layout_weight="3"/> 
         </TableRow>
         <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        <TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:padding="4dp" android:layout_weight="2" android:text="@string/sheet_h_restore_dices"/>
+			    android:padding="2dp" android:layout_weight="2" android:text="@string/sheet_h_restore_dices"/>
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:id="@+id/sheet_h_restore_dices" android:padding="4dp" android:layout_weight="3"/> 
+			    android:id="@+id/sheet_h_restore_dices" android:padding="2dp" android:layout_weight="3"/> 
         </TableRow>
         <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        <TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:padding="4dp" android:layout_weight="2" android:text="@string/sheet_h_restore_dices_infos"/>
+			    android:padding="2dp" android:layout_weight="2" android:text="@string/sheet_h_restore_dices_infos"/>
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:id="@+id/sheet_h_restore_dices_infos" android:padding="4dp" android:layout_weight="3"/> 
+			    android:id="@+id/sheet_h_restore_dices_infos" android:padding="2dp" android:layout_weight="3"/> 
         </TableRow>
         <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        <TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:padding="4dp" android:layout_weight="2" android:text="@string/sheet_h_wound_threshold"/>
+			    android:padding="2dp" android:layout_weight="2" android:text="@string/sheet_h_wound_threshold"/>
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content"
-			    android:id="@+id/sheet_h_wound_threshold" android:padding="4dp" android:layout_weight="3"/> 
+			    android:id="@+id/sheet_h_wound_threshold" android:padding="2dp" android:layout_weight="3"/> 
         </TableRow>
-        
     </TableLayout>
-</LinearLayout>

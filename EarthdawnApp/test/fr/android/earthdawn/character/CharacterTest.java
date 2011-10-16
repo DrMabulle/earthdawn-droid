@@ -398,7 +398,6 @@ public class CharacterTest
     @Test
     public void testGetHealth()
     {
-
         elfe.setMainDiscipline(Disciplines.Archer, 6);
         Discipline disc = elfe.getMainDiscipline();
         Talent endurance = disc.findTalent(Talents.Endurance);
@@ -423,7 +422,7 @@ public class CharacterTest
         disc = sylphe.getMainDiscipline();
         endurance = disc.findTalent(Talents.Endurance);
         disc.setTalentRank(endurance, 6);
-        troll.setMainDiscipline(Disciplines.EcumeurDuCiel, 6);
+        troll.setMainDiscipline(Disciplines.EcumeurCiel, 6);
         disc = troll.getMainDiscipline();
         endurance = disc.findTalent(Talents.Endurance);
         disc.setTalentRank(endurance, 6);

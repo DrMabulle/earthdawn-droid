@@ -76,21 +76,21 @@ public class ActionBarTabsPager extends Activity
             bundle = new Bundle(2);
             bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getMainDiscipline());
-            mTabsAdapter.addTab(bar.newTab().setText("Talents 1"), TalentsFragment.class, bundle);
+            mTabsAdapter.addTab(bar.newTab().setText(character.getMainDiscipline().getName()), TalentsFragment.class, bundle);
         }
         if (character.getSecondDiscipline() != null)
         {
             bundle = new Bundle(2);
             bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getSecondDiscipline());
-            mTabsAdapter.addTab(bar.newTab().setText("Talents 2"), TalentsFragment.class, bundle);
+            mTabsAdapter.addTab(bar.newTab().setText(character.getSecondDiscipline().getName()), TalentsFragment.class, bundle);
         }
         if (character.getThirdDiscipline() != null)
         {
             bundle = new Bundle(2);
             bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getThirdDiscipline());
-            mTabsAdapter.addTab(bar.newTab().setText("Talents 3"), TalentsFragment.class, bundle);
+            mTabsAdapter.addTab(bar.newTab().setText(character.getThirdDiscipline().getName()), TalentsFragment.class, bundle);
         }
         // Equipement
 

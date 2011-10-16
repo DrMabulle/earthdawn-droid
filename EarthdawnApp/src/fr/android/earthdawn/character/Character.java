@@ -4,14 +4,21 @@
 package fr.android.earthdawn.character;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
+import fr.android.earthdawn.character.enums.Mod;
+import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Races;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
+import fr.android.earthdawn.character.equipement.Equipment;
 import fr.android.earthdawn.dices.utils.DiceMapping;
+import fr.android.earthdawn.managers.EquipmentManager;
+import fr.android.earthdawn.managers.RankManager;
 
 /**
  * @author DrMabulle
@@ -34,6 +41,10 @@ public class Character implements Serializable
     private Discipline discipline1;
     private Discipline discipline2;
     private Discipline discipline3;
+
+    private final List<Equipment> equipment = new ArrayList<Equipment>(16);
+    private final List<Mod> modPerm = new ArrayList<Mod>();
+    private final List<Mod> modTmp = new ArrayList<Mod>();
 
     public Character(final String name, final String sex, final int age, final int height, final int weight,
             final Races race, final int dexInd, final int dexEvol, final int strInd, final int strEvol,
@@ -130,6 +141,33 @@ public class Character implements Serializable
         return false;
     }
 
+    public void addEquipment(final Equipment equip)
+    {
+        equipment.add(equip);
+    }
+    public void removeEquipment(final Equipment equip)
+    {
+        equipment.remove(equip);
+    }
+
+    public void addPermanentMod(final Mod modif)
+    {
+        modPerm.add(modif);
+    }
+    public void removePermanentMod(final Mod modif)
+    {
+        modPerm.remove(modif);
+    }
+
+    public void addTempMod(final Mod modif)
+    {
+        modTmp.add(modif);
+    }
+    public void removeTempMod(final Mod modif)
+    {
+        modTmp.remove(modif);
+    }
+
     /**
      * @return the name
      */
@@ -178,79 +216,89 @@ public class Character implements Serializable
         return race;
     }
 
-    /**
-     * @return the attribut
-     */
-    public Attribut getAttribut(final Attributs attribut)
+    public int getAttributIndice(final Attributs attribut)
     {
-        return attributs[attribut.getId()];
+        return attributs[attribut.getId()].getResultingIndice() + computeBonusesInt(attribut);
     }
+    public int getAttributEvols(final Attributs attribut)
+    {
+        return attributs[attribut.getId()].getEvol();
+    }
+    public int getAttributRank(final Attributs attribut)
+    {
+        return RankManager.getRank(getAttributIndice(attribut));
+    }
+
+
 
     public int getPhysicalDefense()
     {
-        return race.getBonusPhyDef() + computeIndiceDefense(attributs[Attributs.DEX.getId()].getResultingIndice()); // TODO + equipment
+        return computeIndiceDefense(getAttributIndice(Attributs.DEX)) + race.getBonusPhyDef() + computeBonusesInt(Pointcuts.DEF_PHY);
     }
     public int getMagicalDefense()
     {
-        return computeIndiceDefense(attributs[Attributs.PER.getId()].getResultingIndice()); // TODO + equipment
+        return computeIndiceDefense(getAttributIndice(Attributs.PER)) + computeBonusesInt(Pointcuts.DEF_MAG);
     }
     public int getSocialDefense()
     {
-        return computeIndiceDefense(attributs[Attributs.CHA.getId()].getResultingIndice()); // TODO + equipment
+        return computeIndiceDefense(getAttributIndice(Attributs.CHA)) + computeBonusesInt(Pointcuts.DEF_SOC);
     }
     public int getMysticArmor()
     {
-        return computeMysticArmor(attributs[Attributs.VOL.getId()].getResultingIndice()); // TODO + equipment
+        return computeMysticArmor(getAttributIndice(Attributs.VOL)) + computeBonusesInt(Pointcuts.ARM_MYS);
+    }
+    public int getPhysicalArmor()
+    {
+        return computeBonusesInt(Pointcuts.ARM_PHY);
     }
 
-    public int getDeathThreshold()
+    protected int getDeathThreshold()
     {
-        return computeDeathThreshold(attributs[Attributs.END.getId()].getResultingIndice());
+        return computeDeathThreshold(getAttributIndice(Attributs.END));
     }
 
-    public int getUnconsciousnessThreshold()
+    protected int getUnconsciousnessThreshold()
     {
-        return computeUnconsciousnessThreshold(attributs[Attributs.END.getId()].getResultingIndice());
+        return computeUnconsciousnessThreshold(getAttributIndice(Attributs.END));
     }
 
     public int getWoundThreshold()
     {
-        return computeWoundThreshold(attributs[Attributs.END.getId()].getResultingIndice()) + race.getBonusWound();
+        return computeWoundThreshold(getAttributIndice(Attributs.END)) + race.getBonusWound() + computeBonusesInt(Pointcuts.WOUND_THRESHOLD);
     }
 
     public int getLiftingCapacity()
     {
-        return computeLiftingCapacity(attributs[Attributs.STR.getId()].getResultingIndice());
+        return computeLiftingCapacity(getAttributIndice(Attributs.STR));
     }
 
     public int getCarryingCapacity()
     {
-        return computeCarryingCapacity(attributs[Attributs.STR.getId()].getResultingIndice());
+        return computeCarryingCapacity(getAttributIndice(Attributs.STR));
     }
 
     public int getRunningMouvement()
     {
-        return computeRunningMouvement(attributs[Attributs.DEX.getId()].getResultingIndice() + race.getBonusMvt());
+        return computeRunningMouvement(getAttributIndice(Attributs.DEX) + race.getBonusMvt());
     }
 
     public int getCombatMouvement()
     {
-        return computeCombatMouvement(attributs[Attributs.DEX.getId()].getResultingIndice() + race.getBonusMvt());
+        return computeCombatMouvement(getAttributIndice(Attributs.DEX) + race.getBonusMvt());
     }
 
     public int getInitiativeLevel()
     {
-        // TODO manage penalities
-        return attributs[Attributs.DEX.getId()].getRank();
+        return getAttributRank(Attributs.DEX) + computeBonusesInt(Pointcuts.INIT);
     }
 
     public int getTalentLevel(final Talent talent, final Discipline discipline)
     {
-        return attributs[talent.getAttribut().getId()].getRank() + getTalentRank(talent, discipline); // TODO + equipment
+        return getAttributRank(talent.getAttribut()) + getTalentRank(talent, discipline);
     }
     public int getTalentRank(final Talent talent, final Discipline discipline)
     {
-        return discipline.getTalentRank(talent);
+        return discipline.getTalentRank(talent) + computeBonusesInt(talent.getEnum());
     }
     public void incrementTalentRank(final Talent talent, final Discipline discipline)
     {
@@ -344,6 +392,19 @@ public class Character implements Serializable
         }
     }
 
+    public int computeBonusesInt(final Attributs attribut)
+    {
+        return (int) EquipmentManager.computeMods(equipment, modPerm, modTmp, Pointcuts.ATTRIBUT, attribut);
+    }
+    public int computeBonusesInt(final Talents talent)
+    {
+        return (int) EquipmentManager.computeMods(equipment, modPerm, modTmp, Pointcuts.TALENT, talent);
+    }
+    public int computeBonusesInt(final Pointcuts pointcut)
+    {
+        return (int) EquipmentManager.computeMods(equipment, modPerm, modTmp, pointcut);
+    }
+
     protected static boolean checkCircle(final int circle)
     {
         // Circle must be between 1 and 15
@@ -359,18 +420,18 @@ public class Character implements Serializable
     public int getHealthPoints()
     {
         final Talent endurance = discipline1.findTalent(Talents.Endurance);
-        return getDeathThreshold() + (Integer) endurance.getAdditionnalInfos()[0] * getTalentRank(endurance, discipline1);
+        return getDeathThreshold() + (Integer) endurance.getAdditionnalInfos()[0] * getTalentRank(endurance, discipline1) + computeBonusesInt(Pointcuts.HEALTH_POINTS);
     }
 
     public int getUnconsciousnessPoints()
     {
         final Talent endurance = discipline1.findTalent(Talents.Endurance);
-        return getUnconsciousnessThreshold() + (Integer) endurance.getAdditionnalInfos()[1] * getTalentRank(endurance, discipline1);
+        return getUnconsciousnessThreshold() + (Integer) endurance.getAdditionnalInfos()[1] * getTalentRank(endurance, discipline1) + computeBonusesInt(Pointcuts.UNCOUNSCIOUSNESS_THRESHOLD);
     }
 
     public String getRecoveryDices()
     {
-        return DiceMapping.getDicesToThrow(getAttribut(Attributs.END).getRank());
+        return DiceMapping.getDicesToThrow(getAttributRank(Attributs.END) + computeBonusesInt(Pointcuts.RECOVERY_LVL));
     }
 
     public double getNbRecoveryTests()
@@ -380,23 +441,25 @@ public class Character implements Serializable
         // 8 - 13 : 2
         // 14 - 19 : 3
         // 20+ : 4
-        final int endIndice = getAttribut(Attributs.END).getResultingIndice();
+        // + bonus
+        final int results = computeBonusesInt(Pointcuts.RECOVERY_TESTS);
+        final int endIndice = getAttributIndice(Attributs.END);
         if (endIndice < 3)
         {
-            return 0.5;
+            return results + 0.5;
         }
         else if (endIndice < 8)
         {
-            return 1;
+            return results + 1;
         }
         else if (endIndice < 14)
         {
-            return 2;
+            return results + 2;
         }
         else if (endIndice < 20)
         {
-            return 3;
+            return results + 3;
         }
-        return 4;
+        return results + 4;
     }
 }

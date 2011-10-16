@@ -97,4 +97,9 @@ public class Talent implements Serializable
     {
         return additionnalInfos;
     }
+
+    public Talents getEnum()
+    {
+        return talent;
+    }
 }
