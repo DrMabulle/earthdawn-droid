@@ -11,7 +11,7 @@ import android.widget.ListView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.EquipmentAdapter;
 import fr.android.earthdawn.character.Character;
-import fr.android.earthdawn.character.equipement.Equipment;
+import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.utils.Constants;
 
 public class EquipmentFragment extends ListFragment
@@ -24,7 +24,7 @@ public class EquipmentFragment extends ListFragment
         final View view = inflater.inflate(R.layout.equipment, container, false);
 
         character = (Character) this.getArguments().get(Constants.BUNDLE_CHARACTER);
-        final List<Equipment> equipment = character.getEquipment();
+        final List<IEquipment> equipment = character.getEquipment();
 
         final EquipmentAdapter equipmentAdapter = new EquipmentAdapter(getActivity(), equipment);
         setListAdapter(equipmentAdapter);

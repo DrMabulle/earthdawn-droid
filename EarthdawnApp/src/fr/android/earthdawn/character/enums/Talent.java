@@ -5,6 +5,8 @@ package fr.android.earthdawn.character.enums;
 
 import java.io.Serializable;
 
+import fr.android.earthdawn.character.actions.IAction;
+
 /**
  * @author DrMabulle
  *
@@ -18,11 +20,16 @@ public class Talent implements Serializable
     private final boolean isDiscipline;
     private final Object[] additionnalInfos;
 
-    public Talent(final Talents aTalent, final int aCircle, final boolean isDiscipline, final Object...objects )
+    private final IAction preAction;
+    private final IAction postAction;
+
+    public Talent(final Talents aTalent, final int aCircle, final boolean isDiscipline, final IAction preAction, final IAction postAction, final Object...objects )
     {
         talent = aTalent;
         circle = aCircle;
         this.isDiscipline = isDiscipline;
+        this.preAction = preAction;
+        this.postAction = postAction;
         additionnalInfos = objects;
     }
 
@@ -101,5 +108,21 @@ public class Talent implements Serializable
     public Talents getEnum()
     {
         return talent;
+    }
+
+    public void executePreAction()
+    {
+        if (preAction != null)
+        {
+            preAction.execute(talent.getLabel());
+        }
+    }
+
+    public void executePostAction()
+    {
+        if (postAction != null)
+        {
+            postAction.execute(talent.getLabel());
+        }
     }
 }

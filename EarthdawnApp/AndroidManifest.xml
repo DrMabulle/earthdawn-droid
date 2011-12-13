@@ -11,7 +11,7 @@
                       android:largeScreens="false"
                       android:xlargeScreens="true"/>
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:hardwareAccelerated="true">
+    <application android:icon="@drawable/ic_action_throall2" android:label="@string/app_name" android:hardwareAccelerated="true">
         
         <activity android:name=".activities.EarthDawnActivity"
                   android:label="@string/app_name">
@@ -24,6 +24,14 @@
         
         <activity android:name=".activities.RollerActivity"
                   android:label="@string/app_name">   
+        </activity>
+        
+        <activity android:name=".activities.ChooseCharacterActivity"
+                  android:label="@string/app_name"> 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="fr.android.earthdawn.activities.CHARACTER_SHEET" />
+            </intent-filter>  
         </activity>
         
         <activity android:name=".activities.ActionBarTabsPager"

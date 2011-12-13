@@ -33,7 +33,7 @@ public class EarthDawnActivity extends Activity implements View.OnClickListener
         switch (view.getId())
         {
             case R.id.m_sheet:
-                startActivity(new Intent(EarthDawnActivity.this, ActionBarTabsPager.class));
+                startActivity(new Intent(EarthDawnActivity.this, ChooseCharacterActivity.class));
                 break;
             case R.id.m_new:
                 showDialog(0, null);

@@ -14,8 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
-import fr.android.earthdawn.character.enums.Mod;
-import fr.android.earthdawn.character.equipement.Equipment;
+import fr.android.earthdawn.character.equipement.IEquipment;
 
 /**
  * @author DrMabulle
@@ -25,10 +24,10 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
 {
     private final LayoutInflater inflater;
     private final Context ctx;
-    private final List<Equipment> possessions;
+    private final List<IEquipment> possessions;
     private final boolean[] expanded;
 
-    public EquipmentAdapter(final Context context, final List<Equipment> equipment)
+    public EquipmentAdapter(final Context context, final List<IEquipment> equipment)
     {
         possessions = equipment;
         expanded = new boolean[possessions.size()];
@@ -61,17 +60,12 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
         if (convertView == null)
         {
             convertView = inflater.inflate(R.layout.possession, parent, false);
-            final Equipment possession = possessions.get(position);
+            final IEquipment possession = possessions.get(position);
 
             ((TextView) convertView.findViewById(R.id.possession_name)).setText(possession.getName());
             final LinearLayout details = (LinearLayout) convertView.findViewById(R.id.possession_details);
 
-            for (final Mod mod : possession.getBonuses())
-            {
-                final TextView tv = new TextView(ctx);
-                tv.setText(mod.toString());
-                details.addView(tv);
-            }
+            possession.drawDetails(details, ctx);
         }
 
         final boolean visible = isVisible(position);

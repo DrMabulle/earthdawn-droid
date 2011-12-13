@@ -83,6 +83,7 @@ public enum Talents implements Serializable
     ConstitutionBestiale("Constitution bestiale", Attributs.END, false, true, 0, 176),
     ContreMalediction("Contre-malédiction", Attributs.VOL, true, false, 1, 177),
     ControleAdversaires("Contrôle des adversaires", Attributs.DEX, true, false, 0, 177),
+    ControleCorporel("Contrôle corporel", Attributs.STR, false, false, 1, 262),
     ControleTemperature("Contrôle de la température", Attributs.VOL, true, false, 1, 177),
     CoupBouclier("Coup de bouclier", Attributs.STR, false, false, 1, 177),
     CoupPiedRapide("Coup de pied rapide", Attributs.DEX, false, false, 1, 177),
@@ -180,6 +181,7 @@ public enum Talents implements Serializable
     LectureEcritureMagie("Lecture et écriture de la magie", Attributs.PER, true, false, 0, 192),
     LectureLevres("Lecture sur les lèvres", Attributs.CHA, true, true, 1, 192),
     LienTelepathique("Lien télépathique", Attributs.PER, true, false, 1, 192),
+    LienTellurique("Lien tellurique", Attributs.END, true, false, 0, 268),
     LocalisationTireur("Localisation de tireur", Attributs.PER, false, false, 1, 192),
     LocalisationEcho("Localisation par écho", Attributs.PER, true, false, 1, 192),
     MaintienFilament("Maintien de filament", Attributs.VOL, false, false, 1, 193),
@@ -226,6 +228,7 @@ public enum Talents implements Serializable
     PatteVelours("patte de velours", Attributs.DEX, false, false, 1, 198),
 
     // résultats = bonus seuil mort/inconscience, armure physique ou défense magique... il faut ajouter un bouton "arrêt" pour signifier la fin de l'activation
+    PeauArgile("Peau d'argile", Attributs.END, true, true, 0, 269),
     PeauBois("Peau de bois", Attributs.END, true, true, 0, 198),
     PeauPierre("Peau de pierre", Attributs.END, true, true, 0, 198),
     PeauTellurique("Peau tellurique", Attributs.END, true, true, 0, 198),
@@ -333,6 +336,7 @@ public enum Talents implements Serializable
     TissageMaitreAnimaux("Tissage d'animaux", Attributs.PER, true, false, 0, 209),
     TissageNavigateurCiel("Tissage des airs", Attributs.PER, true, false, 0, 209),
     TissageNecromancien("Nécromancie", Attributs.PER, true, false, 0, 209),
+    TissagePurificateur("Tissage de Terre", Attributs.PER, true, false, 0, 245),
     TissageSorcier("Sorcellerie", Attributs.PER, true, false, 0, 209),
     TissageTroubadour("Tissage d'histoire", Attributs.PER, true, false, 0, 209),
     TissageVoleur("Tissage de voleur", Attributs.PER, true, false, 0, 209),
@@ -377,7 +381,73 @@ public enum Talents implements Serializable
 
     VoixBarde("Voix de barde", Attributs.CHA, true, false, 1, 212),
     VolTire("Vol à la tire", Attributs.DEX, true, false, 0, 212),
-    VolonteFer("Volonté de fer", Attributs.VOL, false, false, 1, 212);
+    VolonteFer("Volonté de fer", Attributs.VOL, false, false, 1, 212),
+
+
+    // Nouveau talents
+
+    ArmeSpirituelle("Arme spirituelle", Attributs.NUL, true, false, false, 1, 260),
+    ArmureSpirituelle("Armure spirituelle", Attributs.NUL, true, false, false, 1, 260),
+    AugureEvasion("Augure d'évasion", Attributs.PER, true, false, 1, 261),
+    Bourdonnement("Bourdonnement", Attributs.DEX, true, false, 0, 261),
+    CommunicationSylvestre("Communication sylvestre", Attributs.PER, true, false, 0, 261),
+    CommunicationVolatile("Communication volatile", Attributs.PER, true, true, 0, 261),
+    CoupPourCoup("Coup pour coup", Attributs.VOL, true, true, 0, 262),
+    CreationFetiche("Création de fétiche", Attributs.PER, true, false, 1, 262),
+    CriJustice("Cri de justice", Attributs.CHA, true, true, 0, 263),
+    DanseCaudale("Danse caudale", Attributs.DEX, false, false, 1, 263),
+    DanseDistraction("Danse de distraction", Attributs.CHA, true, false, 1, 263),
+    DanseVent("Danse du vent", Attributs.PER, false, false, 1, 264),
+    DeguisementAstral("Déguisement astral", Attributs.VOL, true, true, 0, 264),
+    DetectionDirection("Détection de direction", Attributs.PER, true, true, 2, 264),
+    DetectionLiberte("Détection de la liberté", Attributs.PER, true, false, 1, 264),
+    DetectionPrisonniers("Détection de prisonniers", Attributs.PER, true, true, 0, 265),
+    DetectionDanger("Détection du danger", Attributs.PER, true, false, 1, 265),
+    Diplomatie("Diplomatie", Attributs.CHA, true, false, 0, 265),
+    DiscretionImpossible("Discrétion impossible", Attributs.VOL, true, true, 0, 265),
+    DissipationInfluence("Dissipation d'influence", Attributs.VOL, true, true, 0, 265),
+    Eloquence("Eloquence", Attributs.CHA, true, false, 0, 265),
+    Envolee("Envolée", Attributs.DEX, false, false, 0, 266),
+    EspritLibre("Esprit libre", Attributs.CHA, true, false, 0, 266),
+    Etiquette("Etiquette", Attributs.CHA, true, false, 0, 266),
+    Evaluation("Evaluation", Attributs.PER, true, false, 0, 266),
+    Evasion("Evasion", Attributs.DEX, true, false, 1, 266),
+    FeticheAmeliore("Fétiche amélioré", Attributs.NUL, false, false, false, 0, 267),
+    FeticheSort("Fétiche de sort", Attributs.NUL, false, false, false, 0, 267),
+    FetichePartage("Fétiche partagé", Attributs.NUL, false, false, false, 0, 267),
+    FeticheRenforce("Fétiche renforcé", Attributs.NUL, false, false, false, 0, 267),
+    FiletProtection("Filet de protection", Attributs.DEX, false, false, 1, 267),
+    FlecheTracante("Flèche traçante", Attributs.PER, false, false, 0, 267),
+    GuerisonEsclaves("Guérison des esclaves", Attributs.VOL, true, true, 1, 267),
+    MenottesFictives("Menottes fictives", Attributs.DEX, true, false, 0, 268),
+    Morphisme("Morphisme", Attributs.NUL, false, false, false, 1, 268),
+    Natation("Natation", Attributs.STR, true, false, 0, 268),
+    Performance("Performance", Attributs.CHA, false, true, 1, 269),
+    PilotageNavire("Pilotage de navire", Attributs.VOL, true, false, 0, 269),
+    PistageOlfactif("Pistage olfactif", Attributs.PER, true, false, 0, 269),
+    PulsionLiberte("Pulsion de liberté", Attributs.VOL, true, true, 0, 269),
+    Quarantaine("Quarantaine", Attributs.PER, false, false, 1, 270),
+    Recherche("Recherche", Attributs.PER, true, false, 0, 270),
+    StabiliteAerienne("Stabilité aérienne", Attributs.STR, false, false, 1, 270),
+    Survie("Survie", Attributs.PER, true, false, 0, 270),
+    TransportSylvestre("Transport sylvestre", Attributs.VOL, true, true, 1, 270),
+    Vigilance("Vigilance", Attributs.PER, true, false, 1, 271),
+    VolArrache("Vol à l'arraché", Attributs.DEX, true, false, 1, 271),
+
+
+    TissageChaman("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageChasseurHorreurs("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageDanseurCaudal("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageDanseurVent("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageEclaireurVent("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageEruditExplorateur("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageGardienBois("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageGuerrierBanni("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageLiberateur("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageMaitreVent("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageMenestrel("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageMessager("Tissage", Attributs.PER, true, false, 0, 209),
+    TissageSoldatFleuve("Tissage", Attributs.PER, true, false, 0, 209);
 
 
     private final Attributs attribut;
@@ -481,5 +551,15 @@ public enum Talents implements Serializable
         return label;
     }
 
-
+    public static Talents findByLabel(final String label)
+    {
+        for (final Talents talent : Talents.values())
+        {
+            if (talent.getLabel().equals(label))
+            {
+                return talent;
+            }
+        }
+        return null;
+    }
 }

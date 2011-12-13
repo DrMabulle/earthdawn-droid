@@ -11,6 +11,8 @@ import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.TalentAdapter;
 import fr.android.earthdawn.character.Character;
 import fr.android.earthdawn.character.enums.Discipline;
+import fr.android.earthdawn.character.enums.Talent;
+import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.Constants;
@@ -18,17 +20,15 @@ import fr.android.earthdawn.utils.Constants;
 public class TalentsFragment extends AbstractRollingFragment implements View.OnClickListener
 {
     private Character character;
-    /**
-     * The Fragment's UI is just a simple text view showing its
-     * instance number.
-     */
+    private Discipline discicpline;
+
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
     {
         final View view = inflater.inflate(R.layout.talents, container, false);
 
         character = (Character) this.getArguments().get(Constants.BUNDLE_CHARACTER);
-        final Discipline discicpline = (Discipline) this.getArguments().get(Constants.BUNDLE_DISCIPLINE);
+        discicpline = (Discipline) this.getArguments().get(Constants.BUNDLE_DISCIPLINE);
 
         final ListView listV = (ListView) view.findViewById(R.id.sheet_talent_list);
         final TalentAdapter talentAdpater = new TalentAdapter(getActivity(), character, discicpline, this);
@@ -49,6 +49,12 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
 
             final boolean isKarmaMandatory = ((RadioButton) parent.findViewById(R.id.talents_karma)).isChecked();
             final int level = Integer.parseInt((String) ((TextView) parent.findViewById(R.id.talents_level)).getText());
+            // TODO Talents pre and post actions.
+            final String talentname = (String) ((TextView) parent.findViewById(R.id.talents_talent)).getText();
+            final Talents talents = Talents.findByLabel(talentname);
+            final Talent talent = discicpline.findTalent(talents);
+            talent.executePreAction();
+
             if (isKarmaMandatory)
             {
                 // Definir les dés à lancer
@@ -65,6 +71,9 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
             // Nom du talent
             args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, ((TextView) parent.findViewById(R.id.talents_talent)).getText());
 
+            // Post action
+            talent.executePostAction();
+            // Dialog box
             showDialogResult(args);
         }
     }

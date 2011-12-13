@@ -35,7 +35,6 @@ public class ShowResultFragment extends DialogFragment
         final View v = inflater.inflate(R.layout.popup_roll, container, false);
         final TextView tv = (TextView) v.findViewById(R.id.popup_result);
         tv.setText(Integer.toString(DicesLauncher.get().getRollResult()));
-        tv.setTextSize(200.0f);
         setStyle(STYLE_NO_TITLE|STYLE_NO_FRAME|STYLE_NO_INPUT, android.R.style.Theme_Holo_Dialog_NoActionBar);
 
 

@@ -20,6 +20,7 @@ public enum Pointcuts implements Serializable
     ATTRIBUT("Attributs"),
     KARMA_POINTS("Points de karma"),
     KARMA_RANK("Niveau du karma"),
+    KARMA_USE("Utilisation Karma"),
     HEALTH_POINTS("Points de vie"),
     BLOOD_MAGIC("Magie du sang"),
     UNCOUNSCIOUSNESS_THRESHOLD("Seuil d'inconscience"),
@@ -29,7 +30,9 @@ public enum Pointcuts implements Serializable
     WOUND("Blessure grave"),
     TALENT("Talent"),
     WEAPON_DAMAGE("Dommages de l'arme"),
-    WEIGHT("Poids");
+    WEIGHT("Poids"),
+
+    POWER("Pouvoir");
 
     private final String label;
 

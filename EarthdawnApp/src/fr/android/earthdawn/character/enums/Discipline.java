@@ -51,7 +51,8 @@ public class Discipline implements Serializable
     {
         final Iterator<Talent> iter = discipline.getTalents().iterator();
         int index = 0;
-        while(iter.hasNext() && iter.next().getCircle() <= circle) {
+        while(iter.hasNext() && iter.next().getCircle() <= circle)
+        {
             index++;
         }
         return discipline.getTalents().subList(0, index);

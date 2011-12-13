@@ -56,17 +56,28 @@ public class Mod implements Serializable
     public String toString()
     {
         final StringBuilder builder = new StringBuilder();
-        builder.append(pointcut);
-        if (Pointcuts.TALENT.equals(pointcut) || Pointcuts.ATTRIBUT.equals(pointcut))
+
+        if (Pointcuts.POWER.equals(pointcut))
         {
-            builder.append('(').append(otherInfos[0]).append(')');
+            builder.append(pointcut);
+            builder.append(" : ");
+            builder.append(otherInfos[0]);
         }
-        builder.append(" : ");
-        if (modificator > 0)
+        else
         {
-            builder.append('+');
+            builder.append(pointcut);
+            if (Pointcuts.TALENT.equals(pointcut) || Pointcuts.ATTRIBUT.equals(pointcut))
+            {
+                builder.append('(').append(otherInfos[0]).append(')');
+            }
+            builder.append(" : ");
+            if (modificator > 0)
+            {
+                builder.append('+');
+            }
+            builder.append(NumberUtils.format(modificator));
         }
-        builder.append(NumberUtils.format(modificator));
+        // TODO : modificateurs temporaires
         return builder.toString();
     }
 

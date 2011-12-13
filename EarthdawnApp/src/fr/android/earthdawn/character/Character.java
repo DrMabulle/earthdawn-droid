@@ -5,7 +5,9 @@ package fr.android.earthdawn.character;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import fr.android.earthdawn.character.enums.Attributs;
@@ -16,7 +18,7 @@ import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Races;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
-import fr.android.earthdawn.character.equipement.Equipment;
+import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.dices.utils.DiceMapping;
 import fr.android.earthdawn.managers.EquipmentManager;
 import fr.android.earthdawn.managers.RankManager;
@@ -43,7 +45,7 @@ public class Character implements Serializable
     private Discipline discipline2;
     private Discipline discipline3;
 
-    private final List<Equipment> equipment = new ArrayList<Equipment>(16);
+    private final List<IEquipment> equipment = new ArrayList<IEquipment>(16);
     private final List<Mod> modPerm = new ArrayList<Mod>();
     private final List<Mod> modTmp = new ArrayList<Mod>();
 
@@ -147,15 +149,15 @@ public class Character implements Serializable
      * Get the list of possessions
      * @return a read-only list of Equipment
      */
-    public List<Equipment> getEquipment()
+    public List<IEquipment> getEquipment()
     {
         return Collections.unmodifiableList(equipment);
     }
-    public void addEquipment(final Equipment equip)
+    public void addEquipment(final IEquipment equip)
     {
         equipment.add(equip);
     }
-    public void removeEquipment(final Equipment equip)
+    public void removeEquipment(final IEquipment equip)
     {
         equipment.remove(equip);
     }
@@ -171,6 +173,20 @@ public class Character implements Serializable
 
     public void addTempMod(final Mod modif)
     {
+        modTmp.add(modif);
+    }
+    public void addOrReplaceTempMod(final Mod modif)
+    {
+        final Iterator<Mod> iter = modTmp.iterator();
+        while (iter.hasNext())
+        {
+            final Mod mod = iter.next();
+            if (mod.getPointcut().equals(modif.getPointcut()) && Arrays.deepEquals(mod.getOtherInfos(), modif.getOtherInfos()))
+            {
+                modTmp.remove(mod);
+                break;
+            }
+        }
         modTmp.add(modif);
     }
     public void removeTempMod(final Mod modif)
@@ -259,7 +275,7 @@ public class Character implements Serializable
     }
     public int getPhysicalArmor()
     {
-        return computeBonusesInt(Pointcuts.ARM_PHY);
+        return computeBonusesInt(Pointcuts.ARM_PHY) + race.getBonusPhyArm();
     }
 
     protected int getDeathThreshold()

@@ -11,7 +11,8 @@ import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Talents;
-import fr.android.earthdawn.character.equipement.Equipment;
+import fr.android.earthdawn.character.equipement.IEquipment;
+import fr.android.earthdawn.character.equipement.impl.Equipment;
 
 /**
  * @author DrMabulle
@@ -19,10 +20,10 @@ import fr.android.earthdawn.character.equipement.Equipment;
  */
 public class EquipmentManager
 {
-    private static List<Equipment> weapons = null;
-    private static List<Equipment> armors = null;
+    private static List<IEquipment> weapons = null;
+    private static List<IEquipment> armors = null;
 
-    public static List<Equipment> getWeaponList()
+    public static List<IEquipment> getWeaponList()
     {
         if (weapons == null)
         {
@@ -30,7 +31,7 @@ public class EquipmentManager
         }
         return weapons;
     }
-    public static List<Equipment> getArmorList()
+    public static List<IEquipment> getArmorList()
     {
         if (armors == null)
         {
@@ -39,9 +40,9 @@ public class EquipmentManager
         return armors;
     }
 
-    private static List<Equipment> initWeapons()
+    private static List<IEquipment> initWeapons()
     {
-        final List<Equipment> weap = new ArrayList<Equipment>();
+        final List<IEquipment> weap = new ArrayList<IEquipment>();
         weap.add(new Equipment("Arme d'Hast", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 7), new Mod(Pointcuts.WEIGHT, 4))));
         weap.add(new Equipment("Bâton", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 2), new Mod(Pointcuts.WEIGHT, 2))));
         weap.add(new Equipment("Couteau", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 1), new Mod(Pointcuts.WEIGHT, 0.25))));
@@ -68,9 +69,9 @@ public class EquipmentManager
         weap.add(new Equipment("Trident", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 5), new Mod(Pointcuts.WEIGHT, 1.5))));
         return weap;
     }
-    private static List<Equipment> initArmors()
+    private static List<IEquipment> initArmors()
     {
-        final List<Equipment> arm = new ArrayList<Equipment>();
+        final List<IEquipment> arm = new ArrayList<IEquipment>();
         arm.add(new Equipment("Armure de cristal vivant", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 6), new Mod(Pointcuts.ARM_MYS, 3), new Mod(Pointcuts.INIT, -2), new Mod(Pointcuts.WEIGHT, 0), new Mod(Pointcuts.BLOOD_MAGIC, 5))));
         arm.add(new Equipment("Armure de cuir", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 3), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, 0), new Mod(Pointcuts.WEIGHT, 6))));
         arm.add(new Equipment("Armure de cuir bouilli", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 5), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 10))));
@@ -93,12 +94,12 @@ public class EquipmentManager
     }
 
     @SuppressWarnings("rawtypes")
-    public static double computeMods(final List<Equipment> equipment, final List<Mod> permMod, final List<Mod> tmpMod,
+    public static double computeMods(final List<IEquipment> equipment, final List<Mod> permMod, final List<Mod> tmpMod,
             final Pointcuts pointcut, final Enum... additionnalInfos)
     {
         double result = 0.0;
 
-        for (final Equipment equip : equipment)
+        for (final IEquipment equip : equipment)
         {
             for (final Mod mod : equip.getBonuses())
             {

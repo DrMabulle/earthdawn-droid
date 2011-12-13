@@ -3,6 +3,7 @@
  */
 package fr.android.earthdawn.activities.adapters;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -37,9 +38,23 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
         this.listener = listener;
         this.character = character;
         this.discipline = discipline;
-        this.talents = discipline.getKnownTalents();
+        this.talents = clean(discipline.getKnownTalents());
+
         // Cache the LayoutInflate to avoid asking for a new one each time.
         inflater = LayoutInflater.from(context);
+    }
+
+    private List<Talent> clean(final List<Talent> knownTalents)
+    {
+        final List<Talent> talents = new ArrayList<Talent>(knownTalents.size());
+        for (final Talent talent : knownTalents)
+        {
+            if (discipline.getTalentRank(talent) != 0)
+            {
+                talents.add(talent);
+            }
+        }
+        return talents;
     }
 
     @Override

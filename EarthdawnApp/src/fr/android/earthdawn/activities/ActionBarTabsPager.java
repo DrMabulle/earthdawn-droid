@@ -64,7 +64,7 @@ public class ActionBarTabsPager extends Activity
         mTabsAdapter = new TabsAdapter(this, mViewPager);
 
         // Load character and store it in bundle
-        final Character character = CharacterManager.getCharacter("test");
+        final Character character = CharacterManager.getLoadedCharacter();
         Bundle bundle;
 
         // Infos générales
