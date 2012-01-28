@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:title="@string/menu_bonus_malus" android:id="@+id/itemBonusMalus"></item>
+	<item android:title="@string/menu_subir_degats" android:id="@+id/itemTakeDamages"></item>
+	<item android:title="@string/menu_jet_degats" android:id="@+id/itemRollDamages"></item>
+
+</menu>

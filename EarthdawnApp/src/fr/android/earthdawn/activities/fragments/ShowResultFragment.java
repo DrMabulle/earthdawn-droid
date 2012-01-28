@@ -21,22 +21,28 @@ import fr.android.earthdawn.utils.Constants;
  */
 public class ShowResultFragment extends DialogFragment
 {
-    static Bundle args;
+    private final Bundle args;
+
+    private ShowResultFragment(final Bundle aArgs)
+    {
+        args = aArgs;
+    }
 
     public static ShowResultFragment newInstance(final Bundle aArgs)
     {
-        args = aArgs;
-        return new ShowResultFragment();
+        return new ShowResultFragment(aArgs);
     }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
     {
         final View v = inflater.inflate(R.layout.popup_roll, container, false);
+
         final TextView tv = (TextView) v.findViewById(R.id.popup_result);
         tv.setText(Integer.toString(DicesLauncher.get().getRollResult()));
-        setStyle(STYLE_NO_TITLE|STYLE_NO_FRAME|STYLE_NO_INPUT, android.R.style.Theme_Holo_Dialog_NoActionBar);
 
+        // Set title
+        getDialog().setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
 
         // Close Button
         Button button = (Button) v.findViewById(R.id.popup_close);

@@ -5,7 +5,7 @@ package fr.android.earthdawn.managers;
 
 import java.util.List;
 
-import fr.android.earthdawn.character.Character;
+import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Races;
@@ -34,7 +34,7 @@ public class XPManager
         return INSTANCE;
     }
 
-    public int evaluateCharacter(final Character character)
+    public int evaluateCharacter(final EDCharacter character)
     {
         int total = 0;
         // Talents

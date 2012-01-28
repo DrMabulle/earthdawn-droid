@@ -8,16 +8,17 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
-import fr.android.earthdawn.character.Character;
+import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Pointcuts;
+import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.utils.Constants;
 import fr.android.earthdawn.utils.NumberUtils;
 
 public class CharacterFragment extends AbstractRollingFragment implements View.OnClickListener
 {
-    private Character character;
+    private EDCharacter character;
     /**
      * The Fragment's UI is just a simple text view showing its
      * instance number.
@@ -27,7 +28,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
     {
         final View view = inflater.inflate(R.layout.description, container, false);
 
-        character = (Character) this.getArguments().get(Constants.BUNDLE_CHARACTER);
+        character = CharacterManager.getLoadedCharacter();
 
         // Fill Character Description with character infos
         fillGeneralInfos(view, character);
@@ -48,7 +49,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         return view;
     }
 
-    private void fillGeneralInfos(final View view, final Character character)
+    private void fillGeneralInfos(final View view, final EDCharacter character)
     {
         view.findViewById(R.id.sheet_character).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         ((TextView) view.findViewById(R.id.sheet_name)).setText(character.getName());
@@ -59,7 +60,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_weight)).setText(Integer.toString(character.getWeight()));
     }
 
-    private void fillAttributs(final View view, final Character character)
+    private void fillAttributs(final View view, final EDCharacter character)
     {
         view.findViewById(R.id.sheet_attributs).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         // Dex
@@ -94,7 +95,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((ImageButton) view.findViewById(R.id.sheet_cha_roll)).setOnClickListener(this);
     }
 
-    private void fillDisciplines(final View view, final Character character)
+    private void fillDisciplines(final View view, final EDCharacter character)
     {
         view.findViewById(R.id.sheet_disciplines).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         ((TextView) view.findViewById(R.id.sheet_main_discipline)).setText(character.getMainDisciplineDisplay());
@@ -106,7 +107,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_third_circle)).setText(character.getThirdCircleDisplay());
     }
 
-    private void fillDeductibles(final View view, final Character character)
+    private void fillDeductibles(final View view, final EDCharacter character)
     {
         view.findViewById(R.id.sheet_deductibles).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         // Defenses
@@ -114,11 +115,9 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_def_mag)).setText(Integer.toString(character.getMagicalDefense()));
         ((TextView) view.findViewById(R.id.sheet_def_soc)).setText(Integer.toString(character.getSocialDefense()));
 
-        // TODO Equipement
         ((TextView) view.findViewById(R.id.sheet_equ_tra)).setText(Integer.toString(character.getCarryingCapacity()));
         ((TextView) view.findViewById(R.id.sheet_equ_lev)).setText(Integer.toString(character.getLiftingCapacity()));
 
-        // TODO Initiative
         ((TextView) view.findViewById(R.id.sheet_init_dex)).setText(Integer.toString(character.getAttributRank(Attributs.DEX)));
         ((TextView) view.findViewById(R.id.sheet_init_pen)).setText(Integer.toString(character.computeBonusesInt(Pointcuts.INIT)));
         ((TextView) view.findViewById(R.id.sheet_init_lvl)).setText(Integer.toString(character.getInitiativeLevel()));
@@ -186,7 +185,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         }
     }
 
-    private void fillHealthInfos(final View view, final Character character)
+    private void fillHealthInfos(final View view, final EDCharacter character)
     {
         view.findViewById(R.id.sheet_health).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         ((TextView) view.findViewById(R.id.sheet_health_points)).setText(Integer.toString(character.getHealthPoints()));

@@ -17,7 +17,7 @@ import android.widget.ListAdapter;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
-import fr.android.earthdawn.character.Character;
+import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Talent;
 
@@ -31,9 +31,9 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
     private final List<Talent> talents;
     private final OnClickListener listener;
     private final Discipline discipline;
-    private final Character character;
+    private final EDCharacter character;
 
-    public TalentAdapter(final Context context, final Character character, final Discipline discipline, final OnClickListener listener)
+    public TalentAdapter(final Context context, final EDCharacter character, final Discipline discipline, final OnClickListener listener)
     {
         this.listener = listener;
         this.character = character;

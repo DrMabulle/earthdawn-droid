@@ -15,26 +15,27 @@
  */
 package fr.android.earthdawn.activities;
 
-import java.util.ArrayList;
-
 import android.app.ActionBar;
-import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 import fr.android.earthdawn.R;
+import fr.android.earthdawn.activities.adapters.TabsAdapter;
 import fr.android.earthdawn.activities.fragments.CharacterFragment;
 import fr.android.earthdawn.activities.fragments.EquipmentFragment;
+import fr.android.earthdawn.activities.fragments.RollDamagesFragment;
+import fr.android.earthdawn.activities.fragments.TakeDamagesFragment;
 import fr.android.earthdawn.activities.fragments.TalentsFragment;
-import fr.android.earthdawn.character.Character;
+import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.utils.Constants;
@@ -64,38 +65,38 @@ public class ActionBarTabsPager extends Activity
         mTabsAdapter = new TabsAdapter(this, mViewPager);
 
         // Load character and store it in bundle
-        final Character character = CharacterManager.getLoadedCharacter();
+        final EDCharacter character = CharacterManager.getLoadedCharacter();
         Bundle bundle;
 
         // Infos générales
-        bundle = new Bundle(2);
-        bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
+        bundle = new Bundle(1);
+        //bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
         mTabsAdapter.addTab(bar.newTab().setText("Description"), CharacterFragment.class, bundle);
         // Talents, par discipline
         if (character.getMainDiscipline() != null)
         {
             bundle = new Bundle(2);
-            bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
+//            bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getMainDiscipline());
             mTabsAdapter.addTab(bar.newTab().setText(character.getMainDiscipline().getName()), TalentsFragment.class, bundle);
         }
         if (character.getSecondDiscipline() != null)
         {
             bundle = new Bundle(2);
-            bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
+//            bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getSecondDiscipline());
             mTabsAdapter.addTab(bar.newTab().setText(character.getSecondDiscipline().getName()), TalentsFragment.class, bundle);
         }
         if (character.getThirdDiscipline() != null)
         {
             bundle = new Bundle(2);
-            bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
+//            bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getThirdDiscipline());
             mTabsAdapter.addTab(bar.newTab().setText(character.getThirdDiscipline().getName()), TalentsFragment.class, bundle);
         }
         // Equipement
-        bundle = new Bundle(2);
-        bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
+        bundle = new Bundle(1);
+//        bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
         mTabsAdapter.addTab(bar.newTab().setText("Equipement"), EquipmentFragment.class, bundle);
         // Grimoire
 
@@ -119,9 +120,26 @@ public class ActionBarTabsPager extends Activity
     protected Dialog onCreateDialog(final int id, final Bundle args)
     {
         final Builder builder = new AlertDialog.Builder(this);
+
+        switch (id)
+        {
+            case Constants.DIALOG_SHOW_DETAILS:
+                builder.setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
+                builder.setMessage(DicesLauncher.get().getDetailedMessage(this));
+                break;
+            case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
+                builder.setTitle(R.string.popup_damages_taken_title);
+                builder.setMessage(getString(R.string.popup_damages_taken_msg,
+                        args.getCharSequence(Constants.BUNDLE_DMG_TAKEN_ARM),
+                        args.getCharSequence(Constants.BUNDLE_DMG_TAKEN_PV),
+                        args.getCharSequence(Constants.BUNDLE_DMG_TAKEN_WOUND)));
+                break;
+
+            default:
+                break;
+        }
+
         builder.setIcon(android.R.drawable.ic_dialog_info);
-        builder.setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
-        builder.setMessage(DicesLauncher.get().getDetailedMessage(this));
         builder.setNeutralButton("Close", new DialogInterface.OnClickListener()
         {
             @Override
@@ -136,112 +154,66 @@ public class ActionBarTabsPager extends Activity
     @Override
     protected void onPrepareDialog(final int id, final Dialog dialog, final Bundle args)
     {
-        ((AlertDialog) dialog).setMessage(DicesLauncher.get().getDetailedMessage(this));
-        ((AlertDialog) dialog).setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
+        final AlertDialog alert = (AlertDialog) dialog;
+        switch (id)
+        {
+            case Constants.DIALOG_SHOW_DETAILS:
+                alert.setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
+                alert.setMessage(DicesLauncher.get().getDetailedMessage(this));
+                break;
+            case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
+                alert.setTitle(R.string.popup_damages_taken_title);
+                alert.setMessage(getString(R.string.popup_damages_taken_msg,
+                        args.getCharSequence(Constants.BUNDLE_DMG_TAKEN_ARM),
+                        args.getInt(Constants.BUNDLE_DMG_TAKEN_PV),
+                        args.getInt(Constants.BUNDLE_DMG_TAKEN_WOUND)));
+                break;
+
+            default:
+                break;
+        }
 
         super.onPrepareDialog(id, dialog, args);
     }
 
-    /**
-     * This is a helper class that implements the management of tabs and all
-     * details of connecting a ViewPager with associated TabHost.  It relies on a
-     * trick.  Normally a tab host has a simple API for supplying a View or
-     * Intent that each tab will show.  This is not sufficient for switching
-     * between pages.  So instead we make the content part of the tab host
-     * 0dp high (it is not shown) and the TabsAdapter supplies its own dummy
-     * view to show as the tab content.  It listens to changes in tabs, and takes
-     * care of switch to the correct paged in the ViewPager whenever the selected
-     * tab changes.
-     */
-    public static class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabListener, ViewPager.OnPageChangeListener
+
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu)
     {
-        private final Context mContext;
-        private final ActionBar mActionBar;
-        private final ViewPager mViewPager;
-        private final ArrayList<TabInfo> mTabs = new ArrayList<TabInfo>();
+        getMenuInflater().inflate(R.menu.actionbarmenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-        static final class TabInfo
-        {
-            private final Class<?> clss;
-            private final Bundle args;
-
-            TabInfo(final Class<?> _class, final Bundle _args)
-            {
-                clss = _class;
-                args = _args;
-            }
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item)
+    {
+        // Commun code
+        final Bundle bundle = new Bundle(2);
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        final Fragment prev = getFragmentManager().findFragmentByTag("ShowResult");
+        if (prev != null) {
+            ft.remove(prev);
         }
+        ft.addToBackStack(null);
 
-        public TabsAdapter(final Activity activity, final ViewPager pager)
-        {
-            super(activity.getFragmentManager());
-            mContext = activity;
-            mActionBar = activity.getActionBar();
-            mViewPager = pager;
-            mViewPager.setAdapter(this);
-            mViewPager.setOnPageChangeListener(this);
-        }
-
-        public void addTab(final ActionBar.Tab tab, final Class<?> clss, final Bundle args)
-        {
-            final TabInfo info = new TabInfo(clss, args);
-            tab.setTag(info);
-            tab.setTabListener(this);
-            mTabs.add(info);
-            mActionBar.addTab(tab);
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public int getCount()
-        {
-            return mTabs.size();
-        }
-
-        @Override
-        public Fragment getItem(final int position)
-        {
-            final TabInfo info = mTabs.get(position);
-            return Fragment.instantiate(mContext, info.clss.getName(), info.args);
-        }
-
-        @Override
-        public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels)
-        {
-        }
-
-        @Override
-        public void onPageSelected(final int position)
-        {
-            mActionBar.setSelectedNavigationItem(position);
-        }
-
-        @Override
-        public void onPageScrollStateChanged(final int state)
-        {
-        }
-
-        @Override
-        public void onTabSelected(final Tab tab, final FragmentTransaction ft)
-        {
-            final Object tag = tab.getTag();
-            for (int i = 0; i < mTabs.size(); i++)
-            {
-                if (mTabs.get(i) == tag)
-                {
-                    mViewPager.setCurrentItem(i);
-                }
-            }
-        }
-
-        @Override
-        public void onTabUnselected(final Tab tab, final FragmentTransaction ft)
-        {
-        }
-
-        @Override
-        public void onTabReselected(final Tab tab, final FragmentTransaction ft)
-        {
+        // Depending on chosen action
+        switch (item.getItemId()) {
+            case R.id.itemBonusMalus:
+                startActivity(new Intent(ActionBarTabsPager.this, BonusMalusActivity.class));
+                return true;
+            case R.id.itemRollDamages:
+                // Show Roll Damages Fragment popup
+                RollDamagesFragment.newInstance(bundle).show(ft, "RollDamages");
+                return true;
+            case R.id.itemTakeDamages:
+                // Show Take Damages Fragment popup
+                TakeDamagesFragment.newInstance(bundle).show(ft, "RollDamages");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

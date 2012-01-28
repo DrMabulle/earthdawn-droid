@@ -57,7 +57,7 @@ public class RollerActivity extends Activity
                 {
                     // Open result popup
                     DicesLauncher.get().rollDices(dicesInfos);
-                    showDialogResult();
+                    showDialogResult("dés");
                 }
             }
             else
@@ -67,12 +67,12 @@ public class RollerActivity extends Activity
 
                 // Open result popup
                 DicesLauncher.get().rollDices(rank);
-                showDialogResult();
+                showDialogResult("dés");
             }
 
         }
 
-        private void showDialogResult()
+        private void showDialogResult(final String rollType)
         {
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
             final Fragment prev = getFragmentManager().findFragmentByTag("ShowResult");
@@ -82,7 +82,9 @@ public class RollerActivity extends Activity
             ft.addToBackStack(null);
 
             // Create and show the dialog.
-            final ShowResultFragment newFragment = ShowResultFragment.newInstance(null);
+            final Bundle args = new Bundle(1);
+            args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, "");
+            final ShowResultFragment newFragment = ShowResultFragment.newInstance(args);
             newFragment.show(ft, "ShowResult");
         }
     };

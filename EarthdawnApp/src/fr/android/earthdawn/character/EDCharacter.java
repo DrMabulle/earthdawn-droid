@@ -22,12 +22,13 @@ import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.dices.utils.DiceMapping;
 import fr.android.earthdawn.managers.EquipmentManager;
 import fr.android.earthdawn.managers.RankManager;
+import fr.android.earthdawn.utils.CharacterUtils;
 
 /**
  * @author DrMabulle
  *
  */
-public class Character implements Serializable
+public class EDCharacter implements Serializable
 {
     private static final long serialVersionUID = -2501068072861443147L;
 
@@ -49,7 +50,7 @@ public class Character implements Serializable
     private final List<Mod> modPerm = new ArrayList<Mod>();
     private final List<Mod> modTmp = new ArrayList<Mod>();
 
-    public Character(final String name, final String sex, final int age, final int height, final int weight,
+    public EDCharacter(final String name, final String sex, final int age, final int height, final int weight,
             final Races race, final int dexInd, final int dexEvol, final int strInd, final int strEvol,
             final int endInd, final int endEvol, final int perInd, final int perEvol, final int volInd,
             final int volEvol, final int chaInd, final int chaEvol)
@@ -170,6 +171,10 @@ public class Character implements Serializable
     {
         modPerm.remove(modif);
     }
+    public List<Mod> getPermanentMods()
+    {
+        return Collections.unmodifiableList(modPerm);
+    }
 
     public void addTempMod(final Mod modif)
     {
@@ -192,6 +197,21 @@ public class Character implements Serializable
     public void removeTempMod(final Mod modif)
     {
         modTmp.remove(modif);
+    }
+    public List<Mod> getTempMods()
+    {
+        return Collections.unmodifiableList(modTmp);
+    }
+    public Mod getTempMod(final Pointcuts pointcut)
+    {
+        for (final Mod mod : modTmp)
+        {
+            if (mod.getPointcut().equals(pointcut))
+            {
+                return mod;
+            }
+        }
+        return null;
     }
 
     /**
@@ -259,19 +279,19 @@ public class Character implements Serializable
 
     public int getPhysicalDefense()
     {
-        return computeIndiceDefense(getAttributIndice(Attributs.DEX)) + race.getBonusPhyDef() + computeBonusesInt(Pointcuts.DEF_PHY);
+        return CharacterUtils.computeIndiceDefense(getAttributIndice(Attributs.DEX)) + race.getBonusPhyDef() + computeBonusesInt(Pointcuts.DEF_PHY);
     }
     public int getMagicalDefense()
     {
-        return computeIndiceDefense(getAttributIndice(Attributs.PER)) + computeBonusesInt(Pointcuts.DEF_MAG);
+        return CharacterUtils.computeIndiceDefense(getAttributIndice(Attributs.PER)) + computeBonusesInt(Pointcuts.DEF_MAG);
     }
     public int getSocialDefense()
     {
-        return computeIndiceDefense(getAttributIndice(Attributs.CHA)) + computeBonusesInt(Pointcuts.DEF_SOC);
+        return CharacterUtils.computeIndiceDefense(getAttributIndice(Attributs.CHA)) + computeBonusesInt(Pointcuts.DEF_SOC);
     }
     public int getMysticArmor()
     {
-        return computeMysticArmor(getAttributIndice(Attributs.VOL)) + computeBonusesInt(Pointcuts.ARM_MYS);
+        return CharacterUtils.computeMysticArmor(getAttributIndice(Attributs.VOL)) + computeBonusesInt(Pointcuts.ARM_MYS);
     }
     public int getPhysicalArmor()
     {
@@ -280,37 +300,37 @@ public class Character implements Serializable
 
     protected int getDeathThreshold()
     {
-        return computeDeathThreshold(getAttributIndice(Attributs.END));
+        return CharacterUtils.computeDeathThreshold(getAttributIndice(Attributs.END));
     }
 
     protected int getUnconsciousnessThreshold()
     {
-        return computeUnconsciousnessThreshold(getAttributIndice(Attributs.END));
+        return CharacterUtils.computeUnconsciousnessThreshold(getAttributIndice(Attributs.END));
     }
 
     public int getWoundThreshold()
     {
-        return computeWoundThreshold(getAttributIndice(Attributs.END)) + race.getBonusWound() + computeBonusesInt(Pointcuts.WOUND_THRESHOLD);
+        return CharacterUtils.computeWoundThreshold(getAttributIndice(Attributs.END)) + race.getBonusWound() + computeBonusesInt(Pointcuts.WOUND_THRESHOLD);
     }
 
     public int getLiftingCapacity()
     {
-        return computeLiftingCapacity(getAttributIndice(Attributs.STR));
+        return CharacterUtils.computeLiftingCapacity(getAttributIndice(Attributs.STR));
     }
 
     public int getCarryingCapacity()
     {
-        return computeCarryingCapacity(getAttributIndice(Attributs.STR));
+        return CharacterUtils.computeCarryingCapacity(getAttributIndice(Attributs.STR));
     }
 
     public int getRunningMouvement()
     {
-        return computeRunningMouvement(getAttributIndice(Attributs.DEX) + race.getBonusMvt());
+        return CharacterUtils.computeRunningMouvement(getAttributIndice(Attributs.DEX) + race.getBonusMvt());
     }
 
     public int getCombatMouvement()
     {
-        return computeCombatMouvement(getAttributIndice(Attributs.DEX) + race.getBonusMvt());
+        return CharacterUtils.computeCombatMouvement(getAttributIndice(Attributs.DEX) + race.getBonusMvt());
     }
 
     public int getInitiativeLevel()
@@ -329,93 +349,6 @@ public class Character implements Serializable
     public void incrementTalentRank(final Talent talent, final Discipline discipline)
     {
         discipline.incrementTalentRank(talent);
-    }
-
-
-    protected static int computeDeathThreshold(final int indice)
-    {
-        return (int) (indice + 18 + Math.ceil(indice / 3));
-    }
-
-    protected static int computeUnconsciousnessThreshold(final int indice)
-    {
-        return (int) (indice + 9 + Math.ceil(indice / 3) + Math.ceil((indice - 1) / 10));
-    }
-
-    protected static int computeWoundThreshold(final int indice)
-    {
-        return (int) Math.ceil(indice / 2.0 + 2.5 - Math.ceil((indice + 1) / 22) / 2.0 - Math.ceil(indice / 27) / 2.0);
-    }
-
-    protected static int computeIndiceDefense(final int indice)
-    {
-        return (int) Math.ceil(indice / 2.0 + 1.5 - Math.ceil((indice + 1) / 7) / 2.0);
-    }
-
-    protected static int computeMysticArmor(final int indice)
-    {
-        return (int) Math.ceil(Math.max(indice - 10, 0)  / 3.0);
-    }
-
-    protected static int computeCarryingCapacity(final int indice)
-    {
-        return (int) Math.ceil(computeLiftingCapacity(indice) / 2.0);
-    }
-
-    protected static int computeLiftingCapacity(final int indice)
-    {
-        if (indice <= 6)
-        {
-            return 5 * indice;
-        }
-        else if (indice <= 11)
-        {
-            return 10 * indice - 30;
-        }
-        else if (indice <= 15)
-        {
-            return 15 * indice - 85;
-        }
-        else if (indice <= 18)
-        {
-            return 20 * indice - 160;
-        }
-        else if (indice <= 21)
-        {
-            return 30 * indice - 340;
-        }
-        else if (indice <= 24)
-        {
-            return 40 * indice - 550;
-        }
-        else if (indice <= 27)
-        {
-            return 50 * indice - 790;
-        }
-        else
-        {
-            return 60 * indice - 1060;
-        }
-    }
-
-    protected static int computeRunningMouvement(final int indice)
-    {
-        return computeCombatMouvement(indice) * 2;
-    }
-    protected static int computeCombatMouvement(final int indice)
-    {
-        if (indice < 6)
-        {
-            return indice + 5;
-        }
-        else if (indice < 21)
-        {
-            return indice * 2;
-        }
-        else
-        {
-            return indice * 3 - 20;
-        }
     }
 
     public int computeBonusesInt(final Attributs attribut)

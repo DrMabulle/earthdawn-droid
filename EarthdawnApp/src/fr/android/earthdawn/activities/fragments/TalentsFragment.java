@@ -9,17 +9,18 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.TalentAdapter;
-import fr.android.earthdawn.character.Character;
+import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
+import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.Constants;
 
 public class TalentsFragment extends AbstractRollingFragment implements View.OnClickListener
 {
-    private Character character;
+    private EDCharacter character;
     private Discipline discicpline;
 
     @Override
@@ -27,7 +28,7 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
     {
         final View view = inflater.inflate(R.layout.talents, container, false);
 
-        character = (Character) this.getArguments().get(Constants.BUNDLE_CHARACTER);
+        character = CharacterManager.getLoadedCharacter();
         discicpline = (Discipline) this.getArguments().get(Constants.BUNDLE_DISCIPLINE);
 
         final ListView listV = (ListView) view.findViewById(R.id.sheet_talent_list);

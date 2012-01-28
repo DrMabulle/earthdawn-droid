@@ -11,8 +11,6 @@
     <string name="roller_format_error">Le format est incorrect.\nLe format attendu est xDy, répété à l\'envie, séparé par un espace.\nExemples :\n1D20\n1D20 2D12\n1D20 1D12 2D10 1D8 1D6 3D4\n1D4 -2</string>
     <string name="roller_message">Vous avez jeté %1$s \nRésultat : %2$d \n\nDétails du lancé : \n%3$s</string>
     <string name="roller_rank_msg">un rang %1$d soit %2$s</string>
-    <string name="roller_radio_dice">Dice</string>
-    <string name="roller_radio_rank">Rank</string>
     <string name="roller_or">OU</string>
     
     <string name="sheet_infos_title">Informations générales</string>
@@ -46,7 +44,6 @@
     <string name="sheet_equipement">Equipement</string>
     <string name="sheet_equ_tra">Transport</string>
     <string name="sheet_equ_lev">Levage</string>
-    <string name="sheet_equ_car">Transporté</string>
     
     <string name="sheet_initiative">Initiative</string>
     <string name="sheet_init_dex">Dextérité</string>
@@ -63,7 +60,6 @@
     <string name="sheet_mouvement">Déplacement</string>
     <string name="sheet_mvn_run">Course</string>
     <string name="sheet_mvn_cbt">Combat</string>
-    <string name="sheet_mvn_mel">Mélée</string>
     
     <string name="sheet_racial">Aptitudes raciales</string>
     
@@ -96,6 +92,15 @@
     
     <string name="popup_close">Fermer</string>
     <string name="popup_details">Détails</string>
+    <string name="popup_roll">Lancer</string>
+    <string name="popup_roll_damages_title">Choisir l\'arme utilisée</string>
+    <string name="popup_take_damages_title">Dommages à subir :</string>
+    <string name="popup_take_damages_arm_phy">Armure physique</string>
+    <string name="popup_take_damages_arm_mys">Armure mystique</string>
+    <string name="popup_take_damages_no_arm">Ignorer l\'armure</string>
+    <string name="popup_take_damages_button">Subir</string>
+    <string name="popup_damages_taken_title">Récapitulatif des dommages subis</string>
+    <string name="popup_damages_taken_msg">%1$s \nVous avez perdu %2$d point(s) de vie.\nVous avez subi %3$d blessure(s) grave(s).</string>
     
     <string name="sheet_health_title">Santé</string>
     <string name="sheet_health_points">Points de Vie</string>
@@ -107,4 +112,15 @@
     
     <string name="equipment_title">Liste de vos possessions</string>
     <string name="equipment_no_data">Aucun équipement</string>
+    
+    <string name="menu_bonus_malus">Bonus / Malus</string>
+    <string name="menu_subir_degats">Subir des dégats</string>
+    <string name="menu_jet_degats">Jet dégats</string>
+    
+        
+    <string name="bonusmalus">Bonus-Malus</string>
+    
+    
+    <string name="roll">Lancer les dés</string>
+        
 </resources>

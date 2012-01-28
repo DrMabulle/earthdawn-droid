@@ -9,7 +9,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.android.earthdawn.character.Character;
+import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Races;
@@ -18,13 +18,13 @@ import fr.android.earthdawn.character.enums.Talents;
 
 public class XPManagerTest
 {
-    private Character malack;
-    private Character purifier;
+    private EDCharacter malack;
+    private EDCharacter purifier;
 
     @Before
     public void setUp() throws Exception
     {
-        malack = new Character("Malack", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 1, 13, 1, 11, 0, 8, 0);
+        malack = new EDCharacter("Malack", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 1, 13, 1, 11, 0, 8, 0);
         malack.setMainDiscipline(Disciplines.Guerrier, 6);
         malack.setSecondDiscipline(Disciplines.Elementaliste, 2);
 
@@ -62,7 +62,7 @@ public class XPManagerTest
         discipline.setTalentRank(talents.get(8), 1); // GuerisonFeu
         discipline.setTalentRank(talents.get(9), 1); // MatriceSort
 
-        purifier = new Character("Ajmar", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 3, 12, 0, 10, 0, 11, 0);
+        purifier = new EDCharacter("Ajmar", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 3, 12, 0, 10, 0, 11, 0);
         purifier.setMainDiscipline(Disciplines.Purificateur, 6);
         discipline = purifier.getMainDiscipline();
         talents = discipline.getKnownTalents();

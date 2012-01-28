@@ -94,7 +94,7 @@
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
 				    android:text="@string/sheet_init_roll" android:padding="2dp"
 				    android:layout_gravity="center_vertical" android:layout_weight="2"/>
-	        	<ImageButton android:id="@+id/roll_initiative" android:src="@drawable/dice" 
+	        	<ImageButton android:id="@+id/roll_initiative" android:src="@drawable/dice" android:contentDescription="@string/roll"
 	        		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="3"/>
 	        </TableRow>
 	    

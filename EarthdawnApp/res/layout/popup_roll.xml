@@ -21,8 +21,8 @@
 	    android:orientation="horizontal"
 	    android:layout_weight="1" >
 	    
-	    <Button android:id="@+id/popup_details" android:layout_weight="1" android:layout_width="300dp" android:layout_height="match_parent" android:text="@string/popup_details" />
-	    <Button android:id="@+id/popup_close" android:layout_weight="1" android:layout_width="300dp" android:layout_height="match_parent" android:text="@string/popup_close" />
+	    <Button android:id="@+id/popup_details" android:layout_width="300dp" android:layout_height="match_parent" android:text="@string/popup_details" />
+	    <Button android:id="@+id/popup_close" android:layout_width="300dp" android:layout_height="match_parent" android:text="@string/popup_close" />
 	    
     </LinearLayout>
 	    

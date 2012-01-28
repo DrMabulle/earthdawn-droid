@@ -32,17 +32,13 @@ public class Equipment implements IEquipment, Serializable
         this.name = name;
         this.bonuses = bonuses;
     }
-    /* (non-Javadoc)
-     * @see fr.android.earthdawn.character.equipement.IEquipment#getName()
-     */
+
     @Override
     public String getName()
     {
         return name;
     }
-    /* (non-Javadoc)
-     * @see fr.android.earthdawn.character.equipement.IEquipment#getBonuses()
-     */
+
     @Override
     public List<Mod> getBonuses()
     {
@@ -59,5 +55,4 @@ public class Equipment implements IEquipment, Serializable
             details.addView(tv);
         }
     }
-
 }

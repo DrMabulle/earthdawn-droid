@@ -53,16 +53,26 @@ public class DicesLauncher
 
     public int rollDices(final int aRank)
     {
+        return rollDices(aRank, true);
+    }
+
+    public int rollDices(final int aRank, final boolean withRerollOnExtremities)
+    {
         rank = aRank;
         dicesInfos = null;
-        return rollDices(parseDicesInfos(RankManager.getDicesFromRank(rank)));
+        return rollDices(parseDicesInfos(RankManager.getDicesFromRank(rank)), withRerollOnExtremities);
     }
 
     public int rollDices(final String aDicesInfos)
     {
+        return rollDices(aDicesInfos, true);
+    }
+
+    public int rollDices(final String aDicesInfos, final boolean withRerollOnExtremities)
+    {
         rank = 0;
         dicesInfos = aDicesInfos;
-        return rollDices(parseDicesInfos(dicesInfos));
+        return rollDices(parseDicesInfos(dicesInfos), withRerollOnExtremities);
     }
 
     private List<Rollable> parseDicesInfos(final String dicesInfos)
@@ -100,14 +110,17 @@ public class DicesLauncher
         }
     }
 
-    public int rollDices(final List<Rollable> dices)
+    public int rollDices(final List<Rollable> dices, final boolean withRerollOnExtremities)
     {
         logs.setLength(0);
         // lancer une première fois les dés et additionner les résultats.
         result = simpleRoll(dices);
 
         // Gérer les relances spécifiques au système EarthDawn
-        result += manageRerolls(dices);
+        if (withRerollOnExtremities)
+        {
+            result += manageRerolls(dices);
+        }
 
         // Somme des dés après relances
         return result;

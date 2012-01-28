@@ -10,20 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.EquipmentAdapter;
-import fr.android.earthdawn.character.Character;
+import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.equipement.IEquipment;
-import fr.android.earthdawn.utils.Constants;
+import fr.android.earthdawn.managers.CharacterManager;
 
 public class EquipmentFragment extends ListFragment
 {
-    private Character character;
+    private EDCharacter character;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
     {
         final View view = inflater.inflate(R.layout.equipment, container, false);
 
-        character = (Character) this.getArguments().get(Constants.BUNDLE_CHARACTER);
+        character = CharacterManager.getLoadedCharacter();
         final List<IEquipment> equipment = character.getEquipment();
 
         final EquipmentAdapter equipmentAdapter = new EquipmentAdapter(getActivity(), equipment);

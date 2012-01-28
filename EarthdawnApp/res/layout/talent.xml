@@ -11,11 +11,11 @@
     <TextView android:id="@+id/talents_rank" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
     <TextView android:id="@+id/talents_attribut" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
     <TextView android:id="@+id/talents_level" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
-    <RadioButton android:id="@+id/talents_discipline" android:layout_width="100dp" android:layout_gravity="center" android:gravity="center" android:clickable="false" android:layout_height="wrap_content" android:padding="2dp" />
+    <RadioButton android:id="@+id/talents_discipline" android:layout_width="100dp" android:layout_gravity="center" android:gravity="center" android:clickable="false" android:layout_height="wrap_content" android:padding="2dp" android:text="" />
     <RadioButton android:id="@+id/talents_karma" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:clickable="false"  android:layout_height="wrap_content" android:padding="2dp"/>
     <RadioButton android:id="@+id/talents_action" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:clickable="false" android:layout_height="wrap_content" android:padding="2dp"/>
     <TextView android:id="@+id/talents_effort" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
-   	<ImageButton android:id="@+id/talent_roll" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:src="@drawable/dice" android:layout_height="wrap_content"/>
+   	<ImageButton android:id="@+id/talent_roll" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:src="@drawable/dice" android:layout_height="wrap_content" android:contentDescription="@string/roll"/>
     
 </LinearLayout>    
 

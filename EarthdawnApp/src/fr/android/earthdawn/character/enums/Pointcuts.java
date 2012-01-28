@@ -28,6 +28,7 @@ public enum Pointcuts implements Serializable
     RECOVERY_LVL("Dé de récupération"),
     WOUND_THRESHOLD("Seuil de blessure grave"),
     WOUND("Blessure grave"),
+    DAMAGES("Dommages subis"),
     TALENT("Talent"),
     WEAPON_DAMAGE("Dommages de l'arme"),
     WEIGHT("Poids"),

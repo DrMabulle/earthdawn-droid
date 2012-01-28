@@ -54,6 +54,7 @@ public class MagicalEquipment implements IEquipment, Serializable
         }
         return result;
     }
+
     public void incrementRank()
     {
         rank++;
@@ -82,6 +83,4 @@ public class MagicalEquipment implements IEquipment, Serializable
             }
         }
     }
-
-
 }

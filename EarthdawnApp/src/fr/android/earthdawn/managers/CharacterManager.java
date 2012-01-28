@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.android.earthdawn.character.Character;
+import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Mod;
@@ -23,25 +23,23 @@ import fr.android.earthdawn.character.equipement.impl.MagicalEquipment;
  */
 public class CharacterManager
 {
-    private static Character CHAR = null;
+    private static EDCharacter CHAR = null;
 
     private static final String MALACK = "Malack";
-    private static final String ARDAMIR = "Ardamir";
     private static final String PURIFICATEUR = "Ajmar Coeur-Tendre";
-    private static final String MENESTREL = "Ménestrel";
-    private static final String FORGERON = "Nimriel";
+    private static final String FORGERON = "Arjaan";
 
-    public static Character getLoadedCharacter()
+    public static EDCharacter getLoadedCharacter()
     {
         return CHAR;
     }
-    public static Character getCharacter(final String id)
+    public static EDCharacter getCharacter(final String id)
     {
         CHAR = loadCharacter(id);
         return CHAR;
     }
 
-    private static Character loadCharacter(final String id)
+    private static EDCharacter loadCharacter(final String id)
     {
         // TODO à changer
         if (MALACK.equalsIgnoreCase(id))
@@ -59,9 +57,9 @@ public class CharacterManager
         return loadForgeron();
     }
 
-    private static Character loadPurifier()
+    private static EDCharacter loadPurifier()
     {
-        final Character purifier = new Character("Ajmar", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 3, 12, 0, 10, 0, 11, 0);
+        final EDCharacter purifier = new EDCharacter("Ajmar", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 3, 12, 0, 10, 0, 11, 0);
         purifier.setMainDiscipline(Disciplines.Purificateur, 6);
 
         final Discipline discipline = purifier.getMainDiscipline();
@@ -92,9 +90,9 @@ public class CharacterManager
         return purifier;
     }
 
-    private static Character loadMalack()
+    private static EDCharacter loadMalack()
     {
-        final Character malack = new Character("Malack", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 1, 13, 1, 11, 0, 8, 0);
+        final EDCharacter malack = new EDCharacter("Malack", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 1, 13, 1, 11, 0, 8, 0);
         malack.setMainDiscipline(Disciplines.Guerrier, 6);
         malack.setSecondDiscipline(Disciplines.Elementaliste, 2);
 
@@ -189,9 +187,9 @@ public class CharacterManager
         return malack;
     }
 
-    private static Character loadForgeron()
+    private static EDCharacter loadForgeron()
     {
-        final Character forgeron = new Character("Nimriel", "Homme", 125, 199, 65, Races.Elfe, 16, 1, 11, 2, 11, 1, 15, 0, 11, 0, 14, 1);
+        final EDCharacter forgeron = new EDCharacter("Arjaän Messarim", "Homme", 125, 199, 65, Races.Elfe, 16, 1, 11, 2, 11, 1, 15, 0, 11, 0, 14, 1);
         forgeron.setMainDiscipline(Disciplines.Forgeron, 6);
         forgeron.setSecondDiscipline(Disciplines.Troubadour, 5);
 
@@ -242,7 +240,7 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
-        final MagicalEquipment ring = new MagicalEquipment("Anneau", bonuses);
+        final MagicalEquipment ring = new MagicalEquipment("Anneau à filaments", bonuses);
         ring.incrementRank();
         ring.incrementRank();
         ring.incrementRank();
@@ -256,7 +254,7 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.TALENT, 1.0, Talents.Escalade)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
-        final MagicalEquipment boots = new MagicalEquipment("Bottes", bonuses);
+        final MagicalEquipment boots = new MagicalEquipment("Bottes à filaments", bonuses);
         boots.incrementRank();
         boots.incrementRank();
         boots.incrementRank();
@@ -270,15 +268,15 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_MYS, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0), new Mod(Pointcuts.ARM_MYS, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0)));
-        final MagicalEquipment cuir = new MagicalEquipment("Armure de cui bouilli", bonuses);
+        final MagicalEquipment cuir = new MagicalEquipment("Armure de cuir bouilli à filaments", bonuses);
         cuir.incrementRank();
         cuir.incrementRank();
         cuir.incrementRank();
         cuir.incrementRank();
         forgeron.addEquipment(cuir);
 
-        forgeron.addEquipment(new Equipment("Dague", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 0.5))));
-        forgeron.addEquipment(new Equipment("Epée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 6), new Mod(Pointcuts.WEIGHT, 1.5))));
+        forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 0.5))));
+        forgeron.addEquipment(new Equipment("Epée large forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 8), new Mod(Pointcuts.WEIGHT, 1.5))));
 
         return forgeron;
     }

@@ -36,7 +36,7 @@
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
 			    android:id="@+id/sheet_level_dex" android:padding="2dp" android:layout_weight="2"/>
-		    <ImageButton android:id="@+id/sheet_dex_roll" android:src="@drawable/dice" 
+		    <ImageButton android:id="@+id/sheet_dex_roll" android:src="@drawable/dice" android:contentDescription="@string/roll"
         		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2"/>
         </TableRow>
         
@@ -54,7 +54,7 @@
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
 			    android:id="@+id/sheet_level_str" android:padding="2dp" android:layout_weight="2"/>
-		    <ImageButton android:id="@+id/sheet_str_roll" android:src="@drawable/dice" 
+		    <ImageButton android:id="@+id/sheet_str_roll" android:src="@drawable/dice" android:contentDescription="@string/roll"
         		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2"/>
         </TableRow>
         
@@ -72,7 +72,7 @@
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
 			    android:id="@+id/sheet_level_end" android:padding="2dp" android:layout_weight="2"/>
-		    <ImageButton android:id="@+id/sheet_end_roll" android:src="@drawable/dice" 
+		    <ImageButton android:id="@+id/sheet_end_roll" android:src="@drawable/dice" android:contentDescription="@string/roll"
         		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2"/>
         </TableRow>
         
@@ -90,7 +90,7 @@
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
 			    android:id="@+id/sheet_level_per" android:padding="2dp" android:layout_weight="2"/>
-		    <ImageButton android:id="@+id/sheet_per_roll" android:src="@drawable/dice" 
+		    <ImageButton android:id="@+id/sheet_per_roll" android:src="@drawable/dice" android:contentDescription="@string/roll"
         		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2"/>
         </TableRow>
         
@@ -108,7 +108,7 @@
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
 			    android:id="@+id/sheet_level_vol" android:padding="2dp" android:layout_weight="2"/>
-		    <ImageButton android:id="@+id/sheet_vol_roll" android:src="@drawable/dice" 
+		    <ImageButton android:id="@+id/sheet_vol_roll" android:src="@drawable/dice" android:contentDescription="@string/roll"
         		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2"/>
         </TableRow>
         
@@ -126,7 +126,7 @@
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 			    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
 			    android:id="@+id/sheet_level_cha" android:padding="2dp" android:layout_weight="2"/>
-		    <ImageButton android:id="@+id/sheet_cha_roll" android:src="@drawable/dice" 
+		    <ImageButton android:id="@+id/sheet_cha_roll" android:src="@drawable/dice" android:contentDescription="@string/roll"
         		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2"/>
         </TableRow>
         
