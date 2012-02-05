@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -75,17 +74,12 @@ public class RollerActivity extends Activity
         private void showDialogResult(final String rollType)
         {
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
-            final Fragment prev = getFragmentManager().findFragmentByTag("ShowResult");
-            if (prev != null) {
-                ft.remove(prev);
-            }
-            ft.addToBackStack(null);
 
             // Create and show the dialog.
             final Bundle args = new Bundle(1);
             args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, "");
             final ShowResultFragment newFragment = ShowResultFragment.newInstance(args);
-            newFragment.show(ft, "ShowResult");
+            newFragment.show(ft, "tag");
         }
     };
 

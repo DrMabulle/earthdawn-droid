@@ -16,6 +16,7 @@ import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Races;
+import fr.android.earthdawn.character.enums.Skill;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.character.equipement.IEquipment;
@@ -23,6 +24,7 @@ import fr.android.earthdawn.dices.utils.DiceMapping;
 import fr.android.earthdawn.managers.EquipmentManager;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.CharacterUtils;
+import fr.android.earthdawn.utils.NumberUtils;
 
 /**
  * @author DrMabulle
@@ -46,9 +48,15 @@ public class EDCharacter implements Serializable
     private Discipline discipline2;
     private Discipline discipline3;
 
+    private final List<Skill> skills = new ArrayList<Skill>(6);
+
     private final List<IEquipment> equipment = new ArrayList<IEquipment>(16);
     private final List<Mod> modPerm = new ArrayList<Mod>();
     private final List<Mod> modTmp = new ArrayList<Mod>();
+
+    private int wounds = 0;
+    private int damages = 0;
+    private int strain = 0;
 
     public EDCharacter(final String name, final String sex, final int age, final int height, final int weight,
             final Races race, final int dexInd, final int dexEvol, final int strInd, final int strEvol,
@@ -145,6 +153,14 @@ public class EDCharacter implements Serializable
         return false;
     }
 
+    public List<Skill> getSkills()
+    {
+        return Collections.unmodifiableList(skills);
+    }
+    public void addSkill(final Skill skill)
+    {
+        skills.add(skill);
+    }
 
     /**
      * Get the list of possessions
@@ -212,6 +228,42 @@ public class EDCharacter implements Serializable
             }
         }
         return null;
+    }
+
+    public int getWounds()
+    {
+        return wounds;
+    }
+    public int incrementWounds(final int nbWounds)
+    {
+        wounds += nbWounds;
+        // ensure minimum of 0
+        wounds = NumberUtils.ensureMinimum(wounds, 0);
+        return wounds;
+    }
+
+    public int getDamages()
+    {
+        return damages;
+    }
+    public int incrementDamages(final int nbDamages)
+    {
+        damages += nbDamages;
+        // ensure minimum of 0
+        damages = NumberUtils.ensureMinimum(damages, 0);
+        return damages;
+    }
+
+    public int getStrain()
+    {
+        return strain;
+    }
+    public int incrementStrain(final int nbStrain)
+    {
+        strain += nbStrain;
+        // ensure minimum of 0
+        strain = NumberUtils.ensureMinimum(strain, 0);
+        return strain;
     }
 
     /**
@@ -344,11 +396,20 @@ public class EDCharacter implements Serializable
     }
     public int getTalentRank(final Talent talent, final Discipline discipline)
     {
+        return getTalentRankNoWounds(talent, discipline) - wounds;
+    }
+    private int getTalentRankNoWounds(final Talent talent, final Discipline discipline)
+    {
         return discipline.getTalentRank(talent) + computeBonusesInt(talent.getEnum());
     }
     public void incrementTalentRank(final Talent talent, final Discipline discipline)
     {
         discipline.incrementTalentRank(talent);
+    }
+
+    public int getSkillLevel(final Skill skill)
+    {
+        return getAttributRank(skill.getAttribut()) + skill.getRank();
     }
 
     public int computeBonusesInt(final Attributs attribut)
@@ -379,7 +440,7 @@ public class EDCharacter implements Serializable
     public int getHealthPoints()
     {
         final Talent endurance = discipline1.findTalent(Talents.Endurance);
-        return getDeathThreshold() + (Integer) endurance.getAdditionnalInfos()[0] * getTalentRank(endurance, discipline1) + computeBonusesInt(Pointcuts.HEALTH_POINTS);
+        return getDeathThreshold() + (Integer) endurance.getAdditionnalInfos()[0] * getTalentRankNoWounds(endurance, discipline1) + computeBonusesInt(Pointcuts.HEALTH_POINTS);
     }
 
     public int getUnconsciousnessPoints()

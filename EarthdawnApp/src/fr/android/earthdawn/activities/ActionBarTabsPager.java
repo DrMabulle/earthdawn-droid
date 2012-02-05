@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,17 +27,20 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.TabsAdapter;
 import fr.android.earthdawn.activities.fragments.CharacterFragment;
 import fr.android.earthdawn.activities.fragments.EquipmentFragment;
 import fr.android.earthdawn.activities.fragments.RollDamagesFragment;
+import fr.android.earthdawn.activities.fragments.SkillsFragment;
 import fr.android.earthdawn.activities.fragments.TakeDamagesFragment;
 import fr.android.earthdawn.activities.fragments.TalentsFragment;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.utils.Constants;
+import fr.android.earthdawn.utils.SerializationUtils;
 
 /**
  * This demonstrates the use of action bar tabs and how they interact
@@ -46,6 +48,7 @@ import fr.android.earthdawn.utils.Constants;
  */
 public class ActionBarTabsPager extends Activity
 {
+    private static final String TAB = "tab";
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
 
@@ -69,51 +72,58 @@ public class ActionBarTabsPager extends Activity
         Bundle bundle;
 
         // Infos générales
-        bundle = new Bundle(1);
-        //bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
-        mTabsAdapter.addTab(bar.newTab().setText("Description"), CharacterFragment.class, bundle);
+        mTabsAdapter.addTab(bar.newTab().setText(R.string.tab_description), CharacterFragment.class, null);
         // Talents, par discipline
         if (character.getMainDiscipline() != null)
         {
-            bundle = new Bundle(2);
-//            bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
+            bundle = new Bundle(1);
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getMainDiscipline());
             mTabsAdapter.addTab(bar.newTab().setText(character.getMainDiscipline().getName()), TalentsFragment.class, bundle);
         }
         if (character.getSecondDiscipline() != null)
         {
-            bundle = new Bundle(2);
-//            bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
+            bundle = new Bundle(1);
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getSecondDiscipline());
             mTabsAdapter.addTab(bar.newTab().setText(character.getSecondDiscipline().getName()), TalentsFragment.class, bundle);
         }
         if (character.getThirdDiscipline() != null)
         {
-            bundle = new Bundle(2);
-//            bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
+            bundle = new Bundle(1);
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getThirdDiscipline());
             mTabsAdapter.addTab(bar.newTab().setText(character.getThirdDiscipline().getName()), TalentsFragment.class, bundle);
         }
         // Equipement
-        bundle = new Bundle(1);
-//        bundle.putSerializable(Constants.BUNDLE_CHARACTER, character);
-        mTabsAdapter.addTab(bar.newTab().setText("Equipement"), EquipmentFragment.class, bundle);
-        // Grimoire
+        mTabsAdapter.addTab(bar.newTab().setText(R.string.tab_stuff), EquipmentFragment.class, null);
 
-        // Trésors magiques
+        // Compétences
+        mTabsAdapter.addTab(bar.newTab().setText(R.string.tab_skills), SkillsFragment.class, null);
+
+        // Grimoire
 
 
         if (savedInstanceState != null)
         {
-            bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
+            bar.setSelectedNavigationItem(savedInstanceState.getInt(TAB, 0));
         }
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        // save character on disk
+        final EDCharacter character = CharacterManager.getLoadedCharacter();
+        SerializationUtils.serializeOnDisk(character, character.getName(), this);
     }
 
     @Override
     protected void onSaveInstanceState(final Bundle outState)
     {
         super.onSaveInstanceState(outState);
-        outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
+        outState.putInt(TAB, getActionBar().getSelectedNavigationIndex());
+        // save character on disk
+        final EDCharacter character = CharacterManager.getLoadedCharacter();
+        SerializationUtils.serializeOnDisk(character, character.getName(), this);
     }
 
     @Override
@@ -131,8 +141,8 @@ public class ActionBarTabsPager extends Activity
                 builder.setTitle(R.string.popup_damages_taken_title);
                 builder.setMessage(getString(R.string.popup_damages_taken_msg,
                         args.getCharSequence(Constants.BUNDLE_DMG_TAKEN_ARM),
-                        args.getCharSequence(Constants.BUNDLE_DMG_TAKEN_PV),
-                        args.getCharSequence(Constants.BUNDLE_DMG_TAKEN_WOUND)));
+                        args.getInt(Constants.BUNDLE_DMG_TAKEN_PV),
+                        args.getInt(Constants.BUNDLE_DMG_TAKEN_WOUND)));
                 break;
 
             default:
@@ -140,7 +150,7 @@ public class ActionBarTabsPager extends Activity
         }
 
         builder.setIcon(android.R.drawable.ic_dialog_info);
-        builder.setNeutralButton("Close", new DialogInterface.OnClickListener()
+        builder.setNeutralButton(R.string.button_close, new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(final DialogInterface dialog, final int whichButton)
@@ -161,6 +171,7 @@ public class ActionBarTabsPager extends Activity
                 alert.setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
                 alert.setMessage(DicesLauncher.get().getDetailedMessage(this));
                 break;
+
             case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
                 alert.setTitle(R.string.popup_damages_taken_title);
                 alert.setMessage(getString(R.string.popup_damages_taken_msg,
@@ -191,11 +202,8 @@ public class ActionBarTabsPager extends Activity
         // Commun code
         final Bundle bundle = new Bundle(2);
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        final Fragment prev = getFragmentManager().findFragmentByTag("ShowResult");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
+
+        final EDCharacter character = CharacterManager.getLoadedCharacter();
 
         // Depending on chosen action
         switch (item.getItemId()) {
@@ -204,16 +212,41 @@ public class ActionBarTabsPager extends Activity
                 return true;
             case R.id.itemRollDamages:
                 // Show Roll Damages Fragment popup
-                RollDamagesFragment.newInstance(bundle).show(ft, "RollDamages");
+                RollDamagesFragment.newInstance(bundle).show(ft, "tag");
                 return true;
             case R.id.itemTakeDamages:
                 // Show Take Damages Fragment popup
-                TakeDamagesFragment.newInstance(bundle).show(ft, "RollDamages");
+                TakeDamagesFragment.newInstance(bundle).show(ft, "tag");
+                return true;
+            case R.id.itemHealthStatus:
+                final StringBuilder builder = new StringBuilder();
+                builder.append(getString(R.string.msg_health_status, character.getStrain(), character.getDamages(), character.getWounds()));
+                if (character.getStrain() + character.getDamages() >= character.getHealthPoints())
+                {
+                    builder.append('\n').append(getString(R.string.msg_health_status_dead));
+                }
+                else if (character.getStrain() + character.getDamages() >= character.getUnconsciousnessPoints())
+                {
+                    builder.append('\n').append(getString(R.string.msg_health_status_uncounscious));
+                }
+                Toast.makeText(getApplication(), builder.toString(), Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.itemHealStrain:
+                character.incrementStrain(character.getStrain() * -1);
+                Toast.makeText(getApplication(), R.string.msg_strain_healed, Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.itemHealDamages:
+                final String recoveryDices = character.getRecoveryDices();
+                final int result = DicesLauncher.get().rollDices(recoveryDices);
+                character.incrementDamages(result * -1);
+                // TODO show message
+                return true;
+            case R.id.itemHealWounds:
+                character.incrementWounds(-1);
+                Toast.makeText(getApplication(), R.string.msg_wound_healed, Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }

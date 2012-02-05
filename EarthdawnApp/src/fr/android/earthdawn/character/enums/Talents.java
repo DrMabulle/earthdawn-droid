@@ -451,7 +451,7 @@ public enum Talents implements Serializable
 
 
     private final Attributs attribut;
-    private final int effort;
+    private final int strain;
     private final boolean isAction;
     private final boolean isKarmaMandatory;
     private final boolean isRollable;
@@ -466,14 +466,14 @@ public enum Talents implements Serializable
      */
     private Talents(final String label, final Attributs attribut,
             final boolean isAction, final boolean isKarmaMandatory, final boolean isRollable,
-            final int effort, final int page)
+            final int aStrain, final int page)
     {
         this.label = label;
         this.attribut = attribut;
         this.isAction = isAction;
         this.isKarmaMandatory = isKarmaMandatory;
         this.isRollable = isRollable;
-        this.effort = effort;
+        this.strain = aStrain;
         this.page = page;
     }
     /**
@@ -485,14 +485,14 @@ public enum Talents implements Serializable
      */
     private Talents(final String label, final Attributs attribut,
             final boolean isAction, final boolean isKarmaMandatory,
-            final int effort, final int page)
+            final int aStrain, final int page)
     {
         this.label = label;
         this.attribut = attribut;
         this.isAction = isAction;
         this.isKarmaMandatory = isKarmaMandatory;
         this.isRollable = true;
-        this.effort = effort;
+        this.strain = aStrain;
         this.page = page;
     }
     /**
@@ -505,9 +505,9 @@ public enum Talents implements Serializable
     /**
      * @return the effort
      */
-    public int getEffort()
+    public int getStrain()
     {
-        return effort;
+        return strain;
     }
     /**
      * @return the label

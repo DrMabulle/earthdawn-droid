@@ -5,18 +5,20 @@ package fr.android.earthdawn.activities.fragments;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.utils.CharacterUtils;
 import fr.android.earthdawn.utils.Constants;
 
 /**
@@ -49,6 +51,17 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
         final NumberPicker rankPicker = (NumberPicker) v.findViewById(R.id.damagesPicker);
         rankPicker.setMinValue(1);
         rankPicker.setMaxValue(200);
+        // Hide soft keyboard on NumberPickers by overwriting the OnFocusChangeListener
+        final OnFocusChangeListener fcl = new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(final View v, final boolean hasFocus) {
+                // Do nothing to suppress keyboard
+            }
+        };
+        ((EditText) rankPicker.getChildAt(1)).setOnFocusChangeListener(fcl);
+        // Suppress soft keyboard from the beginning
+        ((EditText) rankPicker.getChildAt(1)).setInputType(InputType.TYPE_NULL);
+
 
         // Close Button
         Button button = (Button) v.findViewById(R.id.popup_close);
@@ -91,13 +104,18 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
 
                 // ajouter un temp mod au perso avec les nouvelles blessures
                 final EDCharacter character = CharacterManager.getLoadedCharacter();
-                final int totalDamages = CharacterUtils.incrementDamages(character, healthPointsLost);
-                CharacterUtils.incrementWounds(character, wounds);
-                if (totalDamages >= character.getHealthPoints())
+                final int totalDamages = character.incrementDamages(healthPointsLost);
+                final int strain = character.getStrain();
+                if (wounds > 0)
+                {
+                    character.incrementWounds(wounds);
+                }
+                // Show message if death or unconsciousness
+                if (totalDamages + strain >= character.getHealthPoints())
                 {
                     Toast.makeText(getActivity(), "Vous êtes mort...", Toast.LENGTH_LONG).show();
                 }
-                else if (totalDamages >= character.getUnconsciousnessPoints())
+                else if (totalDamages + strain >= character.getUnconsciousnessPoints())
                 {
                     Toast.makeText(getActivity(), "Vous sombrez dans l'inconscience...", Toast.LENGTH_LONG).show();
                 }

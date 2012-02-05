@@ -15,12 +15,14 @@
 	<ListView android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:drawSelectorOnTop="false"/>
+        android:drawSelectorOnTop="false" 
+    	android:padding="4dp"/>
 
     <TextView android:id="@id/android:empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/equipment_no_data"/>
+        android:text="@string/equipment_no_data" 
+    	android:padding="8dp"/>
     
 </LinearLayout>    
 

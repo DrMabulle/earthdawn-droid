@@ -6,7 +6,6 @@ package fr.android.earthdawn.activities.fragments;
 import java.util.List;
 
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -106,17 +105,12 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
 
                 // open result popup
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                final Fragment prev = getFragmentManager().findFragmentByTag("ShowResult");
-                if (prev != null) {
-                    ft.remove(prev);
-                }
-                ft.addToBackStack(null);
 
                 // Create and show the dialog.
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, "Dégâts");
                 final ShowResultFragment newFragment = ShowResultFragment.newInstance(args);
-                dismiss();
-                newFragment.show(ft, "ShowResult");
+                this.dismiss();
+                newFragment.show(ft, "tag");
                 break;
         }
     }

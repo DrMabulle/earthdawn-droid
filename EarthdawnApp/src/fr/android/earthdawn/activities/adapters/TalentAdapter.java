@@ -91,7 +91,7 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
         ((RadioButton) convertView.findViewById(R.id.talents_discipline)).setChecked(talent.isDiscipline());
         ((RadioButton) convertView.findViewById(R.id.talents_karma)).setChecked(talent.isKarmaMandatory());
         ((RadioButton) convertView.findViewById(R.id.talents_action)).setChecked(talent.isAction());
-        ((TextView) convertView.findViewById(R.id.talents_effort)).setText(Integer.toString(talent.getEffort()));
+        ((TextView) convertView.findViewById(R.id.talents_effort)).setText(Integer.toString(talent.getStrain()));
 
         if (talent.isRollable())
         {

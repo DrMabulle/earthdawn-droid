@@ -38,6 +38,9 @@ public class ShowResultFragment extends DialogFragment
     {
         final View v = inflater.inflate(R.layout.popup_roll, container, false);
 
+        // Disable hardware acceleration for this view to enable very big text size
+        v.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+
         final TextView tv = (TextView) v.findViewById(R.id.popup_result);
         tv.setText(Integer.toString(DicesLauncher.get().getRollResult()));
 
@@ -51,7 +54,7 @@ public class ShowResultFragment extends DialogFragment
             @Override
             public void onClick(final View v)
             {
-                // When button is clicked, call up to owning activity.
+                // When button is clicked, close popup.
                 dismiss();
             }
         });

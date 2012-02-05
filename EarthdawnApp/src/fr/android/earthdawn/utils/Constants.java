@@ -23,4 +23,5 @@ public final class Constants
     public static final int DIALOG_SHOW_RESULT = 2;
     public static final int DIALOG_SHOW_DETAILS = 3;
     public static final int DIALOG_SHOW_DAMAGES_TAKEN = 4;
+    public static final int DIALOG_SHOW_HEAL_DAMAGES = 5;
 }

@@ -70,10 +70,13 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
                 DicesLauncher.get().rollDices(level);
             }
             // Nom du talent
-            args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, ((TextView) parent.findViewById(R.id.talents_talent)).getText());
+            args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, talentname);
 
-            // Post action
+            // TODO Post action
             talent.executePostAction();
+            // Strain
+            CharacterManager.getLoadedCharacter().incrementStrain(talent.getStrain());
+
             // Dialog box
             showDialogResult(args);
         }

@@ -18,4 +18,9 @@ public final class NumberUtils
         }
         return builder;
     }
+
+    public static final int ensureMinimum(final int value, final int min)
+    {
+        return Math.max(value, min);
+    }
 }

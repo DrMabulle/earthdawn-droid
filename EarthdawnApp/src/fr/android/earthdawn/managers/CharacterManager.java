@@ -7,16 +7,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import android.content.Context;
 import fr.android.earthdawn.character.EDCharacter;
+import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Races;
+import fr.android.earthdawn.character.enums.Skill;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.character.equipement.impl.Equipment;
 import fr.android.earthdawn.character.equipement.impl.MagicalEquipment;
+import fr.android.earthdawn.utils.SerializationUtils;
 /**
  * @author DrMabulle
  *
@@ -27,15 +31,23 @@ public class CharacterManager
 
     private static final String MALACK = "Malack";
     private static final String PURIFICATEUR = "Ajmar Coeur-Tendre";
-    private static final String FORGERON = "Arjaan";
+    private static final String FORGERON = "Arjaän Messarim";
 
     public static EDCharacter getLoadedCharacter()
     {
         return CHAR;
     }
-    public static EDCharacter getCharacter(final String id)
+    public static EDCharacter getCharacter(final String id, final Context ctx)
     {
-        CHAR = loadCharacter(id);
+        final Object test = SerializationUtils.deserializeFromDisk(id, ctx);
+        if ( test != null)
+        {
+            CHAR = (EDCharacter) test;
+        }
+        else
+        {
+            CHAR = loadCharacter(id);
+        }
         return CHAR;
     }
 
@@ -59,7 +71,7 @@ public class CharacterManager
 
     private static EDCharacter loadPurifier()
     {
-        final EDCharacter purifier = new EDCharacter("Ajmar", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 3, 12, 0, 10, 0, 11, 0);
+        final EDCharacter purifier = new EDCharacter(PURIFICATEUR, "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 3, 12, 0, 10, 0, 11, 0);
         purifier.setMainDiscipline(Disciplines.Purificateur, 6);
 
         final Discipline discipline = purifier.getMainDiscipline();
@@ -92,7 +104,7 @@ public class CharacterManager
 
     private static EDCharacter loadMalack()
     {
-        final EDCharacter malack = new EDCharacter("Malack", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 1, 13, 1, 11, 0, 8, 0);
+        final EDCharacter malack = new EDCharacter(MALACK, "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 1, 13, 1, 11, 0, 8, 0);
         malack.setMainDiscipline(Disciplines.Guerrier, 6);
         malack.setSecondDiscipline(Disciplines.Elementaliste, 2);
 
@@ -189,7 +201,7 @@ public class CharacterManager
 
     private static EDCharacter loadForgeron()
     {
-        final EDCharacter forgeron = new EDCharacter("Arjaän Messarim", "Homme", 125, 199, 65, Races.Elfe, 16, 1, 11, 2, 11, 1, 15, 0, 11, 0, 14, 1);
+        final EDCharacter forgeron = new EDCharacter(FORGERON, "Homme", 125, 195, 72, Races.Elfe, 16, 1, 11, 2, 11, 1, 15, 0, 11, 0, 14, 1);
         forgeron.setMainDiscipline(Disciplines.Forgeron, 6);
         forgeron.setSecondDiscipline(Disciplines.Troubadour, 5);
 
@@ -205,14 +217,14 @@ public class CharacterManager
         discipline.setTalentRank(talents.get(7), 5); // LectureEcriture
         discipline.setTalentRank(talents.get(8), 5); // Marchandage
         discipline.setTalentRank(talents.get(9), 6); // ContreMalediction
-        discipline.setTalentRank(talents.get(10), 4); // DetectionArmes
+        discipline.setTalentRank(talents.get(10), 5); // DetectionArmes
         discipline.setTalentRank(talents.get(11), 5); // DonLangues
         discipline.setTalentRank(talents.get(12), 6); // TissageForgeron
-        discipline.setTalentRank(talents.get(13), 6); // AlterationArmeTir
-        discipline.setTalentRank(talents.get(14), 4); // Endurcissement
+        discipline.setTalentRank(talents.get(13), 4); // AlterationArmeTir
+        discipline.setTalentRank(talents.get(14), 6); // Endurcissement
         discipline.setTalentRank(talents.get(15), 0); // RituelMaitreFantome
-        discipline.setTalentRank(talents.get(16), 3); // DetectionDefautsArmure
-        discipline.setTalentRank(talents.get(17), 3); // DissimulationArme
+        discipline.setTalentRank(talents.get(16), 5); // DetectionDefautsArmure
+        discipline.setTalentRank(talents.get(17), 1); // DissimulationArme
 
         discipline = forgeron.getSecondDiscipline();
         talents = discipline.getKnownTalents();
@@ -229,8 +241,8 @@ public class CharacterManager
         discipline.setTalentRank(talents.get(10), 4); // SensEmpathique
         discipline.setTalentRank(talents.get(11), 5); // Sarcasmes
         discipline.setTalentRank(talents.get(12), 1); // TissageTroubadour
-        discipline.setTalentRank(talents.get(13), 2); // ArmesJet
-        discipline.setTalentRank(talents.get(14), 2); // Distraction
+        discipline.setTalentRank(talents.get(13), 1); // ArmesJet
+        discipline.setTalentRank(talents.get(14), 3); // Distraction
         discipline.setTalentRank(talents.get(15), 0); // RituelMaitreFantome
 
         // Anneau à filaments
@@ -278,11 +290,33 @@ public class CharacterManager
         forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 0.5))));
         forgeron.addEquipment(new Equipment("Epée large forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 8), new Mod(Pointcuts.WEIGHT, 1.5))));
 
+        forgeron.addSkill(new Skill("Création d'armes", Attributs.PER, true, 0).incrementRank().incrementRank());
+        forgeron.addSkill(new Skill("Création d'armures", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Cartographie", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Survie", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Connaissances : Horreurs", Attributs.PER, true, 0));
+        forgeron.addSkill(new Skill("Connaissances : Géographie de Barsaive", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Connaissances : Histoire de Barsaive", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Connaissances : Légendes et Héros", Attributs.PER, true, 0).incrementRank().incrementRank());
+        forgeron.addSkill(new Skill("Analyse de créature", Attributs.PER, true, 1));
+        forgeron.addSkill(new Skill("Natation", Attributs.STR, true, 1));
+        forgeron.addSkill(new Skill("Escalade", Attributs.DEX, true, 0));
+
         return forgeron;
     }
 
-    public static String[] getAvailableCharacters()
+    public static String[] getAvailableCharacters(final Context ctx)
     {
+        final String[] files = ctx.fileList();
+        if (files != null && files.length > 0)
+        {
+            final String[] result = new String[files.length];
+            for (int i = 0; i < files.length; i++)
+            {
+                result[i] = files[i].replace(".ser", "");
+            }
+            return result;
+        }
         // TODO
        // return new String[] {MALACK, ARDAMIR, FORGERON, PURIFICATEUR, MENESTREL};
         return new String[] {MALACK, FORGERON, PURIFICATEUR};

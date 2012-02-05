@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:layout_margin="4dp">	
+	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+       	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+		    android:layout_width="wrap_content" android:layout_height="wrap_content"
+		    android:text="@string/skill_new_label" android:padding="4dp" />
+       	<EditText
+	        android:id="@+id/skill_new_label"
+	        android:layout_width="400dp"
+	        android:layout_height="wrap_content"
+	        android:inputType="textNoSuggestions"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:padding="4dp" >
+	        <requestFocus />
+	    </EditText>
+	</TableRow>
+	
+   	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+       	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+		    android:layout_width="wrap_content" android:layout_height="wrap_content"
+		    android:text="@string/skill_new_attribut" android:padding="4dp" />
+       	<Spinner
+	        android:id="@+id/skill_new_attribut"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:padding="4dp" />
+	</TableRow>
+
+   	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+		<CheckBox
+	        android:id="@+id/skill_new_isaction"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/skill_new_isaction"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:layout_span="2" />
+   	</TableRow>
+
+   	
+   	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	    <CheckBox
+	        android:id="@+id/skill_new_strain"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/skill_new_strain"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:layout_span="2" />
+   	</TableRow>
+
+   	
+   	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	    <Button
+	        android:id="@+id/skill_new_add"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/skill_new_add"
+	        android:padding="4dp"
+	        android:layout_span="2" />
+   	</TableRow>
+    
+</TableLayout>

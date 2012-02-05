@@ -22,7 +22,7 @@ public class ChooseCharacterActivity extends Activity implements View.OnClickLis
 
         final LinearLayout ll = (LinearLayout) findViewById(R.id.choice);
 
-        final String[] charNames = CharacterManager.getAvailableCharacters();
+        final String[] charNames = CharacterManager.getAvailableCharacters(this);
 
         final LayoutParams layoutParams = new LayoutParams(250, 100);
         layoutParams.setMargins(25, 25, 25, 25);
@@ -44,7 +44,7 @@ public class ChooseCharacterActivity extends Activity implements View.OnClickLis
     {
         final String charName = (String) ((Button) v).getText();
 
-        CharacterManager.getCharacter(charName);
+        CharacterManager.getCharacter(charName, this);
 
         startActivity(new Intent(ChooseCharacterActivity.this, ActionBarTabsPager.class));
     }

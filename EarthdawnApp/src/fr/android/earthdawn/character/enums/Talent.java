@@ -85,11 +85,11 @@ public class Talent implements Serializable
         return talent.getPage();
     }
     /**
-     * @return the effort
+     * @return the strain
      */
-    public int getEffort()
+    public int getStrain()
     {
-        return talent.getEffort();
+        return talent.getStrain();
     }
 
     public boolean isSameTalentAs(final Talents talent)

@@ -133,38 +133,4 @@ public final class CharacterUtils
         }
         return false;
     }
-
-    public static int incrementWounds(final EDCharacter character, final int nbWounds)
-    {
-        final Mod wound = character.getTempMod(Pointcuts.WOUND);
-        int totalWounds = nbWounds;
-        if (wound != null)
-        {
-            totalWounds += wound.getModificator();
-            character.removeTempMod(wound);
-        }
-        character.addTempMod(new Mod(Pointcuts.WOUND, totalWounds));
-        return totalWounds;
-    }
-    public static int healWounds(final EDCharacter character, final int nbWounds)
-    {
-        return incrementWounds(character, nbWounds * -1);
-    }
-
-    public static int incrementDamages(final EDCharacter character, final int nbDamages)
-    {
-        final Mod damages = character.getTempMod(Pointcuts.DAMAGES);
-        int totalDamages = nbDamages;
-        if (damages != null)
-        {
-            totalDamages += damages.getModificator();
-            character.removeTempMod(damages);
-        }
-        character.addTempMod(new Mod(Pointcuts.DAMAGES, totalDamages));
-        return totalDamages;
-    }
-    public static int healDamages(final EDCharacter character, final int nbDamages)
-    {
-        return incrementDamages(character, nbDamages * -1);
-    }
 }

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EarthDawn</string>
+    
+    <string name="tab_description">Description</string>
+    <string name="tab_stuff">Equipement</string>
+    <string name="tab_skills">Compétences</string>
+    
     <string name="main_character">Fiche de perso</string>
     <string name="main_new_char">Création perso</string>
     <string name="main_map">Carte de Barsaive</string>
@@ -75,6 +80,17 @@
     <string name="talents_effort">Fatigue</string>
     <string name="talents_roll">Lancer</string>
     
+    <string name="skills_skill">Compétence</string>
+    <string name="skills_rank">Rang</string>
+    <string name="skills_attribut">Attribut</string>
+    <string name="skills_level">Niveau</string>
+    <string name="skills_action">Action</string>
+    <string name="skills_effort">Fatigue</string>
+    <string name="skills_roll">Lancer</string>
+    <string name="skills_add_skill">Nouvelle compétence</string>
+    <string name="skills_no_data">Le personnage ne connait aucune compétence</string>
+    
+    
     <string name="apt1">Vision nocturne</string>
     <string name="apt2">Vision thermographique</string>
     <string name="apt3">Polyvalence</string>
@@ -113,14 +129,33 @@
     <string name="equipment_title">Liste de vos possessions</string>
     <string name="equipment_no_data">Aucun équipement</string>
     
+    <string name="msg_health_status">Fatigue : %1$d \nBlessure(s) : %2$d \nBlessure(s) grave(s) : %3$d</string>
+    <string name="msg_health_status_uncounscious">Personnage dans l\'inconscience.</string>
+    <string name="msg_health_status_dead">Personnage mort.</string>
+    <string name="msg_health_status_normal">Personnage conscient.</string>
+    <string name="msg_heal_damages">Vous avez soigné de %1$d points.\n\n</string>
+    <string name="msg_wound_healed">Une blessure grave a été soignée.</string>
+    <string name="msg_strain_healed">Fatigue récupérée.</string>
+    
     <string name="menu_bonus_malus">Bonus / Malus</string>
     <string name="menu_subir_degats">Subir des dégats</string>
     <string name="menu_jet_degats">Jet dégats</string>
-    
+    <string name="menu_health_status">Etat de santé</string>
+    <string name="menu_heal_strain">Récupérer fatigue</string>
+    <string name="menu_heal_damages">Jet de récupération</string>
+    <string name="menu_heal_wounds">Guérir une blessure grave</string>
         
     <string name="bonusmalus">Bonus-Malus</string>
-    
+    <string name="bonusmalus_no_data">Aucun bonus-malus</string>
     
     <string name="roll">Lancer les dés</string>
+    <string name="button_close">Fermer</string>
+    
+    <string name="skill_new_title">Nouvelle Compétence</string>
+    <string name="skill_new_isaction">Action ?</string>
+    <string name="skill_new_strain">Fatigue ?</string>
+    <string name="skill_new_add">Ajouter</string>
+    <string name="skill_new_label">Nom :</string>
+    <string name="skill_new_attribut">Attribut :</string>
         
 </resources>
