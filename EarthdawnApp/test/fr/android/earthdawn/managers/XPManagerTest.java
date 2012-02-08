@@ -1,7 +1,7 @@
 package fr.android.earthdawn.managers;
 
-import static org.junit.Assert.fail;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -10,16 +10,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.android.earthdawn.character.EDCharacter;
+import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
+import fr.android.earthdawn.character.enums.Mod;
+import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Races;
+import fr.android.earthdawn.character.enums.Skill;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
+import fr.android.earthdawn.character.equipement.impl.Equipment;
+import fr.android.earthdawn.character.equipement.impl.MagicalEquipment;
 
 public class XPManagerTest
 {
     private EDCharacter malack;
-    private EDCharacter purifier;
+    private EDCharacter forgeron;
 
     @Before
     public void setUp() throws Exception
@@ -62,41 +68,115 @@ public class XPManagerTest
         discipline.setTalentRank(talents.get(8), 1); // GuerisonFeu
         discipline.setTalentRank(talents.get(9), 1); // MatriceSort
 
-        purifier = new EDCharacter("Ajmar", "N/A", 121, 245, 421, Races.Obsidien, 17, 1, 15, 1, 13, 3, 12, 0, 10, 0, 11, 0);
-        purifier.setMainDiscipline(Disciplines.Purificateur, 6);
-        discipline = purifier.getMainDiscipline();
+        forgeron = new EDCharacter("Arjaän", "Homme", 125, 195, 72, Races.Elfe, 16, 1, 11, 2, 11, 1, 15, 0, 11, 0, 14, 1);
+        forgeron.setMainDiscipline(Disciplines.Forgeron, 6);
+        forgeron.setSecondDiscipline(Disciplines.Troubadour, 5);
+
+        discipline = forgeron.getMainDiscipline();
         talents = discipline.getKnownTalents();
-
-        discipline.setTalentRank(talents.get(0), 8); // CombatMainsNues
-        discipline.setTalentRank(talents.get(1), 8); // ControleCorporel
-        discipline.setTalentRank(talents.get(2), 5); // CriGuerre
-        discipline.setTalentRank(talents.get(3), 5); // Enracinement
-        discipline.setTalentRank(talents.get(4), 7); // Esquive
+        discipline.setTalentRank(talents.get(0), 8); // ArmesMelee
+        discipline.setTalentRank(talents.get(1), 7); // Esquive
+        discipline.setTalentRank(talents.get(2), 6); // HistoireArmes
+        discipline.setTalentRank(talents.get(3), 6); // PerfectionnementLame
+        discipline.setTalentRank(talents.get(4), 7); // VolonteFer
         discipline.setTalentRank(talents.get(5), 2); // RituelKarma
+        discipline.setTalentRank(talents.get(6), 7); // Endurance
+        discipline.setTalentRank(talents.get(7), 5); // LectureEcriture
+        discipline.setTalentRank(talents.get(8), 5); // Marchandage
+        discipline.setTalentRank(talents.get(9), 6); // ContreMalediction
+        discipline.setTalentRank(talents.get(10), 5); // DetectionArmes
+        discipline.setTalentRank(talents.get(11), 5); // DonLangues
+        discipline.setTalentRank(talents.get(12), 6); // TissageForgeron
+        discipline.setTalentRank(talents.get(13), 4); // AlterationArmeTir
+        discipline.setTalentRank(talents.get(14), 6); // Endurcissement
+        discipline.setTalentRank(talents.get(15), 0); // RituelMaitreFantome
+        discipline.setTalentRank(talents.get(16), 5); // DetectionDefautsArmure
+        discipline.setTalentRank(talents.get(17), 1); // DissimulationArme
 
-        discipline.setTalentRank(talents.get(6), 5); // AnalyseCreature
-        discipline.setTalentRank(talents.get(7), 6); // DetectionVie
-        discipline.setTalentRank(talents.get(8), 7); // Endurance
+        discipline = forgeron.getSecondDiscipline();
+        talents = discipline.getKnownTalents();
+        discipline.setTalentRank(talents.get(0), 0); // ArmesMelee
+        discipline.setTalentRank(talents.get(1), 1); // RituelKarma
+        discipline.setTalentRank(talents.get(2), 4); // ChantEmouvant
+        discipline.setTalentRank(talents.get(3), 5); // DeguisementMagique
+        discipline.setTalentRank(talents.get(4), 4); // ImitationVoix
+        discipline.setTalentRank(talents.get(5), 5); // PremiereImpression
+        discipline.setTalentRank(talents.get(6), 0); // Endurance
+        discipline.setTalentRank(talents.get(7), 0); // DonLangues
+        discipline.setTalentRank(talents.get(8), 5); // HistoireObjets
+        discipline.setTalentRank(talents.get(9), 0); // LectureEcriture
+        discipline.setTalentRank(talents.get(10), 4); // SensEmpathique
+        discipline.setTalentRank(talents.get(11), 5); // Sarcasmes
+        discipline.setTalentRank(talents.get(12), 1); // TissageTroubadour
+        discipline.setTalentRank(talents.get(13), 1); // ArmesJet
+        discipline.setTalentRank(talents.get(14), 3); // Distraction
+        discipline.setTalentRank(talents.get(15), 0); // RituelMaitreFantome
 
-        discipline.setTalentRank(talents.get(9), 7); // LienTellurique
-        discipline.setTalentRank(talents.get(10), 6); // PeauArgile
+        // Anneau à filaments
+        List<List<Mod>> bonuses = new ArrayList<List<Mod>>();
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 0.1)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
+        final MagicalEquipment ring = new MagicalEquipment("Anneau à filaments", bonuses, new int[] {200, 300, 500, 800});
+        ring.incrementRank();
+        ring.incrementRank();
+        ring.incrementRank();
+        ring.incrementRank();
+        forgeron.addEquipment(ring);
 
-        discipline.setTalentRank(talents.get(11), 4); // LanguesElementaires
-        discipline.setTalentRank(talents.get(12), 6); // TissagePurificateur
+        // Bottes à filaments
+        bonuses = new ArrayList<List<Mod>>();
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 1)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.TALENT, 1.0, Talents.Escalade)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
+        final MagicalEquipment boots = new MagicalEquipment("Bottes à filaments", bonuses, new int[] {100, 200, 300, 500});
+        boots.incrementRank();
+        boots.incrementRank();
+        boots.incrementRank();
+        boots.incrementRank();
+        forgeron.addEquipment(boots);
 
-        discipline.setTalentRank(talents.get(13), 6); // CoupPiedRapide
-        discipline.setTalentRank(talents.get(14), 1); // RituelMaitreFantome
-        discipline.setTalentRank(talents.get(15), 7); // VolonteFer
+        // Armure de cui bouilli à filaments
+        bonuses = new ArrayList<List<Mod>>();
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 5), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 10)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_MYS, 1.0)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0), new Mod(Pointcuts.ARM_MYS, 1.0)));
+        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0)));
+        final MagicalEquipment cuir = new MagicalEquipment("Armure de cuir bouilli à filaments", bonuses, new int[] {100, 200, 300, 500});
+        cuir.incrementRank();
+        cuir.incrementRank();
+        cuir.incrementRank();
+        cuir.incrementRank();
+        forgeron.addEquipment(cuir);
 
-        discipline.setTalentRank(talents.get(16), 5); // UltimeSursaut
-        discipline.setTalentRank(talents.get(17), 6); // VivaciteTigre
+        forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 0.5))));
+        forgeron.addEquipment(new Equipment("Epée large forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 8), new Mod(Pointcuts.WEIGHT, 1.5))));
+
+        forgeron.addSkill(new Skill("Création d'armes", Attributs.PER, true, 0).incrementRank().incrementRank());
+        forgeron.addSkill(new Skill("Création d'armures", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Cartographie", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Survie", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Connaissances : Horreurs", Attributs.PER, true, 0));
+        forgeron.addSkill(new Skill("Connaissances : Géographie de Barsaive", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Connaissances : Histoire de Barsaive", Attributs.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Connaissances : Légendes et Héros", Attributs.PER, true, 0).incrementRank().incrementRank());
+        forgeron.addSkill(new Skill("Analyse de créature", Attributs.PER, true, 1));
+        forgeron.addSkill(new Skill("Natation", Attributs.STR, true, 1));
+        forgeron.addSkill(new Skill("Escalade", Attributs.DEX, true, 0));
+
+        forgeron.incrementKarmaBought(20);
     }
 
     @Test
     public void testEvaluateCharacter()
     {
         Assert.assertEquals(57900, XPManager.get().evaluateCharacter(malack));
-        Assert.assertEquals(72600, XPManager.get().evaluateCharacter(purifier));
+        Assert.assertEquals(81900, XPManager.get().evaluateCharacter(forgeron));
     }
 
     @Test
@@ -105,7 +185,8 @@ public class XPManagerTest
         Assert.assertEquals(50000, XPManager.get().evaluateDiscipline(malack.getMainDiscipline()));
         Assert.assertEquals(4700, XPManager.get().evaluateDiscipline(malack.getSecondDiscipline()));
 
-        Assert.assertEquals(66800, XPManager.get().evaluateDiscipline(purifier.getMainDiscipline()));
+        Assert.assertEquals(55600, XPManager.get().evaluateDiscipline(forgeron.getMainDiscipline()));
+        Assert.assertEquals(12300, XPManager.get().evaluateDiscipline(forgeron.getSecondDiscipline()));
     }
 
     @Test
@@ -165,7 +246,23 @@ public class XPManagerTest
     @Test
     public void testEvaluateEquipment()
     {
-        fail("Not yet implemented");
+        Assert.assertEquals(4000, XPManager.get().evaluateEquipment(forgeron));
+    }
+
+    @Test
+    public void testEvaluateSkills()
+    {
+        malack.addSkill(new Skill("Test1", Attributs.DEX, true, 1)); // 200 PL
+        Assert.assertEquals(200, XPManager.get().evaluateSkills(malack.getSkills()));
+
+        malack.addSkill(new Skill("Test2", Attributs.DEX, true, 1)); // 200 PL
+        Assert.assertEquals(400, XPManager.get().evaluateSkills(malack.getSkills()));
+
+        malack.addSkill(new Skill("Test3", Attributs.DEX, true, 1).incrementRank()); // 200 + 300 PL
+        Assert.assertEquals(900, XPManager.get().evaluateSkills(malack.getSkills()));
+
+        malack.addSkill(new Skill("Test4", Attributs.DEX, true, 1).incrementRank().incrementRank()); // 200 + 300 + 500 PL
+        Assert.assertEquals(1900, XPManager.get().evaluateSkills(malack.getSkills()));
     }
 
     @Test

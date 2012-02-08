@@ -7,9 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.equipement.IEquipment;
 
@@ -19,23 +16,22 @@ import fr.android.earthdawn.character.equipement.IEquipment;
  */
 public class MagicalEquipment implements IEquipment, Serializable
 {
-    private static final String TAB = "        ";
-    private static final String EMPTY = "";
-
     private static final long serialVersionUID = 6525264693377432928L;
 
     private final String name;
     private int rank = 0;
     private final List<List<Mod>> bonuses;
+    private final int[] costs;
     /**
      * @param name
      * @param bonuses
      */
-    public MagicalEquipment(final String name, final List<List<Mod>> bonuses)
+    public MagicalEquipment(final String name, final List<List<Mod>> bonuses, final int[] costs)
     {
         super();
         this.name = name;
         this.bonuses = bonuses;
+        this.costs = costs;
     }
 
     @Override
@@ -54,33 +50,28 @@ public class MagicalEquipment implements IEquipment, Serializable
         }
         return result;
     }
+    public List<Mod> getBonuses(final int rank)
+    {
+        return bonuses.get(rank);
+    }
 
+    public int getRank()
+    {
+        return rank;
+    }
     public void incrementRank()
     {
         rank++;
     }
 
-    @Override
-    public void drawDetails(final LinearLayout details, final Context ctx)
+    public int[] getCosts()
     {
-        TextView tv;
-        String tab = EMPTY;
-        for (int i = 0; i < rank+1; i++)
-        {
-            final List<Mod> mods = bonuses.get(i);
-            if (i > 0)
-            {
-                tab = TAB;
-                tv = new TextView(ctx);
-                tv.setText("Filament " + i);
-                details.addView(tv);
-            }
-            for (final Mod mod : mods)
-            {
-                tv = new TextView(ctx);
-                tv.setText(tab + mod.toString());
-                details.addView(tv);
-            }
-        }
+        return costs;
+    }
+
+    @Override
+    public boolean isMagical()
+    {
+        return true;
     }
 }

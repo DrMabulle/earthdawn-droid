@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.TalentAdapter;
@@ -48,7 +47,6 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
         {
             final View parent = (View) view.getParent();
 
-            final boolean isKarmaMandatory = ((RadioButton) parent.findViewById(R.id.talents_karma)).isChecked();
             final int level = Integer.parseInt((String) ((TextView) parent.findViewById(R.id.talents_level)).getText());
             // TODO Talents pre and post actions.
             final String talentname = (String) ((TextView) parent.findViewById(R.id.talents_talent)).getText();
@@ -56,13 +54,16 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
             final Talent talent = discicpline.findTalent(talents);
             talent.executePreAction();
 
-            if (isKarmaMandatory)
+            if (talent.isKarmaMandatory())
             {
+                // TODO vérifier que le perso a suffisamment de karma dispo, et sinon ouvrir une popup
+
                 // Definir les dés à lancer
                 final String dices = RankManager.getDicesFromRank(level);
                 final String karmaDice = RankManager.getDicesFromRank(character.getRace().getKarmaRank());
                 // Mettre le karma en premier pour éviter les problème avec les modificateurs
                 DicesLauncher.get().rollDices(karmaDice + " " + dices);
+                character.incrementKarmaSpent(1);
             }
             else
             {

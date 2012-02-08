@@ -42,7 +42,7 @@ public class NewSkillFragment extends DialogFragment implements OnClickListener
         final View v = inflater.inflate(R.layout.skill_new, container, false);
 
         // title of the dialog fragment
-        getDialog().setTitle("Nouvelle compétence");
+        getDialog().setTitle(getString(R.string.skill_new_title));
 
         // Spinner
         final Spinner spinner = (Spinner) v.findViewById(R.id.skill_new_attribut);

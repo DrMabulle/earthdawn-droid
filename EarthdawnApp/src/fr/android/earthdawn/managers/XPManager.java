@@ -9,7 +9,9 @@ import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Races;
+import fr.android.earthdawn.character.enums.Skill;
 import fr.android.earthdawn.character.enums.Talent;
+import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.character.equipement.impl.MagicalEquipment;
 
 /**
@@ -50,11 +52,14 @@ public class XPManager
         total += evaluateAttributs(character.getAttributEvols(Attributs.STR));
         total += evaluateAttributs(character.getAttributEvols(Attributs.VOL));
 
+        // compétences
+        total += evaluateSkills(character.getSkills());
+
         // Karma
-        // TODO
+        total += evaluateKarma(character.getRace(), character.getKarmaBought());
 
         // Equipement magique
-        // TODO
+        total += evaluateEquipment(character);
 
         return total;
     }
@@ -77,10 +82,22 @@ public class XPManager
     public int evaluateTalent(final Talent talent, final int rank)
     {
         int col = 0;
-        if (talent.getCircle() < 5) col = 0;
-        else if (talent.getCircle() < 9) col = 1;
-        else if (talent.getCircle() < 13) col = 2;
-        else col = 3;
+        if (talent.getCircle() < 5)
+        {
+            col = 0;
+        }
+        else if (talent.getCircle() < 9)
+        {
+            col = 1;
+        }
+        else if (talent.getCircle() < 13)
+        {
+            col = 2;
+        }
+        else
+        {
+            col = 3;
+        }
         return talentCost[col][rank];
     }
 
@@ -89,13 +106,51 @@ public class XPManager
         return attributsCost[nbEvols];
     }
 
-    public int evaluateEquipment(final MagicalEquipment equipment, final int rank)
+    public int evaluateEquipment(final EDCharacter character)
     {
-        return 0;
+        int sum = 0;
+
+        final List<IEquipment> loot = character.getEquipment();
+        for (final IEquipment equipment : loot)
+        {
+            if (equipment.isMagical())
+            {
+                sum += evaluateEquipment((MagicalEquipment) equipment);
+            }
+        }
+
+        return sum;
+    }
+
+    public int evaluateEquipment(final MagicalEquipment equipment)
+    {
+        final int[] costs = equipment.getCosts();
+        final int rank = equipment.getRank();
+        int sum = 0;
+
+        for(int i = 0; i < rank; i++)
+        {
+            sum += costs[i];
+        }
+        return sum;
     }
 
     public int evaluateKarma(final Races race, final int karmaBought)
     {
         return karmaBought * race.getKarmaCost();
+    }
+
+    public int evaluateSkills(final List<Skill> skills)
+    {
+        // Skills are equivalent to talents 5-8
+        int sum = 0;
+        if (skills != null)
+        {
+            for (final Skill skill : skills)
+            {
+                sum += SECOND_COL[skill.getRank()];
+            }
+        }
+        return sum;
     }
 }

@@ -6,9 +6,6 @@ package fr.android.earthdawn.character.equipement.impl;
 import java.io.Serializable;
 import java.util.List;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.equipement.IEquipment;
 
@@ -46,13 +43,8 @@ public class Equipment implements IEquipment, Serializable
     }
 
     @Override
-    public void drawDetails(final LinearLayout details, final Context ctx)
+    public boolean isMagical()
     {
-        for (final Mod mod : bonuses)
-        {
-            final TextView tv = new TextView(ctx);
-            tv.setText(mod.toString());
-            details.addView(tv);
-        }
+        return false;
     }
 }

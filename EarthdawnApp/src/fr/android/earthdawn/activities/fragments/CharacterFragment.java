@@ -13,6 +13,9 @@ import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.managers.RankManager;
+import fr.android.earthdawn.managers.XPManager;
+import fr.android.earthdawn.utils.CharacterUtils;
 import fr.android.earthdawn.utils.Constants;
 import fr.android.earthdawn.utils.NumberUtils;
 
@@ -44,6 +47,12 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
 
         // Fill health infos
         fillHealthInfos(view, character);
+
+        // Fill legend points infos
+        fillLegendInfos(view, character);
+
+        // Fill karma points infos
+        fillKarmaInfos(view, character);
 
 
         return view;
@@ -194,5 +203,37 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_h_restore_dices)).setText(NumberUtils.format(character.getNbRecoveryTests()));
         ((TextView) view.findViewById(R.id.sheet_h_restore_dices_infos)).setText(character.getRecoveryDices());
         ((TextView) view.findViewById(R.id.sheet_h_wound_threshold)).setText(Integer.toString(character.getWoundThreshold()));
+    }
+
+    private void fillLegendInfos(final View view, final EDCharacter character)
+    {
+        view.findViewById(R.id.sheet_legend).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
+        // Total earned
+        ((TextView) view.findViewById(R.id.sheet_legend_total)).setText(Integer.toString(character.getLegendPoints()));
+        // Total spent
+        final int legendSpent = XPManager.get().evaluateCharacter(character);
+        ((TextView) view.findViewById(R.id.sheet_legend_spent)).setText(Integer.toString(legendSpent));
+        // Spent in karma
+        final int legendKarma = XPManager.get().evaluateKarma(character.getRace(), character.getKarmaBought());
+        ((TextView) view.findViewById(R.id.sheet_legend_karma)).setText(Integer.toString(legendKarma));
+        // Available
+        ((TextView) view.findViewById(R.id.sheet_legend_available)).setText(Integer.toString(character.getLegendPoints() - legendSpent));
+    }
+
+    private void fillKarmaInfos(final View view, final EDCharacter character)
+    {
+        view.findViewById(R.id.sheet_karma).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
+        // Points de karma disponibles : <available> / <max>
+        final String karmaAvailable = getString(R.string.sheet_karma_available_detail,
+                character.getAvailableKarma(),
+                CharacterUtils.getMaxKarma(character));
+        ((TextView) view.findViewById(R.id.sheet_karma_available)).setText(karmaAvailable);
+        // Niveau de karma : <level> (<dices>)
+        final String karmaLvl = getString(R.string.sheet_karma_lvl_detail,
+                character.getRace().getKarmaRank(),
+                RankManager.getDicesFromRank(character.getRace().getKarmaRank()));
+        ((TextView) view.findViewById(R.id.sheet_karma_level)).setText(karmaLvl);
+        // Special uses
+        // TODO see discipline perks
     }
 }

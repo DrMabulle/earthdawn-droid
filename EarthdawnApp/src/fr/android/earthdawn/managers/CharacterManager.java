@@ -44,10 +44,10 @@ public class CharacterManager
         {
             CHAR = (EDCharacter) test;
         }
-        else
-        {
+//        else
+//        {
             CHAR = loadCharacter(id);
-        }
+//        }
         return CHAR;
     }
 
@@ -99,6 +99,9 @@ public class CharacterManager
 
         discipline.setTalentRank(talents.get(16), 5); // UltimeSursaut
         discipline.setTalentRank(talents.get(17), 6); // VivaciteTigre
+
+        purifier.incrementLegendPoints(82000);
+
         return purifier;
     }
 
@@ -154,7 +157,7 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
-        MagicalEquipment ring = new MagicalEquipment("Kelnone", bonuses);
+        MagicalEquipment ring = new MagicalEquipment("Kelnone", bonuses, new int[] {200, 300, 500, 800});
         ring.incrementRank();
         ring.incrementRank();
         ring.incrementRank();
@@ -168,7 +171,7 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Soie noire")));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 1), new Mod(Pointcuts.POWER, 0, "Bourdonne en présence d'Horreur")));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Défenses +4 pour résister aux Horreurs (hors sorts)")));
-        final MagicalEquipment hurleuse = new MagicalEquipment("Hurleuse de Délitra", bonuses);
+        final MagicalEquipment hurleuse = new MagicalEquipment("Hurleuse de Délitra", bonuses, new int[] {500, 800, 1300, 2100, 3400, 5500, 8900});
         hurleuse.incrementRank();
         hurleuse.incrementRank();
         hurleuse.incrementRank();
@@ -179,7 +182,7 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 0.1)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.TALENT, 1, Talents.ArmesMelee)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Rappel de l'arme (Gradius)")));
-        ring = new MagicalEquipment("Anneau de Malack", bonuses);
+        ring = new MagicalEquipment("Anneau de Malack", bonuses, new int[] {200, 300, 500, 800, 1300});
         ring.incrementRank();
         ring.incrementRank();
         malack.addEquipment(ring);
@@ -190,11 +193,15 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Absorbe 3 points de fatigue par jour")));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Absorbe 6 points de fatigue par jour")));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Absorbe 9 points de fatigue par jour")));
-        ring = new MagicalEquipment("Anneau du Combattant", bonuses);
+        ring = new MagicalEquipment("Anneau du Combattant", bonuses, new int[] {200, 300, 500});
         ring.incrementRank();
         ring.incrementRank();
         ring.incrementRank();
         malack.addEquipment(ring);
+
+        malack.incrementKarmaBought(78);
+        malack.incrementKarmaSpent(70);
+        malack.incrementLegendPoints(82885);
 
         return malack;
     }
@@ -252,7 +259,7 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
-        final MagicalEquipment ring = new MagicalEquipment("Anneau à filaments", bonuses);
+        final MagicalEquipment ring = new MagicalEquipment("Anneau à filaments", bonuses, new int[] {200, 300, 500, 800});
         ring.incrementRank();
         ring.incrementRank();
         ring.incrementRank();
@@ -266,7 +273,7 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.TALENT, 1.0, Talents.Escalade)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
-        final MagicalEquipment boots = new MagicalEquipment("Bottes à filaments", bonuses);
+        final MagicalEquipment boots = new MagicalEquipment("Bottes à filaments", bonuses, new int[] {100, 200, 300, 500});
         boots.incrementRank();
         boots.incrementRank();
         boots.incrementRank();
@@ -280,7 +287,7 @@ public class CharacterManager
         bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_MYS, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0), new Mod(Pointcuts.ARM_MYS, 1.0)));
         bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0)));
-        final MagicalEquipment cuir = new MagicalEquipment("Armure de cuir bouilli à filaments", bonuses);
+        final MagicalEquipment cuir = new MagicalEquipment("Armure de cuir bouilli à filaments", bonuses, new int[] {100, 200, 300, 500});
         cuir.incrementRank();
         cuir.incrementRank();
         cuir.incrementRank();
@@ -302,6 +309,9 @@ public class CharacterManager
         forgeron.addSkill(new Skill("Natation", Attributs.STR, true, 1));
         forgeron.addSkill(new Skill("Escalade", Attributs.DEX, true, 0));
 
+        forgeron.incrementKarmaBought(10);
+        forgeron.incrementLegendPoints(82000);
+
         return forgeron;
     }
 
@@ -315,7 +325,7 @@ public class CharacterManager
             {
                 result[i] = files[i].replace(".ser", "");
             }
-            return result;
+//            return result;
         }
         // TODO
        // return new String[] {MALACK, ARDAMIR, FORGERON, PURIFICATEUR, MENESTREL};

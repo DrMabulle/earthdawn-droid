@@ -18,7 +18,7 @@
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
 				    android:text="@string/sheet_def_phy" android:padding="2dp" android:layout_weight="2"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
 				    android:id="@+id/sheet_def_phy" android:padding="2dp" android:layout_weight="3"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -26,7 +26,7 @@
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
 				    android:text="@string/sheet_def_mag" android:padding="2dp" android:layout_weight="2"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
 				    android:id="@+id/sheet_def_mag" android:padding="2dp" android:layout_weight="3"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">

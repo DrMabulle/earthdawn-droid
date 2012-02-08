@@ -14,7 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
+import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.equipement.IEquipment;
+import fr.android.earthdawn.character.equipement.impl.MagicalEquipment;
 
 /**
  * @author DrMabulle
@@ -22,6 +24,9 @@ import fr.android.earthdawn.character.equipement.IEquipment;
  */
 public class EquipmentAdapter extends BaseAdapter implements ListAdapter
 {
+    private static final String TAB = "        ";
+    private static final String EMPTY = "";
+
     private final LayoutInflater inflater;
     private final Context ctx;
     private final List<IEquipment> possessions;
@@ -65,7 +70,45 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
             ((TextView) convertView.findViewById(R.id.possession_name)).setText(possession.getName());
             final LinearLayout details = (LinearLayout) convertView.findViewById(R.id.possession_details);
 
-            possession.drawDetails(details, ctx);
+            // Draw details for magical equipment
+            if (possession.isMagical())
+            {
+                final MagicalEquipment loot = (MagicalEquipment) possession;
+                final int rank = loot.getRank();
+
+                TextView tv;
+                String tab = EMPTY;
+                List<Mod> mods;
+                for (int i = 0; i < rank+1; i++)
+                {
+                    mods = loot.getBonuses(rank);
+                    if (i > 0)
+                    {
+                        tab = TAB;
+                        tv = new TextView(ctx);
+                        final StringBuilder msg = new StringBuilder(24);
+                        tv.setText(ctx.getString(R.string.msg_loot_thread, i, loot.getCosts()[i - 1]));
+                        details.addView(tv);
+                    }
+                    for (final Mod mod : mods)
+                    {
+                        tv = new TextView(ctx);
+                        tv.setText(tab + mod.toString());
+                        details.addView(tv);
+                    }
+                }
+            }
+            // Draw details for classical equipment
+            else
+            {
+                final List<Mod> bonuses = possession.getBonuses();
+                for (final Mod mod : bonuses)
+                {
+                    final TextView tv = new TextView(ctx);
+                    tv.setText(mod.toString());
+                    details.addView(tv);
+                }
+            }
         }
 
         final boolean visible = isVisible(position);

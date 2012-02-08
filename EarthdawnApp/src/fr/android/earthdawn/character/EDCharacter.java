@@ -32,6 +32,8 @@ import fr.android.earthdawn.utils.NumberUtils;
  */
 public class EDCharacter implements Serializable
 {
+    private static final String EMPTY = " ";
+
     private static final long serialVersionUID = -2501068072861443147L;
 
     private final String name;
@@ -41,6 +43,10 @@ public class EDCharacter implements Serializable
     private final int weight;
 
     private final Races race;
+
+    private int legendPoints = 0;
+    private int karmaBought;
+    private int karmaSpent;
 
     private final Attribut[] attributs = new Attribut[7];
 
@@ -101,28 +107,28 @@ public class EDCharacter implements Serializable
     }
     public String getMainDisciplineDisplay()
     {
-        return discipline1 != null ? discipline1.getName() : "";
+        return discipline1 != null ? discipline1.getName() : EMPTY;
     }
     public String getSecondDisciplineDisplay()
     {
-        return discipline2 != null ? discipline2.getName() : "";
+        return discipline2 != null ? discipline2.getName() : EMPTY;
     }
     public String getThirdDisciplineDisplay()
     {
-        return discipline3 != null ? discipline3.getName() : "";
+        return discipline3 != null ? discipline3.getName() : EMPTY;
     }
 
     public String getMainCircleDisplay()
     {
-        return discipline1 != null ? Integer.toString(discipline1.getCircle()) : "";
+        return discipline1 != null ? Integer.toString(discipline1.getCircle()) : EMPTY;
     }
     public String getSecondCircleDisplay()
     {
-        return discipline2 != null ? Integer.toString(discipline2.getCircle()) : "";
+        return discipline2 != null ? Integer.toString(discipline2.getCircle()) : EMPTY;
     }
     public String getThirdCircleDisplay()
     {
-        return discipline3 != null ? Integer.toString(discipline3.getCircle()) : "";
+        return discipline3 != null ? Integer.toString(discipline3.getCircle()) : EMPTY;
     }
 
     public boolean setMainDiscipline(final Disciplines discicpline, final int circle)
@@ -314,6 +320,59 @@ public class EDCharacter implements Serializable
         return race;
     }
 
+    /**
+     * @return the legendPoints
+     */
+    public int getLegendPoints()
+    {
+        return legendPoints;
+    }
+
+    /**
+     * @param legendPoints the legendPoints to increment
+     */
+    public void incrementLegendPoints(final int legendPoints)
+    {
+        this.legendPoints += legendPoints;
+    }
+
+    /**
+     * @return the karmaBought
+     */
+    public int getKarmaBought()
+    {
+        return karmaBought;
+    }
+
+    /**
+     * @param karmaBought the karmaBought to increment
+     */
+    public void incrementKarmaBought(final int karmaBought)
+    {
+        this.karmaBought += karmaBought;
+    }
+
+    /**
+     * @return the karmaSpent
+     */
+    public int getKarmaSpent()
+    {
+        return karmaSpent;
+    }
+
+    /**
+     * @param karmaSpent the karmaSpent to increment
+     */
+    public void incrementKarmaSpent(final int karmaSpent)
+    {
+        this.karmaSpent += karmaSpent;
+    }
+
+    public int getAvailableKarma()
+    {
+        return race.getKarmaInit() + karmaBought - karmaSpent;
+    }
+
     public int getAttributIndice(final Attributs attribut)
     {
         return attributs[attribut.getId()].getResultingIndice() + computeBonusesInt(attribut);
@@ -392,13 +451,9 @@ public class EDCharacter implements Serializable
 
     public int getTalentLevel(final Talent talent, final Discipline discipline)
     {
-        return getAttributRank(talent.getAttribut()) + getTalentRank(talent, discipline);
+        return getAttributRank(talent.getAttribut()) + getTalentRank(talent, discipline) - wounds;
     }
     public int getTalentRank(final Talent talent, final Discipline discipline)
-    {
-        return getTalentRankNoWounds(talent, discipline) - wounds;
-    }
-    private int getTalentRankNoWounds(final Talent talent, final Discipline discipline)
     {
         return discipline.getTalentRank(talent) + computeBonusesInt(talent.getEnum());
     }
@@ -440,7 +495,7 @@ public class EDCharacter implements Serializable
     public int getHealthPoints()
     {
         final Talent endurance = discipline1.findTalent(Talents.Endurance);
-        return getDeathThreshold() + (Integer) endurance.getAdditionnalInfos()[0] * getTalentRankNoWounds(endurance, discipline1) + computeBonusesInt(Pointcuts.HEALTH_POINTS);
+        return getDeathThreshold() + (Integer) endurance.getAdditionnalInfos()[0] * getTalentRank(endurance, discipline1) + computeBonusesInt(Pointcuts.HEALTH_POINTS);
     }
 
     public int getUnconsciousnessPoints()

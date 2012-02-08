@@ -32,6 +32,7 @@ import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.TabsAdapter;
 import fr.android.earthdawn.activities.fragments.CharacterFragment;
 import fr.android.earthdawn.activities.fragments.EquipmentFragment;
+import fr.android.earthdawn.activities.fragments.GainLegendFragment;
 import fr.android.earthdawn.activities.fragments.RollDamagesFragment;
 import fr.android.earthdawn.activities.fragments.SkillsFragment;
 import fr.android.earthdawn.activities.fragments.TakeDamagesFragment;
@@ -229,6 +230,10 @@ public class ActionBarTabsPager extends Activity
                 {
                     builder.append('\n').append(getString(R.string.msg_health_status_uncounscious));
                 }
+                else
+                {
+                    builder.append('\n').append(getString(R.string.msg_health_status_normal));
+                }
                 Toast.makeText(getApplication(), builder.toString(), Toast.LENGTH_LONG).show();
                 return true;
             case R.id.itemHealStrain:
@@ -244,6 +249,9 @@ public class ActionBarTabsPager extends Activity
             case R.id.itemHealWounds:
                 character.incrementWounds(-1);
                 Toast.makeText(getApplication(), R.string.msg_wound_healed, Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.itemGainLegend:
+                GainLegendFragment.newInstance().show(ft, "tag");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

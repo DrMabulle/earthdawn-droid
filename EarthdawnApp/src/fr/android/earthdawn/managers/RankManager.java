@@ -212,7 +212,7 @@ public final class RankManager
             case 100:
                 return "4D20 6D10 4D8";
             default:
-                return "";
+                return "0";
         }
     }
 }

@@ -133,4 +133,11 @@ public final class CharacterUtils
         }
         return false;
     }
+
+    public static final int getMaxKarma(final EDCharacter character)
+    {
+        int max = character.getRace().getKarmaMax();
+        max += character.computeBonusesInt(Pointcuts.KARMA_POINTS);
+        return max;
+    }
 }
