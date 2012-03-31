@@ -9,5 +9,5 @@ package fr.android.earthdawn.character.actions;
  */
 public interface IAction
 {
-    public void execute(String nomTalent);
+    public void execute(int nomTalent);
 }

@@ -4,6 +4,7 @@
 package fr.android.earthdawn.character.enums;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -88,4 +89,15 @@ public class Discipline implements Serializable
         return null;
     }
 
+    public List<Mod> getPerks()
+    {
+        final List<Mod> result = new ArrayList<Mod>(4);
+        final Iterator<Perks> iter = discipline.getBonuses().iterator();
+        Perks tmp;
+        while(iter.hasNext() && (tmp = iter.next()).getRank() <= circle)
+        {
+            result.add(tmp.getMod());
+        }
+        return result;
+    }
 }

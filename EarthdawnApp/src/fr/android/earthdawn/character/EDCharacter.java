@@ -21,9 +21,9 @@ import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.dices.utils.DiceMapping;
-import fr.android.earthdawn.managers.EquipmentManager;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.CharacterUtils;
+import fr.android.earthdawn.utils.EquipmentUtils;
 import fr.android.earthdawn.utils.NumberUtils;
 
 /**
@@ -32,7 +32,7 @@ import fr.android.earthdawn.utils.NumberUtils;
  */
 public class EDCharacter implements Serializable
 {
-    private static final String EMPTY = " ";
+    private static final String EMPTY = "";
 
     private static final long serialVersionUID = -2501068072861443147L;
 
@@ -451,7 +451,7 @@ public class EDCharacter implements Serializable
 
     public int getTalentLevel(final Talent talent, final Discipline discipline)
     {
-        return getAttributRank(talent.getAttribut()) + getTalentRank(talent, discipline) - wounds;
+        return getAttributRank(talent.getAttribut()) + getTalentRank(talent, discipline);
     }
     public int getTalentRank(final Talent talent, final Discipline discipline)
     {
@@ -469,15 +469,15 @@ public class EDCharacter implements Serializable
 
     public int computeBonusesInt(final Attributs attribut)
     {
-        return (int) EquipmentManager.computeMods(equipment, modPerm, modTmp, Pointcuts.ATTRIBUT, attribut);
+        return (int) EquipmentUtils.computeMods(equipment, modPerm, modTmp, Pointcuts.ATTRIBUT, attribut);
     }
     public int computeBonusesInt(final Talents talent)
     {
-        return (int) EquipmentManager.computeMods(equipment, modPerm, modTmp, Pointcuts.TALENT, talent);
+        return (int) (EquipmentUtils.computeMods(equipment, modPerm, modTmp, Pointcuts.TALENT, talent) + CharacterUtils.computePerks(this, Pointcuts.TALENT, talent));
     }
     public int computeBonusesInt(final Pointcuts pointcut)
     {
-        return (int) EquipmentManager.computeMods(equipment, modPerm, modTmp, pointcut);
+        return (int) (EquipmentUtils.computeMods(equipment, modPerm, modTmp, pointcut)  + CharacterUtils.computePerks(this, pointcut));
     }
 
     protected static boolean checkCircle(final int circle)

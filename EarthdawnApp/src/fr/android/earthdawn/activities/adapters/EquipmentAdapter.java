@@ -86,7 +86,6 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
                     {
                         tab = TAB;
                         tv = new TextView(ctx);
-                        final StringBuilder msg = new StringBuilder(24);
                         tv.setText(ctx.getString(R.string.msg_loot_thread, i, loot.getCosts()[i - 1]));
                         details.addView(tv);
                     }

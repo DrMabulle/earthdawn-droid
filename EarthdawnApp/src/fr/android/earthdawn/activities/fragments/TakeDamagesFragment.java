@@ -29,10 +29,15 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
 {
     private final Bundle args;
 
-    private TakeDamagesFragment(final Bundle aArgs)
+    public TakeDamagesFragment(final Bundle aArgs)
     {
         super();
         args = aArgs;
+    }
+    public TakeDamagesFragment()
+    {
+        super();
+        args = new Bundle(3);
     }
 
     public static TakeDamagesFragment newInstance(final Bundle aArgs)

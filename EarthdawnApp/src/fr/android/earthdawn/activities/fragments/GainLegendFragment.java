@@ -21,7 +21,7 @@ import fr.android.earthdawn.managers.CharacterManager;
  */
 public class GainLegendFragment extends DialogFragment implements OnClickListener
 {
-    private GainLegendFragment()
+    public GainLegendFragment()
     {
         super();
     }

@@ -9,6 +9,7 @@
 	<item android:title="@string/menu_heal_strain" android:id="@+id/itemHealStrain"></item>
 	<item android:title="@string/menu_heal_damages" android:id="@+id/itemHealDamages"></item>
 	<item android:title="@string/menu_heal_wounds" android:id="@+id/itemHealWounds"></item>
+	<item android:title="@string/menu_full_health" android:id="@+id/itemHealEverything"></item>
 	
     <item android:title="@string/menu_gain_legend" android:id="@+id/itemGainLegend"></item>
 

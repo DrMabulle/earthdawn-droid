@@ -45,7 +45,7 @@ public class Talent implements Serializable
     /**
      * @return the label
      */
-    public String getName()
+    public int getName()
     {
         return talent.getLabel();
     }

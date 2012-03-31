@@ -39,8 +39,9 @@ import fr.android.earthdawn.activities.fragments.TakeDamagesFragment;
 import fr.android.earthdawn.activities.fragments.TalentsFragment;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.Constants;
+import fr.android.earthdawn.utils.NumberUtils;
 import fr.android.earthdawn.utils.SerializationUtils;
 
 /**
@@ -135,8 +136,8 @@ public class ActionBarTabsPager extends Activity
         switch (id)
         {
             case Constants.DIALOG_SHOW_DETAILS:
-                builder.setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
-                builder.setMessage(DicesLauncher.get().getDetailedMessage(this));
+                builder.setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.get().getRollType())));
+                builder.setMessage(EDDicesLauncher.get().getDetailedMessage(this));
                 break;
             case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
                 builder.setTitle(R.string.popup_damages_taken_title);
@@ -169,8 +170,8 @@ public class ActionBarTabsPager extends Activity
         switch (id)
         {
             case Constants.DIALOG_SHOW_DETAILS:
-                alert.setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
-                alert.setMessage(DicesLauncher.get().getDetailedMessage(this));
+                alert.setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.get().getRollType())));
+                alert.setMessage(EDDicesLauncher.get().getDetailedMessage(this));
                 break;
 
             case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
@@ -242,13 +243,22 @@ public class ActionBarTabsPager extends Activity
                 return true;
             case R.id.itemHealDamages:
                 final String recoveryDices = character.getRecoveryDices();
-                final int result = DicesLauncher.get().rollDices(recoveryDices);
-                character.incrementDamages(result * -1);
-                // TODO show message
+                final int result = EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.recup, recoveryDices);
+                // soustraire les blessures graves aux PV récupérés (min 1)
+                final int healed = NumberUtils.ensureMinimum(result - character.getWounds(), 1);
+                character.incrementDamages(healed * -1);
+                final String msg = getString(R.string.msg_damages_healed, result, character.getWounds(), healed);
+                Toast.makeText(getApplication(), msg, Toast.LENGTH_LONG).show();
                 return true;
             case R.id.itemHealWounds:
                 character.incrementWounds(-1);
                 Toast.makeText(getApplication(), R.string.msg_wound_healed, Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.itemHealEverything:
+                character.incrementStrain(character.getStrain() * -1);
+                character.incrementDamages(character.getDamages() * -1);
+                character.incrementWounds(character.getWounds() * -1);
+                Toast.makeText(getApplication(), R.string.msg_fully_healed, Toast.LENGTH_LONG).show();
                 return true;
             case R.id.itemGainLegend:
                 GainLegendFragment.newInstance().show(ft, "tag");

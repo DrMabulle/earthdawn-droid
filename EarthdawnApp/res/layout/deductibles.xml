@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  android:orientation="horizontal" 
 	android:id="@+id/sheet_deductibles" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_margin="2dp"
-	android:baselineAligned="false">
+	android:baselineAligned="false" android:layout_weight="3">
 	
 	    <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
 	    	android:layout_margin="2dp" android:layout_weight="1">
@@ -16,26 +16,26 @@
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_def_phy" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_def_phy" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_def_phy" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_def_phy" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_def_mag" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_def_mag" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_def_mag" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_def_mag" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_def_soc" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_def_soc" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_def_soc" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_def_soc" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	    
 	    	<!-- Equipment -->
@@ -47,18 +47,18 @@
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_equ_tra" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_equ_tra" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_equ_tra" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_equ_tra" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_equ_lev" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_equ_lev" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_equ_lev" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_equ_lev" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	    
 	    	<!-- Initiative -->
@@ -70,34 +70,34 @@
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_dex" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_init_dex" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_init_dex" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_init_dex" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_pen" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_init_pen" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_init_pen" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_init_pen" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_lvl" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_init_lvl" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_init_lvl" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_init_lvl" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
 				    android:text="@string/sheet_init_roll" android:padding="2dp"
-				    android:layout_gravity="center_vertical" android:layout_weight="2"/>
+				    android:layout_gravity="center_vertical" android:layout_weight="3"/>
 	        	<ImageButton android:id="@+id/roll_initiative" android:src="@drawable/dice" android:contentDescription="@string/roll"
-	        		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="3"/>
+	        		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2"/>
 	        </TableRow>
 	    </TableLayout>
 	    
@@ -114,26 +114,26 @@
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_arm_type" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_arm_type" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_arm_type" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_arm_type" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_arm_phy" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_arm_phy" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_arm_phy" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_arm_phy" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_arm_mag" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_arm_mag" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_arm_mag" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_arm_mag" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	    
 	    	<!-- Mouvement -->
@@ -145,18 +145,18 @@
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_mvn_run" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_mvn_run" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_mvn_run" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_mvn_run" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_mvn_cbt" android:padding="2dp" android:layout_weight="2"/>
+				    android:text="@string/sheet_mvn_cbt" android:padding="2dp" android:layout_weight="3"/>
 	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_mvn_cbt" android:padding="2dp" android:layout_weight="3"/>
+				    android:id="@+id/sheet_mvn_cbt" android:padding="2dp" android:layout_weight="2"/>
 	        </TableRow>
 	    
 	    	<!-- Aptitudes raciales -->

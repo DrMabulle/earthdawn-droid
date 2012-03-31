@@ -31,19 +31,9 @@ public class DicesLauncher
 
     private DicesLauncher() {}
 
-    public static DicesLauncher get()
+    protected static DicesLauncher get()
     {
         return INSTANCE;
-    }
-
-    public int getRank()
-    {
-        return rank;
-    }
-
-    public String getDicesInfos()
-    {
-        return dicesInfos;
     }
 
     public boolean testInputDicesInfos(final String dicesInfos)
@@ -51,28 +41,18 @@ public class DicesLauncher
         return dicesInfos != null && dicesInfos.length() > 0 && dicesInfos.matches(REGEX);
     }
 
-    public int rollDices(final int aRank)
-    {
-        return rollDices(aRank, true);
-    }
-
-    public int rollDices(final int aRank, final boolean withRerollOnExtremities)
+    public int rollDices(final int aRank, final boolean rerollMax, final boolean rerollMins)
     {
         rank = aRank;
         dicesInfos = null;
-        return rollDices(parseDicesInfos(RankManager.getDicesFromRank(rank)), withRerollOnExtremities);
+        return rollDices(parseDicesInfos(RankManager.getDicesFromRank(rank)), rerollMax, rerollMins);
     }
 
-    public int rollDices(final String aDicesInfos)
-    {
-        return rollDices(aDicesInfos, true);
-    }
-
-    public int rollDices(final String aDicesInfos, final boolean withRerollOnExtremities)
+    public int rollDices(final String aDicesInfos, final boolean rerollMax, final boolean rerollMins)
     {
         rank = 0;
         dicesInfos = aDicesInfos;
-        return rollDices(parseDicesInfos(dicesInfos), withRerollOnExtremities);
+        return rollDices(parseDicesInfos(dicesInfos), rerollMax, rerollMins);
     }
 
     private List<Rollable> parseDicesInfos(final String dicesInfos)
@@ -110,16 +90,16 @@ public class DicesLauncher
         }
     }
 
-    public int rollDices(final List<Rollable> dices, final boolean withRerollOnExtremities)
+    private int rollDices(final List<Rollable> dices, final boolean rerollMax, final boolean rerollMins)
     {
         logs.setLength(0);
         // lancer une première fois les dés et additionner les résultats.
         result = simpleRoll(dices);
 
         // Gérer les relances spécifiques au système EarthDawn
-        if (withRerollOnExtremities)
+        if (rerollMax || rerollMins)
         {
-            result += manageRerolls(dices);
+            result += manageRerolls(dices, rerollMax, rerollMins);
         }
 
         // Somme des dés après relances
@@ -142,7 +122,7 @@ public class DicesLauncher
         return sum;
     }
 
-    private int manageRerolls(final List<Rollable> dices)
+    private int manageRerolls(final List<Rollable> dices, final boolean rerollMax, final boolean rerollMins)
     {
         final List<Rollable> maxDices = new ArrayList<Rollable>(6);
         final List<Rollable> minDices = new ArrayList<Rollable>(6);
@@ -170,12 +150,12 @@ public class DicesLauncher
         logs.append("------\n");
 
         // Relancer les Max tant qu'ils sont Max
-        if (!maxDices.isEmpty())
+        if (rerollMax && !maxDices.isEmpty())
         {
             result = rerollMaxs(maxDices);
         }
         // Ou relancer les Min tant qu'ils sont Min
-        else if (!minDices.isEmpty())
+        else if (rerollMins && !minDices.isEmpty())
         {
             result = rerollMins(minDices);
         }
@@ -245,28 +225,27 @@ public class DicesLauncher
         return sum;
     }
 
-    public String getRollLogs()
-    {
-        return logs.toString();
-    }
-
     public int getRollResult()
     {
         return result;
     }
 
+    public String getRollLogs()
+    {
+        return logs.toString();
+    }
+
     public String getDetailedMessage(final Context ctx)
     {
         String msg = null;
-        if (DicesLauncher.get().getDicesInfos() != null)
+        if (dicesInfos != null)
         {
-            msg = DicesLauncher.get().getDicesInfos();
+            msg = dicesInfos;
         }
         else
         {
-            final int rank = DicesLauncher.get().getRank();
             msg = ctx.getString(R.string.roller_rank_msg, rank, RankManager.getDicesFromRank(rank));
         }
-        return ctx.getString(R.string.roller_message, msg, DicesLauncher.get().getRollResult(), DicesLauncher.get().getRollLogs());
+        return ctx.getString(R.string.roller_message, msg, DicesLauncher.get().getRollResult(), logs.toString());
     }
 }

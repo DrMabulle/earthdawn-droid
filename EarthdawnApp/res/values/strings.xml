@@ -50,10 +50,10 @@
     <string name="sheet_circle">Cercle</string>
     
     <string name="sheet_legend_title">Points de Légende</string>
-    <string name="sheet_legend_total">Total points de Légende : </string>
-    <string name="sheet_legend_spent">Points de Légende dépensés : </string>
-    <string name="sheet_legend_karma">Dont achat de karma : </string>
-    <string name="sheet_legend_available">Points de Légende disponibles : </string>
+    <string name="sheet_legend_total">Total points de Légende</string>
+    <string name="sheet_legend_spent">Points de Légende dépensés</string>
+    <string name="sheet_legend_karma">Dont achat de karma</string>
+    <string name="sheet_legend_available">Points de Légende disponibles</string>
     
     <string name="sheet_karma_title">Karma</string>
     <string name="sheet_karma_available">Points de Karma disponibles : </string>
@@ -143,7 +143,7 @@
     <string name="popup_damages_taken_msg">%1$s \nVous avez perdu %2$d point(s) de vie.\nVous avez subi %3$d blessure(s) grave(s).</string>
     
     <string name="popup_legend_title">Gain de points de Légende</string>
-    <string name="popup_legend_msg">Vous avez gagné des points de Légende. Félicitation ! \nCombien ?</string>
+    <string name="popup_legend_msg">Félicitation ! \nVous avez gagné des points de Légende. \nCombien ?</string>
     <string name="popup_legend_msg_ok">%1$d points de Légende correctement ajoutés au personnage.</string>
     <string name="popup_legend_button">Ajouter</string>
     
@@ -156,6 +156,8 @@
     <string name="msg_health_status_normal">Personnage conscient.</string>
     <string name="msg_heal_damages">Vous avez soigné de %1$d points.\n\n</string>
     <string name="msg_wound_healed">Une blessure grave a été soignée.</string>
+    <string name="msg_damages_healed">Résultat du jet de récupération : %1$d.\nNombre de blessures graves : %2$d.\nPoints de vie réucpérés : %3$d.</string>
+    <string name="msg_fully_healed">Toutes les blessures ont été supprimées.</string>
     <string name="msg_strain_healed">Fatigue récupérée.</string>
     
     <string name="msg_loot_thread">Filament %1$d (%2$d PL)</string>
@@ -167,6 +169,7 @@
     <string name="menu_heal_strain">Récupérer fatigue</string>
     <string name="menu_heal_damages">Jet de récupération</string>
     <string name="menu_heal_wounds">Guérir une blessure grave</string>
+    <string name="menu_full_health">Guérison complète</string>
     <string name="menu_gain_legend">Recevoir des points de Légende</string>
         
     <string name="bonusmalus">Bonus-Malus</string>
@@ -181,4 +184,19 @@
     
     <string name="roll">Lancer les dés</string>
     <string name="button_close">Fermer</string>
+    
+    
+    <string name="dex">Dextérité</string>
+    <string name="str">Force</string>
+    <string name="end">Endurance</string>
+    <string name="per">Perception</string>
+    <string name="vol">Volonté</string>
+    <string name="cha">Charisme</string>
+    <string name="no_att">Aucun attribut</string>
+    <string name="recup">Récupération</string>
+    <string name="init">Initiative</string>
+    <string name="damages">Dommages</string>
+    
+    
+    <string name="empty"></string>
 </resources>

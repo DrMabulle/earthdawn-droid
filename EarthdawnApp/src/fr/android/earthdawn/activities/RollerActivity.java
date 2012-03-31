@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.fragments.ShowResultFragment;
-import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.Constants;
 
 public class RollerActivity extends Activity
@@ -45,7 +45,7 @@ public class RollerActivity extends Activity
             if (dicesInfos != null && dicesInfos.length() > 0)
             {
 
-                final boolean isInputCorrect = DicesLauncher.get().testInputDicesInfos(dicesInfos);
+                final boolean isInputCorrect = EDDicesLauncher.get().testInputDicesInfos(dicesInfos);
 
                 if (!isInputCorrect)
                 {
@@ -55,7 +55,7 @@ public class RollerActivity extends Activity
                 else
                 {
                     // Open result popup
-                    DicesLauncher.get().rollDices(dicesInfos);
+                    EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, dicesInfos);
                     showDialogResult("dés");
                 }
             }
@@ -65,7 +65,7 @@ public class RollerActivity extends Activity
                 final int rank = rankPicker.getValue();
 
                 // Open result popup
-                DicesLauncher.get().rollDices(rank);
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, rank);
                 showDialogResult("dés");
             }
 
@@ -142,6 +142,6 @@ public class RollerActivity extends Activity
 
     private String buildMessage()
     {
-        return  DicesLauncher.get().getDetailedMessage(this);
+        return  EDDicesLauncher.get().getDetailedMessage(this);
     }
 }

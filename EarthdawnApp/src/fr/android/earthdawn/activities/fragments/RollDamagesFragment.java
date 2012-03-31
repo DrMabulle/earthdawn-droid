@@ -19,7 +19,7 @@ import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.CharacterUtils;
 import fr.android.earthdawn.utils.Constants;
 import fr.android.earthdawn.utils.EquipmentUtils;
@@ -33,7 +33,13 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
     private final Bundle args;
     private List<IEquipment> weapons;
 
-    private RollDamagesFragment(final Bundle aArgs)
+    public RollDamagesFragment()
+    {
+        super();
+        args = new Bundle(3);
+    }
+
+    public RollDamagesFragment(final Bundle aArgs)
     {
         super();
         args = aArgs;
@@ -101,7 +107,7 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
                 final int strengh = getCharacterStrengh();
 
                 // roll dices
-                DicesLauncher.get().rollDices(strengh + mod, false);
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_DAMAGES, R.string.damages, strengh + mod);
 
                 // open result popup
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();

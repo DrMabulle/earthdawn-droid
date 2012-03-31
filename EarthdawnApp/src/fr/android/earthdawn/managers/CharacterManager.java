@@ -44,10 +44,10 @@ public class CharacterManager
         {
             CHAR = (EDCharacter) test;
         }
-//        else
-//        {
+        else
+        {
             CHAR = loadCharacter(id);
-//        }
+        }
         return CHAR;
     }
 
@@ -120,15 +120,15 @@ public class CharacterManager
         discipline.setTalentRank(talents.get(4), 6); // PeauBois
         discipline.setTalentRank(talents.get(5), 2); // RituelKarmique
         discipline.setTalentRank(talents.get(6), 7); // Longevite
-        discipline.setTalentRank(talents.get(7), 4); // ArmesJet
-        discipline.setTalentRank(talents.get(8), 5); // Anticipation
+        discipline.setTalentRank(talents.get(7), 5); // Anticipation
+        discipline.setTalentRank(talents.get(8), 4); // ArmesJet
         discipline.setTalentRank(talents.get(9), 6); // Esquive
         discipline.setTalentRank(talents.get(10), 6); // VivaciteTigre
         discipline.setTalentRank(talents.get(11), 4); // AttaquePlongeante
         discipline.setTalentRank(talents.get(12), 7); // Tissage
         discipline.setTalentRank(talents.get(13), 4); // CoupDouble
         discipline.setTalentRank(talents.get(14), 6); // Envol
-        discipline.setTalentRank(talents.get(15), 1); // Rituel Maitre Fantome
+        discipline.setTalentRank(talents.get(15), 0); // Rituel Maitre Fantome
         discipline.setTalentRank(talents.get(16), 1); // ArmesTrait
         discipline.setTalentRank(talents.get(17), 3); // UltimeSursaut
 
@@ -149,6 +149,7 @@ public class CharacterManager
         //malack.addEquipment(EquipmentManager.getWeaponList().get(4));
         malack.addEquipment(EquipmentManager.getArmorList().get(7)); // Armure de plaques en cristal
         malack.addEquipment(EquipmentManager.getArmorList().get(11)); // Galets de sang
+        malack.addEquipment(EquipmentManager.getDefensesList().get(0)); // Bouclier d'infanterie
 
         // Anneau Kelnone
         List<List<Mod>> bonuses = new ArrayList<List<Mod>>();
@@ -325,7 +326,7 @@ public class CharacterManager
             {
                 result[i] = files[i].replace(".ser", "");
             }
-//            return result;
+            return result;
         }
         // TODO
        // return new String[] {MALACK, ARDAMIR, FORGERON, PURIFICATEUR, MENESTREL};

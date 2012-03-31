@@ -140,4 +140,58 @@ public final class CharacterUtils
         max += character.computeBonusesInt(Pointcuts.KARMA_POINTS);
         return max;
     }
+
+    @SuppressWarnings("rawtypes")
+    public static final double computePerks(final EDCharacter character, final Pointcuts pointcut, final Enum... additionnalInfos)
+    {
+        double result = 0.0;
+        // Bonuses from main discipline
+        List<Mod> mods = character.getMainDiscipline().getPerks();
+        for (final Mod mod : mods)
+        {
+            result = incrementIfEqual(pointcut, result, mod, additionnalInfos);
+        }
+        // bonuses from second discipline
+        if (character.getSecondDiscipline() != null)
+        {
+            mods = character.getSecondDiscipline().getPerks();
+            for (final Mod mod : mods)
+            {
+                result = incrementIfEqual(pointcut, result, mod, additionnalInfos);
+            }
+            // bonuses from third discipline
+            if (character.getThirdDiscipline() != null)
+            {
+                mods = character.getSecondDiscipline().getPerks();
+                for (final Mod mod : mods)
+                {
+                    result = incrementIfEqual(pointcut, result, mod, additionnalInfos);
+                }
+            }
+        }
+        return result;
+    }
+
+    @SuppressWarnings("rawtypes")
+    protected static double incrementIfEqual(final Pointcuts pointcut, double result, final Mod mod, final Enum... additionnalInfos)
+    {
+        if (pointcut.equals(mod.getPointcut()))
+        {
+            // Attributs || talents || karma use
+            if (Pointcuts.ATTRIBUT.equals(pointcut) || Pointcuts.TALENT.equals(pointcut) || Pointcuts.KARMA_USE.equals(pointcut))
+            {
+                if(additionnalInfos[0].equals(mod.getOtherInfos()[0]))
+                {
+                    result += mod.getModificator();
+                }
+            }
+
+            // Others
+            else
+            {
+                result += mod.getModificator();
+            }
+        }
+        return result;
+    }
 }

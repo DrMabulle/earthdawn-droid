@@ -13,7 +13,7 @@ import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.Constants;
 
@@ -37,8 +37,6 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
         return view;
     }
 
-
-
     @Override
     public void onClick(final View view)
     {
@@ -50,7 +48,8 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
             final int level = Integer.parseInt((String) ((TextView) parent.findViewById(R.id.talents_level)).getText());
             // TODO Talents pre and post actions.
             final String talentname = (String) ((TextView) parent.findViewById(R.id.talents_talent)).getText();
-            final Talents talents = Talents.findByLabel(talentname);
+            final int talentId = Integer.parseInt((String) ((TextView) parent.findViewById(R.id.talents_talent_id)).getText());
+            final Talents talents = Talents.findByLabel(talentId);
             final Talent talent = discicpline.findTalent(talents);
             talent.executePreAction();
 
@@ -62,13 +61,13 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
                 final String dices = RankManager.getDicesFromRank(level);
                 final String karmaDice = RankManager.getDicesFromRank(character.getRace().getKarmaRank());
                 // Mettre le karma en premier pour éviter les problème avec les modificateurs
-                DicesLauncher.get().rollDices(karmaDice + " " + dices);
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_TALENT, talentId, karmaDice + " " + dices);
                 character.incrementKarmaSpent(1);
             }
             else
             {
                 // Définir le niveau à lancer
-                DicesLauncher.get().rollDices(level);
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_TALENT, talentId, level);
             }
             // Nom du talent
             args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, talentname);

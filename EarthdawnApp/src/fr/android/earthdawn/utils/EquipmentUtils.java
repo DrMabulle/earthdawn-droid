@@ -28,4 +28,53 @@ public final class EquipmentUtils
         }
         return damages;
     }
+
+
+    @SuppressWarnings("rawtypes")
+    public static double computeMods(final List<IEquipment> equipment, final List<Mod> permMod, final List<Mod> tmpMod,
+            final Pointcuts pointcut, final Enum... additionnalInfos)
+    {
+        double result = 0.0;
+
+        for (final IEquipment equip : equipment)
+        {
+            for (final Mod mod : equip.getBonuses())
+            {
+                result = incrementIfEqual(pointcut, result, mod, additionnalInfos);
+            }
+        }
+        for (final Mod mod : permMod)
+        {
+            result = incrementIfEqual(pointcut, result, mod, additionnalInfos);
+        }
+        for (final Mod mod : tmpMod)
+        {
+            result = incrementIfEqual(pointcut, result, mod, additionnalInfos);
+        }
+
+        return result;
+    }
+
+    @SuppressWarnings("rawtypes")
+    protected static double incrementIfEqual(final Pointcuts pointcut, double result, final Mod mod, final Enum... additionnalInfos)
+    {
+        if (pointcut.equals(mod.getPointcut()))
+        {
+            // Attributs || talents
+            if (Pointcuts.ATTRIBUT.equals(pointcut) || Pointcuts.TALENT.equals(pointcut))
+            {
+                if(additionnalInfos[0].equals(mod.getOtherInfos()[0]))
+                {
+                    result += mod.getModificator();
+                }
+            }
+
+            // Others
+            else
+            {
+                result += mod.getModificator();
+            }
+        }
+        return result;
+    }
 }

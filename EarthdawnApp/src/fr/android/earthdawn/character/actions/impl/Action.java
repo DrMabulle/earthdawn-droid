@@ -5,7 +5,7 @@ import fr.android.earthdawn.character.actions.IAction;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.managers.EDDicesLauncher;
 
 public class Action
 {
@@ -19,13 +19,13 @@ public class Action
         }
 
         @Override
-        public void execute(final String nomTalent)
+        public void execute(final int nomTalent)
         {
             final EDCharacter character = CharacterManager.getLoadedCharacter();
 
             for (final Pointcuts pointcut : pointcuts)
             {
-                character.addOrReplaceTempMod(new Mod(pointcut, DicesLauncher.get().getRollResult(), nomTalent));
+                character.addOrReplaceTempMod(new Mod(pointcut, EDDicesLauncher.get().getRollResult(), nomTalent)); // XXX
             }
         }
     };

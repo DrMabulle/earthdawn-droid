@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.managers.XPManager;
 import fr.android.earthdawn.utils.CharacterUtils;
@@ -157,37 +158,37 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         switch (view.getId())
         {
             case R.id.sheet_dex_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.DEX));
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.DEX.getFullName(), character.getAttributRank(Attributs.DEX));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_dex));
                 showDialogResult(args);
                 break;
             case R.id.sheet_str_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.STR));
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.STR.getFullName(), character.getAttributRank(Attributs.STR));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_str));
                 showDialogResult(args);
                 break;
             case R.id.sheet_end_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.END));
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.END.getFullName(), character.getAttributRank(Attributs.END));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_end));
                 showDialogResult(args);
                 break;
             case R.id.sheet_per_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.PER));
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.PER.getFullName(), character.getAttributRank(Attributs.PER));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_per));
                 showDialogResult(args);
                 break;
             case R.id.sheet_vol_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.VOL));
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.VOL.getFullName(), character.getAttributRank(Attributs.VOL));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_vol));
                 showDialogResult(args);
                 break;
             case R.id.sheet_cha_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.CHA));
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.CHA.getFullName(), character.getAttributRank(Attributs.CHA));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_cha));
                 showDialogResult(args);
                 break;
             case R.id.roll_initiative:
-                DicesLauncher.get().rollDices(character.getInitiativeLevel());
+                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.init, character.getInitiativeLevel());
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_initiative));
                 showDialogResult(args);
                 break;
@@ -234,6 +235,11 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
                 RankManager.getDicesFromRank(character.getRace().getKarmaRank()));
         ((TextView) view.findViewById(R.id.sheet_karma_level)).setText(karmaLvl);
         // Special uses
-        // TODO see discipline perks
+        ((RadioButton) view.findViewById(R.id.karma_dex)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.DEX) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_str)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.STR) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_end)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.END) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_per)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.PER) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_vol)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.VOL) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_cha)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.CHA) > 0);
     }
 }

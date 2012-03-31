@@ -3,26 +3,27 @@
  */
 package fr.android.earthdawn.character.enums;
 
+import fr.android.earthdawn.R;
+
 /**
  * @author DrMabulle
  *
  */
 public enum Attributs
 {
-    DEX(0, "DEX", "Dextérité"),
-    STR(1, "FOR", "Force"),
-    END(2, "END", "Endurance"),
-    PER(3, "PER", "Perception"),
-    VOL(4, "VOL", "Volonté"),
-    CHA(5, "CHA", "Charisme"),
-    NUL(6, "", "Aucun attribut");
-
+    DEX(0, "DEX", R.string.dex),
+    STR(1, "FOR", R.string.str),
+    END(2, "END", R.string.end),
+    PER(3, "PER", R.string.per),
+    VOL(4, "VOL", R.string.vol),
+    CHA(5, "CHA", R.string.cha),
+    NUL(6, "", R.string.no_att);
 
     private int id;
     private String label;
-    private String fullName;
+    private int fullName;
 
-    Attributs(final int aId, final String aLabel, final String aFullName)
+    Attributs(final int aId, final String aLabel, final int aFullName)
     {
         id = aId;
         label = aLabel;
@@ -39,7 +40,7 @@ public enum Attributs
         return label;
     }
 
-    public String getFullName()
+    public int getFullName()
     {
         return fullName;
     }
