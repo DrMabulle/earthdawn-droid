@@ -9,6 +9,8 @@ package fr.android.earthdawn.utils;
  */
 public final class NumberUtils
 {
+    private NumberUtils() {};
+
     public static final String format(final double aDouble)
     {
         String builder = Double.toString(aDouble);

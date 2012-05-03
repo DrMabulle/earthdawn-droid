@@ -1,81 +1,72 @@
 /**
  *
  */
-package fr.android.earthdawn.managers;
+package fr.android.earthdawn.dices;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import android.content.Context;
-import fr.android.earthdawn.R;
-import fr.android.earthdawn.dices.Rollable;
 import fr.android.earthdawn.dices.impl.Dice;
 import fr.android.earthdawn.dices.impl.FixedValueDice;
+import fr.android.earthdawn.managers.RankManager;
 
 /**
  * @author DrMabulle
  *
  * Not thread safe at all, but the way the program uses this it doesn't matter
  */
-public class DicesLauncher
+public final class DicesLauncher
 {
+    private static final String REGEX = "([0-9]+D[0-9]+[ ]*)+(-[0-9]+)*";
 
-    private final String REGEX = "([0-9]+D[0-9]+[ ]*)+(-[0-9]+)*";
-
-    private static final DicesLauncher INSTANCE = new DicesLauncher();
-    private final StringBuilder logs = new StringBuilder(256);
-    private int result = 0;
-    private int rank = 0;
-    private String dicesInfos = null;
+    private static final StringBuilder logs = new StringBuilder(256);
+    private static int result = 0;
+    private static int rank = 0;
+    private static String dicesInfos = null;
 
     private DicesLauncher() {}
 
-    public static DicesLauncher get()
-    {
-        return INSTANCE;
-    }
-
-    public int getRank()
+    public static int getRank()
     {
         return rank;
     }
 
-    public String getDicesInfos()
+    public static String getDicesInfos()
     {
         return dicesInfos;
     }
 
-    public boolean testInputDicesInfos(final String dicesInfos)
+    public static boolean testInputDicesInfos(final String dicesInfos)
     {
         return dicesInfos != null && dicesInfos.length() > 0 && dicesInfos.matches(REGEX);
     }
 
-    public int rollDices(final int aRank)
+    public static int rollDices(final int aRank)
     {
         return rollDices(aRank, true);
     }
 
-    public int rollDices(final int aRank, final boolean withRerollOnExtremities)
+    public static int rollDices(final int aRank, final boolean rerollMins)
     {
         rank = aRank;
         dicesInfos = null;
-        return rollDices(parseDicesInfos(RankManager.getDicesFromRank(rank)), withRerollOnExtremities);
+        return rollDices(parseDicesInfos(RankManager.getDicesFromRank(rank)), rerollMins);
     }
 
-    public int rollDices(final String aDicesInfos)
+    public static int rollDices(final String aDicesInfos)
     {
         return rollDices(aDicesInfos, true);
     }
 
-    public int rollDices(final String aDicesInfos, final boolean withRerollOnExtremities)
+    public static int rollDices(final String aDicesInfos, final boolean rerollMins)
     {
         rank = 0;
         dicesInfos = aDicesInfos;
-        return rollDices(parseDicesInfos(dicesInfos), withRerollOnExtremities);
+        return rollDices(parseDicesInfos(dicesInfos), rerollMins);
     }
 
-    private List<Rollable> parseDicesInfos(final String dicesInfos)
+    private static List<Rollable> parseDicesInfos(final String dicesInfos)
     {
         // Full exemple of infos : 2D20 1D12 -2
         final List<Rollable> dices = new ArrayList<Rollable>(6);
@@ -95,7 +86,7 @@ public class DicesLauncher
         return dices;
     }
 
-    private void instanciateDices(final String infos, final List<Rollable> dices)
+    private static void instanciateDices(final String infos, final List<Rollable> dices)
     {
         final String[] split = infos.split("D");
         if (split.length == 2)
@@ -110,23 +101,20 @@ public class DicesLauncher
         }
     }
 
-    public int rollDices(final List<Rollable> dices, final boolean withRerollOnExtremities)
+    public static int rollDices(final List<Rollable> dices, final boolean rerollMins)
     {
         logs.setLength(0);
         // lancer une première fois les dés et additionner les résultats.
         result = simpleRoll(dices);
 
         // Gérer les relances spécifiques au système EarthDawn
-        if (withRerollOnExtremities)
-        {
-            result += manageRerolls(dices);
-        }
+        result += manageRerolls(dices, rerollMins);
 
         // Somme des dés après relances
         return result;
     }
 
-    private int simpleRoll(final List<Rollable> dices)
+    private static int simpleRoll(final List<Rollable> dices)
     {
         // Lancer les dés et additionner les résultats
         int sum = 0;
@@ -142,7 +130,7 @@ public class DicesLauncher
         return sum;
     }
 
-    private int manageRerolls(final List<Rollable> dices)
+    private static int manageRerolls(final List<Rollable> dices, final boolean rerollMins)
     {
         final List<Rollable> maxDices = new ArrayList<Rollable>(6);
         final List<Rollable> minDices = new ArrayList<Rollable>(6);
@@ -175,7 +163,7 @@ public class DicesLauncher
             result = rerollMaxs(maxDices);
         }
         // Ou relancer les Min tant qu'ils sont Min
-        else if (!minDices.isEmpty())
+        else if (!minDices.isEmpty() && rerollMins)
         {
             result = rerollMins(minDices);
         }
@@ -183,7 +171,7 @@ public class DicesLauncher
         return result;
     }
 
-    private void removeCancelledDices(final List<Rollable> maxDices, final List<Rollable> minDices)
+    private static void removeCancelledDices(final List<Rollable> maxDices, final List<Rollable> minDices)
     {
         // Trier les listes par ordre décroissant
         Collections.sort(maxDices);
@@ -201,7 +189,7 @@ public class DicesLauncher
 
     }
 
-    private int rerollMaxs(final List<Rollable> maxDices)
+    private static int rerollMaxs(final List<Rollable> maxDices)
     {
         int sum = 0;
         while (!maxDices.isEmpty())
@@ -223,7 +211,7 @@ public class DicesLauncher
         return sum;
     }
 
-    private int rerollMins(final List<Rollable> minDices)
+    private static int rerollMins(final List<Rollable> minDices)
     {
         int sum = 0;
         while (!minDices.isEmpty())
@@ -245,28 +233,13 @@ public class DicesLauncher
         return sum;
     }
 
-    public String getRollLogs()
+    public static String getRollLogs()
     {
         return logs.toString();
     }
 
-    public int getRollResult()
+    public static int getRollResult()
     {
         return result;
-    }
-
-    public String getDetailedMessage(final Context ctx)
-    {
-        String msg = null;
-        if (DicesLauncher.get().getDicesInfos() != null)
-        {
-            msg = DicesLauncher.get().getDicesInfos();
-        }
-        else
-        {
-            final int rank = DicesLauncher.get().getRank();
-            msg = ctx.getString(R.string.roller_rank_msg, rank, RankManager.getDicesFromRank(rank));
-        }
-        return ctx.getString(R.string.roller_message, msg, DicesLauncher.get().getRollResult(), DicesLauncher.get().getRollLogs());
     }
 }

@@ -25,13 +25,15 @@ import fr.android.earthdawn.utils.SerializationUtils;
  * @author DrMabulle
  *
  */
-public class CharacterManager
+public final class CharacterManager
 {
     private static EDCharacter CHAR = null;
 
     private static final String MALACK = "Malack";
     private static final String PURIFICATEUR = "Ajmar Coeur-Tendre";
     private static final String FORGERON = "Arjaän Messarim";
+
+    private CharacterManager() {}
 
     public static EDCharacter getLoadedCharacter()
     {

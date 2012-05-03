@@ -12,8 +12,8 @@ import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.Constants;
 
@@ -62,13 +62,13 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
                 final String dices = RankManager.getDicesFromRank(level);
                 final String karmaDice = RankManager.getDicesFromRank(character.getRace().getKarmaRank());
                 // Mettre le karma en premier pour éviter les problème avec les modificateurs
-                DicesLauncher.get().rollDices(karmaDice + " " + dices);
+                DicesLauncher.rollDices(karmaDice + " " + dices);
                 character.incrementKarmaSpent(1);
             }
             else
             {
                 // Définir le niveau à lancer
-                DicesLauncher.get().rollDices(level);
+                DicesLauncher.rollDices(level);
             }
             // Nom du talent
             args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, talentname);

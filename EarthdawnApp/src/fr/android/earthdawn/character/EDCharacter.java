@@ -21,9 +21,9 @@ import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.dices.utils.DiceMapping;
-import fr.android.earthdawn.managers.EquipmentManager;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.CharacterUtils;
+import fr.android.earthdawn.utils.EquipmentUtils;
 import fr.android.earthdawn.utils.NumberUtils;
 
 /**
@@ -469,15 +469,15 @@ public class EDCharacter implements Serializable
 
     public int computeBonusesInt(final Attributs attribut)
     {
-        return (int) EquipmentManager.computeMods(equipment, modPerm, modTmp, Pointcuts.ATTRIBUT, attribut);
+        return (int) EquipmentUtils.computeMods(equipment, modPerm, modTmp, Pointcuts.ATTRIBUT, attribut);
     }
     public int computeBonusesInt(final Talents talent)
     {
-        return (int) EquipmentManager.computeMods(equipment, modPerm, modTmp, Pointcuts.TALENT, talent);
+        return (int) EquipmentUtils.computeMods(equipment, modPerm, modTmp, Pointcuts.TALENT, talent);
     }
     public int computeBonusesInt(final Pointcuts pointcut)
     {
-        return (int) EquipmentManager.computeMods(equipment, modPerm, modTmp, pointcut);
+        return (int) EquipmentUtils.computeMods(equipment, modPerm, modTmp, pointcut);
     }
 
     protected static boolean checkCircle(final int circle)

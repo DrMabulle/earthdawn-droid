@@ -76,38 +76,42 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
                 final MagicalEquipment loot = (MagicalEquipment) possession;
                 final int rank = loot.getRank();
 
-                TextView tv;
                 String tab = EMPTY;
                 List<Mod> mods;
+                final StringBuilder msg = new StringBuilder(96);
                 for (int i = 0; i < rank+1; i++)
                 {
                     mods = loot.getBonuses(rank);
                     if (i > 0)
                     {
                         tab = TAB;
-                        tv = new TextView(ctx);
-                        final StringBuilder msg = new StringBuilder(24);
-                        tv.setText(ctx.getString(R.string.msg_loot_thread, i, loot.getCosts()[i - 1]));
-                        details.addView(tv);
+                        msg.append(ctx.getString(R.string.msg_loot_thread, i, loot.getCosts()[i - 1]));
+                        msg.append('\n');
                     }
                     for (final Mod mod : mods)
                     {
-                        tv = new TextView(ctx);
-                        tv.setText(tab + mod.toString());
-                        details.addView(tv);
+                        msg.append(tab);
+                        msg.append(mod.toString());
+                        msg.append('\n');
                     }
                 }
+                final TextView tv = new TextView(ctx);
+                tv.setText(msg.toString());
+                details.addView(tv);
             }
             // Draw details for classical equipment
             else
             {
                 final List<Mod> bonuses = possession.getBonuses();
+                final StringBuilder msg = new StringBuilder(96);
                 for (final Mod mod : bonuses)
                 {
-                    final TextView tv = new TextView(ctx);
-                    tv.setText(mod.toString());
-                    details.addView(tv);
+                    msg.append(mod.toString());
+                    msg.append('\n');
                 }
+                final TextView tv = new TextView(ctx);
+                tv.setText(msg.toString());
+                details.addView(tv);
             }
         }
 

@@ -11,8 +11,8 @@ import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.SkillAdapter;
 import fr.android.earthdawn.character.EDCharacter;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.utils.Constants;
 
 public class SkillsFragment extends AbstractRollingFragment implements View.OnClickListener
@@ -46,7 +46,7 @@ public class SkillsFragment extends AbstractRollingFragment implements View.OnCl
             final int level = Integer.parseInt((String) ((TextView) parent.findViewById(R.id.skills_level)).getText());
 
             // Définir le niveau à lancer
-            DicesLauncher.get().rollDices(level);
+            DicesLauncher.rollDices(level);
 
                 // Nom du skill
             final String skillname = (String) ((TextView) parent.findViewById(R.id.skills_skill)).getText();

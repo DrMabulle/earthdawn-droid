@@ -18,8 +18,8 @@ import android.widget.RadioGroup;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.equipement.IEquipment;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.utils.CharacterUtils;
 import fr.android.earthdawn.utils.Constants;
 import fr.android.earthdawn.utils.EquipmentUtils;
@@ -101,7 +101,7 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
                 final int strengh = getCharacterStrengh();
 
                 // roll dices
-                DicesLauncher.get().rollDices(strengh + mod, false);
+                DicesLauncher.rollDices(strengh + mod, false);
 
                 // open result popup
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();

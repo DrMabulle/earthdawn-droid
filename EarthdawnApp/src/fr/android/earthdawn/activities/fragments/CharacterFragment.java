@@ -11,8 +11,8 @@ import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Pointcuts;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.managers.XPManager;
 import fr.android.earthdawn.utils.CharacterUtils;
@@ -157,37 +157,37 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         switch (view.getId())
         {
             case R.id.sheet_dex_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.DEX));
+                DicesLauncher.rollDices(character.getAttributRank(Attributs.DEX));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_dex));
                 showDialogResult(args);
                 break;
             case R.id.sheet_str_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.STR));
+                DicesLauncher.rollDices(character.getAttributRank(Attributs.STR));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_str));
                 showDialogResult(args);
                 break;
             case R.id.sheet_end_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.END));
+                DicesLauncher.rollDices(character.getAttributRank(Attributs.END));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_end));
                 showDialogResult(args);
                 break;
             case R.id.sheet_per_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.PER));
+                DicesLauncher.rollDices(character.getAttributRank(Attributs.PER));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_per));
                 showDialogResult(args);
                 break;
             case R.id.sheet_vol_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.VOL));
+                DicesLauncher.rollDices(character.getAttributRank(Attributs.VOL));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_vol));
                 showDialogResult(args);
                 break;
             case R.id.sheet_cha_roll:
-                DicesLauncher.get().rollDices(character.getAttributRank(Attributs.CHA));
+                DicesLauncher.rollDices(character.getAttributRank(Attributs.CHA));
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_cha));
                 showDialogResult(args);
                 break;
             case R.id.roll_initiative:
-                DicesLauncher.get().rollDices(character.getInitiativeLevel());
+                DicesLauncher.rollDices(character.getInitiativeLevel());
                 args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_initiative));
                 showDialogResult(args);
                 break;
@@ -211,10 +211,10 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         // Total earned
         ((TextView) view.findViewById(R.id.sheet_legend_total)).setText(Integer.toString(character.getLegendPoints()));
         // Total spent
-        final int legendSpent = XPManager.get().evaluateCharacter(character);
+        final int legendSpent = XPManager.evaluateCharacter(character);
         ((TextView) view.findViewById(R.id.sheet_legend_spent)).setText(Integer.toString(legendSpent));
         // Spent in karma
-        final int legendKarma = XPManager.get().evaluateKarma(character.getRace(), character.getKarmaBought());
+        final int legendKarma = XPManager.evaluateKarma(character.getRace(), character.getKarmaBought());
         ((TextView) view.findViewById(R.id.sheet_legend_karma)).setText(Integer.toString(legendKarma));
         // Available
         ((TextView) view.findViewById(R.id.sheet_legend_available)).setText(Integer.toString(character.getLegendPoints() - legendSpent));

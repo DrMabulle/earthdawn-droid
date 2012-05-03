@@ -175,18 +175,18 @@ public class XPManagerTest
     @Test
     public void testEvaluateCharacter()
     {
-        Assert.assertEquals(57900, XPManager.get().evaluateCharacter(malack));
-        Assert.assertEquals(81900, XPManager.get().evaluateCharacter(forgeron));
+        Assert.assertEquals(57900, XPManager.evaluateCharacter(malack));
+        Assert.assertEquals(81900, XPManager.evaluateCharacter(forgeron));
     }
 
     @Test
     public void testEvaluateDiscipline()
     {
-        Assert.assertEquals(50000, XPManager.get().evaluateDiscipline(malack.getMainDiscipline()));
-        Assert.assertEquals(4700, XPManager.get().evaluateDiscipline(malack.getSecondDiscipline()));
+        Assert.assertEquals(50000, XPManager.evaluateDiscipline(malack.getMainDiscipline()));
+        Assert.assertEquals(4700, XPManager.evaluateDiscipline(malack.getSecondDiscipline()));
 
-        Assert.assertEquals(55600, XPManager.get().evaluateDiscipline(forgeron.getMainDiscipline()));
-        Assert.assertEquals(12300, XPManager.get().evaluateDiscipline(forgeron.getSecondDiscipline()));
+        Assert.assertEquals(55600, XPManager.evaluateDiscipline(forgeron.getMainDiscipline()));
+        Assert.assertEquals(12300, XPManager.evaluateDiscipline(forgeron.getSecondDiscipline()));
     }
 
     @Test
@@ -202,80 +202,80 @@ public class XPManagerTest
         final Talent talent8 = new Talent(Talents.AbriVegetal, 15, false, null, null);
 
         // Rank 1
-        Assert.assertEquals(100, XPManager.get().evaluateTalent(talent1, 1));
-        Assert.assertEquals(100, XPManager.get().evaluateTalent(talent2, 1));
-        Assert.assertEquals(200, XPManager.get().evaluateTalent(talent3, 1));
-        Assert.assertEquals(200, XPManager.get().evaluateTalent(talent4, 1));
-        Assert.assertEquals(300, XPManager.get().evaluateTalent(talent5, 1));
-        Assert.assertEquals(300, XPManager.get().evaluateTalent(talent6, 1));
-        Assert.assertEquals(500, XPManager.get().evaluateTalent(talent7, 1));
-        Assert.assertEquals(500, XPManager.get().evaluateTalent(talent8, 1));
+        Assert.assertEquals(100, XPManager.evaluateTalent(talent1, 1));
+        Assert.assertEquals(100, XPManager.evaluateTalent(talent2, 1));
+        Assert.assertEquals(200, XPManager.evaluateTalent(talent3, 1));
+        Assert.assertEquals(200, XPManager.evaluateTalent(talent4, 1));
+        Assert.assertEquals(300, XPManager.evaluateTalent(talent5, 1));
+        Assert.assertEquals(300, XPManager.evaluateTalent(talent6, 1));
+        Assert.assertEquals(500, XPManager.evaluateTalent(talent7, 1));
+        Assert.assertEquals(500, XPManager.evaluateTalent(talent8, 1));
 
         // Rank 5
-        Assert.assertEquals(1900, XPManager.get().evaluateTalent(talent1, 5));
-        Assert.assertEquals(1900, XPManager.get().evaluateTalent(talent2, 5));
-        Assert.assertEquals(3100, XPManager.get().evaluateTalent(talent3, 5));
-        Assert.assertEquals(3100, XPManager.get().evaluateTalent(talent4, 5));
-        Assert.assertEquals(5000, XPManager.get().evaluateTalent(talent5, 5));
-        Assert.assertEquals(5000, XPManager.get().evaluateTalent(talent6, 5));
-        Assert.assertEquals(8100, XPManager.get().evaluateTalent(talent7, 5));
-        Assert.assertEquals(8100, XPManager.get().evaluateTalent(talent8, 5));
+        Assert.assertEquals(1900, XPManager.evaluateTalent(talent1, 5));
+        Assert.assertEquals(1900, XPManager.evaluateTalent(talent2, 5));
+        Assert.assertEquals(3100, XPManager.evaluateTalent(talent3, 5));
+        Assert.assertEquals(3100, XPManager.evaluateTalent(talent4, 5));
+        Assert.assertEquals(5000, XPManager.evaluateTalent(talent5, 5));
+        Assert.assertEquals(5000, XPManager.evaluateTalent(talent6, 5));
+        Assert.assertEquals(8100, XPManager.evaluateTalent(talent7, 5));
+        Assert.assertEquals(8100, XPManager.evaluateTalent(talent8, 5));
 
         // Rank 10
-        Assert.assertEquals(23100, XPManager.get().evaluateTalent(talent1, 10));
-        Assert.assertEquals(23100, XPManager.get().evaluateTalent(talent2, 10));
-        Assert.assertEquals(37400, XPManager.get().evaluateTalent(talent3, 10));
-        Assert.assertEquals(37400, XPManager.get().evaluateTalent(talent4, 10));
-        Assert.assertEquals(60500, XPManager.get().evaluateTalent(talent5, 10));
-        Assert.assertEquals(60500, XPManager.get().evaluateTalent(talent6, 10));
-        Assert.assertEquals(97900, XPManager.get().evaluateTalent(talent7, 10));
-        Assert.assertEquals(97900, XPManager.get().evaluateTalent(talent8, 10));
+        Assert.assertEquals(23100, XPManager.evaluateTalent(talent1, 10));
+        Assert.assertEquals(23100, XPManager.evaluateTalent(talent2, 10));
+        Assert.assertEquals(37400, XPManager.evaluateTalent(talent3, 10));
+        Assert.assertEquals(37400, XPManager.evaluateTalent(talent4, 10));
+        Assert.assertEquals(60500, XPManager.evaluateTalent(talent5, 10));
+        Assert.assertEquals(60500, XPManager.evaluateTalent(talent6, 10));
+        Assert.assertEquals(97900, XPManager.evaluateTalent(talent7, 10));
+        Assert.assertEquals(97900, XPManager.evaluateTalent(talent8, 10));
     }
 
     @Test
     public void testEvaluateAttributs()
     {
-        Assert.assertEquals(0, XPManager.get().evaluateAttributs(0));
-        Assert.assertEquals(800, XPManager.get().evaluateAttributs(1));
-        Assert.assertEquals(2100, XPManager.get().evaluateAttributs(2));
-        Assert.assertEquals(4200, XPManager.get().evaluateAttributs(3));
-        Assert.assertEquals(7600, XPManager.get().evaluateAttributs(4));
-        Assert.assertEquals(13100, XPManager.get().evaluateAttributs(5));
+        Assert.assertEquals(0, XPManager.evaluateAttributs(0));
+        Assert.assertEquals(800, XPManager.evaluateAttributs(1));
+        Assert.assertEquals(2100, XPManager.evaluateAttributs(2));
+        Assert.assertEquals(4200, XPManager.evaluateAttributs(3));
+        Assert.assertEquals(7600, XPManager.evaluateAttributs(4));
+        Assert.assertEquals(13100, XPManager.evaluateAttributs(5));
     }
 
     @Test
     public void testEvaluateEquipment()
     {
-        Assert.assertEquals(4000, XPManager.get().evaluateEquipment(forgeron));
+        Assert.assertEquals(4000, XPManager.evaluateEquipment(forgeron));
     }
 
     @Test
     public void testEvaluateSkills()
     {
         malack.addSkill(new Skill("Test1", Attributs.DEX, true, 1)); // 200 PL
-        Assert.assertEquals(200, XPManager.get().evaluateSkills(malack.getSkills()));
+        Assert.assertEquals(200, XPManager.evaluateSkills(malack.getSkills()));
 
         malack.addSkill(new Skill("Test2", Attributs.DEX, true, 1)); // 200 PL
-        Assert.assertEquals(400, XPManager.get().evaluateSkills(malack.getSkills()));
+        Assert.assertEquals(400, XPManager.evaluateSkills(malack.getSkills()));
 
         malack.addSkill(new Skill("Test3", Attributs.DEX, true, 1).incrementRank()); // 200 + 300 PL
-        Assert.assertEquals(900, XPManager.get().evaluateSkills(malack.getSkills()));
+        Assert.assertEquals(900, XPManager.evaluateSkills(malack.getSkills()));
 
         malack.addSkill(new Skill("Test4", Attributs.DEX, true, 1).incrementRank().incrementRank()); // 200 + 300 + 500 PL
-        Assert.assertEquals(1900, XPManager.get().evaluateSkills(malack.getSkills()));
+        Assert.assertEquals(1900, XPManager.evaluateSkills(malack.getSkills()));
     }
 
     @Test
     public void testEvaluateKarma()
     {
-        Assert.assertEquals(1000, XPManager.get().evaluateKarma(Races.Elfe, 100));
-        Assert.assertEquals(600, XPManager.get().evaluateKarma(Races.Humain, 100));
-        Assert.assertEquals(1000, XPManager.get().evaluateKarma(Races.Nain, 100));
-        Assert.assertEquals(1000, XPManager.get().evaluateKarma(Races.Obsidien, 100));
-        Assert.assertEquals(700, XPManager.get().evaluateKarma(Races.Ork, 100));
-        Assert.assertEquals(500, XPManager.get().evaluateKarma(Races.Sylphelin, 100));
-        Assert.assertEquals(1000, XPManager.get().evaluateKarma(Races.Troll, 100));
-        Assert.assertEquals(800, XPManager.get().evaluateKarma(Races.Tskrang, 100));
+        Assert.assertEquals(1000, XPManager.evaluateKarma(Races.Elfe, 100));
+        Assert.assertEquals(600, XPManager.evaluateKarma(Races.Humain, 100));
+        Assert.assertEquals(1000, XPManager.evaluateKarma(Races.Nain, 100));
+        Assert.assertEquals(1000, XPManager.evaluateKarma(Races.Obsidien, 100));
+        Assert.assertEquals(700, XPManager.evaluateKarma(Races.Ork, 100));
+        Assert.assertEquals(500, XPManager.evaluateKarma(Races.Sylphelin, 100));
+        Assert.assertEquals(1000, XPManager.evaluateKarma(Races.Troll, 100));
+        Assert.assertEquals(800, XPManager.evaluateKarma(Races.Tskrang, 100));
     }
 
 }

@@ -38,8 +38,9 @@ import fr.android.earthdawn.activities.fragments.SkillsFragment;
 import fr.android.earthdawn.activities.fragments.TakeDamagesFragment;
 import fr.android.earthdawn.activities.fragments.TalentsFragment;
 import fr.android.earthdawn.character.EDCharacter;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.managers.DicesDisplayManager;
 import fr.android.earthdawn.utils.Constants;
 import fr.android.earthdawn.utils.SerializationUtils;
 
@@ -136,7 +137,7 @@ public class ActionBarTabsPager extends Activity
         {
             case Constants.DIALOG_SHOW_DETAILS:
                 builder.setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
-                builder.setMessage(DicesLauncher.get().getDetailedMessage(this));
+                builder.setMessage(DicesDisplayManager.getDetailedMessage(this));
                 break;
             case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
                 builder.setTitle(R.string.popup_damages_taken_title);
@@ -170,7 +171,7 @@ public class ActionBarTabsPager extends Activity
         {
             case Constants.DIALOG_SHOW_DETAILS:
                 alert.setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));
-                alert.setMessage(DicesLauncher.get().getDetailedMessage(this));
+                alert.setMessage(DicesDisplayManager.getDetailedMessage(this));
                 break;
 
             case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
@@ -242,9 +243,10 @@ public class ActionBarTabsPager extends Activity
                 return true;
             case R.id.itemHealDamages:
                 final String recoveryDices = character.getRecoveryDices();
-                final int result = DicesLauncher.get().rollDices(recoveryDices);
-                character.incrementDamages(result * -1);
-                // TODO show message
+                final int result = DicesLauncher.rollDices(recoveryDices);
+                final int hp = character.incrementDamages(result * -1);
+                final String msg = getString(R.string.msg_heal_damages, hp);
+                Toast.makeText(getApplication(), msg, Toast.LENGTH_LONG).show();
                 return true;
             case R.id.itemHealWounds:
                 character.incrementWounds(-1);

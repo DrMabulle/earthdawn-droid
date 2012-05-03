@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.dices.impl;
 
@@ -60,7 +60,7 @@ public class Dice implements Rollable
     @Override
     public int compareTo(final Rollable dice)
     {
-        if (dice.getClass() == this.getClass())
+        if (dice.getClass().equals(this.getClass()))
         {
             return this.maxValue - ((Dice) dice).maxValue;
         }

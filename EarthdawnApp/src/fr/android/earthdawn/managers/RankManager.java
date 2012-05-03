@@ -2,6 +2,8 @@ package fr.android.earthdawn.managers;
 
 public final class RankManager
 {
+    private RankManager() {}
+
     public static final int getRank(final int indice)
     {
         return indice == 0 ? 0 : (int) (Math.ceil(indice / 3.0) + 1);

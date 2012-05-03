@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
-import fr.android.earthdawn.managers.DicesLauncher;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.utils.Constants;
 
 /**
@@ -42,7 +42,7 @@ public class ShowResultFragment extends DialogFragment
         v.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
         final TextView tv = (TextView) v.findViewById(R.id.popup_result);
-        tv.setText(Integer.toString(DicesLauncher.get().getRollResult()));
+        tv.setText(Integer.toString(DicesLauncher.getRollResult()));
 
         // Set title
         getDialog().setTitle(getString(R.string.roller_popup_title2, args.getCharSequence(Constants.BUNDLE_ROLL_TYPE)));

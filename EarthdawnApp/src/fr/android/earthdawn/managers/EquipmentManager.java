@@ -7,10 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
-import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.character.equipement.impl.Equipment;
 
@@ -18,10 +16,12 @@ import fr.android.earthdawn.character.equipement.impl.Equipment;
  * @author DrMabulle
  *
  */
-public class EquipmentManager
+public final class EquipmentManager
 {
     private static List<IEquipment> weapons = null;
     private static List<IEquipment> armors = null;
+
+    private EquipmentManager() {}
 
     public static List<IEquipment> getWeaponList()
     {
@@ -93,60 +93,4 @@ public class EquipmentManager
         return arm;
     }
 
-    @SuppressWarnings("rawtypes")
-    public static double computeMods(final List<IEquipment> equipment, final List<Mod> permMod, final List<Mod> tmpMod,
-            final Pointcuts pointcut, final Enum... additionnalInfos)
-    {
-        double result = 0.0;
-
-        for (final IEquipment equip : equipment)
-        {
-            for (final Mod mod : equip.getBonuses())
-            {
-                result = incrementIfEqual(pointcut, result, mod, additionnalInfos);
-            }
-        }
-        for (final Mod mod : permMod)
-        {
-            result = incrementIfEqual(pointcut, result, mod, additionnalInfos);
-        }
-        for (final Mod mod : tmpMod)
-        {
-            result = incrementIfEqual(pointcut, result, mod, additionnalInfos);
-        }
-
-        return result;
-    }
-
-    @SuppressWarnings("rawtypes")
-    protected static double incrementIfEqual(final Pointcuts pointcut, double result, final Mod mod, final Enum... additionnalInfos)
-    {
-        if (pointcut.equals(mod.getPointcut()))
-        {
-            // Attributs
-            if (Pointcuts.ATTRIBUT.equals(pointcut))
-            {
-                if(((Attributs) additionnalInfos[0]).equals(mod.getOtherInfos()[0]))
-                {
-                    result += mod.getModificator();
-                }
-            }
-
-            // Talents
-            else if (Pointcuts.TALENT.equals(pointcut))
-            {
-                if (((Talents) additionnalInfos[0]).equals(mod.getOtherInfos()[0]))
-                {
-                    result += mod.getModificator();
-                }
-            }
-
-            // Others
-            else
-            {
-                result += mod.getModificator();
-            }
-        }
-        return result;
-    }
 }

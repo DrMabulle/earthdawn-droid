@@ -18,6 +18,7 @@ import fr.android.earthdawn.character.equipement.IEquipment;
  */
 public final class CharacterUtils
 {
+    private CharacterUtils() {}
 
     public static int computeDeathThreshold(final int indice)
     {
