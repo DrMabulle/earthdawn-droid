@@ -1,5 +1,6 @@
 package fr.android.earthdawn.dices;
 
+
 public interface Rollable extends Comparable<Rollable>
 {
     public int roll();

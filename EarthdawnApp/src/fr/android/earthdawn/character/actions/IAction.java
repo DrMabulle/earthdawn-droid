@@ -3,6 +3,7 @@
  */
 package fr.android.earthdawn.character.actions;
 
+
 /**
  * @author DrMabulle
  *

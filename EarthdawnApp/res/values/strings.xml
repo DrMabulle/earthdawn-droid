@@ -198,5 +198,6 @@
     <string name="damages">Dommages</string>
     
     
-    <string name="empty"></string>
+    <string name="empty"></string> 
+    <string name="not_yet_implemented">Not yet implemented</string>
 </resources>

@@ -52,8 +52,8 @@ public class EarthDawnActivity extends Activity implements View.OnClickListener
     {
         final Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setTitle("Not yet implemented");
-        builder.setMessage("Not yet implemented");
+        builder.setTitle(R.string.not_yet_implemented);
+        builder.setMessage(R.string.not_yet_implemented);
         builder.setNeutralButton("Close", new DialogInterface.OnClickListener()
         {
             @Override
