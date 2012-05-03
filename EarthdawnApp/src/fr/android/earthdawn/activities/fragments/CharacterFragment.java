@@ -12,6 +12,7 @@ import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Pointcuts;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
@@ -212,10 +213,10 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         // Total earned
         ((TextView) view.findViewById(R.id.sheet_legend_total)).setText(Integer.toString(character.getLegendPoints()));
         // Total spent
-        final int legendSpent = XPManager.get().evaluateCharacter(character);
+        final int legendSpent = XPManager.evaluateCharacter(character);
         ((TextView) view.findViewById(R.id.sheet_legend_spent)).setText(Integer.toString(legendSpent));
         // Spent in karma
-        final int legendKarma = XPManager.get().evaluateKarma(character.getRace(), character.getKarmaBought());
+        final int legendKarma = XPManager.evaluateKarma(character.getRace(), character.getKarmaBought());
         ((TextView) view.findViewById(R.id.sheet_legend_karma)).setText(Integer.toString(legendKarma));
         // Available
         ((TextView) view.findViewById(R.id.sheet_legend_available)).setText(Integer.toString(character.getLegendPoints() - legendSpent));

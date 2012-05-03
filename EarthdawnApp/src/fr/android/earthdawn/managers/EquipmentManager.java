@@ -16,11 +16,13 @@ import fr.android.earthdawn.character.equipement.impl.Equipment;
  * @author DrMabulle
  *
  */
-public class EquipmentManager
+public final class EquipmentManager
 {
     private static List<IEquipment> weapons = null;
     private static List<IEquipment> armors = null;
     private static List<IEquipment> defenses = null;
+
+    private EquipmentManager() {}
 
     public static List<IEquipment> getWeaponList()
     {

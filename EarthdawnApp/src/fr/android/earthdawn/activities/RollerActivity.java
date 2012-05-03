@@ -15,6 +15,8 @@ import android.widget.NumberPicker;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.fragments.ShowResultFragment;
 import fr.android.earthdawn.managers.EDDicesLauncher;
+import fr.android.earthdawn.dices.DicesLauncher;
+import fr.android.earthdawn.managers.DicesDisplayManager;
 import fr.android.earthdawn.utils.Constants;
 
 public class RollerActivity extends Activity
@@ -142,6 +144,6 @@ public class RollerActivity extends Activity
 
     private String buildMessage()
     {
-        return  EDDicesLauncher.get().getDetailedMessage(this);
+        return  DicesDisplayManager.getDetailedMessage(this);
     }
 }

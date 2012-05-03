@@ -38,6 +38,7 @@ import fr.android.earthdawn.activities.fragments.SkillsFragment;
 import fr.android.earthdawn.activities.fragments.TakeDamagesFragment;
 import fr.android.earthdawn.activities.fragments.TalentsFragment;
 import fr.android.earthdawn.character.EDCharacter;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.Constants;
@@ -137,7 +138,7 @@ public class ActionBarTabsPager extends Activity
         {
             case Constants.DIALOG_SHOW_DETAILS:
                 builder.setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.get().getRollType())));
-                builder.setMessage(EDDicesLauncher.get().getDetailedMessage(this));
+                builder.setMessage(DicesDisplayManager.getDetailedMessage(this));
                 break;
             case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
                 builder.setTitle(R.string.popup_damages_taken_title);
@@ -171,7 +172,7 @@ public class ActionBarTabsPager extends Activity
         {
             case Constants.DIALOG_SHOW_DETAILS:
                 alert.setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.get().getRollType())));
-                alert.setMessage(EDDicesLauncher.get().getDetailedMessage(this));
+                alert.setMessage(DicesDisplayManager.getDetailedMessage(this));
                 break;
 
             case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
