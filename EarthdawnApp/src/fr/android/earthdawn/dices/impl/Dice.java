@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.dices.impl;
 

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.dices.impl;
 
@@ -55,7 +55,7 @@ public class FixedValueDice implements Rollable
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     @Override

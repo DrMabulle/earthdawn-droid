@@ -1,5 +1,6 @@
 package fr.android.earthdawn.managers;
 
+
 public final class RankManager
 {
     public static final int getRank(final int indice)
