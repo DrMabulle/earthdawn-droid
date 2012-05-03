@@ -10,6 +10,8 @@ package fr.android.earthdawn.utils;
  */
 public final class Constants
 {
+    private Constants () {}
+
     public static final String BUNDLE_ROLL_TYPE = "Roll_Type";
     //public static final String BUNDLE_CHARACTER = "Character";
     public static final String BUNDLE_DISCIPLINE = "Discipline";

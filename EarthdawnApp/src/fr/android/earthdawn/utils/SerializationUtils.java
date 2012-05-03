@@ -19,6 +19,8 @@ public final class SerializationUtils
 {
     private static final String EXTENSION = ".ser";
 
+    private SerializationUtils() {}
+
     public static final void serializeOnDisk(final Object obj, final String fileName, final Context ctx)
     {
         ObjectOutput out = null;

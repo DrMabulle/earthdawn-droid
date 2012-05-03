@@ -46,7 +46,7 @@ public class FixedValueDice implements Rollable
     @Override
     public int compareTo(final Rollable dice)
     {
-        if (dice.getClass() == this.getClass())
+        if (dice.getClass().equals(this.getClass()))
         {
             return this.value - ((FixedValueDice) dice).value;
         }

@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.equipement.IEquipment;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.CharacterUtils;

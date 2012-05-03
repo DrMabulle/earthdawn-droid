@@ -4,6 +4,7 @@ import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.actions.IAction;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
+import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 
