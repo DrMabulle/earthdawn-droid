@@ -18,11 +18,9 @@ import android.widget.RadioGroup;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.equipement.IEquipment;
-import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.CharacterUtils;
-import fr.android.earthdawn.utils.Constants;
 import fr.android.earthdawn.utils.EquipmentUtils;
 
 /**
@@ -31,24 +29,11 @@ import fr.android.earthdawn.utils.EquipmentUtils;
  */
 public class RollDamagesFragment extends DialogFragment implements OnClickListener
 {
-    private final Bundle args;
     private List<IEquipment> weapons;
 
     public RollDamagesFragment()
     {
         super();
-        args = new Bundle(3);
-    }
-
-    public RollDamagesFragment(final Bundle aArgs)
-    {
-        super();
-        args = aArgs;
-    }
-
-    public static RollDamagesFragment newInstance(final Bundle aArgs)
-    {
-        return new RollDamagesFragment(aArgs);
     }
 
     @Override
@@ -108,14 +93,13 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
                 final int strengh = getCharacterStrengh();
 
                 // roll dices
-                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_DAMAGES, R.string.damages, strengh + mod);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_DAMAGES, R.string.damages, strengh + mod, 0);
 
                 // open result popup
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
 
                 // Create and show the dialog.
-                args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, "Dégâts");
-                final ShowResultFragment newFragment = ShowResultFragment.newInstance(args);
+                final ShowResultFragment newFragment = new ShowResultFragment();
                 this.dismiss();
                 newFragment.show(ft, "tag");
                 break;

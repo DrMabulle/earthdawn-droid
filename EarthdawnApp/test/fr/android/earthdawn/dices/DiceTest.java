@@ -1,12 +1,11 @@
 /**
- * 
+ *
  */
 package fr.android.earthdawn.dices;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import fr.android.earthdawn.R;
 import fr.android.earthdawn.dices.impl.Dice;
 
 /**

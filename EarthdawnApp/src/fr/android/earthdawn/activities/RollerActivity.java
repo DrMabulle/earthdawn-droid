@@ -15,8 +15,6 @@ import android.widget.NumberPicker;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.fragments.ShowResultFragment;
 import fr.android.earthdawn.managers.EDDicesLauncher;
-import fr.android.earthdawn.dices.DicesLauncher;
-import fr.android.earthdawn.managers.DicesDisplayManager;
 import fr.android.earthdawn.utils.Constants;
 
 public class RollerActivity extends Activity
@@ -47,7 +45,7 @@ public class RollerActivity extends Activity
             if (dicesInfos != null && dicesInfos.length() > 0)
             {
 
-                final boolean isInputCorrect = EDDicesLauncher.get().testInputDicesInfos(dicesInfos);
+                final boolean isInputCorrect = EDDicesLauncher.testInputDicesInfos(dicesInfos);
 
                 if (!isInputCorrect)
                 {
@@ -57,7 +55,7 @@ public class RollerActivity extends Activity
                 else
                 {
                     // Open result popup
-                    EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, dicesInfos);
+                    EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, dicesInfos, 0);
                     showDialogResult("dés");
                 }
             }
@@ -67,7 +65,7 @@ public class RollerActivity extends Activity
                 final int rank = rankPicker.getValue();
 
                 // Open result popup
-                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, rank);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, rank, 0);
                 showDialogResult("dés");
             }
 
@@ -78,9 +76,7 @@ public class RollerActivity extends Activity
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
 
             // Create and show the dialog.
-            final Bundle args = new Bundle(1);
-            args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, "");
-            final ShowResultFragment newFragment = ShowResultFragment.newInstance(args);
+            final ShowResultFragment newFragment = new ShowResultFragment();
             newFragment.show(ft, "tag");
         }
     };
@@ -122,7 +118,7 @@ public class RollerActivity extends Activity
                 });
                 return builder2.create();
         }
-        return super.onCreateDialog(id);
+        return super.onCreateDialog(id, args);
     }
 
     /*
@@ -144,6 +140,6 @@ public class RollerActivity extends Activity
 
     private String buildMessage()
     {
-        return  DicesDisplayManager.getDetailedMessage(this);
+        return  EDDicesLauncher.getDetailedMessage(this);
     }
 }

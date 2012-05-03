@@ -12,13 +12,11 @@ import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Pointcuts;
-import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.managers.XPManager;
 import fr.android.earthdawn.utils.CharacterUtils;
-import fr.android.earthdawn.utils.Constants;
 import fr.android.earthdawn.utils.NumberUtils;
 
 public class CharacterFragment extends AbstractRollingFragment implements View.OnClickListener
@@ -155,43 +153,35 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
     @Override
     public void onClick(final View view)
     {
-        final Bundle args = new Bundle(1);
         switch (view.getId())
         {
             case R.id.sheet_dex_roll:
-                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.DEX.getFullName(), character.getAttributRank(Attributs.DEX));
-                args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_dex));
-                showDialogResult(args);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.DEX.getFullName(), character.getAttributRank(Attributs.DEX), character.getWounds());
+                showDialogResult();
                 break;
             case R.id.sheet_str_roll:
-                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.STR.getFullName(), character.getAttributRank(Attributs.STR));
-                args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_str));
-                showDialogResult(args);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.STR.getFullName(), character.getAttributRank(Attributs.STR), character.getWounds());
+                showDialogResult();
                 break;
             case R.id.sheet_end_roll:
-                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.END.getFullName(), character.getAttributRank(Attributs.END));
-                args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_end));
-                showDialogResult(args);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.END.getFullName(), character.getAttributRank(Attributs.END), character.getWounds());
+                showDialogResult();
                 break;
             case R.id.sheet_per_roll:
-                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.PER.getFullName(), character.getAttributRank(Attributs.PER));
-                args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_per));
-                showDialogResult(args);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.PER.getFullName(), character.getAttributRank(Attributs.PER), character.getWounds());
+                showDialogResult();
                 break;
             case R.id.sheet_vol_roll:
-                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.VOL.getFullName(), character.getAttributRank(Attributs.VOL));
-                args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_vol));
-                showDialogResult(args);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.VOL.getFullName(), character.getAttributRank(Attributs.VOL), character.getWounds());
+                showDialogResult();
                 break;
             case R.id.sheet_cha_roll:
-                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.CHA.getFullName(), character.getAttributRank(Attributs.CHA));
-                args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_cha));
-                showDialogResult(args);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.CHA.getFullName(), character.getAttributRank(Attributs.CHA), character.getWounds());
+                showDialogResult();
                 break;
             case R.id.roll_initiative:
-                EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.init, character.getInitiativeLevel());
-                args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, getString(R.string.sheet_initiative));
-                showDialogResult(args);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.init, character.getInitiativeLevel(), 0);
+                showDialogResult();
                 break;
         }
     }

@@ -4,7 +4,6 @@ import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.actions.IAction;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
-import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 
@@ -26,7 +25,7 @@ public class Action
 
             for (final Pointcuts pointcut : pointcuts)
             {
-                character.addOrReplaceTempMod(new Mod(pointcut, EDDicesLauncher.get().getRollResult(), nomTalent)); // XXX
+                character.addOrReplaceTempMod(new Mod(pointcut, EDDicesLauncher.getRollResult(), nomTalent)); // XXX
             }
         }
     };

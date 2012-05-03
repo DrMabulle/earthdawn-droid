@@ -9,7 +9,6 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Discipline;
