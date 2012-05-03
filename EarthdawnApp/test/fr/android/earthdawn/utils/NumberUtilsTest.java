@@ -1,6 +1,5 @@
 package fr.android.earthdawn.utils;
 
-import fr.android.earthdawn.R;
 import junit.framework.Assert;
 
 import org.junit.Test;

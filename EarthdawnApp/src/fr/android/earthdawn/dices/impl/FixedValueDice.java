@@ -6,7 +6,7 @@ package fr.android.earthdawn.dices.impl;
 import fr.android.earthdawn.dices.Rollable;
 
 /**
- * @author SOFTEAM
+ * @author DrMabulle
  *
  */
 public class FixedValueDice implements Rollable

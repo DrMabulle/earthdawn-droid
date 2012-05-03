@@ -25,15 +25,9 @@ import fr.android.earthdawn.managers.CharacterManager;
  */
 public class NewSkillFragment extends DialogFragment implements OnClickListener
 {
-
     public NewSkillFragment()
     {
         super();
-    }
-
-    public static NewSkillFragment newInstance()
-    {
-        return new NewSkillFragment();
     }
 
     @Override

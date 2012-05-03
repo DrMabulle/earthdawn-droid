@@ -8,8 +8,10 @@ package fr.android.earthdawn.dices.utils;
  * @author DrMabulle
  *
  */
-public class DiceMapping
+public final class DiceMapping
 {
+    private DiceMapping() {}
+
 	public static String getDicesToThrow(final int rank)
     {
         switch (rank)

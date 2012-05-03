@@ -1,6 +1,5 @@
 package fr.android.earthdawn.character.enums;
 
-import fr.android.earthdawn.R;
 import java.util.List;
 
 import junit.framework.Assert;

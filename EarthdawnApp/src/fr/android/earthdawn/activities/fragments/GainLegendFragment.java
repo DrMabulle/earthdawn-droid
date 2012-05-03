@@ -26,11 +26,6 @@ public class GainLegendFragment extends DialogFragment implements OnClickListene
         super();
     }
 
-    public static GainLegendFragment newInstance()
-    {
-        return new GainLegendFragment();
-    }
-
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
     {

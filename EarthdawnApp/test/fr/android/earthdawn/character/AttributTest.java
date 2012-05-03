@@ -7,7 +7,6 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import fr.android.earthdawn.R;
 import fr.android.earthdawn.managers.RankManager;
 
 /**
