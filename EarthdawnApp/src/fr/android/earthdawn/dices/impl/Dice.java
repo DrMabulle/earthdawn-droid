@@ -66,4 +66,36 @@ public class Dice implements Rollable
         }
         return 1;
     }
+
+    @Override
+    public int hashCode()
+    {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + maxValue;
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Dice other = (Dice) obj;
+        if (maxValue != other.maxValue)
+        {
+            return false;
+        }
+        return true;
+    }
 }

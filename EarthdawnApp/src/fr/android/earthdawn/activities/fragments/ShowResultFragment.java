@@ -46,10 +46,10 @@ public class ShowResultFragment extends DialogFragment
         v.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
         final TextView tv = (TextView) v.findViewById(R.id.popup_result);
-        tv.setText(Integer.toString(EDDicesLauncher.get().getRollResult()));
+        tv.setText(Integer.toString(EDDicesLauncher.getRollResult()));
 
         // Set title
-        getDialog().setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.get().getRollType())));
+        getDialog().setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.getRollType())));
 
         // Close Button
         Button button = (Button) v.findViewById(R.id.popup_close);

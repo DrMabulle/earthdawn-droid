@@ -51,7 +51,7 @@ public final class EquipmentManager
 
     private static List<IEquipment> initWeapons()
     {
-        final List<IEquipment> weap = new ArrayList<IEquipment>();
+        final List<IEquipment> weap = new ArrayList<IEquipment>(25);
         weap.add(new Equipment("Arme d'Hast", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 7), new Mod(Pointcuts.WEIGHT, 4))));
         weap.add(new Equipment("Bâton", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 2), new Mod(Pointcuts.WEIGHT, 2))));
         weap.add(new Equipment("Couteau", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 1), new Mod(Pointcuts.WEIGHT, 0.25))));
@@ -80,7 +80,7 @@ public final class EquipmentManager
     }
     private static List<IEquipment> initArmors()
     {
-        final List<IEquipment> arm = new ArrayList<IEquipment>();
+        final List<IEquipment> arm = new ArrayList<IEquipment>(19);
         arm.add(new Equipment("Armure de cristal vivant", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 6), new Mod(Pointcuts.ARM_MYS, 3), new Mod(Pointcuts.INIT, -2), new Mod(Pointcuts.WEIGHT, 0), new Mod(Pointcuts.BLOOD_MAGIC, 5))));
         arm.add(new Equipment("Armure de cuir", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 3), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, 0), new Mod(Pointcuts.WEIGHT, 6))));
         arm.add(new Equipment("Armure de cuir bouilli", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 5), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 10))));

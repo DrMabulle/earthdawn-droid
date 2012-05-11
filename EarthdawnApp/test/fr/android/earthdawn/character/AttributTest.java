@@ -7,16 +7,14 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import fr.android.earthdawn.R;
 import fr.android.earthdawn.managers.RankManager;
 
 /**
- * @author PBKR03831
+ * @author DrMabulle
  *
  */
 public class AttributTest
 {
-
     /**
      * Test method for {@link fr.android.earthdawn.character.Attribut#getResultingIndice()}.
      */

@@ -7,7 +7,7 @@ public final class RankManager
 
     public static final int getRank(final int indice)
     {
-        return indice == 0 ? 0 : (int) (Math.ceil(indice / 3.0) + 1);
+        return indice <= 0 ? 0 : (int) (Math.ceil(indice / 3.0) + 1);
     }
 
     public static final String getDicesFromRank(final int rank)

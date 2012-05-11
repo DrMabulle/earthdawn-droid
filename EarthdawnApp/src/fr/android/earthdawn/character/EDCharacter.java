@@ -20,7 +20,6 @@ import fr.android.earthdawn.character.enums.Skill;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.character.equipement.IEquipment;
-import fr.android.earthdawn.dices.utils.DiceMapping;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.CharacterUtils;
 import fr.android.earthdawn.utils.EquipmentUtils;
@@ -506,7 +505,7 @@ public class EDCharacter implements Serializable
 
     public String getRecoveryDices()
     {
-        return DiceMapping.getDicesToThrow(getAttributRank(Attributs.END) + computeBonusesInt(Pointcuts.RECOVERY_LVL));
+        return RankManager.getDicesFromRank(getAttributRank(Attributs.END) + computeBonusesInt(Pointcuts.RECOVERY_LVL));
     }
 
     public double getNbRecoveryTests()

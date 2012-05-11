@@ -38,7 +38,6 @@ import fr.android.earthdawn.activities.fragments.SkillsFragment;
 import fr.android.earthdawn.activities.fragments.TakeDamagesFragment;
 import fr.android.earthdawn.activities.fragments.TalentsFragment;
 import fr.android.earthdawn.character.EDCharacter;
-import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.Constants;
@@ -137,8 +136,8 @@ public class ActionBarTabsPager extends Activity
         switch (id)
         {
             case Constants.DIALOG_SHOW_DETAILS:
-                builder.setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.get().getRollType())));
-                builder.setMessage(DicesDisplayManager.getDetailedMessage(this));
+                builder.setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.getRollType())));
+                builder.setMessage(EDDicesLauncher.getDetailedMessage(this));
                 break;
             case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
                 builder.setTitle(R.string.popup_damages_taken_title);
@@ -171,8 +170,8 @@ public class ActionBarTabsPager extends Activity
         switch (id)
         {
             case Constants.DIALOG_SHOW_DETAILS:
-                alert.setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.get().getRollType())));
-                alert.setMessage(DicesDisplayManager.getDetailedMessage(this));
+                alert.setTitle(getString(R.string.roller_popup_title2, getString(EDDicesLauncher.getRollType())));
+                alert.setMessage(EDDicesLauncher.getDetailedMessage(this));
                 break;
 
             case Constants.DIALOG_SHOW_DAMAGES_TAKEN:
@@ -244,7 +243,7 @@ public class ActionBarTabsPager extends Activity
                 return true;
             case R.id.itemHealDamages:
                 final String recoveryDices = character.getRecoveryDices();
-                final int result = EDDicesLauncher.get().rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.recup, recoveryDices);
+                final int result = EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.recup, recoveryDices);
                 // soustraire les blessures graves aux PV récupérés (min 1)
                 final int healed = NumberUtils.ensureMinimum(result - character.getWounds(), 1);
                 character.incrementDamages(healed * -1);

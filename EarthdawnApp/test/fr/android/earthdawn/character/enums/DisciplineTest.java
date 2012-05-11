@@ -1,6 +1,5 @@
 package fr.android.earthdawn.character.enums;
 
-import fr.android.earthdawn.R;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -9,7 +8,6 @@ import org.junit.Test;
 
 public class DisciplineTest
 {
-
     @Test
     public void testGetTalentsUpTo()
     {
@@ -48,7 +46,5 @@ public class DisciplineTest
         Assert.assertEquals(9, discipline.getTalentRank(armesMelee));
         discipline.incrementTalentRank(armesMelee);
         Assert.assertEquals(10, discipline.getTalentRank(armesMelee));
-
     }
-
 }

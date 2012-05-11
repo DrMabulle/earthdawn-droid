@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.android.earthdawn.character.actions.impl.Action.TempModAction;
+import fr.android.earthdawn.character.actions.impl.TempModAction;
 
 /**
  * @author DrMabulle

@@ -1,13 +1,11 @@
 package fr.android.earthdawn.utils;
 
-import fr.android.earthdawn.R;
 import junit.framework.Assert;
 
 import org.junit.Test;
 
 public class NumberUtilsTest
 {
-
     @Test
     public void testFormatNumber()
     {
@@ -18,4 +16,13 @@ public class NumberUtilsTest
         Assert.assertEquals("32", NumberUtils.format(32));
     }
 
+    @Test
+    public void testEnsureMinimum()
+    {
+        Assert.assertEquals(5, NumberUtils.ensureMinimum(5, 1));
+        Assert.assertEquals(1, NumberUtils.ensureMinimum(-5, 1));
+        Assert.assertEquals(2, NumberUtils.ensureMinimum(2, 1));
+        Assert.assertEquals(1, NumberUtils.ensureMinimum(0, 1));
+        Assert.assertEquals(32, NumberUtils.ensureMinimum(32, 1));
+    }
 }
