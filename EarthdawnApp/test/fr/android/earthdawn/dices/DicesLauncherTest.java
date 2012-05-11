@@ -1,24 +1,17 @@
-package fr.android.earthdawn.managers;
+package fr.android.earthdawn.dices;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import fr.android.earthdawn.dices.Rollable;
 import fr.android.earthdawn.dices.impl.Dice;
 import fr.android.earthdawn.dices.impl.FixedValueDice;
 
 public class DicesLauncherTest
 {
-    @Before
-    public void setUp() throws Exception
-    {
-    }
-
     @Test
     public void testTestInputDicesInfos()
     {
@@ -257,5 +250,4 @@ public class DicesLauncherTest
         System.out.println(DicesLauncher.getRollLogs());
         System.out.println(result);
     }
-
 }
