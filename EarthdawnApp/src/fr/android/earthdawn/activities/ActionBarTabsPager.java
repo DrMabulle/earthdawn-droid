@@ -214,11 +214,11 @@ public class ActionBarTabsPager extends Activity
                 return true;
             case R.id.itemRollDamages:
                 // Show Roll Damages Fragment popup
-                RollDamagesFragment.newInstance(bundle).show(ft, "tag");
+                new RollDamagesFragment().show(ft, "tag");
                 return true;
             case R.id.itemTakeDamages:
                 // Show Take Damages Fragment popup
-                TakeDamagesFragment.newInstance(bundle).show(ft, "tag");
+                new TakeDamagesFragment().show(ft, "tag");
                 return true;
             case R.id.itemHealthStatus:
                 final StringBuilder builder = new StringBuilder();
@@ -243,7 +243,7 @@ public class ActionBarTabsPager extends Activity
                 return true;
             case R.id.itemHealDamages:
                 final String recoveryDices = character.getRecoveryDices();
-                final int result = EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.recup, recoveryDices);
+                final int result = EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.recup, recoveryDices, 0);
                 // soustraire les blessures graves aux PV récupérés (min 1)
                 final int healed = NumberUtils.ensureMinimum(result - character.getWounds(), 1);
                 character.incrementDamages(healed * -1);
@@ -261,7 +261,7 @@ public class ActionBarTabsPager extends Activity
                 Toast.makeText(getApplication(), R.string.msg_fully_healed, Toast.LENGTH_LONG).show();
                 return true;
             case R.id.itemGainLegend:
-                GainLegendFragment.newInstance().show(ft, "tag");
+                new GainLegendFragment().show(ft, "tag");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -21,21 +21,12 @@ import fr.android.earthdawn.utils.Constants;
  */
 public class ShowResultFragment extends DialogFragment
 {
-    private final Bundle args;
 
     public ShowResultFragment()
     {
-        args = new Bundle(3);
-    }
-    public ShowResultFragment(final Bundle aArgs)
-    {
-        args = aArgs;
+        super();
     }
 
-    public static ShowResultFragment newInstance(final Bundle aArgs)
-    {
-        return new ShowResultFragment(aArgs);
-    }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -70,7 +61,7 @@ public class ShowResultFragment extends DialogFragment
             public void onClick(final View v)
             {
                 // When button is clicked, call up to owning activity.
-                getActivity().showDialog(Constants.DIALOG_SHOW_DETAILS, args);
+                getActivity().showDialog(Constants.DIALOG_SHOW_DETAILS);
             }
         });
 
