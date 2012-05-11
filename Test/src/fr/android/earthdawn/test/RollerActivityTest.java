@@ -16,7 +16,7 @@ public class RollerActivityTest extends ActivityInstrumentationTestCase2<RollerA
 
     public RollerActivityTest()
     {
-        super("fr.android.earthdawn.activities", RollerActivity.class);
+        super(RollerActivity.class);
     }
 
     @Override

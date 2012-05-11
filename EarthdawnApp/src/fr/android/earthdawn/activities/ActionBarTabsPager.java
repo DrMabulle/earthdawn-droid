@@ -202,7 +202,6 @@ public class ActionBarTabsPager extends Activity
     public boolean onOptionsItemSelected(final MenuItem item)
     {
         // Commun code
-        final Bundle bundle = new Bundle(2);
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
 
         final EDCharacter character = CharacterManager.getLoadedCharacter();

@@ -11,7 +11,7 @@ public class EarthDawnActivityTest extends ActivityInstrumentationTestCase2<Eart
 
     public EarthDawnActivityTest()
     {
-        super("fr.android.earthdawn.activities", EarthDawnActivity.class);
+        super(EarthDawnActivity.class);
     }
 
     @Override

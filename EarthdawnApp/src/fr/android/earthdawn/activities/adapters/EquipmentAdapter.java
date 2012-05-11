@@ -81,7 +81,7 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
                 final StringBuilder msg = new StringBuilder(96);
                 for (int i = 0; i < rank+1; i++)
                 {
-                    mods = loot.getBonuses(rank);
+                    mods = loot.getBonuses(i);
                     if (i > 0)
                     {
                         tab = TAB;
