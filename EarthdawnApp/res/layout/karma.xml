@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <TableLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:id="@+id/sheet_karma" android:layout_margin="2dp">
+        
+        <TableRow android:layout_width="match_parent">
+            <TextView android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_horizontal" android:padding="2dp"
+                android:text="@string/sheet_karma_title" 
+                android:layout_span="2" android:layout_weight="5" />
+        </TableRow>
+        
+        <TableRow android:layout_width="match_parent">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:text="@string/sheet_karma_available" 
+			    android:padding="2dp" android:layout_weight="3" />    
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:padding="2dp" android:layout_weight="2"
+			    android:id="@+id/sheet_karma_available" />    
+        </TableRow>
+        
+        <TableRow android:layout_width="match_parent">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:text="@string/sheet_karma_level" 
+			    android:padding="2dp" android:layout_weight="3" />    
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:padding="2dp" android:layout_weight="2"
+			    android:id="@+id/sheet_karma_level" />    
+        </TableRow>
+        
+        <TableRow android:layout_width="match_parent">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:text="@string/sheet_karma_uses" 
+			    android:padding="2dp" android:layout_weight="5" android:layout_span="2" />    
+        </TableRow>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:padding="2dp" android:layout_weight="5"
+            android:orientation="horizontal" >
+
+            <RadioButton android:layout_marginLeft="10dp" 
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/karma_dex" android:clickable="false"
+                android:text="@string/sheet_karma_radio_dex" />
+
+            <RadioButton android:layout_marginLeft="10dp" 
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/karma_str" android:clickable="false"
+                android:text="@string/sheet_karma_radio_str" />
+
+            <RadioButton android:layout_marginLeft="10dp" 
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/karma_end" android:clickable="false"
+                android:text="@string/sheet_karma_radio_end" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:padding="2dp" android:layout_weight="5"
+            android:orientation="horizontal" >
+
+            <RadioButton android:layout_marginLeft="10dp" 
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/karma_per" android:clickable="false"
+                android:text="@string/sheet_karma_radio_per" />
+
+            <RadioButton android:layout_marginLeft="10dp" 
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/karma_vol" android:clickable="false"
+                android:text="@string/sheet_karma_radio_vol" />
+
+            <RadioButton android:layout_marginLeft="10dp" 
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/karma_cha" android:clickable="false"
+                android:text="@string/sheet_karma_radio_cha" />
+        </LinearLayout>
+        
+    </TableLayout>
