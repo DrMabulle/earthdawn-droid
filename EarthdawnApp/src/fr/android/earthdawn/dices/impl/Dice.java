@@ -8,7 +8,7 @@ import java.util.Random;
 import fr.android.earthdawn.dices.Rollable;
 
 /**
- * @author Administrateur
+ * @author DrMabulle
  *
  */
 public class Dice implements Rollable

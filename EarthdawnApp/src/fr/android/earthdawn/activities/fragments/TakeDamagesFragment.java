@@ -27,23 +27,11 @@ import fr.android.earthdawn.utils.Constants;
  */
 public class TakeDamagesFragment extends DialogFragment implements OnClickListener
 {
-    private final Bundle args;
-
-    public TakeDamagesFragment(final Bundle aArgs)
-    {
-        super();
-        args = aArgs;
-    }
     public TakeDamagesFragment()
     {
         super();
-        args = new Bundle(3);
     }
 
-    public static TakeDamagesFragment newInstance(final Bundle aArgs)
-    {
-        return new TakeDamagesFragment(aArgs);
-    }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -126,6 +114,7 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
                 }
 
                 // Ouvrir une popup résumant toutes ces infos
+                final Bundle args = new Bundle(3);
                 args.putCharSequence(Constants.BUNDLE_DMG_TAKEN_ARM, computeArmorMsg(armor));
                 args.putInt(Constants.BUNDLE_DMG_TAKEN_PV, healthPointsLost);
                 args.putInt(Constants.BUNDLE_DMG_TAKEN_WOUND, wounds);

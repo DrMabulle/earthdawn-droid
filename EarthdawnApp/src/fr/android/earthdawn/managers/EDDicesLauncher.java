@@ -7,16 +7,13 @@ import java.util.LinkedList;
 
 import android.content.Context;
 import fr.android.earthdawn.R;
+import fr.android.earthdawn.dices.DicesLauncher;
 
 /**
  * @author DrMabulle
  *
  */
-/**
- * @author Bubulle
- *
- */
-public class EDDicesLauncher
+public final class EDDicesLauncher
 {
     public static final int ROLL_ATTRIBUT = 1;
     public static final int ROLL_TALENT = 2;
@@ -24,46 +21,39 @@ public class EDDicesLauncher
     public static final int ROLL_DAMAGES = 4;
     public static final int ROLL_OTHER = 100;
 
-    private static final EDDicesLauncher INSTANCE = new EDDicesLauncher();
-
     /**
      * FIFO rolls history
      */
-    private final LinkedList<Roll> rollsHistory = new LinkedList<Roll>();
+    private static final LinkedList<Roll> rollsHistory = new LinkedList<Roll>();
 
     private EDDicesLauncher() {}
 
-    public static EDDicesLauncher get()
-    {
-        return INSTANCE;
-    }
-
-
-    public int rollDices(final int aRollKind, final int aRollNameId, final int aRank)
+    // TODO être plus explicite avec les blessures graves
+    public static int rollDices(final int aRollKind, final int aRollNameId, final int aRank, final int wounds)
     {
         final boolean rerollMax = shouldRerollOnMax(aRollKind);
         final boolean rerollMins = shouldRerollOnMin(aRollKind);
 
-        final int result = DicesLauncher.get().rollDices(aRank, rerollMax, rerollMins);
+        final int result = DicesLauncher.rollDices(aRank, rerollMax, rerollMins) - wounds;
 
-        addRollToHistory(new Roll(aRollKind, aRollNameId, aRank, result, DicesLauncher.get().getRollLogs()));
+        addRollToHistory(new Roll(aRollKind, aRollNameId, aRank, result, DicesLauncher.getRollLogs(), wounds));
 
         return result;
     }
 
-    public int rollDices(final int aRollKind, final int aRollNameId, final String aDicesInfos)
+    public static int rollDices(final int aRollKind, final int aRollNameId, final String aDicesInfos, final int wounds)
     {
         final boolean rerollMax = shouldRerollOnMax(aRollKind);
         final boolean rerollMins = shouldRerollOnMin(aRollKind);
 
-        final int result = DicesLauncher.get().rollDices(aDicesInfos, rerollMax, rerollMins);
+        final int result = DicesLauncher.rollDices(aDicesInfos, rerollMax, rerollMins) - wounds;
 
-        addRollToHistory(new Roll(aRollKind, aRollNameId, aDicesInfos, result, DicesLauncher.get().getRollLogs()));
+        addRollToHistory(new Roll(aRollKind, aRollNameId, aDicesInfos, result, DicesLauncher.getRollLogs(), wounds));
 
         return result;
     }
 
-    private void addRollToHistory(final Roll roll)
+    private static void addRollToHistory(final Roll roll)
     {
         // Keep only ten rolls in history, at most
         if (rollsHistory.size() == 10)
@@ -74,27 +64,27 @@ public class EDDicesLauncher
         rollsHistory.addFirst(roll);
     }
 
-    private boolean shouldRerollOnMax(final int aRollKind)
+    private static boolean shouldRerollOnMax(final int aRollKind)
     {
         return true;
     }
 
-    private boolean shouldRerollOnMin(final int aRollKind)
+    private static boolean shouldRerollOnMin(final int aRollKind)
     {
         return ROLL_DAMAGES != aRollKind;
     }
 
-    public int getRollResult()
+    public static int getRollResult()
     {
         return rollsHistory.getFirst().rollResult;
     }
 
-    public int getRollType()
+    public static int getRollType()
     {
         return rollsHistory.getFirst().rollNameId;
     }
 
-    public String getDetailedMessage(final Context ctx)
+    public static String getDetailedMessage(final Context ctx)
     {
         final Roll roll = rollsHistory.getFirst();
         String msg = null;
@@ -106,17 +96,17 @@ public class EDDicesLauncher
         {
             msg = ctx.getString(R.string.roller_rank_msg, roll.rollRank, RankManager.getDicesFromRank(roll.rollRank));
         }
-        return ctx.getString(R.string.roller_message, msg, DicesLauncher.get().getRollResult(), roll.rollLogs);
+        return ctx.getString(R.string.roller_message, msg, roll.rollResult, roll.rollWounds, roll.rollLogs);
     }
 
-    public boolean testInputDicesInfos(final String dicesInfos)
+    public static boolean testInputDicesInfos(final String dicesInfos)
     {
-        return DicesLauncher.get().testInputDicesInfos(dicesInfos);
+        return DicesLauncher.testInputDicesInfos(dicesInfos);
     }
 
 
 
-    private class Roll
+    private static class Roll
     {
         final int rollKind;
         final int rollNameId;
@@ -124,8 +114,9 @@ public class EDDicesLauncher
         final String rollDicesInfos;
         final int rollResult;
         final String rollLogs;
+        final int rollWounds;
 
-        public Roll(final int aRollKind, final int aRollNameId, final int aRollRank, final int aRollResult, final String aRollLogs)
+        public Roll(final int aRollKind, final int aRollNameId, final int aRollRank, final int aRollResult, final String aRollLogs, final int aRollWounds)
         {
             super();
             this.rollKind = aRollKind;
@@ -134,9 +125,10 @@ public class EDDicesLauncher
             this.rollDicesInfos = null;
             this.rollResult = aRollResult;
             this.rollLogs = aRollLogs;
+            this.rollWounds = aRollWounds;
         }
 
-        public Roll(final int aRollKind, final int aRollNameId, final String aRollDicesInfos, final int aRollResult, final String aRollLogs)
+        public Roll(final int aRollKind, final int aRollNameId, final String aRollDicesInfos, final int aRollResult, final String aRollLogs, final int aRollWounds)
         {
             super();
             this.rollKind = aRollKind;
@@ -145,6 +137,7 @@ public class EDDicesLauncher
             this.rollDicesInfos = aRollDicesInfos;
             this.rollResult = aRollResult;
             this.rollLogs = aRollLogs;
+            this.rollWounds = aRollWounds;
         }
     }
 }

@@ -55,7 +55,7 @@ public class RollerActivity extends Activity
                 else
                 {
                     // Open result popup
-                    EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, dicesInfos);
+                    EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, dicesInfos, 0);
                     showDialogResult("dés");
                 }
             }
@@ -65,7 +65,7 @@ public class RollerActivity extends Activity
                 final int rank = rankPicker.getValue();
 
                 // Open result popup
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, rank);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, rank, 0);
                 showDialogResult("dés");
             }
 
@@ -76,9 +76,7 @@ public class RollerActivity extends Activity
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
 
             // Create and show the dialog.
-            final Bundle args = new Bundle(1);
-            args.putCharSequence(Constants.BUNDLE_ROLL_TYPE, "");
-            final ShowResultFragment newFragment = ShowResultFragment.newInstance(args);
+            final ShowResultFragment newFragment = new ShowResultFragment();
             newFragment.show(ft, "tag");
         }
     };
@@ -120,7 +118,7 @@ public class RollerActivity extends Activity
                 });
                 return builder2.create();
         }
-        return super.onCreateDialog(id);
+        return super.onCreateDialog(id, args);
     }
 
     /*
