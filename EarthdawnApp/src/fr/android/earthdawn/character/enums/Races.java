@@ -41,36 +41,36 @@ public enum Races implements Serializable
 
 
     /**
-     * @param name
-     * @param bonusDex
-     * @param bonusStr
-     * @param bonusEnd
-     * @param bonusPer
-     * @param bonusVol
-     * @param bonusCha
-     * @param karmaRank
+     * @param aName
+     * @param aBonusDex
+     * @param aBonusStr
+     * @param aBonusEnd
+     * @param aBonusPer
+     * @param aBonusVol
+     * @param aBonusCha
+     * @param aKarmaRank
      */
-    private Races(final String name, final int bonusDex, final int bonusStr, final int bonusEnd, final int bonusPer,
-            final int bonusVol, final int bonusCha, final int karmaRank, final int karmaCost, final int karmaInit, final int karmaMax,
-            final int bonusPhyDef, final int bonusPhyArm, final int bonusWound,
-            final int bonusMvt, final int... aptitudes)
+    private Races(final String aName, final int aBonusDex, final int aBonusStr, final int aBonusEnd, final int aBonusPer,
+            final int aBonusVol, final int aBonusCha, final int aKarmaRank, final int aKarmaCost, final int aKarmaInit, final int aKarmaMax,
+            final int aBonusPhyDef, final int aBonusPhyArm, final int aBonusWound,
+            final int aBonusMvt, final int... aAptitudes)
     {
-        this.name = name;
-        this.bonusDex = bonusDex;
-        this.bonusStr = bonusStr;
-        this.bonusEnd = bonusEnd;
-        this.bonusPer = bonusPer;
-        this.bonusVol = bonusVol;
-        this.bonusCha = bonusCha;
-        this.karmaRank = karmaRank;
-        this.karmaCost = karmaCost;
-        this.karmaInit = karmaInit;
-        this.karmaMax = karmaMax;
-        this.bonusPhyDef = bonusPhyDef;
-        this.bonusPhyArm = bonusPhyArm;
-        this.bonusWound = bonusWound;
-        this.bonusMvt = bonusMvt;
-        this.aptitudes = aptitudes;
+        this.name = aName;
+        this.bonusDex = aBonusDex;
+        this.bonusStr = aBonusStr;
+        this.bonusEnd = aBonusEnd;
+        this.bonusPer = aBonusPer;
+        this.bonusVol = aBonusVol;
+        this.bonusCha = aBonusCha;
+        this.karmaRank = aKarmaRank;
+        this.karmaCost = aKarmaCost;
+        this.karmaInit = aKarmaInit;
+        this.karmaMax = aKarmaMax;
+        this.bonusPhyDef = aBonusPhyDef;
+        this.bonusPhyArm = aBonusPhyArm;
+        this.bonusWound = aBonusWound;
+        this.bonusMvt = aBonusMvt;
+        this.aptitudes = aAptitudes;
     }
 
     /**

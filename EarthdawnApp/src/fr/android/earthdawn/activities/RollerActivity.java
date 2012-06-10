@@ -4,16 +4,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import fr.android.earthdawn.R;
-import fr.android.earthdawn.activities.fragments.ShowResultFragment;
+import fr.android.earthdawn.activities.utils.AlertDialogUtils;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.Constants;
 
@@ -29,9 +29,18 @@ public class RollerActivity extends Activity
         final NumberPicker rankPicker = (NumberPicker) findViewById(R.id.rankPicker);
         rankPicker.setMinValue(1);
         rankPicker.setMaxValue(100);
+        // Hide soft keyboard on NumberPickers by overwriting the OnFocusChangeListener
+        final OnFocusChangeListener fcl = new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(final View aView, final boolean hasFocus) {
+                // Do nothing to suppress keyboard
+            }
+        };
+        ((EditText) rankPicker.getChildAt(1)).setOnFocusChangeListener(fcl);
+        // Suppress soft keyboard from the beginning
+        ((EditText) rankPicker.getChildAt(1)).setInputType(InputType.TYPE_NULL);
 
-        final Button button = (Button) findViewById(R.id.rollerButton);
-        button.setOnClickListener(mAddContentListener);
+        findViewById(R.id.rollerButton).setOnClickListener(mAddContentListener);
     }
 
     private final OnClickListener mAddContentListener = new OnClickListener()
@@ -56,7 +65,7 @@ public class RollerActivity extends Activity
                 {
                     // Open result popup
                     EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, dicesInfos, 0);
-                    showDialogResult("dés");
+                    AlertDialogUtils.showDialogResult(getFragmentManager());
                 }
             }
             else
@@ -66,18 +75,9 @@ public class RollerActivity extends Activity
 
                 // Open result popup
                 EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, rank, 0);
-                showDialogResult("dés");
+                AlertDialogUtils.showDialogResult(getFragmentManager());
             }
 
-        }
-
-        private void showDialogResult(final String rollType)
-        {
-            final FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-            // Create and show the dialog.
-            final ShowResultFragment newFragment = new ShowResultFragment();
-            newFragment.show(ft, "tag");
         }
     };
 

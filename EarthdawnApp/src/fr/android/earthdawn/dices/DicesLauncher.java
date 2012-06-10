@@ -20,18 +20,18 @@ import fr.android.earthdawn.managers.RankManager;
  */
 public final class DicesLauncher
 {
-    private static final String REGEX = "([0-9]+D[0-9]+[ ]*)+(-[0-9]+)*";
+    private static final String REGEX = "([1-9]+D[0-9]+[ ]*)+(-[0-9]+)*";
 
-    protected static final StringBuilder logs = new StringBuilder(256);
+    protected static final StringBuilder logs = new StringBuilder(512);
     private static int result = 0;
     private static int rank = 0;
     private static String dicesInfos = null;
 
     private DicesLauncher() {}
 
-    public static boolean testInputDicesInfos(final String dicesInfos)
+    public static boolean testInputDicesInfos(final String aDicesInfos)
     {
-        return dicesInfos != null && dicesInfos.length() > 0 && dicesInfos.toUpperCase().matches(REGEX);
+        return aDicesInfos != null && aDicesInfos.length() > 0 && aDicesInfos.toUpperCase().matches(REGEX);
     }
 
     public static int rollDices(final int aRank, final boolean rerollMax, final boolean rerollMins)
@@ -48,38 +48,61 @@ public final class DicesLauncher
         return rollDices(parseDicesInfos(dicesInfos), rerollMax, rerollMins);
     }
 
-    protected static List<Rollable> parseDicesInfos(final String dicesInfos)
+    protected static List<Rollable> parseDicesInfos(final String aDicesInfos)
     {
-        // Full exemple of infos : 2D20 1D12 -2
+        // Full exemple of infos : 2D20 + 5 + 1D12 -2
         final List<Rollable> dices = new ArrayList<Rollable>(6);
 
-        final String[] dicesAndMod = dicesInfos.split("-");
-        final String[] dicesDescription = dicesAndMod[0].split(" ");
+        final String[] dicesDescription = aDicesInfos.split("\\+");
 
         for (final String infos : dicesDescription)
         {
-            instanciateDices(infos, dices);
-        }
-        if (dicesAndMod.length == 2)
-        {
-            dices.add(new FixedValueDice(-Integer.parseInt(dicesAndMod[1])));
+            instanciateDices(infos, dices, false);
         }
 
         return dices;
     }
 
-    protected static void instanciateDices(final String infos, final List<Rollable> dices)
+    protected static void instanciateDices(final String infos, final List<Rollable> dices, final boolean isNegative)
     {
-        final String[] split = infos.split("D");
-        if (split.length == 2)
-        {
-            final int nb = Integer.parseInt(split[0]);
-            final int maxValue = Integer.parseInt(split[1]);
+        // Exemples : "5", "1D20", "1D4 -2"
 
-            for (int i = 0; i < nb; i++)
+        // Split "-"
+        if (infos.contains("-"))
+        {
+            final String[] dicesDescription = infos.split("-");
+
+            for (final String split : dicesDescription)
             {
-                dices.add(new Dice(maxValue));
+                instanciateDices(split, dices, true);
             }
+            return;
+        }
+
+        // Deal with dices...
+        if (infos.contains("D"))
+        {
+            final String[] split = infos.split("D");
+            if (split.length == 2)
+            {
+                final int nb = Integer.parseInt(split[0].trim());
+                final int maxValue = Integer.parseInt(split[1].trim());
+
+                for (int i = 0; i < nb; i++)
+                {
+                    dices.add(new Dice(maxValue));
+                }
+            }
+        }
+        // ... and fixed values
+        else
+        {
+            int value = Integer.valueOf(infos.trim());
+            if (isNegative)
+            {
+                value *= -1;
+            }
+            dices.add(new FixedValueDice(value));
         }
     }
 
@@ -119,7 +142,7 @@ public final class DicesLauncher
     {
         final List<Rollable> maxDices = new ArrayList<Rollable>(6);
         final List<Rollable> minDices = new ArrayList<Rollable>(6);
-        int result = 0;
+        int mResult = 0;
 
         // Récupérer les Max et Min
         for (final Rollable dice : dices)
@@ -145,15 +168,15 @@ public final class DicesLauncher
         // Relancer les Max tant qu'ils sont Max
         if (rerollMax && !maxDices.isEmpty())
         {
-            result = rerollMaxs(maxDices);
+            mResult = rerollMaxs(maxDices);
         }
         // Ou relancer les Min tant qu'ils sont Min
         else if (rerollMins && !minDices.isEmpty())
         {
-            result = rerollMins(minDices);
+            mResult = rerollMins(minDices);
         }
 
-        return result;
+        return mResult;
     }
 
     protected static void removeCancelledDices(final List<Rollable> maxDices, final List<Rollable> minDices)

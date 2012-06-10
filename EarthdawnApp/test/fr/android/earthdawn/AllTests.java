@@ -26,5 +26,5 @@ import fr.android.earthdawn.utils.NumberUtilsTest;
         CharacterUtilsTest.class })
 public class AllTests
 {
-
+    // Tests
 }

@@ -51,7 +51,7 @@ public class Dice implements Rollable
     @Override
     public String toString()
     {
-        final StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder(5);
         builder.append("D");
         builder.append(maxValue);
         return builder.toString();
@@ -71,9 +71,9 @@ public class Dice implements Rollable
     public int hashCode()
     {
         final int prime = 31;
-        int result = 1;
-        result = prime * result + maxValue;
-        return result;
+        int hash = 1;
+        hash = prime * hash + maxValue;
+        return hash;
     }
 
     @Override

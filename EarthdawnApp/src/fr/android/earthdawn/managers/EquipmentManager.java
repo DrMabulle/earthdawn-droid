@@ -52,60 +52,60 @@ public final class EquipmentManager
     private static List<IEquipment> initWeapons()
     {
         final List<IEquipment> weap = new ArrayList<IEquipment>(25);
-        weap.add(new Equipment("Arme d'Hast", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 7), new Mod(Pointcuts.WEIGHT, 4))));
-        weap.add(new Equipment("Bâton", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 2), new Mod(Pointcuts.WEIGHT, 2))));
-        weap.add(new Equipment("Couteau", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 1), new Mod(Pointcuts.WEIGHT, 0.25))));
-        weap.add(new Equipment("Dague", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 2), new Mod(Pointcuts.WEIGHT, 0.5))));
-        weap.add(new Equipment("Epée à deux mains", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 7), new Mod(Pointcuts.WEIGHT, 3))));
-        weap.add(new Equipment("Epée courte", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 1.5))));
-        weap.add(new Equipment("Epée large", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 5), new Mod(Pointcuts.WEIGHT, 1.5))));
-        weap.add(new Equipment("Epée naine", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 3), new Mod(Pointcuts.WEIGHT, 1))));
-        weap.add(new Equipment("Epée trolle", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 6), new Mod(Pointcuts.WEIGHT, 2.5))));
-        weap.add(new Equipment("Fléau", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 5), new Mod(Pointcuts.WEIGHT, 2))));
-        weap.add(new Equipment("Fouet", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 3), new Mod(Pointcuts.WEIGHT, 0.5))));
-        weap.add(new Equipment("Grande hache d'armes", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 8), new Mod(Pointcuts.WEIGHT, 4.5))));
-        weap.add(new Equipment("Hache d'armes", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 6), new Mod(Pointcuts.WEIGHT, 2.5))));
-        weap.add(new Equipment("Hache des cavernes", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 7), new Mod(Pointcuts.WEIGHT, 4.5))));
-        weap.add(new Equipment("Hachette", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 1.5))));
-        weap.add(new Equipment("Lance", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 1.5))));
-        weap.add(new Equipment("Lance de cavalerie", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 6), new Mod(Pointcuts.WEIGHT, 4.5))));
-        weap.add(new Equipment("Lance longue", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 5), new Mod(Pointcuts.WEIGHT, 3))));
-        weap.add(new Equipment("Marteau de guerre", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 7), new Mod(Pointcuts.WEIGHT, 3.5))));
-        weap.add(new Equipment("Masse", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 2))));
-        weap.add(new Equipment("Masse d'armes", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 6), new Mod(Pointcuts.WEIGHT, 3))));
-        weap.add(new Equipment("Massue", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 3), new Mod(Pointcuts.WEIGHT, 1.5))));
-        weap.add(new Equipment("Matraque", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 1), new Mod(Pointcuts.WEIGHT, 0.25))));
-        weap.add(new Equipment("Trident", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 5), new Mod(Pointcuts.WEIGHT, 1.5))));
+        weap.add(new Equipment("Arme d'Hast", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 7), Mod.get(Pointcuts.WEIGHT, 4))));
+        weap.add(new Equipment("Bâton", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 2), Mod.get(Pointcuts.WEIGHT, 2))));
+        weap.add(new Equipment("Couteau", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 1), Mod.get(Pointcuts.WEIGHT, 0.25))));
+        weap.add(new Equipment("Dague", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 2), Mod.get(Pointcuts.WEIGHT, 0.5))));
+        weap.add(new Equipment("Epée à deux mains", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 7), Mod.get(Pointcuts.WEIGHT, 3))));
+        weap.add(new Equipment("Epée courte", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 4), Mod.get(Pointcuts.WEIGHT, 1.5))));
+        weap.add(new Equipment("Epée large", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 5), Mod.get(Pointcuts.WEIGHT, 1.5))));
+        weap.add(new Equipment("Epée naine", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 1))));
+        weap.add(new Equipment("Epée trolle", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 6), Mod.get(Pointcuts.WEIGHT, 2.5))));
+        weap.add(new Equipment("Fléau", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 5), Mod.get(Pointcuts.WEIGHT, 2))));
+        weap.add(new Equipment("Fouet", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 0.5))));
+        weap.add(new Equipment("Grande hache d'armes", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 8), Mod.get(Pointcuts.WEIGHT, 4.5))));
+        weap.add(new Equipment("Hache d'armes", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 6), Mod.get(Pointcuts.WEIGHT, 2.5))));
+        weap.add(new Equipment("Hache des cavernes", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 7), Mod.get(Pointcuts.WEIGHT, 4.5))));
+        weap.add(new Equipment("Hachette", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 4), Mod.get(Pointcuts.WEIGHT, 1.5))));
+        weap.add(new Equipment("Lance", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 4), Mod.get(Pointcuts.WEIGHT, 1.5))));
+        weap.add(new Equipment("Lance de cavalerie", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 6), Mod.get(Pointcuts.WEIGHT, 4.5))));
+        weap.add(new Equipment("Lance longue", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 5), Mod.get(Pointcuts.WEIGHT, 3))));
+        weap.add(new Equipment("Marteau de guerre", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 7), Mod.get(Pointcuts.WEIGHT, 3.5))));
+        weap.add(new Equipment("Masse", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 4), Mod.get(Pointcuts.WEIGHT, 2))));
+        weap.add(new Equipment("Masse d'armes", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 6), Mod.get(Pointcuts.WEIGHT, 3))));
+        weap.add(new Equipment("Massue", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 1.5))));
+        weap.add(new Equipment("Matraque", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 1), Mod.get(Pointcuts.WEIGHT, 0.25))));
+        weap.add(new Equipment("Trident", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 5), Mod.get(Pointcuts.WEIGHT, 1.5))));
         return weap;
     }
     private static List<IEquipment> initArmors()
     {
         final List<IEquipment> arm = new ArrayList<IEquipment>(19);
-        arm.add(new Equipment("Armure de cristal vivant", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 6), new Mod(Pointcuts.ARM_MYS, 3), new Mod(Pointcuts.INIT, -2), new Mod(Pointcuts.WEIGHT, 0), new Mod(Pointcuts.BLOOD_MAGIC, 5))));
-        arm.add(new Equipment("Armure de cuir", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 3), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, 0), new Mod(Pointcuts.WEIGHT, 6))));
-        arm.add(new Equipment("Armure de cuir bouilli", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 5), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 10))));
-        arm.add(new Equipment("Armure de cuir rembouré", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 4), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, 0), new Mod(Pointcuts.WEIGHT, 10))));
-        arm.add(new Equipment("Armure de peau", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 5), new Mod(Pointcuts.ARM_MYS, 1), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 11))));
-        arm.add(new Equipment("Armure de peau vivante", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 4), new Mod(Pointcuts.ARM_MYS, 4), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 0), new Mod(Pointcuts.BLOOD_MAGIC, 4))));
-        arm.add(new Equipment("Armure de plaques", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 9), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, -4), new Mod(Pointcuts.WEIGHT, 30))));
-        arm.add(new Equipment("Armure de plaques en cristal", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 7), new Mod(Pointcuts.ARM_MYS, 7), new Mod(Pointcuts.INIT, -5), new Mod(Pointcuts.WEIGHT, 40))));
-        arm.add(new Equipment("Cape en écailles d'Espagra", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 3), new Mod(Pointcuts.ARM_MYS, 1), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 5))));
-        arm.add(new Equipment("Cotte de mailles", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 7), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, -3), new Mod(Pointcuts.WEIGHT, 18))));
-        arm.add(new Equipment("Ecorce", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 3), new Mod(Pointcuts.ARM_MYS, 3), new Mod(Pointcuts.INIT, -2), new Mod(Pointcuts.WEIGHT, 10))));
-        arm.add(new Equipment("Galets de sang", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 5), new Mod(Pointcuts.ARM_MYS, 3), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 0), new Mod(Pointcuts.BLOOD_MAGIC, 4))));
-        arm.add(new Equipment("Haubert d'anneaux", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 6), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, -2), new Mod(Pointcuts.WEIGHT, 14))));
-        arm.add(new Equipment("Jaseran de cristal", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 4), new Mod(Pointcuts.ARM_MYS, 4), new Mod(Pointcuts.INIT, -2), new Mod(Pointcuts.WEIGHT, 16))));
-        arm.add(new Equipment("Peau de Wyvern", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 8), new Mod(Pointcuts.ARM_MYS, 1), new Mod(Pointcuts.INIT, -3), new Mod(Pointcuts.WEIGHT, 22))));
-        arm.add(new Equipment("Peau d'Obsidien", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 3), new Mod(Pointcuts.ARM_MYS, 1), new Mod(Pointcuts.INIT, 0), new Mod(Pointcuts.WEIGHT, 10))));
-        arm.add(new Equipment("Tresselière", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 2), new Mod(Pointcuts.ARM_MYS, 3), new Mod(Pointcuts.INIT, 0), new Mod(Pointcuts.WEIGHT, 7))));
-        arm.add(new Equipment("Vêtement rembourré", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 2), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, 0), new Mod(Pointcuts.WEIGHT, 2))));
+        arm.add(new Equipment("Armure de cristal vivant", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 6), Mod.get(Pointcuts.ARM_MYS, 3), Mod.get(Pointcuts.INIT, -2), Mod.get(Pointcuts.WEIGHT, 0), Mod.get(Pointcuts.BLOOD_MAGIC, 5))));
+        arm.add(new Equipment("Armure de cuir", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 3), Mod.get(Pointcuts.ARM_MYS, 0), Mod.get(Pointcuts.INIT, 0), Mod.get(Pointcuts.WEIGHT, 6))));
+        arm.add(new Equipment("Armure de cuir bouilli", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 5), Mod.get(Pointcuts.ARM_MYS, 0), Mod.get(Pointcuts.INIT, -1), Mod.get(Pointcuts.WEIGHT, 10))));
+        arm.add(new Equipment("Armure de cuir rembouré", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 4), Mod.get(Pointcuts.ARM_MYS, 0), Mod.get(Pointcuts.INIT, 0), Mod.get(Pointcuts.WEIGHT, 10))));
+        arm.add(new Equipment("Armure de peau", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 5), Mod.get(Pointcuts.ARM_MYS, 1), Mod.get(Pointcuts.INIT, -1), Mod.get(Pointcuts.WEIGHT, 11))));
+        arm.add(new Equipment("Armure de peau vivante", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 4), Mod.get(Pointcuts.ARM_MYS, 4), Mod.get(Pointcuts.INIT, -1), Mod.get(Pointcuts.WEIGHT, 0), Mod.get(Pointcuts.BLOOD_MAGIC, 4))));
+        arm.add(new Equipment("Armure de plaques", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 9), Mod.get(Pointcuts.ARM_MYS, 0), Mod.get(Pointcuts.INIT, -4), Mod.get(Pointcuts.WEIGHT, 30))));
+        arm.add(new Equipment("Armure de plaques en cristal", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 7), Mod.get(Pointcuts.ARM_MYS, 7), Mod.get(Pointcuts.INIT, -5), Mod.get(Pointcuts.WEIGHT, 40))));
+        arm.add(new Equipment("Cape en écailles d'Espagra", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 3), Mod.get(Pointcuts.ARM_MYS, 1), Mod.get(Pointcuts.INIT, -1), Mod.get(Pointcuts.WEIGHT, 5))));
+        arm.add(new Equipment("Cotte de mailles", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 7), Mod.get(Pointcuts.ARM_MYS, 0), Mod.get(Pointcuts.INIT, -3), Mod.get(Pointcuts.WEIGHT, 18))));
+        arm.add(new Equipment("Ecorce", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 3), Mod.get(Pointcuts.ARM_MYS, 3), Mod.get(Pointcuts.INIT, -2), Mod.get(Pointcuts.WEIGHT, 10))));
+        arm.add(new Equipment("Galets de sang", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 5), Mod.get(Pointcuts.ARM_MYS, 3), Mod.get(Pointcuts.INIT, -1), Mod.get(Pointcuts.WEIGHT, 0), Mod.get(Pointcuts.BLOOD_MAGIC, 4))));
+        arm.add(new Equipment("Haubert d'anneaux", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 6), Mod.get(Pointcuts.ARM_MYS, 0), Mod.get(Pointcuts.INIT, -2), Mod.get(Pointcuts.WEIGHT, 14))));
+        arm.add(new Equipment("Jaseran de cristal", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 4), Mod.get(Pointcuts.ARM_MYS, 4), Mod.get(Pointcuts.INIT, -2), Mod.get(Pointcuts.WEIGHT, 16))));
+        arm.add(new Equipment("Peau de Wyvern", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 8), Mod.get(Pointcuts.ARM_MYS, 1), Mod.get(Pointcuts.INIT, -3), Mod.get(Pointcuts.WEIGHT, 22))));
+        arm.add(new Equipment("Peau d'Obsidien", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 3), Mod.get(Pointcuts.ARM_MYS, 1), Mod.get(Pointcuts.INIT, 0), Mod.get(Pointcuts.WEIGHT, 10))));
+        arm.add(new Equipment("Tresselière", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 2), Mod.get(Pointcuts.ARM_MYS, 3), Mod.get(Pointcuts.INIT, 0), Mod.get(Pointcuts.WEIGHT, 7))));
+        arm.add(new Equipment("Vêtement rembourré", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 2), Mod.get(Pointcuts.ARM_MYS, 0), Mod.get(Pointcuts.INIT, 0), Mod.get(Pointcuts.WEIGHT, 2))));
         return arm;
     }
 
     private static List<IEquipment> initDefenses()
     {
         final List<IEquipment> arm = new ArrayList<IEquipment>();
-        arm.add(new Equipment("Bouclier d'infanterie", Arrays.asList(new Mod(Pointcuts.ARM_PHY, 3), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 3.5))));
+        arm.add(new Equipment("Bouclier d'infanterie", Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 3), Mod.get(Pointcuts.INIT, -1), Mod.get(Pointcuts.WEIGHT, 3.5))));
         return arm;
     }
 }

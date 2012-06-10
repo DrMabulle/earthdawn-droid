@@ -5,15 +5,14 @@ import fr.android.earthdawn.character.actions.IAction;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.managers.CharacterManager;
-import fr.android.earthdawn.managers.EDDicesLauncher;
 
-public class TempModAction implements IAction
+public class InitPreAction implements IAction
 {
-    private final Pointcuts[] pointcuts;
+    private final Pointcuts pointcut;
 
-    public TempModAction(final Pointcuts... somePointcuts)
+    public InitPreAction(final Pointcuts aPointcut)
     {
-        this.pointcuts = somePointcuts;
+        this.pointcut = aPointcut;
     }
 
     @Override
@@ -21,9 +20,6 @@ public class TempModAction implements IAction
     {
         final EDCharacter character = CharacterManager.getLoadedCharacter();
 
-        for (final Pointcuts pointcut : pointcuts)
-        {
-            character.addOrReplaceTempMod(Mod.get(pointcut, EDDicesLauncher.getRollResult(), nomTalent));
-        }
+        character.addOrReplaceTempMod(Mod.get(pointcut, (Integer) args[0], nomTalent));
     }
 }

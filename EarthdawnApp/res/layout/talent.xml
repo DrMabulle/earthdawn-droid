@@ -16,7 +16,8 @@
     <RadioButton android:id="@+id/talents_karma" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:clickable="false"  android:layout_height="wrap_content" />
     <RadioButton android:id="@+id/talents_action" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:clickable="false" android:layout_height="wrap_content" />
     <TextView android:id="@+id/talents_effort" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
-   	<ImageButton android:id="@+id/talent_roll" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:src="@drawable/dice" android:layout_height="wrap_content" android:contentDescription="@string/roll"/>
+   	<ImageButton android:id="@+id/talent_roll" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:src="@drawable/dice" android:layout_height="wrap_content" android:contentDescription="@string/roll" />
+    <TextView android:id="@+id/talents_page" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
     
 </LinearLayout>    
 

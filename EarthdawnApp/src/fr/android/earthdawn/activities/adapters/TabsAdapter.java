@@ -83,6 +83,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabLi
     @Override
     public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels)
     {
+        // Do Nothing
     }
 
     @Override
@@ -94,6 +95,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabLi
     @Override
     public void onPageScrollStateChanged(final int state)
     {
+        // Do Nothing
     }
 
     @Override
@@ -112,10 +114,12 @@ public class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabLi
     @Override
     public void onTabUnselected(final Tab tab, final FragmentTransaction ft)
     {
+        // Do Nothing
     }
 
     @Override
     public void onTabReselected(final Tab tab, final FragmentTransaction ft)
     {
+        // Do Nothing
     }
 }

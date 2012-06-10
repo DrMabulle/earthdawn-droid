@@ -60,8 +60,9 @@ public final class EquipmentUtils
     }
 
     @SuppressWarnings("rawtypes")
-    protected static double incrementIfEqual(final Pointcuts pointcut, double result, final Mod mod, final Enum... additionnalInfos)
+    protected static double incrementIfEqual(final Pointcuts pointcut, final double aResult, final Mod mod, final Enum... additionnalInfos)
     {
+        double result = aResult;
         if (pointcut.equals(mod.getPointcut()))
         {
             // Attributs

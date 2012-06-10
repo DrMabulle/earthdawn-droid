@@ -17,19 +17,19 @@ public class Talent implements Serializable
 
     private final Talents talent;
     private final int circle;
-    private final boolean isDiscipline;
+    private final boolean discipline;
     private final Object[] additionnalInfos;
 
     private final IAction preAction;
     private final IAction postAction;
 
-    public Talent(final Talents aTalent, final int aCircle, final boolean isDiscipline, final IAction preAction, final IAction postAction, final Object...objects )
+    public Talent(final Talents aTalent, final int aCircle, final boolean isDiscipline, final IAction aPreAction, final IAction aPostAction, final Object... objects )
     {
         talent = aTalent;
         circle = aCircle;
-        this.isDiscipline = isDiscipline;
-        this.preAction = preAction;
-        this.postAction = postAction;
+        this.discipline = isDiscipline;
+        this.preAction = aPreAction;
+        this.postAction = aPostAction;
         additionnalInfos = objects;
     }
 
@@ -39,7 +39,7 @@ public class Talent implements Serializable
     }
     public boolean isDiscipline()
     {
-        return isDiscipline;
+        return discipline;
     }
 
     /**
@@ -92,9 +92,9 @@ public class Talent implements Serializable
         return talent.getStrain();
     }
 
-    public boolean isSameTalentAs(final Talents talent)
+    public boolean isSameTalentAs(final Talents aTalent)
     {
-        return this.talent.equals(talent);
+        return this.talent.equals(aTalent);
     }
 
     /**
@@ -110,19 +110,19 @@ public class Talent implements Serializable
         return talent;
     }
 
-    public void executePreAction()
+    public void executePreAction(final Object...params)
     {
         if (preAction != null)
         {
-            preAction.execute(talent.getLabel());
+            preAction.execute(talent.getLabel(), params);
         }
     }
 
-    public void executePostAction()
+    public void executePostAction(final Object...params)
     {
         if (postAction != null)
         {
-            postAction.execute(talent.getLabel());
+            postAction.execute(talent.getLabel(), params);
         }
     }
 }

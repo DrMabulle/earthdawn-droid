@@ -24,9 +24,9 @@ public class BonusMalusAdapter extends BaseAdapter implements ListAdapter
     private final LayoutInflater inflater;
     private final List<Mod> mods;
 
-    public BonusMalusAdapter(final Context context, final List<Mod> mods)
+    public BonusMalusAdapter(final Context context, final List<Mod> someMods)
     {
-        this.mods = mods;
+        this.mods = someMods;
         // Cache the LayoutInflate to avoid asking for a new one each time.
         inflater = LayoutInflater.from(context);
     }
@@ -50,8 +50,9 @@ public class BonusMalusAdapter extends BaseAdapter implements ListAdapter
     }
 
     @Override
-    public View getView(final int position, View convertView, final ViewGroup parent)
+    public View getView(final int position, final View aView, final ViewGroup parent)
     {
+        View convertView = aView;
         if (convertView == null)
         {
             convertView = inflater.inflate(R.layout.modificator, parent, false);

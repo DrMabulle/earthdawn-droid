@@ -93,7 +93,7 @@ public enum Talents implements Serializable
     CreationFleches(R.string.CreationFleches, Attributs.VOL, true, true, 0, 178),
     CriGuerre(R.string.CriGuerre, Attributs.CHA, false, false, 1, 178),
     Crochetage(R.string.Crochetage, Attributs.DEX, true, false, 0, 178),
-    DanseAirs(R.string.DanseAirs, Attributs.DEX, false, false, 1, 178),
+    DanseAirs(R.string.DanseAirs, Attributs.DEX, false, false, false, 1, 178),
     DanseEaux(R.string.DanseEaux, Attributs.CHA, true, true, 0, 178),
 
     // effort = 1 par attaque
@@ -454,48 +454,48 @@ public enum Talents implements Serializable
 
     private final Attributs attribut;
     private final int strain;
-    private final boolean isAction;
-    private final boolean isKarmaMandatory;
-    private final boolean isRollable;
+    private final boolean action;
+    private final boolean karmaMandatory;
+    private final boolean rollable;
     private final int label;
     private final int page;
     /**
-     * @param label
-     * @param attribut
+     * @param aLabel
+     * @param aAttribut
      * @param isAction
      * @param isKarmaMandatory
-     * @param page
+     * @param aPage
      */
-    private Talents(final int label, final Attributs attribut,
+    private Talents(final int aLabel, final Attributs aAttribut,
             final boolean isAction, final boolean isKarmaMandatory, final boolean isRollable,
-            final int aStrain, final int page)
+            final int aStrain, final int aPage)
     {
-        this.label = label;
-        this.attribut = attribut;
-        this.isAction = isAction;
-        this.isKarmaMandatory = isKarmaMandatory;
-        this.isRollable = isRollable;
+        this.label = aLabel;
+        this.attribut = aAttribut;
+        this.action = isAction;
+        this.karmaMandatory = isKarmaMandatory;
+        this.rollable = isRollable;
         this.strain = aStrain;
-        this.page = page;
+        this.page = aPage;
     }
     /**
-     * @param label
-     * @param attribut
+     * @param aLabel
+     * @param aAttribut
      * @param isAction
      * @param isKarmaMandatory
-     * @param page
+     * @param aPage
      */
-    private Talents(final int label, final Attributs attribut,
+    private Talents(final int aLabel, final Attributs aAttribut,
             final boolean isAction, final boolean isKarmaMandatory,
-            final int aStrain, final int page)
+            final int aStrain, final int aPage)
     {
-        this.label = label;
-        this.attribut = attribut;
-        this.isAction = isAction;
-        this.isKarmaMandatory = isKarmaMandatory;
-        this.isRollable = true;
+        this.label = aLabel;
+        this.attribut = aAttribut;
+        this.action = isAction;
+        this.karmaMandatory = isKarmaMandatory;
+        this.rollable = true;
         this.strain = aStrain;
-        this.page = page;
+        this.page = aPage;
     }
     /**
      * @return the attribut
@@ -530,21 +530,21 @@ public enum Talents implements Serializable
      */
     public boolean isAction()
     {
-        return isAction;
+        return action;
     }
     /**
      * @return the isKarmaMandatory
      */
     public boolean isKarmaMandatory()
     {
-        return isKarmaMandatory;
+        return karmaMandatory;
     }
     /**
      * @return the isRollable
      */
     public boolean isRollable()
     {
-        return isRollable;
+        return rollable;
     }
 
     public static Talents findByLabel(final int aLabel)

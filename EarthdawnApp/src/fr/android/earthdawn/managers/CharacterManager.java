@@ -155,11 +155,11 @@ public final class CharacterManager
 
         // Anneau Kelnone
         List<List<Mod>> bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 0.1)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEIGHT, 0.1)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_MAG, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_SOC, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_MAG, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_SOC, 1.0)));
         MagicalEquipment ring = new MagicalEquipment("Kelnone", bonuses, new int[] {200, 300, 500, 800});
         ring.incrementRank();
         ring.incrementRank();
@@ -169,11 +169,11 @@ public final class CharacterManager
 
         // Hurleuse de Délitra
         bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 8), new Mod(Pointcuts.WEIGHT, 1.5)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Hurlement d'Horreur")));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Soie noire")));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 1), new Mod(Pointcuts.POWER, 0, "Bourdonne en présence d'Horreur")));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Défenses +4 pour résister aux Horreurs (hors sorts)")));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 8), Mod.get(Pointcuts.WEIGHT, 1.5)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.POWER, 0, "Hurlement d'Horreur")));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.POWER, 0, "Soie noire")));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 1), Mod.get(Pointcuts.POWER, 0, "Bourdonne en présence d'Horreur")));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.POWER, 0, "Défenses +4 pour résister aux Horreurs (hors sorts)")));
         final MagicalEquipment hurleuse = new MagicalEquipment("Hurleuse de Délitra", bonuses, new int[] {500, 800, 1300, 2100, 3400, 5500, 8900});
         hurleuse.incrementRank();
         hurleuse.incrementRank();
@@ -182,9 +182,9 @@ public final class CharacterManager
 
         // Anneau de Malack
         bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 0.1)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.TALENT, 1, Talents.ArmesMelee)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Rappel de l'arme (Gradius)")));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEIGHT, 0.1)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.TALENT, 1, Talents.ArmesMelee)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.POWER, 0, "Rappel de l'arme (Gradius)")));
         ring = new MagicalEquipment("Anneau de Malack", bonuses, new int[] {200, 300, 500, 800, 1300});
         ring.incrementRank();
         ring.incrementRank();
@@ -192,10 +192,10 @@ public final class CharacterManager
 
         // Anneau de Malack
         bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 0.1)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Absorbe 3 points de fatigue par jour")));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Absorbe 6 points de fatigue par jour")));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.POWER, 0, "Absorbe 9 points de fatigue par jour")));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEIGHT, 0.1)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.POWER, 0, "Absorbe 3 points de fatigue par jour")));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.POWER, 0, "Absorbe 6 points de fatigue par jour")));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.POWER, 0, "Absorbe 9 points de fatigue par jour")));
         ring = new MagicalEquipment("Anneau du Combattant", bonuses, new int[] {200, 300, 500});
         ring.incrementRank();
         ring.incrementRank();
@@ -257,11 +257,11 @@ public final class CharacterManager
 
         // Anneau à filaments
         List<List<Mod>> bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 0.1)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEIGHT, 0.1)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_SOC, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_MAG, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_SOC, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_MAG, 1.0)));
         final MagicalEquipment ring = new MagicalEquipment("Anneau à filaments", bonuses, new int[] {200, 300, 500, 800});
         ring.incrementRank();
         ring.incrementRank();
@@ -271,11 +271,11 @@ public final class CharacterManager
 
         // Bottes à filaments
         bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 1)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.TALENT, 1.0, Talents.Escalade)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEIGHT, 1)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.TALENT, 1.0, Talents.Escalade)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_PHY, 1.0)));
         final MagicalEquipment boots = new MagicalEquipment("Bottes à filaments", bonuses, new int[] {100, 200, 300, 500});
         boots.incrementRank();
         boots.incrementRank();
@@ -285,11 +285,11 @@ public final class CharacterManager
 
         // Armure de cui bouilli à filaments
         bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 5), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 10)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_MYS, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0), new Mod(Pointcuts.ARM_MYS, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 5), Mod.get(Pointcuts.ARM_MYS, 0), Mod.get(Pointcuts.INIT, -1), Mod.get(Pointcuts.WEIGHT, 10)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_MYS, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 1.0), Mod.get(Pointcuts.ARM_MYS, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 1.0)));
         final MagicalEquipment cuir = new MagicalEquipment("Armure de cuir bouilli à filaments", bonuses, new int[] {100, 200, 300, 500});
         cuir.incrementRank();
         cuir.incrementRank();
@@ -297,8 +297,8 @@ public final class CharacterManager
         cuir.incrementRank();
         forgeron.addEquipment(cuir);
 
-        forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 0.5))));
-        forgeron.addEquipment(new Equipment("Epée large forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 8), new Mod(Pointcuts.WEIGHT, 1.5))));
+        forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 4), Mod.get(Pointcuts.WEIGHT, 0.5))));
+        forgeron.addEquipment(new Equipment("Epée large forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 8), Mod.get(Pointcuts.WEIGHT, 1.5))));
 
         forgeron.addSkill(new Skill("Création d'armes", Attributs.PER, true, 0).incrementRank().incrementRank());
         forgeron.addSkill(new Skill("Création d'armures", Attributs.PER, true, 0).incrementRank());

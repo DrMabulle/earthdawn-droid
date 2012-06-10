@@ -4,21 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:baselineAligned="true"
-    android:layout_weight="7">
+    android:baselineAligned="true" >
     
-    <LinearLayout android:layout_weight="2" android:layout_height="match_parent" android:layout_width="wrap_content" android:orientation="vertical" >
-    	<include layout="@layout/character" />
+    <LinearLayout android:layout_width="360dp" android:layout_height="match_parent" android:orientation="vertical">
+    	<include layout="@layout/character"/>
     	<include layout="@layout/disciplines" />
         <include layout="@layout/karma" />
     </LinearLayout>
     
-    <LinearLayout android:layout_weight="2" android:layout_height="match_parent" android:layout_width="wrap_content" android:orientation="vertical" >
+    <LinearLayout android:layout_width="370dp" android:layout_height="match_parent" android:orientation="vertical">
     	<include layout="@layout/health" />
     	<include layout="@layout/legend" />
     </LinearLayout>
     
-    <LinearLayout android:layout_weight="3" android:layout_height="match_parent" android:layout_width="wrap_content" android:orientation="vertical" >
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" >
     	<include layout="@layout/attributs" />
     	<include layout="@layout/deductibles" />
     </LinearLayout>

@@ -114,11 +114,11 @@ public class XPManagerTest
 
         // Anneau à filaments
         List<List<Mod>> bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 0.1)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_SOC, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_MAG, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEIGHT, 0.1)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_SOC, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_MAG, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_SOC, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_MAG, 1.0)));
         final MagicalEquipment ring = new MagicalEquipment("Anneau à filaments", bonuses, new int[] {200, 300, 500, 800});
         ring.incrementRank();
         ring.incrementRank();
@@ -128,11 +128,11 @@ public class XPManagerTest
 
         // Bottes à filaments
         bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.WEIGHT, 1)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.TALENT, 1.0, Talents.Escalade)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.DEF_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEIGHT, 1)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.TALENT, 1.0, Talents.Escalade)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.DEF_PHY, 1.0)));
         final MagicalEquipment boots = new MagicalEquipment("Bottes à filaments", bonuses, new int[] {100, 200, 300, 500});
         boots.incrementRank();
         boots.incrementRank();
@@ -142,11 +142,11 @@ public class XPManagerTest
 
         // Armure de cui bouilli à filaments
         bonuses = new ArrayList<List<Mod>>();
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 5), new Mod(Pointcuts.ARM_MYS, 0), new Mod(Pointcuts.INIT, -1), new Mod(Pointcuts.WEIGHT, 10)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_MYS, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0), new Mod(Pointcuts.ARM_MYS, 1.0)));
-        bonuses.add(Arrays.asList(new Mod(Pointcuts.ARM_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 5), Mod.get(Pointcuts.ARM_MYS, 0), Mod.get(Pointcuts.INIT, -1), Mod.get(Pointcuts.WEIGHT, 10)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_MYS, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 1.0), Mod.get(Pointcuts.ARM_MYS, 1.0)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.ARM_PHY, 1.0)));
         final MagicalEquipment cuir = new MagicalEquipment("Armure de cuir bouilli à filaments", bonuses, new int[] {100, 200, 300, 500});
         cuir.incrementRank();
         cuir.incrementRank();
@@ -154,8 +154,8 @@ public class XPManagerTest
         cuir.incrementRank();
         forgeron.addEquipment(cuir);
 
-        forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 4), new Mod(Pointcuts.WEIGHT, 0.5))));
-        forgeron.addEquipment(new Equipment("Epée large forgée", Arrays.asList(new Mod(Pointcuts.WEAPON_DAMAGE, 8), new Mod(Pointcuts.WEIGHT, 1.5))));
+        forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 4), Mod.get(Pointcuts.WEIGHT, 0.5))));
+        forgeron.addEquipment(new Equipment("Epée large forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 8), Mod.get(Pointcuts.WEIGHT, 1.5))));
 
         forgeron.addSkill(new Skill("Création d'armes", Attributs.PER, true, 0).incrementRank().incrementRank());
         forgeron.addSkill(new Skill("Création d'armures", Attributs.PER, true, 0).incrementRank());

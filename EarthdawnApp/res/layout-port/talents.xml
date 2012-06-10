@@ -16,6 +16,7 @@
 	    <TextView android:text="@string/talents_action" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp" android:layout_width="65dp"/>
 	    <TextView android:text="@string/talents_effort" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"  android:layout_width="70dp"/>
 	    <TextView android:text="@string/talents_roll" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp" android:layout_width="70dp"/>
+        <TextView android:text="@string/talents_page" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp" android:layout_width="75dp" android:visibility="gone"/>
     </LinearLayout>
     
     

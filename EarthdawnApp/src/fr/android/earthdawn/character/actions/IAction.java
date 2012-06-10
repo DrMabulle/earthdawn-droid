@@ -10,5 +10,5 @@ package fr.android.earthdawn.character.actions;
  */
 public interface IAction
 {
-    public void execute(int nomTalent);
+    public void execute(int nomTalent, Object... args);
 }

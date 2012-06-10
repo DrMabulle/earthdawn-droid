@@ -1,5 +1,7 @@
 package fr.android.earthdawn.activities.fragments;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
+import fr.android.earthdawn.activities.utils.AlertDialogUtils;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Pointcuts;
@@ -19,7 +22,7 @@ import fr.android.earthdawn.managers.XPManager;
 import fr.android.earthdawn.utils.CharacterUtils;
 import fr.android.earthdawn.utils.NumberUtils;
 
-public class CharacterFragment extends AbstractRollingFragment implements View.OnClickListener
+public class CharacterFragment extends Fragment implements View.OnClickListener
 {
     private EDCharacter character;
     /**
@@ -34,31 +37,31 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         character = CharacterManager.getLoadedCharacter();
 
         // Fill Character Description with character infos
-        fillGeneralInfos(view, character);
+        fillGeneralInfos(view);
 
         // Fill Attributs with character infos
-        fillAttributs(view, character);
+        fillAttributs(view);
 
         // Fill Disciplines with character infos
-        fillDisciplines(view, character);
+        fillDisciplines(view);
 
         // Fill Deductibles with character infos
-        fillDeductibles(view, character);
+        fillDeductibles(view);
 
         // Fill health infos
-        fillHealthInfos(view, character);
+        fillHealthInfos(view);
 
         // Fill legend points infos
-        fillLegendInfos(view, character);
+        fillLegendInfos(view);
 
         // Fill karma points infos
-        fillKarmaInfos(view, character);
+        fillKarmaInfos(view);
 
 
         return view;
     }
 
-    private void fillGeneralInfos(final View view, final EDCharacter character)
+    private void fillGeneralInfos(final View view)
     {
         view.findViewById(R.id.sheet_character).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         ((TextView) view.findViewById(R.id.sheet_name)).setText(character.getName());
@@ -69,7 +72,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_weight)).setText(Integer.toString(character.getWeight()));
     }
 
-    private void fillAttributs(final View view, final EDCharacter character)
+    private void fillAttributs(final View view)
     {
         view.findViewById(R.id.sheet_attributs).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         // Dex
@@ -104,7 +107,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((ImageButton) view.findViewById(R.id.sheet_cha_roll)).setOnClickListener(this);
     }
 
-    private void fillDisciplines(final View view, final EDCharacter character)
+    private void fillDisciplines(final View view)
     {
         view.findViewById(R.id.sheet_disciplines).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         ((TextView) view.findViewById(R.id.sheet_main_discipline)).setText(character.getMainDisciplineDisplay());
@@ -116,7 +119,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_third_circle)).setText(character.getThirdCircleDisplay());
     }
 
-    private void fillDeductibles(final View view, final EDCharacter character)
+    private void fillDeductibles(final View view)
     {
         view.findViewById(R.id.sheet_deductibles).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         // Defenses
@@ -157,36 +160,48 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         {
             case R.id.sheet_dex_roll:
                 EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.DEX.getFullName(), character.getAttributRank(Attributs.DEX), character.getWounds());
-                showDialogResult();
+                AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_str_roll:
                 EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.STR.getFullName(), character.getAttributRank(Attributs.STR), character.getWounds());
-                showDialogResult();
+                AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_end_roll:
                 EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.END.getFullName(), character.getAttributRank(Attributs.END), character.getWounds());
-                showDialogResult();
+                AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_per_roll:
                 EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.PER.getFullName(), character.getAttributRank(Attributs.PER), character.getWounds());
-                showDialogResult();
+                AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_vol_roll:
                 EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.VOL.getFullName(), character.getAttributRank(Attributs.VOL), character.getWounds());
-                showDialogResult();
+                AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_cha_roll:
                 EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.CHA.getFullName(), character.getAttributRank(Attributs.CHA), character.getWounds());
-                showDialogResult();
+                AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.roll_initiative:
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.init, character.getInitiativeLevel(), 0);
-                showDialogResult();
+                InitiativeFragment.rollInitiative(character, getFragmentManager());
+                break;
+            case R.id.karma_buy:
+                // Open dialog asking how many points to buy.
+                if(CharacterUtils.canBuyKarma(character))
+                {
+                    final FragmentManager fm = getFragmentManager();
+                    final BuyKarmaFragment buyKarmaFragment = new BuyKarmaFragment();
+                    buyKarmaFragment.show(fm, "fragment_buy_karma");
+                }
+                else
+                {
+                    AlertDialogUtils.openAlertDialog(getActivity(), R.string.cannot_buy_karma_title, R.string.cannot_buy_karma_msg);
+                }
                 break;
         }
     }
 
-    private void fillHealthInfos(final View view, final EDCharacter character)
+    private void fillHealthInfos(final View view)
     {
         view.findViewById(R.id.sheet_health).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         ((TextView) view.findViewById(R.id.sheet_health_points)).setText(Integer.toString(character.getHealthPoints()));
@@ -197,7 +212,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_h_wound_threshold)).setText(Integer.toString(character.getWoundThreshold()));
     }
 
-    private void fillLegendInfos(final View view, final EDCharacter character)
+    private void fillLegendInfos(final View view)
     {
         view.findViewById(R.id.sheet_legend).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         // Total earned
@@ -212,7 +227,7 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((TextView) view.findViewById(R.id.sheet_legend_available)).setText(Integer.toString(character.getLegendPoints() - legendSpent));
     }
 
-    private void fillKarmaInfos(final View view, final EDCharacter character)
+    private void fillKarmaInfos(final View view)
     {
         view.findViewById(R.id.sheet_karma).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         // Points de karma disponibles : <available> / <max>
@@ -232,5 +247,6 @@ public class CharacterFragment extends AbstractRollingFragment implements View.O
         ((RadioButton) view.findViewById(R.id.karma_per)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.PER) > 0);
         ((RadioButton) view.findViewById(R.id.karma_vol)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.VOL) > 0);
         ((RadioButton) view.findViewById(R.id.karma_cha)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.CHA) > 0);
+        view.findViewById(R.id.karma_buy).setOnClickListener(this);
     }
 }

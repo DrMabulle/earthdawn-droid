@@ -7,7 +7,7 @@ import fr.android.earthdawn.activities.EarthDawnActivity;
 
 public class EarthDawnActivityTest extends ActivityInstrumentationTestCase2<EarthDawnActivity>
 {
-    private EarthDawnActivity mActivity;
+    protected EarthDawnActivity mActivity;
 
     public EarthDawnActivityTest()
     {
@@ -36,8 +36,11 @@ public class EarthDawnActivityTest extends ActivityInstrumentationTestCase2<Eart
             @Override
             public void run()
             {
-                final Button button = (Button) mActivity.findViewById(R.id.m_map);
+                final EarthDawnActivity activity = getActivity();
+                assertNotNull(activity);
+                final Button button = (Button) activity.findViewById(R.id.m_map);
                 button.requestFocus();
+                button.performClick();
             }
         });
     }

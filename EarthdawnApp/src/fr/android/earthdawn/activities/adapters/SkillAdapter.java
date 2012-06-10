@@ -30,11 +30,11 @@ public class SkillAdapter extends BaseAdapter implements ListAdapter
     private final OnClickListener listener;
     private final EDCharacter character;
 
-    public SkillAdapter(final Context context, final EDCharacter character, final OnClickListener listener)
+    public SkillAdapter(final Context context, final EDCharacter aCharacter, final OnClickListener aListener)
     {
-        this.listener = listener;
-        this.character = character;
-        this.skills = character.getSkills();
+        this.listener = aListener;
+        this.character = aCharacter;
+        this.skills = aCharacter.getSkills();
 
         // Cache the LayoutInflate to avoid asking for a new one each time.
         inflater = LayoutInflater.from(context);
@@ -59,8 +59,9 @@ public class SkillAdapter extends BaseAdapter implements ListAdapter
     }
 
     @Override
-    public View getView(final int position, View convertView, final ViewGroup parent)
+    public View getView(final int position, final View aView, final ViewGroup parent)
     {
+        View convertView = aView;
         if (convertView == null)
         {
             convertView = inflater.inflate(R.layout.skill, parent, false);

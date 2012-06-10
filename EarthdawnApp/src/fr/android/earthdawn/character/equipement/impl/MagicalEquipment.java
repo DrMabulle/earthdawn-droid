@@ -23,15 +23,15 @@ public class MagicalEquipment implements IEquipment, Serializable
     private final List<List<Mod>> bonuses;
     private final int[] costs;
     /**
-     * @param name
-     * @param bonuses
+     * @param aName
+     * @param someBonuses
      */
-    public MagicalEquipment(final String name, final List<List<Mod>> bonuses, final int[] costs)
+    public MagicalEquipment(final String aName, final List<List<Mod>> someBonuses, final int[] someCosts)
     {
         super();
-        this.name = name;
-        this.bonuses = bonuses;
-        this.costs = costs;
+        this.name = aName;
+        this.bonuses = someBonuses;
+        this.costs = someCosts;
     }
 
     @Override
@@ -50,9 +50,9 @@ public class MagicalEquipment implements IEquipment, Serializable
         }
         return result;
     }
-    public List<Mod> getBonuses(final int rank)
+    public List<Mod> getBonuses(final int aRank)
     {
-        return bonuses.get(rank);
+        return bonuses.get(aRank);
     }
 
     public int getRank()

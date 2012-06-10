@@ -28,8 +28,8 @@ public class RankManagerTest
     {
         Assert.assertEquals("1D4 -2", RankManager.getDicesFromRank(1));
         Assert.assertEquals("1D8", RankManager.getDicesFromRank(5));
-        Assert.assertEquals("1D10 1D6", RankManager.getDicesFromRank(10));
-        Assert.assertEquals("1D20 1D6", RankManager.getDicesFromRank(15));
-        Assert.assertEquals("1D20 1D8 1D6", RankManager.getDicesFromRank(20));
+        Assert.assertEquals("1D10 + 1D6", RankManager.getDicesFromRank(10));
+        Assert.assertEquals("1D20 + 1D6", RankManager.getDicesFromRank(15));
+        Assert.assertEquals("1D20 + 1D8 + 1D6", RankManager.getDicesFromRank(20));
     }
 }

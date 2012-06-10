@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import fr.android.earthdawn.R;
@@ -35,11 +34,9 @@ public class GainLegendFragment extends DialogFragment implements OnClickListene
         getDialog().setTitle(getString(R.string.popup_legend_title));
 
         // Close Button
-        Button button = (Button) v.findViewById(R.id.popup_close);
-        button.setOnClickListener(this);
+        v.findViewById(R.id.popup_close).setOnClickListener(this);
         // Details Button
-        button = (Button) v.findViewById(R.id.popup_legend_add);
-        button.setOnClickListener(this);
+        v.findViewById(R.id.popup_legend_add).setOnClickListener(this);
 
         return v;
     }

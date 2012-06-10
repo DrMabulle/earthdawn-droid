@@ -4,6 +4,8 @@
 package fr.android.earthdawn.character.enums;
 
 import java.io.Serializable;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 import fr.android.earthdawn.utils.NumberUtils;
 
@@ -19,15 +21,15 @@ public class Mod implements Serializable
     private final double modificator;
     private final Object[] otherInfos;
     /**
-     * @param pointcut
-     * @param modificator
+     * @param aPointcut
+     * @param aModificator
      * @param otherInfos
      */
-    public Mod(final Pointcuts pointcut, final double modificator, final Object... additionnalInfos)
+    private Mod(final Pointcuts aPointcut, final double aModificator, final Object... additionnalInfos)
     {
         super();
-        this.pointcut = pointcut;
-        this.modificator = modificator;
+        this.pointcut = aPointcut;
+        this.modificator = aModificator;
         this.otherInfos = additionnalInfos;
     }
     /**
@@ -55,20 +57,29 @@ public class Mod implements Serializable
     @Override
     public String toString()
     {
-        final StringBuilder builder = new StringBuilder();
+        return getKey(pointcut, modificator, otherInfos);
+    }
+    private static String getKey(final Pointcuts aPointcut, final double modificator, final Object[] additionnalInfos)
+    {
+        final StringBuilder builder = new StringBuilder(32);
 
-        if (Pointcuts.POWER.equals(pointcut))
+        if (Pointcuts.POWER.equals(aPointcut))
         {
-            builder.append(pointcut);
+            builder.append(aPointcut);
             builder.append(" : ");
-            builder.append(otherInfos[0]);
+            builder.append(additionnalInfos[0]);
+        }
+        else if (Pointcuts.KARMA_USE.equals(aPointcut))
+        {
+            builder.append(aPointcut);
+            builder.append('(').append(additionnalInfos[0]).append(')');
         }
         else
         {
-            builder.append(pointcut);
-            if (Pointcuts.TALENT.equals(pointcut) || Pointcuts.ATTRIBUT.equals(pointcut))
+            builder.append(aPointcut);
+            if (Pointcuts.TALENT.equals(aPointcut) || Pointcuts.ATTRIBUT.equals(aPointcut))
             {
-                builder.append('(').append(otherInfos[0]).append(')');
+                builder.append('(').append(additionnalInfos[0]).append(')');
             }
             builder.append(" : ");
             if (modificator > 0)
@@ -77,10 +88,23 @@ public class Mod implements Serializable
             }
             builder.append(NumberUtils.format(modificator));
         }
-        // TODO : modificateurs temporaires
         return builder.toString();
     }
 
-
-
+    /*
+     * Optimize number of instanciations.
+     * Indeed, a lot of mods are strickly the same and can not be modified
+     */
+    private static final Map<String, Mod> factory = new WeakHashMap<String, Mod>();
+    public static final Mod get(final Pointcuts pointcut, final double modificator, final Object... additionnalInfos)
+    {
+        final String key = getKey(pointcut, modificator, additionnalInfos);
+        Mod result = factory.get(key);
+        if (result == null)
+        {
+            result = new Mod(pointcut, modificator, additionnalInfos);
+            factory.put(key, result);
+        }
+        return result;
+    }
 }

@@ -1,20 +1,21 @@
 package fr.android.earthdawn.activities.fragments;
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.SkillAdapter;
+import fr.android.earthdawn.activities.utils.AlertDialogUtils;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 
-public class SkillsFragment extends AbstractRollingFragment implements View.OnClickListener
+public class SkillsFragment extends Fragment implements View.OnClickListener
 {
     private EDCharacter character;
 
@@ -29,7 +30,7 @@ public class SkillsFragment extends AbstractRollingFragment implements View.OnCl
         final SkillAdapter skillAdpater = new SkillAdapter(getActivity(), character, this);
         listV.setAdapter(skillAdpater);
 
-        ((Button) view.findViewById(R.id.skills_new)).setOnClickListener(this);
+        view.findViewById(R.id.skills_new).setOnClickListener(this);
 
         return view;
     }
@@ -55,7 +56,7 @@ public class SkillsFragment extends AbstractRollingFragment implements View.OnCl
             CharacterManager.getLoadedCharacter().incrementStrain(strain);
 
             // Dialog box
-            showDialogResult();
+            AlertDialogUtils.showDialogResult(getFragmentManager());
         }
         else if (view.getId() == R.id.skills_new)
         {
