@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import fr.android.earthdawn.R;
 
 public class EarthDawnActivity extends Activity implements View.OnClickListener
@@ -21,10 +20,10 @@ public class EarthDawnActivity extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        ((Button) findViewById(R.id.m_sheet)).setOnClickListener(this);
-        ((Button) findViewById(R.id.m_new)).setOnClickListener(this);
-        ((Button) findViewById(R.id.m_map)).setOnClickListener(this);
-        ((Button) findViewById(R.id.m_tests)).setOnClickListener(this);
+        findViewById(R.id.m_sheet).setOnClickListener(this);
+        findViewById(R.id.m_new).setOnClickListener(this);
+        findViewById(R.id.m_map).setOnClickListener(this);
+        findViewById(R.id.m_tests).setOnClickListener(this);
     }
 
     @Override

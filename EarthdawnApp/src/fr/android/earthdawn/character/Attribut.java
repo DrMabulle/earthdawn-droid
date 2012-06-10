@@ -17,14 +17,14 @@ public class Attribut implements Serializable
     private int evol;
 
     /**
-     * @param indice indice de base
+     * @param aIndice indice de base
      * @param evol nombre d'évolutions
      */
-    public Attribut(final int indice, final int evol)
+    public Attribut(final int aIndice, final int aEvol)
     {
         super();
-        this.indice = indice;
-        this.evol = evol;
+        this.indice = aIndice;
+        this.evol = aEvol;
     }
 
     public int getResultingIndice()

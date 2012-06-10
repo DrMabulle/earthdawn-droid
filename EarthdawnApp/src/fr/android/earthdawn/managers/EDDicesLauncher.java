@@ -87,6 +87,13 @@ public final class EDDicesLauncher
     public static String getDetailedMessage(final Context ctx)
     {
         final Roll roll = rollsHistory.getFirst();
+        final String msg = getRolledDicesInfos(ctx);
+        return ctx.getString(R.string.roller_message, msg, roll.rollResult, roll.rollWounds, roll.rollLogs);
+    }
+
+    public static String getRolledDicesInfos(final Context ctx)
+    {
+        final Roll roll = rollsHistory.getFirst();
         String msg = null;
         if (roll.rollDicesInfos != null)
         {
@@ -96,7 +103,7 @@ public final class EDDicesLauncher
         {
             msg = ctx.getString(R.string.roller_rank_msg, roll.rollRank, RankManager.getDicesFromRank(roll.rollRank));
         }
-        return ctx.getString(R.string.roller_message, msg, roll.rollResult, roll.rollWounds, roll.rollLogs);
+        return msg;
     }
 
     public static boolean testInputDicesInfos(final String dicesInfos)

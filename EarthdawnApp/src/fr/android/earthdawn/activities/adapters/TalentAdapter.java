@@ -33,12 +33,12 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
     private final Discipline discipline;
     private final EDCharacter character;
 
-    public TalentAdapter(final Context context, final EDCharacter character, final Discipline discipline, final OnClickListener listener)
+    public TalentAdapter(final Context context, final EDCharacter aCharacter, final Discipline aDiscipline, final OnClickListener aListener)
     {
-        this.listener = listener;
-        this.character = character;
-        this.discipline = discipline;
-        this.talents = clean(discipline.getKnownTalents());
+        this.listener = aListener;
+        this.character = aCharacter;
+        this.discipline = aDiscipline;
+        this.talents = clean(aDiscipline.getKnownTalents());
 
         // Cache the LayoutInflate to avoid asking for a new one each time.
         inflater = LayoutInflater.from(context);
@@ -46,15 +46,15 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
 
     private List<Talent> clean(final List<Talent> knownTalents)
     {
-        final List<Talent> talents = new ArrayList<Talent>(knownTalents.size());
+        final List<Talent> cleanedTalents = new ArrayList<Talent>(knownTalents.size());
         for (final Talent talent : knownTalents)
         {
             if (discipline.getTalentRank(talent) != 0)
             {
-                talents.add(talent);
+                cleanedTalents.add(talent);
             }
         }
-        return talents;
+        return cleanedTalents;
     }
 
     @Override
@@ -76,8 +76,9 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
     }
 
     @Override
-    public View getView(final int position, View convertView, final ViewGroup parent)
+    public View getView(final int position, final View aView, final ViewGroup parent)
     {
+        View convertView = aView;
         if (convertView == null)
         {
             convertView = inflater.inflate(R.layout.talent, parent, false);
@@ -93,6 +94,7 @@ public class TalentAdapter extends BaseAdapter implements ListAdapter
         ((RadioButton) convertView.findViewById(R.id.talents_karma)).setChecked(talent.isKarmaMandatory());
         ((RadioButton) convertView.findViewById(R.id.talents_action)).setChecked(talent.isAction());
         ((TextView) convertView.findViewById(R.id.talents_effort)).setText(Integer.toString(talent.getStrain()));
+        ((TextView) convertView.findViewById(R.id.talents_page)).setText(Integer.toString(talent.getPage()));
 
         if (talent.isRollable())
         {

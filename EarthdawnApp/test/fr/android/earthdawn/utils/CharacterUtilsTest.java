@@ -8,9 +8,12 @@ import org.junit.Test;
 
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
+import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Races;
+import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.managers.EquipmentManager;
 
@@ -261,6 +264,63 @@ public class CharacterUtilsTest
 
         elfe.setMainDiscipline(Disciplines.Forgeron, 5);
         Assert.assertTrue(CharacterUtils.computePerks(elfe, Pointcuts.KARMA_USE, Attributs.DEX) > 0);
+    }
+
+
+
+    @Test
+    public void testMaxKarmaBuyable()
+    {
+        final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
+
+        elfe.setMainDiscipline(Disciplines.Forgeron, 6);
+        final Discipline discipline = elfe.getMainDiscipline();
+        final List<Talent> talents = discipline.getKnownTalents();
+        discipline.setTalentRank(talents.get(5), 3); // RituelKarma
+
+        Assert.assertTrue(elfe.getAvailableKarma() < 10);
+        Assert.assertTrue(CharacterUtils.getMaxKarma(elfe) == 25);
+
+
+        // Test 1 : restriction on legend points
+        Assert.assertEquals(0, elfe.getLegendPoints());
+        Assert.assertEquals(0, CharacterUtils.maxKarmaBuyable(elfe));
+
+        elfe.incrementLegendPoints(10);
+        Assert.assertEquals(1, CharacterUtils.maxKarmaBuyable(elfe));
+
+        // Test 2 : restriction on talent Rituel Karma
+        elfe.incrementLegendPoints(5000);
+        Assert.assertEquals(3, CharacterUtils.maxKarmaBuyable(elfe));
+
+        discipline.setTalentRank(talents.get(5), 10); // RituelKarma
+        Assert.assertEquals(10, CharacterUtils.maxKarmaBuyable(elfe));
+
+        // Test 3 : restriction on max karma allowed
+        elfe.incrementKarmaBought(CharacterUtils.getMaxKarma(elfe) - elfe.getAvailableKarma() - 3);
+        Assert.assertEquals(3, CharacterUtils.maxKarmaBuyable(elfe));
+
+        elfe.incrementKarmaBought(1);
+        Assert.assertEquals(2, CharacterUtils.maxKarmaBuyable(elfe));
+    }
+
+    @Test
+    public void testComputeInitiativeTest()
+    {
+        final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
+        elfe.setMainDiscipline(Disciplines.Forgeron, 6);
+
+        // Test 1
+        Assert.assertEquals("2D6", CharacterUtils.computeInitiativeTest(elfe));
+
+        // Test 2
+        elfe.addTempMod(Mod.get(Pointcuts.INIT, 1));
+        Assert.assertEquals("1D8 + 1D6", CharacterUtils.computeInitiativeTest(elfe));
+
+        // Test 3
+        elfe.addTempMod(Mod.get(Pointcuts.INIT_MOD, 2));
+        Assert.assertEquals("1D8 + 1D6 + 2", CharacterUtils.computeInitiativeTest(elfe));
+
     }
 
 }

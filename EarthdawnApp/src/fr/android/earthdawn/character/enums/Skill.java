@@ -13,26 +13,26 @@ public class Skill implements Serializable
 {
     private static final long serialVersionUID = 5893341632241346616L;
 
-    private String label;
-    private Attributs attribut;
-    private boolean isAction;
+    private final String label;
+    private final Attributs attribut;
+    private final boolean action;
     private int strain = 0;
     private int rank = 1;
 
 
     /**
-     * @param label
-     * @param attribut
+     * @param aLabel
+     * @param aAttribut
      * @param isAction
-     * @param strain
+     * @param aStrain
      */
-    public Skill(final String label, final Attributs attribut, final boolean isAction, final int strain)
+    public Skill(final String aLabel, final Attributs aAttribut, final boolean isAction, final int aStrain)
     {
         super();
-        this.label = label;
-        this.attribut = attribut;
-        this.isAction = isAction;
-        this.strain = strain;
+        this.label = aLabel;
+        this.attribut = aAttribut;
+        this.action = isAction;
+        this.strain = aStrain;
     }
 
 
@@ -45,27 +45,11 @@ public class Skill implements Serializable
     }
 
     /**
-     * @param attribut the attribut to set
-     */
-    public void setAttribut(final Attributs attribut)
-    {
-        this.attribut = attribut;
-    }
-
-    /**
      * @return the label
      */
     public String getLabel()
     {
         return label;
-    }
-
-    /**
-     * @param label the label to set
-     */
-    public void setLabel(final String label)
-    {
-        this.label = label;
     }
 
     /**
@@ -90,15 +74,7 @@ public class Skill implements Serializable
      */
     public boolean isAction()
     {
-        return isAction;
-    }
-
-    /**
-     * @param isAction the isAction to set
-     */
-    public void setAction(final boolean isAction)
-    {
-        this.isAction = isAction;
+        return action;
     }
 
     /**
@@ -107,13 +83,5 @@ public class Skill implements Serializable
     public int getStrain()
     {
         return strain;
-    }
-
-    /**
-     * @param strain the strain to set
-     */
-    public void setStrain(final int strain)
-    {
-        this.strain = strain;
     }
 }

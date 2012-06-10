@@ -36,44 +36,58 @@
 			    android:padding="2dp" android:layout_weight="5" android:layout_span="2" />    
         </TableRow>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:padding="2dp" android:layout_weight="5"
-            android:orientation="horizontal" >
-
-            <RadioButton android:layout_marginLeft="10dp" 
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/karma_dex" android:clickable="false"
-                android:text="@string/sheet_karma_radio_dex" />
-
-            <RadioButton android:layout_marginLeft="10dp" 
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/karma_str" android:clickable="false"
-                android:text="@string/sheet_karma_radio_str" />
-
-            <RadioButton android:layout_marginLeft="10dp" 
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/karma_end" android:clickable="false"
-                android:text="@string/sheet_karma_radio_end" />
-        </LinearLayout>
-
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:padding="2dp" android:layout_weight="5"
-            android:orientation="horizontal" >
-
-            <RadioButton android:layout_marginLeft="10dp" 
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/karma_per" android:clickable="false"
-                android:text="@string/sheet_karma_radio_per" />
-
-            <RadioButton android:layout_marginLeft="10dp" 
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/karma_vol" android:clickable="false"
-                android:text="@string/sheet_karma_radio_vol" />
-
-            <RadioButton android:layout_marginLeft="10dp" 
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/karma_cha" android:clickable="false"
-                android:text="@string/sheet_karma_radio_cha" />
-        </LinearLayout>
+           <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" 
+               android:baselineAligned="false" 
+               android:orientation="vertical" 
+               android:gravity="center_horizontal">
+               
+	        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+	            android:padding="2dp" 
+	            android:orientation="horizontal" >
+	
+	            <RadioButton android:layout_marginRight="2dp"
+	                android:layout_width="wrap_content" android:layout_height="wrap_content"
+	                android:id="@+id/karma_dex" android:clickable="false"
+	                android:text="@string/sheet_karma_radio_dex" />
+	
+	            <RadioButton android:layout_marginLeft="10dp" android:layout_marginRight="2dp"
+	                android:layout_width="wrap_content" android:layout_height="wrap_content"
+	                android:id="@+id/karma_str" android:clickable="false"
+	                android:text="@string/sheet_karma_radio_str" />
+	
+	            <RadioButton android:layout_marginLeft="10dp" android:layout_marginRight="2dp"
+	                android:layout_width="wrap_content" android:layout_height="wrap_content"
+	                android:id="@+id/karma_end" android:clickable="false"
+	                android:text="@string/sheet_karma_radio_end" />
+	        </LinearLayout>
+	
+	        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+	            android:padding="2dp"
+	            android:orientation="horizontal" >
+	
+	            <RadioButton android:layout_marginRight="2dp"
+	                android:layout_width="wrap_content" android:layout_height="wrap_content"
+	                android:id="@+id/karma_per" android:clickable="false"
+	                android:text="@string/sheet_karma_radio_per" />
+	
+	            <RadioButton android:layout_marginLeft="10dp" android:layout_marginRight="2dp"
+	                android:layout_width="wrap_content" android:layout_height="wrap_content"
+	                android:id="@+id/karma_vol" android:clickable="false"
+	                android:text="@string/sheet_karma_radio_vol" />
+	
+	            <RadioButton android:layout_marginLeft="10dp" android:layout_marginRight="2dp"
+	                android:layout_width="wrap_content" android:layout_height="wrap_content"
+	                android:id="@+id/karma_cha" android:clickable="false"
+	                android:text="@string/sheet_karma_radio_cha" />
+	        </LinearLayout>
+	    </LinearLayout>
+    
+	    <Button android:id="@+id/karma_buy" 
+	        android:layout_width="match_parent" 
+	        android:layout_height="wrap_content" 
+	        android:padding="4dp" 
+	        android:layout_marginLeft="6dp" 
+	        android:layout_marginRight="6dp" 
+	        android:text="@string/sheet_karma_buy"/>
         
     </TableLayout>

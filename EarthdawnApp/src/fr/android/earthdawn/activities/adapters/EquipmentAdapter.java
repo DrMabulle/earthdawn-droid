@@ -60,8 +60,9 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
     }
 
     @Override
-    public View getView(final int position, View convertView, final ViewGroup parent)
+    public View getView(final int position, final View aView, final ViewGroup parent)
     {
+        View convertView = aView;
         if (convertView == null)
         {
             convertView = inflater.inflate(R.layout.possession, parent, false);

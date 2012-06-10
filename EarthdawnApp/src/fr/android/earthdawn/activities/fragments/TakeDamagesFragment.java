@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
@@ -47,7 +46,7 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
         // Hide soft keyboard on NumberPickers by overwriting the OnFocusChangeListener
         final OnFocusChangeListener fcl = new OnFocusChangeListener() {
             @Override
-            public void onFocusChange(final View v, final boolean hasFocus) {
+            public void onFocusChange(final View aView, final boolean hasFocus) {
                 // Do nothing to suppress keyboard
             }
         };
@@ -57,11 +56,9 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
 
 
         // Close Button
-        Button button = (Button) v.findViewById(R.id.popup_close);
-        button.setOnClickListener(this);
+        v.findViewById(R.id.popup_close).setOnClickListener(this);
         // Take Damages Button
-        button = (Button) v.findViewById(R.id.popup_take_damages);
-        button.setOnClickListener(this);
+        v.findViewById(R.id.popup_take_damages).setOnClickListener(this);
 
         return v;
     }
@@ -126,7 +123,7 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
         }
     }
 
-    private int computeArmor(final View parentView)
+    private static int computeArmor(final View parentView)
     {
         final RadioGroup rg = (RadioGroup) parentView.findViewById(R.id.radioGroupArmor);
         final int id = rg.getCheckedRadioButtonId();
@@ -146,13 +143,13 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
         return armor;
     }
 
-    private int computeWounds(final int healthPointsLost)
+    private static int computeWounds(final int healthPointsLost)
     {
         final int woundThreshold = CharacterManager.getLoadedCharacter().getWoundThreshold();
         return healthPointsLost / woundThreshold;
     }
 
-    private CharSequence computeArmorMsg(final int armor)
+    private static CharSequence computeArmorMsg(final int armor)
     {
         if (armor == 0)
         {

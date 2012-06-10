@@ -20,14 +20,14 @@ public class Equipment implements IEquipment, Serializable
     private final String name;
     private final List<Mod> bonuses;
     /**
-     * @param name
-     * @param bonuses
+     * @param aName
+     * @param someBonuses
      */
-    public Equipment(final String name, final List<Mod> bonuses)
+    public Equipment(final String aName, final List<Mod> someBonuses)
     {
         super();
-        this.name = name;
-        this.bonuses = bonuses;
+        this.name = aName;
+        this.bonuses = someBonuses;
     }
 
     @Override

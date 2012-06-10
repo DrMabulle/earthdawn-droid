@@ -13,10 +13,10 @@ public class FixedValueDice implements Rollable
 {
     private final int value;
 
-    public FixedValueDice(final int value)
+    public FixedValueDice(final int aValue)
     {
         super();
-        this.value = value;
+        this.value = aValue;
     }
 
     @Override

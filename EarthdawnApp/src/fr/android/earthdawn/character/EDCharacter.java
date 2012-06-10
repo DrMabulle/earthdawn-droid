@@ -63,31 +63,31 @@ public class EDCharacter implements Serializable
     private int damages = 0;
     private int strain = 0;
 
-    public EDCharacter(final String name, final String sex, final int age, final int height, final int weight,
-            final Races race, final int dexInd, final int dexEvol, final int strInd, final int strEvol,
+    public EDCharacter(final String aName, final String aSex, final int aAge, final int aHeight, final int aWeight,
+            final Races aRace, final int dexInd, final int dexEvol, final int strInd, final int strEvol,
             final int endInd, final int endEvol, final int perInd, final int perEvol, final int volInd,
             final int volEvol, final int chaInd, final int chaEvol)
     {
         super();
-        this.name = name;
-        this.sex = sex;
-        this.age = age;
-        this.height = height;
-        this.weight = weight;
-        this.race = race;
+        this.name = aName;
+        this.sex = aSex;
+        this.age = aAge;
+        this.height = aHeight;
+        this.weight = aWeight;
+        this.race = aRace;
 
         // Dextérité
-        attributs[Attributs.DEX.getId()] = new Attribut(dexInd + race.getBonusDex(), dexEvol);
+        attributs[Attributs.DEX.getId()] = new Attribut(dexInd + aRace.getBonusDex(), dexEvol);
         // Force
-        attributs[Attributs.STR.getId()] = new Attribut(strInd + race.getBonusStr(), strEvol);
+        attributs[Attributs.STR.getId()] = new Attribut(strInd + aRace.getBonusStr(), strEvol);
         // Endurance
-        attributs[Attributs.END.getId()] = new Attribut(endInd + race.getBonusEnd(), endEvol);
+        attributs[Attributs.END.getId()] = new Attribut(endInd + aRace.getBonusEnd(), endEvol);
         // Perception
-        attributs[Attributs.PER.getId()] = new Attribut(perInd + race.getBonusPer(), perEvol);
+        attributs[Attributs.PER.getId()] = new Attribut(perInd + aRace.getBonusPer(), perEvol);
         // Velonté
-        attributs[Attributs.VOL.getId()] = new Attribut(volInd + race.getBonusVol(), volEvol);
+        attributs[Attributs.VOL.getId()] = new Attribut(volInd + aRace.getBonusVol(), volEvol);
         // Charisme
-        attributs[Attributs.CHA.getId()] = new Attribut(chaInd + race.getBonusCha(), chaEvol);
+        attributs[Attributs.CHA.getId()] = new Attribut(chaInd + aRace.getBonusCha(), chaEvol);
         // Null
         attributs[Attributs.NUL.getId()] = new Attribut(0, 0);
     }
@@ -225,6 +225,7 @@ public class EDCharacter implements Serializable
     }
     public Mod getTempMod(final Pointcuts pointcut)
     {
+        // FIXME there may be a problem with additionnal infos (talent)
         for (final Mod mod : modTmp)
         {
             if (mod.getPointcut().equals(pointcut))
@@ -328,11 +329,11 @@ public class EDCharacter implements Serializable
     }
 
     /**
-     * @param legendPoints the legendPoints to increment
+     * @param someLegendPoints the legendPoints to increment
      */
-    public void incrementLegendPoints(final int legendPoints)
+    public void incrementLegendPoints(final int someLegendPoints)
     {
-        this.legendPoints += legendPoints;
+        this.legendPoints += someLegendPoints;
     }
 
     /**
@@ -344,11 +345,11 @@ public class EDCharacter implements Serializable
     }
 
     /**
-     * @param karmaBought the karmaBought to increment
+     * @param aKarmaBought the karmaBought to increment
      */
-    public void incrementKarmaBought(final int karmaBought)
+    public void incrementKarmaBought(final int aKarmaBought)
     {
-        this.karmaBought += karmaBought;
+        this.karmaBought += aKarmaBought;
     }
 
     /**
@@ -360,11 +361,11 @@ public class EDCharacter implements Serializable
     }
 
     /**
-     * @param karmaSpent the karmaSpent to increment
+     * @param aKarmaSpent the karmaSpent to increment
      */
-    public void incrementKarmaSpent(final int karmaSpent)
+    public void incrementKarmaSpent(final int aKarmaSpent)
     {
-        this.karmaSpent += karmaSpent;
+        this.karmaSpent += aKarmaSpent;
     }
 
     public int getAvailableKarma()

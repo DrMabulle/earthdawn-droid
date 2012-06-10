@@ -6,16 +6,15 @@ package fr.android.earthdawn.activities.fragments;
 import java.util.List;
 
 import android.app.DialogFragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import fr.android.earthdawn.R;
+import fr.android.earthdawn.activities.utils.AlertDialogUtils;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.managers.CharacterManager;
@@ -67,11 +66,9 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
         rg.addView(rd);
 
         // Close Button
-        Button button = (Button) v.findViewById(R.id.popup_close);
-        button.setOnClickListener(this);
+        v.findViewById(R.id.popup_close).setOnClickListener(this);
         // Details Button
-        button = (Button) v.findViewById(R.id.popup_hit);
-        button.setOnClickListener(this);
+        v.findViewById(R.id.popup_hit).setOnClickListener(this);
 
         return v;
     }
@@ -96,12 +93,8 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
                 EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_DAMAGES, R.string.damages, strengh + mod, 0);
 
                 // open result popup
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-                // Create and show the dialog.
-                final ShowResultFragment newFragment = new ShowResultFragment();
                 this.dismiss();
-                newFragment.show(ft, "tag");
+                AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
         }
     }
@@ -114,12 +107,12 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
         return id < weapons.size() ? getDamageRank(weapons.get(id)) : 0;
     }
 
-    private int getCharacterStrengh()
+    private static int getCharacterStrengh()
     {
         return CharacterManager.getLoadedCharacter().getAttributRank(Attributs.STR);
     }
 
-    private int getDamageRank(final IEquipment weapon)
+    private static int getDamageRank(final IEquipment weapon)
     {
         return EquipmentUtils.getDamageRank(weapon);
     }

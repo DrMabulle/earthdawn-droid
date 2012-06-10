@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -44,8 +43,7 @@ public class NewSkillFragment extends DialogFragment implements OnClickListener
 
 
         // Close Button
-        final Button button = (Button) v.findViewById(R.id.skill_new_add);
-        button.setOnClickListener(this);
+        v.findViewById(R.id.skill_new_add).setOnClickListener(this);
 
         return v;
     }

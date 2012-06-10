@@ -67,6 +67,7 @@
     <string name="sheet_karma_radio_per">PER</string>
     <string name="sheet_karma_radio_vol">VOL</string>
     <string name="sheet_karma_radio_cha">CHA</string>
+    <string name="sheet_karma_buy">Rituel de Karma</string>
     
     <string name="sheet_defenses">Défenses</string>
     <string name="sheet_def_phy">Physique</string>
@@ -104,6 +105,7 @@
     <string name="talents_action">Action</string>
     <string name="talents_effort">Fatigue</string>
     <string name="talents_roll">Lancer</string>
+    <string name="talents_page">Page</string>
     
     <string name="skills_skill">Compétence</string>
     <string name="skills_rank">Rang</string>
@@ -133,6 +135,7 @@
     <string name="popup_close">Fermer</string>
     <string name="popup_details">Détails</string>
     <string name="popup_roll">Lancer</string>
+    <string name="popup_roll_dices_infos">Vous avez lancé %1$s</string>
     <string name="popup_roll_damages_title">Choisir l\'arme utilisée</string>
     <string name="popup_take_damages_title">Dommages à subir :</string>
     <string name="popup_take_damages_arm_phy">Armure physique</string>
@@ -147,6 +150,14 @@
     <string name="popup_legend_msg_ok">%1$d points de Légende correctement ajoutés au personnage.</string>
     <string name="popup_legend_button">Ajouter</string>
     
+    <string name="popup_buy_karma_title">Achat de Karma</string>
+    <string name="popup_buy_karma_info">Combien de points de karma souhaitez-vous acheter ? (10PL / point)</string>
+    <string name="popup_buy_karma_button">Acheter</string>
+    <string name="popup_buy_karma_toast">Achat de %1$d point(s) de karma effecté avec succès.</string>
+    
+    <string name="popup_init_title">Talents modificateurs d\'Initiative</string>
+    <string name="popup_init_msg">Choix des talents à activer pour modifier le rang d\'initiative</string>
+    
     <string name="equipment_title">Liste de vos possessions</string>
     <string name="equipment_no_data">Aucun équipement</string>
     
@@ -154,7 +165,6 @@
     <string name="msg_health_status_uncounscious">Personnage dans l\'inconscience.</string>
     <string name="msg_health_status_dead">Personnage mort.</string>
     <string name="msg_health_status_normal">Personnage conscient.</string>
-    <string name="msg_heal_damages">Vous avez soigné de %1$d points.\n\n</string>
     <string name="msg_wound_healed">Une blessure grave a été soignée.</string>
     <string name="msg_damages_healed">Résultat du jet de récupération : %1$d.\nNombre de blessures graves : %2$d.\nPoints de vie réucpérés : %3$d.</string>
     <string name="msg_fully_healed">Toutes les blessures ont été supprimées.</string>
@@ -200,5 +210,17 @@
     <string name="skill">Compétence</string>
     
     <string name="empty"></string> 
-    <string name="not_yet_implemented">Not yet implemented</string>
+    <string name="not_yet_implemented">Not yet implemented</string> 
+    
+    <string name="talent_with_karma_title">Talent : %1$s</string> 
+    <string name="talent_with_karma_msg">Talent de discipline. Souhaitez-vous utiliser du karma ?</string> 
+    <string name="talent_with_karma_discipline">karma de discipline</string> 
+    <string name="talent_with_karma_mandatory">karma obligatoire</string>
+    <string name="talent_with_karma_available_points">Points de karma disponibles : %1$d</string>
+    <string name="talent_with_karma_alert_title">Action impossible</string>
+    <string name="talent_with_karma_alert_msg">Vous n\'avez pas assez de karma pour effectuer cette action.</string>
+    
+    <string name="cannot_buy_karma_title">Action impossible</string>
+    <string name="cannot_buy_karma_msg">Vous ne pouvez pas acheter de points de karma.\nRaisons possibles :\n- Pas assez de Points de Légende\n- Nombre de points de karma maximum atteint</string>
+    
 </resources>

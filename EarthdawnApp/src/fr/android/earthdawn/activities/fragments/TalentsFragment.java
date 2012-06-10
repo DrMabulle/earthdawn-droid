@@ -1,5 +1,7 @@
 package fr.android.earthdawn.activities.fragments;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.TalentAdapter;
+import fr.android.earthdawn.activities.utils.AlertDialogUtils;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Talent;
@@ -17,7 +20,7 @@ import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.managers.RankManager;
 import fr.android.earthdawn.utils.Constants;
 
-public class TalentsFragment extends AbstractRollingFragment implements View.OnClickListener
+public class TalentsFragment extends Fragment implements View.OnClickListener
 {
     private EDCharacter character;
     private Discipline discicpline;
@@ -44,37 +47,67 @@ public class TalentsFragment extends AbstractRollingFragment implements View.OnC
         {
             final View parent = (View) view.getParent();
 
+            // Retrieve talent rank, for dice roll
             final int level = Integer.parseInt((String) ((TextView) parent.findViewById(R.id.talents_level)).getText());
-            // TODO Talents pre and post actions.
+
+            // Retrieve talent itself
             final int talentId = Integer.parseInt((String) ((TextView) parent.findViewById(R.id.talents_talent_id)).getText());
             final Talents talents = Talents.findByLabel(talentId);
             final Talent talent = discicpline.findTalent(talents);
-            talent.executePreAction();
 
-            if (talent.isKarmaMandatory())
+            // Lack of karma...
+            if (talent.isKarmaMandatory() && character.getAvailableKarma() == 0)
             {
-                // TODO vérifier que le perso a suffisamment de karma dispo, et sinon ouvrir une popup
-
-                // Definir les dés à lancer
-                final String dices = RankManager.getDicesFromRank(level);
-                final String karmaDice = RankManager.getDicesFromRank(character.getRace().getKarmaRank());
-                // Mettre le karma en premier pour éviter les problème avec les modificateurs
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_TALENT, talentId, karmaDice + " " + dices, character.getWounds());
-                character.incrementKarmaSpent(1);
+                AlertDialogUtils.openAlertDialog(getActivity(), R.string.talent_with_karma_alert_title, R.string.talent_with_karma_alert_msg);
             }
             else
             {
-                // Définir le niveau à lancer
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_TALENT, talentId, level, character.getWounds());
+                /*
+                 * if talent is Discipline, ask player if he wishes to use karma.
+                 * If karma can or must be used, check if character has karma left
+                 * If karma is not used, simply roll the dices and show result
+                 */
+                if (talent.isDiscipline())
+                {
+                    // Open a popup to ask if player wants to use karma
+                    final FragmentManager fm = getFragmentManager();
+                    final TalentWithKarmaFragment fragment = new TalentWithKarmaFragment();
+                    final Bundle bundle = new Bundle(2);
+                    bundle.putSerializable(Constants.BUNDLE_TALENT, talent);
+                    bundle.putInt(Constants.BUNDLE_TALENT_LEVEL, level);
+                    fragment.setArguments(bundle);
+                    fragment.show(fm, "fragment_talent_with_karma");
+                }
+                else
+                {
+                    // TODO Talents pre and post actions.
+                    talent.executePreAction();
+
+                    if (talent.isKarmaMandatory())
+                    {
+                        // Definir les dés à lancer
+                        final String dices = RankManager.getDicesFromRank(level);
+                        final String karmaDice = RankManager.getDicesFromRank(character.getRace().getKarmaRank());
+                        // Mettre le karma en premier pour éviter les problème avec les modificateurs
+                        EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_TALENT, talentId, karmaDice + " + " + dices, character.getWounds());
+                        character.incrementKarmaSpent(1);
+                    }
+                    else
+                    {
+                        // Définir le niveau à lancer
+                        EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_TALENT, talentId, level, character.getWounds());
+                    }
+
+                    // Strain
+                    character.incrementStrain(talent.getStrain());
+
+                    // TODO Post action
+                    talent.executePostAction();
+
+                    // Dialog box
+                    AlertDialogUtils.showDialogResult(getFragmentManager());
+                }
             }
-
-            // TODO Post action
-            talent.executePostAction();
-            // Strain
-            CharacterManager.getLoadedCharacter().incrementStrain(talent.getStrain());
-
-            // Dialog box
-            showDialogResult();
         }
     }
 }

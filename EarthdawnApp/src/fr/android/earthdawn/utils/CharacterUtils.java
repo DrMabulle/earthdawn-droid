@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.android.earthdawn.character.EDCharacter;
+import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
+import fr.android.earthdawn.character.enums.Talent;
+import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.character.equipement.IEquipment;
+import fr.android.earthdawn.managers.RankManager;
 
 
 /**
@@ -174,8 +178,9 @@ public final class CharacterUtils
     }
 
     @SuppressWarnings("rawtypes")
-    protected static double incrementIfEqual(final Pointcuts pointcut, double result, final Mod mod, final Enum... additionnalInfos)
+    protected static double incrementIfEqual(final Pointcuts pointcut, final double aResult, final Mod mod, final Enum... additionnalInfos)
     {
+        double result = aResult;
         if (pointcut.equals(mod.getPointcut()))
         {
             // Attributs || talents || karma use
@@ -194,5 +199,106 @@ public final class CharacterUtils
             }
         }
         return result;
+    }
+
+    /**
+     * Returns the maximum rank for a given talent. Searches all disciplines
+     * @param aCharacter a character
+     * @param aTalent a talent to search
+     * @return max level over all disciplines
+     */
+    public static int getTalentRank(final EDCharacter aCharacter, final Talents aTalent)
+    {
+        Discipline disc = aCharacter.getMainDiscipline();
+        int rank1 = 0;
+        if (disc != null)
+        {
+            rank1 = disc.getTalentRank(disc.findTalent(aTalent));
+        }
+        disc = aCharacter.getSecondDiscipline();
+        int rank2 = 0;
+        if (disc != null)
+        {
+            rank2 = disc.getTalentRank(disc.findTalent(aTalent));
+        }
+        disc = aCharacter.getThirdDiscipline();
+        int rank3 = 0;
+        if (disc != null)
+        {
+            rank3 = disc.getTalentRank(disc.findTalent(aTalent));
+        }
+        return Math.max(rank1, Math.max(rank2, rank3));
+    }
+    public static Talent getTalent(final EDCharacter aCharacter, final Talents aTalent)
+    {
+        Talent talent = null;
+        Discipline disc = aCharacter.getMainDiscipline();
+        if (disc != null)
+        {
+            talent = disc.findTalent(aTalent);
+        }
+        if (talent == null)
+        {
+            disc = aCharacter.getSecondDiscipline();
+            if (disc != null)
+            {
+                talent = disc.findTalent(aTalent);
+            }
+            if (talent == null)
+            disc = aCharacter.getThirdDiscipline();
+            if (disc != null)
+            {
+                talent = disc.findTalent(aTalent);
+            }
+        }
+        return talent;
+    }
+
+    public static boolean canBuyKarma(final EDCharacter aCharacter)
+    {
+        // Check Legend points, max karma allowed
+        return CharacterUtils.maxKarmaBuyable(aCharacter) > 0;
+    }
+
+    public static int maxKarmaBuyable(final EDCharacter aCharacter)
+    {
+        // Level of talent Rituel de Karma
+        final int maxKarmaBuyable = CharacterUtils.getTalentRank(aCharacter, Talents.RituelKarma);
+        // Difference between max karma allowed and karma available
+        final int maxKarma = CharacterUtils.getMaxKarma(aCharacter);
+        final int availableKarma = aCharacter.getAvailableKarma();
+        // Legend points (10 legend points per karma point)
+        final int legend = aCharacter.getLegendPoints() / 10;
+
+        return Math.min(maxKarmaBuyable, Math.min(legend, maxKarma - availableKarma));
+    }
+
+    public static boolean knowsTalent(final EDCharacter aCharacter, final Talents aTalent)
+    {
+        return CharacterUtils.getTalentRank(aCharacter, aTalent) > 0;
+    }
+
+    public static String computeInitiativeTest(final EDCharacter character)
+    {
+        final int initiativeRank = character.getInitiativeLevel();
+        final int initiativeMod = character.computeBonusesInt(Pointcuts.INIT_MOD);
+        final StringBuilder result = new StringBuilder(24);
+        String sign = "";
+        if (initiativeRank > 0 || initiativeRank == 0 && initiativeMod == 0)
+        {
+            result.append(RankManager.getDicesFromRank(initiativeRank));
+            sign = " + ";
+        }
+
+        if (initiativeMod > 0)
+        {
+            result.append(sign);
+            result.append(initiativeMod);
+        }
+        else if (initiativeMod < 0)
+        {
+            result.append(initiativeMod);
+        }
+        return result.toString();
     }
 }

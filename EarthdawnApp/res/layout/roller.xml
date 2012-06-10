@@ -11,12 +11,11 @@
     	android:orientation="horizontal"
     	android:gravity="center">
         
-        <EditText android:layout_weight="1" 
-        	android:layout_width="300dp" 
-        	android:layout_height="wrap_content" 
-        	android:id="@+id/rollerDiceText"
-        	android:inputType="textCapCharacters">
-        </EditText>
+		<NumberPicker android:id="@+id/rankPicker" 
+			android:layout_height="wrap_content" 
+			android:layout_width="50dp"
+			android:orientation="vertical" >
+		</NumberPicker>
         <TextView android:layout_weight="1"
         	android:layout_width="wrap_content" 
         	android:layout_height="wrap_content"
@@ -25,17 +24,18 @@
         	android:layout_marginLeft="20dp" 
         	android:layout_marginRight="20dp">
         </TextView>
-		<NumberPicker android:id="@+id/rankPicker" 
-			android:layout_height="wrap_content" 
-			android:layout_width="50dp"
-			android:orientation="vertical" >
-		</NumberPicker>
+        <EditText android:layout_weight="1" 
+        	android:layout_width="300dp" 
+        	android:layout_height="wrap_content" 
+        	android:id="@+id/rollerDiceText"
+        	android:inputType="textCapCharacters">
+        </EditText>
     </LinearLayout>
     
 	<Button android:id="@+id/rollerButton" 
 		android:text="@string/roll" 
 		android:layout_height="wrap_content" 
-		android:layout_width="100dp" 
+		android:layout_width="wrap_content" 
 		android:gravity="center"
     	android:layout_marginTop="30dp" >
 	</Button>
