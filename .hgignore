@@ -1,0 +1,5 @@
+syntax: glob
+EarthdawnApp/gen/*
+EarthdawnApp/bin/*
+Test/gen/*
+Test/bin/*

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:title="@string/menu_bonus_malus" android:id="@+id/itemBonusMalus"></item>
+	<item android:title="@string/menu_subir_degats" android:id="@+id/itemTakeDamages"></item>
+	<item android:title="@string/menu_jet_degats" android:id="@+id/itemRollDamages"></item>
+	<item android:title="@string/menu_health_status" android:id="@+id/itemHealthStatus"></item>
+	
+	<item android:title="@string/menu_heal_strain" android:id="@+id/itemHealStrain"></item>
+	<item android:title="@string/menu_heal_damages" android:id="@+id/itemHealDamages"></item>
+	<item android:title="@string/menu_heal_wounds" android:id="@+id/itemHealWounds"></item>
+	<item android:title="@string/menu_full_health" android:id="@+id/itemHealEverything"></item>
+	
+    <item android:title="@string/menu_gain_legend" android:id="@+id/itemGainLegend"></item>
+
+</menu>

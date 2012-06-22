@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EarthDawn</string>
+    
+    <string name="tab_description">Description</string>
+    <string name="tab_stuff">Equipement</string>
+    <string name="tab_skills">Compétences</string>
+    
+    <string name="main_character">Fiche de perso</string>
+    <string name="main_new_char">Création perso</string>
+    <string name="main_map">Carte de Barsaive</string>
+    <string name="main_roller">Lanceur de dés</string>
+    
+    <string name="roller_popup_title">Résultat du jet de dés :</string>
+    <string name="roller_popup_title2">Résultat du jet de %1$s :</string>
+    <string name="roller_format_error">Le format est incorrect.\nLe format attendu est xDy, répété à l\'envie, séparé par un espace.\nExemples :\n1D20\n1D20 2D12\n1D20 1D12 2D10 1D8 1D6 3D4\n1D4 -2</string>
+    <string name="roller_message">Vous avez jeté %1$s \nRésultat : %2$d \n\nDétails du lancé : \nMalus dus aux blessures graves : %3$d\n%4$s</string>
+    <string name="roller_rank_msg">un rang %1$d soit %2$s</string>
+    <string name="roller_or">OU</string>
+    
+    <string name="sheet_infos_title">Informations générales</string>
+    <string name="sheet_name">Nom</string>
+    <string name="sheet_race">Race</string>
+    <string name="sheet_age">Age</string>
+    <string name="sheet_sex">Sexe</string>
+    <string name="sheet_height">Taille</string>
+    <string name="sheet_weight">Poids</string>
+    
+    <string name="sheet_health_title">Santé</string>
+    <string name="sheet_health_points">Points de Vie</string>
+    <string name="sheet_h_blood_magic">Magie du Sang</string>
+    <string name="sheet_h_inconsciousness">"Seuil d'inconscience"</string>
+    <string name="sheet_h_restore_dices">Jets de récupération</string>
+    <string name="sheet_h_restore_dices_infos">Dés récupération</string>
+    <string name="sheet_h_wound_threshold">Seuil de blessure grave</string>
+    
+    <string name="sheet_attributs">Attributs</string>
+    <string name="sheet_evol">Evolution</string>
+    <string name="sheet_indice">Indice</string>
+    <string name="sheet_level">Niveau</string>
+    <string name="sheet_roll">Lancer</string>
+    <string name="sheet_dex">Dextérité</string>
+    <string name="sheet_str">Force</string>
+    <string name="sheet_end">Endurance</string>
+    <string name="sheet_per">Perception</string>
+    <string name="sheet_vol">Volonté</string>
+    <string name="sheet_cha">Charisme</string>
+    
+    <string name="sheet_disciplines">Disciplines</string>
+    <string name="sheet_circle">Cercle</string>
+    
+    <string name="sheet_legend_title">Points de Légende</string>
+    <string name="sheet_legend_total">Total points de Légende</string>
+    <string name="sheet_legend_spent">Points de Légende dépensés</string>
+    <string name="sheet_legend_karma">Dont achat de karma</string>
+    <string name="sheet_legend_available">Points de Légende disponibles</string>
+    
+    <string name="sheet_karma_title">Karma</string>
+    <string name="sheet_karma_available">Points de Karma disponibles : </string>
+    <string name="sheet_karma_available_detail">%1$d / %2$d</string>
+    <string name="sheet_karma_level">Niveau : </string>
+    <string name="sheet_karma_lvl_detail">%1$d (%2$s)</string>
+    <string name="sheet_karma_uses">Utilisations spéciales : </string>
+    <string name="sheet_karma_radio_dex">DEX</string>
+    <string name="sheet_karma_radio_str">FOR</string>
+    <string name="sheet_karma_radio_end">END</string>
+    <string name="sheet_karma_radio_per">PER</string>
+    <string name="sheet_karma_radio_vol">VOL</string>
+    <string name="sheet_karma_radio_cha">CHA</string>
+    <string name="sheet_karma_buy">Rituel de Karma</string>
+    
+    <string name="sheet_defenses">Défenses</string>
+    <string name="sheet_def_phy">Physique</string>
+    <string name="sheet_def_mag">Magique</string>
+    <string name="sheet_def_soc">Sociale</string>
+    
+    <string name="sheet_equipement">Equipement</string>
+    <string name="sheet_equ_tra">Transport</string>
+    <string name="sheet_equ_lev">Levage</string>
+    
+    <string name="sheet_initiative">Initiative</string>
+    <string name="sheet_init_dex">Dextérité</string>
+    <string name="sheet_init_pen">Pénalités</string>
+    <string name="sheet_init_lvl">Niveau</string>
+    <string name="sheet_init_roll">Lancer</string>
+    
+    <string name="sheet_armor">Armure</string>
+    <string name="sheet_arm_type">Type</string>
+    <string name="sheet_arm_phy">Physique</string>
+    <string name="sheet_arm_mag">Mystique</string>
+    
+    <string name="sheet_mouvement">Déplacement</string>
+    <string name="sheet_mvn_run">Course</string>
+    <string name="sheet_mvn_cbt">Combat</string>
+    
+    <string name="sheet_racial">Aptitudes raciales</string>
+    
+    <string name="talents_talent">Talent</string>
+    <string name="talents_circle">Cercle</string>
+    <string name="talents_rank">Rang</string>
+    <string name="talents_attribut">Attribut</string>
+    <string name="talents_level">Niveau</string>
+    <string name="talents_discipline">Discipline</string>
+    <string name="talents_karma">Karma</string>
+    <string name="talents_action">Action</string>
+    <string name="talents_effort">Fatigue</string>
+    <string name="talents_roll">Lancer</string>
+    <string name="talents_page">Page</string>
+    
+    <string name="skills_skill">Compétence</string>
+    <string name="skills_rank">Rang</string>
+    <string name="skills_attribut">Attribut</string>
+    <string name="skills_level">Niveau</string>
+    <string name="skills_action">Action</string>
+    <string name="skills_effort">Fatigue</string>
+    <string name="skills_roll">Lancer</string>
+    <string name="skills_add_skill">Nouvelle compétence</string>
+    <string name="skills_no_data">Le personnage ne connait aucune compétence</string>
+    
+    <string name="apt1">Vision nocturne</string>
+    <string name="apt2">Vision thermographique</string>
+    <string name="apt3">Polyvalence</string>
+    <string name="apt4">Armure naturelle</string>
+    <string name="apt5">Seuil de blessure accru (+3)</string>
+    <string name="apt6">Force minimum 15</string>
+    <string name="apt7">Gahad</string>
+    <string name="apt8">Defense physique accrue (+2)</string>
+    <string name="apt9">Sensibilité astrale</string>
+    <string name="apt10">Force maximum 11</string>
+    <string name="apt11">Vol</string>
+    <string name="apt12">Endurance minimum 11</string>
+    <string name="apt13">Force minimum 11</string>
+    <string name="apt14">Attaque caudale</string>
+    
+    <string name="popup_close">Fermer</string>
+    <string name="popup_details">Détails</string>
+    <string name="popup_roll">Lancer</string>
+    <string name="popup_roll_dices_infos">Vous avez lancé %1$s</string>
+    <string name="popup_roll_damages_title">Choisir l\'arme utilisée</string>
+    <string name="popup_take_damages_title">Dommages à subir :</string>
+    <string name="popup_take_damages_arm_phy">Armure physique</string>
+    <string name="popup_take_damages_arm_mys">Armure mystique</string>
+    <string name="popup_take_damages_no_arm">Ignorer l\'armure</string>
+    <string name="popup_take_damages_button">Subir</string>
+    <string name="popup_damages_taken_title">Récapitulatif des dommages subis</string>
+    <string name="popup_damages_taken_msg">%1$s \nVous avez perdu %2$d point(s) de vie.\nVous avez subi %3$d blessure(s) grave(s).</string>
+    
+    <string name="popup_legend_title">Gain de points de Légende</string>
+    <string name="popup_legend_msg">Félicitation ! \nVous avez gagné des points de Légende. \nCombien ?</string>
+    <string name="popup_legend_msg_ok">%1$d points de Légende correctement ajoutés au personnage.</string>
+    <string name="popup_legend_button">Ajouter</string>
+    
+    <string name="popup_buy_karma_title">Achat de Karma</string>
+    <string name="popup_buy_karma_info">Combien de points de karma souhaitez-vous acheter ? (10PL / point)</string>
+    <string name="popup_buy_karma_button">Acheter</string>
+    <string name="popup_buy_karma_toast">Achat de %1$d point(s) de karma effecté avec succès.</string>
+    
+    <string name="popup_init_title">Talents modificateurs d\'Initiative</string>
+    <string name="popup_init_msg">Choix des talents à activer pour modifier le rang d\'initiative</string>
+    
+    <string name="equipment_title">Liste de vos possessions</string>
+    <string name="equipment_no_data">Aucun équipement</string>
+    
+    <string name="msg_health_status">Fatigue : %1$d \nBlessure(s) : %2$d \nBlessure(s) grave(s) : %3$d</string>
+    <string name="msg_health_status_uncounscious">Personnage dans l\'inconscience.</string>
+    <string name="msg_health_status_dead">Personnage mort.</string>
+    <string name="msg_health_status_normal">Personnage conscient.</string>
+    <string name="msg_wound_healed">Une blessure grave a été soignée.</string>
+    <string name="msg_damages_healed">Résultat du jet de récupération : %1$d.\nNombre de blessures graves : %2$d.\nPoints de vie réucpérés : %3$d.</string>
+    <string name="msg_fully_healed">Toutes les blessures ont été supprimées.</string>
+    <string name="msg_strain_healed">Fatigue récupérée.</string>
+    
+    <string name="msg_loot_thread">Filament %1$d (%2$d PL)</string>
+    
+    <string name="menu_bonus_malus">Bonus / Malus</string>
+    <string name="menu_subir_degats">Subir des dégats</string>
+    <string name="menu_jet_degats">Jet dégats</string>
+    <string name="menu_health_status">Etat de santé</string>
+    <string name="menu_heal_strain">Récupérer fatigue</string>
+    <string name="menu_heal_damages">Jet de récupération</string>
+    <string name="menu_heal_wounds">Guérir une blessure grave</string>
+    <string name="menu_full_health">Guérison complète</string>
+    <string name="menu_gain_legend">Recevoir des points de Légende</string>
+        
+    <string name="bonusmalus">Bonus-Malus</string>
+    <string name="bonusmalus_no_data">Aucun bonus-malus</string>
+    
+    <string name="skill_new_title">Nouvelle Compétence</string>
+    <string name="skill_new_isaction">Action ?</string>
+    <string name="skill_new_strain">Fatigue ?</string>
+    <string name="skill_new_add">Ajouter</string>
+    <string name="skill_new_label">Nom :</string>
+    <string name="skill_new_attribut">Attribut :</string>
+    
+    <string name="roll">Lancer les dés</string>
+    <string name="button_close">Fermer</string>
+    
+    
+    <string name="dex">Dextérité</string>
+    <string name="str">Force</string>
+    <string name="end">Endurance</string>
+    <string name="per">Perception</string>
+    <string name="vol">Volonté</string>
+    <string name="cha">Charisme</string>
+    <string name="no_att">Aucun attribut</string>
+    <string name="recup">Récupération</string>
+    <string name="init">Initiative</string>
+    <string name="damages">Dommages</string>
+    
+    <string name="skill">Compétence</string>
+    
+    <string name="empty"></string> 
+    <string name="not_yet_implemented">Not yet implemented</string> 
+    
+    <string name="talent_with_karma_title">Talent : %1$s</string> 
+    <string name="talent_with_karma_msg">Talent de discipline. Souhaitez-vous utiliser du karma ?</string> 
+    <string name="talent_with_karma_discipline">karma de discipline</string> 
+    <string name="talent_with_karma_mandatory">karma obligatoire</string>
+    <string name="talent_with_karma_available_points">Points de karma disponibles : %1$d</string>
+    <string name="talent_with_karma_alert_title">Action impossible</string>
+    <string name="talent_with_karma_alert_msg">Vous n\'avez pas assez de karma pour effectuer cette action.</string>
+    
+    <string name="cannot_buy_karma_title">Action impossible</string>
+    <string name="cannot_buy_karma_msg">Vous ne pouvez pas acheter de points de karma.\nRaisons possibles :\n- Pas assez de Points de Légende\n- Nombre de points de karma maximum atteint</string>
+    
+</resources>

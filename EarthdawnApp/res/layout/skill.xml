@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:layout_gravity="center_horizontal" android:gravity="center_horizontal" >
+    
+    <TextView android:id="@+id/skills_skill" android:layout_width="400dp" android:layout_gravity="center_vertical" android:gravity="center_vertical" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="6dp"/>
+    <TextView android:id="@+id/skills_rank" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
+    <TextView android:id="@+id/skills_attribut" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
+    <TextView android:id="@+id/skills_level" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
+    <RadioButton android:id="@+id/skills_action" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:clickable="false" android:layout_height="wrap_content" android:padding="2dp"/>
+    <TextView android:id="@+id/skills_effort" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"/>
+   	<ImageButton android:id="@+id/skill_roll" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:src="@drawable/dice" android:layout_height="wrap_content" android:contentDescription="@string/roll"/>
+    
+</LinearLayout>    
+
+    
+
+
+
