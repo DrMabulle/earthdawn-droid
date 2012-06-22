@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
@@ -57,7 +58,11 @@ public class BuyKarmaFragment extends DialogFragment implements View.OnClickList
         // Close Button
         view.findViewById(R.id.popup_close).setOnClickListener(this);
         // Details Button
-        view.findViewById(R.id.popup_buy_karma).setOnClickListener(this);
+        final Button action = (Button) view.findViewById(R.id.popup_action);
+        action.setOnClickListener(this);
+        action.setText(R.string.popup_buy_karma_button);
+        // Hide roll Button
+        view.findViewById(R.id.popup_roll).setVisibility(View.GONE);
 
         return view;
     }
@@ -70,10 +75,10 @@ public class BuyKarmaFragment extends DialogFragment implements View.OnClickList
             case R.id.popup_close:
                 dismiss();
                 break;
-            case R.id.popup_buy_karma:
+            case R.id.popup_action:
 
                 // Retrieve number of karma point bought
-                final View parent = (View) aView.getParent().getParent();
+                final View parent = (View) aView.getParent().getParent().getParent();
                 final int karmaBought = ((NumberPicker) parent.findViewById(R.id.karmaPicker)).getValue();
 
                 // Increase karma in character sheat
