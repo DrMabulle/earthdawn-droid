@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
@@ -58,7 +59,11 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
         // Close Button
         v.findViewById(R.id.popup_close).setOnClickListener(this);
         // Take Damages Button
-        v.findViewById(R.id.popup_take_damages).setOnClickListener(this);
+        final Button action = (Button) v.findViewById(R.id.popup_action);
+        action.setOnClickListener(this);
+        action.setText(R.string.popup_take_damages_button);
+        // Hide roll Button
+        v.findViewById(R.id.popup_roll).setVisibility(View.GONE);
 
         return v;
     }
@@ -71,9 +76,9 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
             case R.id.popup_close:
                 dismiss();
                 break;
-            case R.id.popup_take_damages:
+            case R.id.popup_action:
                 // popup
-                final View parentView = (View)  v.getParent().getParent();
+                final View parentView = (View) v.getParent().getParent().getParent();
 
                 // Récupérer le nombre de dommages subis
                 final int damages = ((NumberPicker) parentView.findViewById(R.id.damagesPicker)).getValue();

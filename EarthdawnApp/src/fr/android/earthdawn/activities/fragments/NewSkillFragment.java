@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -43,7 +44,13 @@ public class NewSkillFragment extends DialogFragment implements OnClickListener
 
 
         // Close Button
-        v.findViewById(R.id.skill_new_add).setOnClickListener(this);
+        v.findViewById(R.id.popup_close).setOnClickListener(this);
+        // Details Button
+        final Button action = (Button) v.findViewById(R.id.popup_action);
+        action.setOnClickListener(this);
+        action.setText(R.string.skill_new_add);
+        // Hide roll Button
+        v.findViewById(R.id.popup_roll).setVisibility(View.GONE);
 
         return v;
     }
@@ -53,9 +60,12 @@ public class NewSkillFragment extends DialogFragment implements OnClickListener
     {
         switch (v.getId())
         {
-            case R.id.skill_new_add:
+            case R.id.popup_close:
+                dismiss();
+                break;
+            case R.id.popup_action:
 
-                final View parent = (View) v.getParent().getParent();
+                final View parent = (View) v.getParent().getParent().getParent();
                 final String label = ((EditText) parent.findViewById(R.id.skill_new_label)).getText().toString();
 
                 final long att = ((Spinner) parent.findViewById(R.id.skill_new_attribut)).getSelectedItemId();

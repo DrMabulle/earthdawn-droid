@@ -2,7 +2,8 @@
 
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
    	android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:id="@+id/sheet_character" android:layout_margin="2dp" >
+    android:id="@+id/sheet_character" android:layout_margin="2dp"
+	android:background="@android:drawable/gallery_thumb" >
    
 	<TableRow android:layout_width="match_parent" >
    		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"

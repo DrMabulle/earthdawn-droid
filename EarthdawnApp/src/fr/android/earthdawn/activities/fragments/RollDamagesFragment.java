@@ -68,7 +68,9 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
         // Close Button
         v.findViewById(R.id.popup_close).setOnClickListener(this);
         // Details Button
-        v.findViewById(R.id.popup_hit).setOnClickListener(this);
+        v.findViewById(R.id.popup_roll).setOnClickListener(this);
+        // Hide roll Button
+        v.findViewById(R.id.popup_action).setVisibility(View.GONE);
 
         return v;
     }
@@ -82,7 +84,7 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
                 weapons = null;
                 dismiss();
                 break;
-            case R.id.popup_hit:
+            case R.id.popup_roll:
                 // retrieve weapon choice
                 final int mod = getChosenWeaponDamageBonus(v);
 
@@ -101,7 +103,7 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
 
     private int getChosenWeaponDamageBonus(final View v)
     {
-        final View parentView = (View)  v.getParent().getParent();
+        final View parentView = (View) v.getParent().getParent().getParent();
         final RadioGroup rg = (RadioGroup) parentView.findViewById(R.id.radioGroupDamages);
         final int id = rg.getCheckedRadioButtonId();
         return id < weapons.size() ? getDamageRank(weapons.get(id)) : 0;

@@ -133,8 +133,7 @@
     <string name="apt14">Attaque caudale</string>
     
     <string name="popup_close">Fermer</string>
-    <string name="popup_details">Détails</string>
-    <string name="popup_roll">Lancer</string>
+    <string name="popup_roll_dices_button">Détails</string>
     <string name="popup_roll_dices_infos">Vous avez lancé %1$s</string>
     <string name="popup_roll_damages_title">Choisir l\'arme utilisée</string>
     <string name="popup_take_damages_title">Dommages à subir :</string>

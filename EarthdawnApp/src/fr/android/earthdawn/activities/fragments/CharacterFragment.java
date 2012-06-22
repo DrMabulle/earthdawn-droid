@@ -63,7 +63,6 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
 
     private void fillGeneralInfos(final View view)
     {
-        view.findViewById(R.id.sheet_character).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         ((TextView) view.findViewById(R.id.sheet_name)).setText(character.getName());
         ((TextView) view.findViewById(R.id.sheet_race)).setText(character.getRace().getName());
         ((TextView) view.findViewById(R.id.sheet_age)).setText(Integer.toString(character.getAge()));
@@ -74,7 +73,6 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
 
     private void fillAttributs(final View view)
     {
-        view.findViewById(R.id.sheet_attributs).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         // Dex
         ((ProgressBar) view.findViewById(R.id.progressDex)).setProgress(character.getAttributEvols(Attributs.DEX));
         ((TextView) view.findViewById(R.id.sheet_indice_dex)).setText(Integer.toString(character.getAttributIndice(Attributs.DEX)));
@@ -109,7 +107,6 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
 
     private void fillDisciplines(final View view)
     {
-        view.findViewById(R.id.sheet_disciplines).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         ((TextView) view.findViewById(R.id.sheet_main_discipline)).setText(character.getMainDisciplineDisplay());
         ((TextView) view.findViewById(R.id.sheet_second_discipline)).setText(character.getSecondDisciplineDisplay());
         ((TextView) view.findViewById(R.id.sheet_third_discipline)).setText(character.getThirdDisciplineDisplay());
@@ -121,7 +118,6 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
 
     private void fillDeductibles(final View view)
     {
-        view.findViewById(R.id.sheet_deductibles).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
         // Defenses
         ((TextView) view.findViewById(R.id.sheet_def_phy)).setText(Integer.toString(character.getPhysicalDefense()));
         ((TextView) view.findViewById(R.id.sheet_def_mag)).setText(Integer.toString(character.getMagicalDefense()));
@@ -152,6 +148,53 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
             ((TextView) view.findViewById(ids[i])).setText(getString(apts[i]));
         }
     }
+
+    private void fillHealthInfos(final View view)
+    {
+        ((TextView) view.findViewById(R.id.sheet_health_points)).setText(Integer.toString(character.getHealthPoints()));
+        ((TextView) view.findViewById(R.id.sheet_h_blood_magic)).setText(Integer.toString(character.computeBonusesInt(Pointcuts.BLOOD_MAGIC)));
+        ((TextView) view.findViewById(R.id.sheet_h_inconsciousness)).setText(Integer.toString(character.getUnconsciousnessPoints()));
+        ((TextView) view.findViewById(R.id.sheet_h_restore_dices)).setText(NumberUtils.format(character.getNbRecoveryTests()));
+        ((TextView) view.findViewById(R.id.sheet_h_restore_dices_infos)).setText(character.getRecoveryDices());
+        ((TextView) view.findViewById(R.id.sheet_h_wound_threshold)).setText(Integer.toString(character.getWoundThreshold()));
+    }
+
+    private void fillLegendInfos(final View view)
+    {
+        // Total earned
+        ((TextView) view.findViewById(R.id.sheet_legend_total)).setText(Integer.toString(character.getLegendPoints()));
+        // Total spent
+        final int legendSpent = XPManager.evaluateCharacter(character);
+        ((TextView) view.findViewById(R.id.sheet_legend_spent)).setText(Integer.toString(legendSpent));
+        // Spent in karma
+        final int legendKarma = XPManager.evaluateKarma(character.getRace(), character.getKarmaBought());
+        ((TextView) view.findViewById(R.id.sheet_legend_karma)).setText(Integer.toString(legendKarma));
+        // Available
+        ((TextView) view.findViewById(R.id.sheet_legend_available)).setText(Integer.toString(character.getLegendPoints() - legendSpent));
+    }
+
+    private void fillKarmaInfos(final View view)
+    {
+        // Points de karma disponibles : <available> / <max>
+        final String karmaAvailable = getString(R.string.sheet_karma_available_detail,
+                character.getAvailableKarma(),
+                CharacterUtils.getMaxKarma(character));
+        ((TextView) view.findViewById(R.id.sheet_karma_available)).setText(karmaAvailable);
+        // Niveau de karma : <level> (<dices>)
+        final String karmaLvl = getString(R.string.sheet_karma_lvl_detail,
+                character.getRace().getKarmaRank(),
+                RankManager.getDicesFromRank(character.getRace().getKarmaRank()));
+        ((TextView) view.findViewById(R.id.sheet_karma_level)).setText(karmaLvl);
+        // Special uses
+        ((RadioButton) view.findViewById(R.id.karma_dex)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.DEX) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_str)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.STR) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_end)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.END) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_per)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.PER) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_vol)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.VOL) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_cha)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.CHA) > 0);
+        view.findViewById(R.id.karma_buy).setOnClickListener(this);
+    }
+
 
     @Override
     public void onClick(final View view)
@@ -199,54 +242,5 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
                 }
                 break;
         }
-    }
-
-    private void fillHealthInfos(final View view)
-    {
-        view.findViewById(R.id.sheet_health).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
-        ((TextView) view.findViewById(R.id.sheet_health_points)).setText(Integer.toString(character.getHealthPoints()));
-        ((TextView) view.findViewById(R.id.sheet_h_blood_magic)).setText(Integer.toString(character.computeBonusesInt(Pointcuts.BLOOD_MAGIC)));
-        ((TextView) view.findViewById(R.id.sheet_h_inconsciousness)).setText(Integer.toString(character.getUnconsciousnessPoints()));
-        ((TextView) view.findViewById(R.id.sheet_h_restore_dices)).setText(NumberUtils.format(character.getNbRecoveryTests()));
-        ((TextView) view.findViewById(R.id.sheet_h_restore_dices_infos)).setText(character.getRecoveryDices());
-        ((TextView) view.findViewById(R.id.sheet_h_wound_threshold)).setText(Integer.toString(character.getWoundThreshold()));
-    }
-
-    private void fillLegendInfos(final View view)
-    {
-        view.findViewById(R.id.sheet_legend).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
-        // Total earned
-        ((TextView) view.findViewById(R.id.sheet_legend_total)).setText(Integer.toString(character.getLegendPoints()));
-        // Total spent
-        final int legendSpent = XPManager.evaluateCharacter(character);
-        ((TextView) view.findViewById(R.id.sheet_legend_spent)).setText(Integer.toString(legendSpent));
-        // Spent in karma
-        final int legendKarma = XPManager.evaluateKarma(character.getRace(), character.getKarmaBought());
-        ((TextView) view.findViewById(R.id.sheet_legend_karma)).setText(Integer.toString(legendKarma));
-        // Available
-        ((TextView) view.findViewById(R.id.sheet_legend_available)).setText(Integer.toString(character.getLegendPoints() - legendSpent));
-    }
-
-    private void fillKarmaInfos(final View view)
-    {
-        view.findViewById(R.id.sheet_karma).setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
-        // Points de karma disponibles : <available> / <max>
-        final String karmaAvailable = getString(R.string.sheet_karma_available_detail,
-                character.getAvailableKarma(),
-                CharacterUtils.getMaxKarma(character));
-        ((TextView) view.findViewById(R.id.sheet_karma_available)).setText(karmaAvailable);
-        // Niveau de karma : <level> (<dices>)
-        final String karmaLvl = getString(R.string.sheet_karma_lvl_detail,
-                character.getRace().getKarmaRank(),
-                RankManager.getDicesFromRank(character.getRace().getKarmaRank()));
-        ((TextView) view.findViewById(R.id.sheet_karma_level)).setText(karmaLvl);
-        // Special uses
-        ((RadioButton) view.findViewById(R.id.karma_dex)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.DEX) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_str)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.STR) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_end)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.END) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_per)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.PER) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_vol)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.VOL) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_cha)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.CHA) > 0);
-        view.findViewById(R.id.karma_buy).setOnClickListener(this);
     }
 }

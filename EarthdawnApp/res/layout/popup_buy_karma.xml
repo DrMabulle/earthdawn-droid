@@ -21,16 +21,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:orientation="vertical" />
-
     
-   	<LinearLayout 
-   	    android:layout_width="wrap_content"
-	    android:layout_height="60dp"
-	    android:orientation="horizontal">
-	    
-	    <Button android:id="@+id/popup_close" android:layout_width="250dp" android:layout_height="match_parent" android:text="@string/popup_close" />
-	    <Button android:id="@+id/popup_buy_karma" android:layout_width="250dp" android:layout_height="match_parent" android:text="@string/popup_buy_karma_button" />
-	    
-    </LinearLayout>
+	<include layout="@layout/popup_buttons"/>
     
 </LinearLayout>
