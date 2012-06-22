@@ -64,7 +64,9 @@ public class InitiativeFragment extends DialogFragment implements View.OnClickLi
         // Close Button
         view.findViewById(R.id.popup_close).setOnClickListener(this);
         // Details Button
-        view.findViewById(R.id.popup_init_roll).setOnClickListener(this);
+        view.findViewById(R.id.popup_roll).setOnClickListener(this);
+        // Hide action Button
+        view.findViewById(R.id.popup_action).setVisibility(View.GONE);
 
         return view;
     }
@@ -77,9 +79,9 @@ public class InitiativeFragment extends DialogFragment implements View.OnClickLi
             case R.id.popup_close:
                 dismiss();
                 break;
-            case R.id.popup_init_roll:
+            case R.id.popup_roll:
 
-                final View parent = (View) aView.getParent().getParent();
+                final View parent = (View) aView.getParent().getParent().getParent();
                 final EDCharacter character = CharacterManager.getLoadedCharacter();
 
                 // find checked talents

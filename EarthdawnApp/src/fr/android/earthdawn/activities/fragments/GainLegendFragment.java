@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import fr.android.earthdawn.R;
@@ -36,7 +37,11 @@ public class GainLegendFragment extends DialogFragment implements OnClickListene
         // Close Button
         v.findViewById(R.id.popup_close).setOnClickListener(this);
         // Details Button
-        v.findViewById(R.id.popup_legend_add).setOnClickListener(this);
+        final Button action = (Button) v.findViewById(R.id.popup_action);
+        action.setOnClickListener(this);
+        action.setText(R.string.popup_legend_button);
+        // Hide roll Button
+        v.findViewById(R.id.popup_roll).setVisibility(View.GONE);
 
         return v;
     }
@@ -50,8 +55,8 @@ public class GainLegendFragment extends DialogFragment implements OnClickListene
                 dismiss();
                 break;
 
-            case R.id.popup_legend_add:
-                final View parentView = (View)  v.getParent().getParent();
+            case R.id.popup_action:
+                final View parentView = (View)  v.getParent().getParent().getParent();
                 final EditText edit = (EditText) parentView.findViewById(R.id.legend_editText);
                 final int legend = Integer.parseInt(edit.getText().toString());
 

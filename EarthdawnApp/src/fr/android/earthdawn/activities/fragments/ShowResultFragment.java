@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.managers.EDDicesLauncher;
@@ -52,7 +53,11 @@ public class ShowResultFragment extends DialogFragment implements OnClickListene
         // Close Button
         v.findViewById(R.id.popup_close).setOnClickListener(this);
         // Details Button
-        v.findViewById(R.id.popup_details).setOnClickListener(this);
+        final Button action = (Button) v.findViewById(R.id.popup_action);
+        action.setOnClickListener(this);
+        action.setText(R.string.popup_roll_dices_button);
+        // Hide roll Button
+        v.findViewById(R.id.popup_roll).setVisibility(View.GONE);
 
         return v;
     }
@@ -65,7 +70,7 @@ public class ShowResultFragment extends DialogFragment implements OnClickListene
             case R.id.popup_close:
                 dismiss();
                 break;
-            case R.id.popup_details:
+            case R.id.popup_action:
                 // When Details button is clicked, call up to owning activity.
                 getActivity().showDialog(Constants.DIALOG_SHOW_DETAILS);
                 break;
