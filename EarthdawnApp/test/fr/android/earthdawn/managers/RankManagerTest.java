@@ -4,6 +4,8 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import fr.android.earthdawn.dices.DicesLauncher;
+
 public class RankManagerTest
 {
     @Test
@@ -31,5 +33,15 @@ public class RankManagerTest
         Assert.assertEquals("1D10 + 1D6", RankManager.getDicesFromRank(10));
         Assert.assertEquals("1D20 + 1D6", RankManager.getDicesFromRank(15));
         Assert.assertEquals("1D20 + 1D8 + 1D6", RankManager.getDicesFromRank(20));
+    }
+
+
+    @Test
+    public void testRanks()
+    {
+        for (int i = 0; i < 101; i++)
+        {
+            DicesLauncher.rollDices(RankManager.getDicesFromRank(i), false, false);
+        }
     }
 }

@@ -9,6 +9,7 @@ import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Races;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.enums.Talents;
+import fr.android.earthdawn.managers.EquipmentManager;
 
 public class CharacterTest
 {
@@ -35,13 +36,17 @@ public class CharacterTest
         discipline.setTalentRank(longevite, 5);
 
         Assert.assertEquals(7, obsidien.getTalentRank(armesMelee, discipline));
+        Assert.assertEquals(13, obsidien.getTalentLevel(armesMelee, discipline));
         Assert.assertEquals(5, obsidien.getTalentRank(longevite, discipline));
+        Assert.assertEquals(5, obsidien.getTalentLevel(longevite, discipline));
 
         // increment
         obsidien.incrementTalentRank(armesMelee, discipline);
 
         Assert.assertEquals(8, obsidien.getTalentRank(armesMelee, discipline));
+        Assert.assertEquals(14, obsidien.getTalentLevel(armesMelee, discipline));
         Assert.assertEquals(5, obsidien.getTalentRank(longevite, discipline));
+        Assert.assertEquals(5, obsidien.getTalentLevel(longevite, discipline));
     }
 
     private void initDisciplines()
@@ -111,6 +116,19 @@ public class CharacterTest
         Assert.assertEquals(1, sylphe.getMysticArmor());
         Assert.assertEquals(1, troll.getMysticArmor());
         Assert.assertEquals(1, tskrang.getMysticArmor());
+    }
+    @Test
+    public void testGetPhysicalArmor()
+    {
+        initDisciplines();
+
+        Assert.assertEquals(0, nain.getPhysicalArmor());
+        Assert.assertEquals(3, obsidien.getPhysicalArmor());
+
+        nain.addEquipment(EquipmentManager.getArmorList().get(0));
+        obsidien.addEquipment(EquipmentManager.getArmorList().get(0));
+        Assert.assertEquals(6, nain.getPhysicalArmor());
+        Assert.assertEquals(9, obsidien.getPhysicalArmor());
     }
 
     @Test
@@ -288,5 +306,30 @@ public class CharacterTest
         Assert.assertEquals(22+6*6, sylphe.getUnconsciousnessPoints());
         Assert.assertEquals(30+6*6, troll.getUnconsciousnessPoints());
         Assert.assertEquals(28+6*3, tskrang.getUnconsciousnessPoints());
+
+        // RecoveryDices
+        Assert.assertEquals("1D8", elfe.getRecoveryDices());
+        Assert.assertEquals("1D10", humain.getRecoveryDices());
+        Assert.assertEquals("1D12", nain.getRecoveryDices());
+        Assert.assertEquals("1D12", obsidien.getRecoveryDices());
+        Assert.assertEquals("1D10", ork.getRecoveryDices());
+        Assert.assertEquals("1D8", sylphe.getRecoveryDices());
+        Assert.assertEquals("1D10", troll.getRecoveryDices());
+        Assert.assertEquals("1D10", tskrang.getRecoveryDices());
+
+        // NbRecoveryTests
+        Assert.assertEquals(2.0, elfe.getNbRecoveryTests(), 0.0001);
+        Assert.assertEquals(2.0, humain.getNbRecoveryTests(), 0.0001);
+        Assert.assertEquals(3.0, nain.getNbRecoveryTests(), 0.0001);
+        Assert.assertEquals(3.0, obsidien.getNbRecoveryTests(), 0.0001);
+        Assert.assertEquals(3.0, ork.getNbRecoveryTests(), 0.0001);
+        Assert.assertEquals(2.0, sylphe.getNbRecoveryTests(), 0.0001);
+        Assert.assertEquals(3.0, troll.getNbRecoveryTests(), 0.0001);
+        Assert.assertEquals(3.0, tskrang.getNbRecoveryTests(), 0.0001);
+
+        // Other tests
+        final EDCharacter character = new EDCharacter("tskrang", "Mâle", 120, 225, 421, Races.Tskrang, 17, 0, 15, 0, 13, 0, 10, 0, 11, 0, 8, 0);
+        character.setMainDiscipline(Disciplines.Necromancien, 1);
+        Assert.assertEquals(28, character.getUnconsciousnessPoints());
     }
 }

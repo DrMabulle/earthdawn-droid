@@ -297,7 +297,7 @@ public final class CharacterManager
         cuir.incrementRank();
         forgeron.addEquipment(cuir);
 
-        forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 4), Mod.get(Pointcuts.WEIGHT, 0.5))));
+        forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 0.5))));
         forgeron.addEquipment(new Equipment("Epée large forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 8), Mod.get(Pointcuts.WEIGHT, 1.5))));
 
         forgeron.addSkill(new Skill("Création d'armes", Attributs.PER, true, 0).incrementRank().incrementRank());
@@ -313,7 +313,7 @@ public final class CharacterManager
         forgeron.addSkill(new Skill("Escalade", Attributs.DEX, true, 0));
 
         forgeron.incrementKarmaBought(10);
-        forgeron.incrementLegendPoints(82000);
+        forgeron.incrementLegendPoints(86000);
 
         return forgeron;
     }

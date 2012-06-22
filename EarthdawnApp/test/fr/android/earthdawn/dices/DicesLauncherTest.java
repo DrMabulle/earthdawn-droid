@@ -277,7 +277,7 @@ public class DicesLauncherTest
 
     private static void runLotsOfRolls(final int rank)
     {
-        final double nbTests = 1000000;
+        final double nbTests = 100000;
         int sum = 0;
         for (int i = 0; i < nbTests; i++)
         {

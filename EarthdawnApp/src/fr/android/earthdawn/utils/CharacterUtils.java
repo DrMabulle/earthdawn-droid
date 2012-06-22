@@ -202,7 +202,7 @@ public final class CharacterUtils
     }
 
     /**
-     * Returns the maximum rank for a given talent. Searches all disciplines
+     * Returns the maximum rank for a given talent. Searches all disciplines, but does not calculate modifications.
      * @param aCharacter a character
      * @param aTalent a talent to search
      * @return max level over all disciplines
@@ -245,7 +245,9 @@ public final class CharacterUtils
                 talent = disc.findTalent(aTalent);
             }
             if (talent == null)
-            disc = aCharacter.getThirdDiscipline();
+            {
+                disc = aCharacter.getThirdDiscipline();
+            }
             if (disc != null)
             {
                 talent = disc.findTalent(aTalent);
@@ -297,6 +299,7 @@ public final class CharacterUtils
         }
         else if (initiativeMod < 0)
         {
+            result.append(' ');
             result.append(initiativeMod);
         }
         return result.toString();

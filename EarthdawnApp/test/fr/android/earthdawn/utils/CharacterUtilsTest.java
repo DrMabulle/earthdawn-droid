@@ -1,11 +1,14 @@
 package fr.android.earthdawn.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 
+import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributs;
 import fr.android.earthdawn.character.enums.Discipline;
@@ -14,7 +17,9 @@ import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Races;
 import fr.android.earthdawn.character.enums.Talent;
+import fr.android.earthdawn.character.enums.Talents;
 import fr.android.earthdawn.character.equipement.IEquipment;
+import fr.android.earthdawn.character.equipement.impl.MagicalEquipment;
 import fr.android.earthdawn.managers.EquipmentManager;
 
 public class CharacterUtilsTest
@@ -247,11 +252,26 @@ public class CharacterUtilsTest
     {
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
 
+        // Test 1
         elfe.setMainDiscipline(Disciplines.Forgeron, 1);
         Assert.assertEquals(25, CharacterUtils.getMaxKarma(elfe));
 
+        // Test 2
         elfe.setMainDiscipline(Disciplines.Forgeron, 15);
         Assert.assertEquals(50, CharacterUtils.getMaxKarma(elfe));
+
+        // Test 3
+        elfe.addPermanentMod(Mod.get(Pointcuts.KARMA_POINTS, 5));
+        Assert.assertEquals(55, CharacterUtils.getMaxKarma(elfe));
+
+        // Test 4
+        final List<List<Mod>> bonuses = new ArrayList<List<Mod>>();
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEIGHT, 0.1)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.KARMA_POINTS, 10)));
+        final MagicalEquipment ring = new MagicalEquipment("Kelnone", bonuses, new int[] {200});
+        ring.incrementRank();
+        elfe.addEquipment(ring);
+        Assert.assertEquals(65, CharacterUtils.getMaxKarma(elfe));
     }
 
     @Test
@@ -263,10 +283,13 @@ public class CharacterUtilsTest
         Assert.assertTrue(CharacterUtils.computePerks(elfe, Pointcuts.KARMA_USE, Attributs.DEX) == 0);
 
         elfe.setMainDiscipline(Disciplines.Forgeron, 5);
-        Assert.assertTrue(CharacterUtils.computePerks(elfe, Pointcuts.KARMA_USE, Attributs.DEX) > 0);
+        Assert.assertTrue(CharacterUtils.computePerks(elfe, Pointcuts.KARMA_USE, Attributs.DEX) == 1);
+
+        elfe.setMainDiscipline(Disciplines.Forgeron, 10);
+        elfe.setSecondDiscipline(Disciplines.Elementaliste, 9);
+        elfe.setThirdDiscipline(Disciplines.MaitreAnimaux, 8);
+        Assert.assertTrue(CharacterUtils.computePerks(elfe, Pointcuts.KARMA_USE, Attributs.VOL) == 3);
     }
-
-
 
     @Test
     public void testMaxKarmaBuyable()
@@ -274,8 +297,8 @@ public class CharacterUtilsTest
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
 
         elfe.setMainDiscipline(Disciplines.Forgeron, 6);
-        final Discipline discipline = elfe.getMainDiscipline();
-        final List<Talent> talents = discipline.getKnownTalents();
+        Discipline discipline = elfe.getMainDiscipline();
+        List<Talent> talents = discipline.getKnownTalents();
         discipline.setTalentRank(talents.get(5), 3); // RituelKarma
 
         Assert.assertTrue(elfe.getAvailableKarma() < 10);
@@ -285,23 +308,45 @@ public class CharacterUtilsTest
         // Test 1 : restriction on legend points
         Assert.assertEquals(0, elfe.getLegendPoints());
         Assert.assertEquals(0, CharacterUtils.maxKarmaBuyable(elfe));
+        Assert.assertFalse(CharacterUtils.canBuyKarma(elfe));
 
         elfe.incrementLegendPoints(10);
         Assert.assertEquals(1, CharacterUtils.maxKarmaBuyable(elfe));
+        Assert.assertTrue(CharacterUtils.canBuyKarma(elfe));
 
         // Test 2 : restriction on talent Rituel Karma
         elfe.incrementLegendPoints(5000);
         Assert.assertEquals(3, CharacterUtils.maxKarmaBuyable(elfe));
+        Assert.assertTrue(CharacterUtils.canBuyKarma(elfe));
 
         discipline.setTalentRank(talents.get(5), 10); // RituelKarma
         Assert.assertEquals(10, CharacterUtils.maxKarmaBuyable(elfe));
+        Assert.assertTrue(CharacterUtils.canBuyKarma(elfe));
 
         // Test 3 : restriction on max karma allowed
         elfe.incrementKarmaBought(CharacterUtils.getMaxKarma(elfe) - elfe.getAvailableKarma() - 3);
         Assert.assertEquals(3, CharacterUtils.maxKarmaBuyable(elfe));
+        Assert.assertTrue(CharacterUtils.canBuyKarma(elfe));
 
         elfe.incrementKarmaBought(1);
         Assert.assertEquals(2, CharacterUtils.maxKarmaBuyable(elfe));
+        Assert.assertTrue(CharacterUtils.canBuyKarma(elfe));
+
+        // Test 4 : Second and third disciplines
+        elfe.incrementKarmaSpent(10);
+
+        elfe.setSecondDiscipline(Disciplines.Elementaliste, 6);
+        discipline = elfe.getSecondDiscipline();
+        talents = discipline.getKnownTalents();
+        discipline.setTalentRank(talents.get(1), 11); // RituelKarma
+
+        elfe.setThirdDiscipline(Disciplines.MaitreAnimaux, 6);
+        discipline = elfe.getThirdDiscipline();
+        talents = discipline.getKnownTalents();
+        discipline.setTalentRank(talents.get(0), 12); // RituelKarma
+
+        Assert.assertEquals(12, CharacterUtils.maxKarmaBuyable(elfe));
+        Assert.assertTrue(CharacterUtils.canBuyKarma(elfe));
     }
 
     @Test
@@ -321,6 +366,89 @@ public class CharacterUtilsTest
         elfe.addTempMod(Mod.get(Pointcuts.INIT_MOD, 2));
         Assert.assertEquals("1D8 + 1D6 + 2", CharacterUtils.computeInitiativeTest(elfe));
 
+        // Test 4
+        elfe.addOrReplaceTempMod(Mod.get(Pointcuts.INIT_MOD, -2));
+        Assert.assertEquals("1D8 + 1D6 -2", CharacterUtils.computeInitiativeTest(elfe));
     }
 
+    @Test
+    public void testGetTalent()
+    {
+        final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
+
+        elfe.setMainDiscipline(Disciplines.Forgeron, 10);
+        elfe.setSecondDiscipline(Disciplines.Elementaliste, 9);
+        elfe.setThirdDiscipline(Disciplines.MaitreAnimaux, 8);
+
+        Assert.assertNull(CharacterUtils.getTalent(elfe, Talents.ArcVent));
+
+        Assert.assertNotNull(CharacterUtils.getTalent(elfe, Talents.DetectionDefautsArmure));
+        Assert.assertNotNull(CharacterUtils.getTalent(elfe, Talents.MatriceAmelioree));
+        Assert.assertNotNull(CharacterUtils.getTalent(elfe, Talents.DechainementGriffes));
+
+
+        final Talent talent = CharacterUtils.getTalent(elfe, Talents.DetectionDefautsArmure);
+        Assert.assertNull(talent.getAdditionnalInfos());
+        Assert.assertEquals(Attributs.PER, talent.getAttribut());
+        Assert.assertEquals(R.string.per, talent.getAttribut().getFullName());
+        Assert.assertEquals("PER", talent.getAttribut().getLabel());
+        Assert.assertEquals(6, talent.getCircle());
+        Assert.assertEquals(Talents.DetectionDefautsArmure, talent.getEnum());
+        Assert.assertEquals(R.string.DetectionDefautsArmure, talent.getName());
+        Assert.assertEquals(181, talent.getPage());
+        Assert.assertEquals(0, talent.getStrain());
+        Assert.assertFalse(talent.isAction());
+        Assert.assertTrue(talent.isDiscipline());
+        Assert.assertFalse(talent.isKarmaMandatory());
+        Assert.assertTrue(talent.isRollable());
+    }
+
+    @Test
+    public void testGetTalentRank()
+    {
+        final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
+
+        elfe.setMainDiscipline(Disciplines.Forgeron, 10);
+        final Discipline discipline = elfe.getMainDiscipline();
+        final List<Talent> talents = discipline.getKnownTalents();
+        discipline.setTalentRank(talents.get(0), 10); // Arme de Melee
+        final Talent talent = talents.get(0);
+
+        // Test 1
+        Assert.assertEquals(10, CharacterUtils.getTalentRank(elfe, Talents.ArmesMelee));
+        Assert.assertEquals(10, elfe.getTalentRank(talent, discipline));
+
+        // Test 2
+        elfe.addPermanentMod(Mod.get(Pointcuts.TALENT, 1, Talents.ArmesMelee));
+        Assert.assertEquals(10, CharacterUtils.getTalentRank(elfe, Talents.ArmesMelee));
+        Assert.assertEquals(11, elfe.getTalentRank(talent, discipline));
+
+        // Test 3
+        final List<List<Mod>> bonuses = new ArrayList<List<Mod>>();
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.WEIGHT, 0.1)));
+        bonuses.add(Arrays.asList(Mod.get(Pointcuts.TALENT, 1, Talents.ArmesMelee)));
+        final MagicalEquipment ring = new MagicalEquipment("Kelnone", bonuses, new int[] {200});
+        ring.incrementRank();
+        elfe.addEquipment(ring);
+        Assert.assertEquals(10, CharacterUtils.getTalentRank(elfe, Talents.ArmesMelee));
+        Assert.assertEquals(12, elfe.getTalentRank(talent, discipline));
+    }
+
+    @Test
+    public void testKnowsTalent()
+    {
+        final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
+
+        elfe.setMainDiscipline(Disciplines.Forgeron, 10);
+
+        final Discipline discipline = elfe.getMainDiscipline();
+        final List<Talent> talents = discipline.getKnownTalents();
+        for (int i = 0; i < 28; i++)
+        {
+            discipline.setTalentRank(talents.get(i), 10);
+        }
+
+        Assert.assertFalse(CharacterUtils.knowsTalent(elfe, Talents.ArcVent));
+        Assert.assertTrue(CharacterUtils.knowsTalent(elfe, Talents.DetectionDefautsArmure));
+    }
 }

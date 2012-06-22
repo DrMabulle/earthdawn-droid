@@ -8,6 +8,7 @@ import fr.android.earthdawn.character.CharacterTest;
 import fr.android.earthdawn.character.enums.DisciplineTest;
 import fr.android.earthdawn.dices.DiceTest;
 import fr.android.earthdawn.dices.DicesLauncherTest;
+import fr.android.earthdawn.managers.EDDicesLauncherTest;
 import fr.android.earthdawn.managers.RankManagerTest;
 import fr.android.earthdawn.managers.XPManagerTest;
 import fr.android.earthdawn.utils.CharacterUtilsTest;
@@ -22,8 +23,9 @@ import fr.android.earthdawn.utils.NumberUtilsTest;
         NumberUtilsTest.class,
         DisciplineTest.class,
         RankManagerTest.class,
-        DicesLauncherTest.class,
-        CharacterUtilsTest.class })
+        CharacterUtilsTest.class,
+        EDDicesLauncherTest.class,
+        DicesLauncherTest.class })
 public class AllTests
 {
     // Tests

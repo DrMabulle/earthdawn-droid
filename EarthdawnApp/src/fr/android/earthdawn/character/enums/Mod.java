@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import fr.android.earthdawn.utils.ArrayUtils;
 import fr.android.earthdawn.utils.NumberUtils;
 
 /**
@@ -30,7 +31,7 @@ public class Mod implements Serializable
         super();
         this.pointcut = aPointcut;
         this.modificator = aModificator;
-        this.otherInfos = additionnalInfos;
+        this.otherInfos = ArrayUtils.isNullOrEmpty(additionnalInfos) ? null : additionnalInfos;
     }
     /**
      * @return the pointcut

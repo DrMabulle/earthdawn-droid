@@ -6,6 +6,7 @@ package fr.android.earthdawn.character.enums;
 import java.io.Serializable;
 
 import fr.android.earthdawn.character.actions.IAction;
+import fr.android.earthdawn.utils.ArrayUtils;
 
 /**
  * @author DrMabulle
@@ -30,7 +31,7 @@ public class Talent implements Serializable
         this.discipline = isDiscipline;
         this.preAction = aPreAction;
         this.postAction = aPostAction;
-        additionnalInfos = objects;
+        additionnalInfos = (ArrayUtils.isNullOrEmpty(objects)) ? null : objects;
     }
 
     public int getCircle()

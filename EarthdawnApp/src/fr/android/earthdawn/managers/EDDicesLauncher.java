@@ -24,7 +24,7 @@ public final class EDDicesLauncher
     /**
      * FIFO rolls history
      */
-    private static final LinkedList<Roll> rollsHistory = new LinkedList<Roll>();
+    protected static final LinkedList<Roll> rollsHistory = new LinkedList<Roll>();
 
     private EDDicesLauncher() {}
 
@@ -113,7 +113,7 @@ public final class EDDicesLauncher
 
 
 
-    private static class Roll
+    protected static class Roll
     {
         final int rollKind;
         final int rollNameId;
