@@ -73,7 +73,9 @@ public class TalentWithKarmaFragment extends DialogFragment implements View.OnCl
         // Close Button
         view.findViewById(R.id.popup_close).setOnClickListener(this);
         // Details Button
-        view.findViewById(R.id.popup_talent_with_karma_roll).setOnClickListener(this);
+        view.findViewById(R.id.popup_roll).setOnClickListener(this);
+        // Hide action Button
+        view.findViewById(R.id.popup_action).setVisibility(View.GONE);
 
         return view;
     }
@@ -86,10 +88,10 @@ public class TalentWithKarmaFragment extends DialogFragment implements View.OnCl
             case R.id.popup_close:
                 dismiss();
                 break;
-            case R.id.popup_talent_with_karma_roll:
+            case R.id.popup_roll:
 
                 // Retrieve number of karma point spent
-                final View parent = (View) aView.getParent().getParent();
+                final View parent = (View) aView.getParent().getParent().getParent();
                 final boolean isDisciplineChecked = ((CheckBox) parent.findViewById(R.id.talent_with_karma_discipline)).isChecked();
                 final boolean isMandatoryChecked = ((CheckBox) parent.findViewById(R.id.talent_with_karma_mandatory)).isChecked();
                 int karmaAdded = 0;
