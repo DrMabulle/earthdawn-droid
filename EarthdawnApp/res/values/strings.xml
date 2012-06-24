@@ -182,6 +182,7 @@
     <string name="menu_gain_legend">Recevoir des points de Légende</string>
         
     <string name="bonusmalus">Bonus-Malus</string>
+    <string name="bonusmalus_removeall">Effacer les bonus temporaires</string>
     <string name="bonusmalus_no_data">Aucun bonus-malus</string>
     
     <string name="skill_new_title">Nouvelle Compétence</string>

@@ -218,10 +218,10 @@ public final class CharacterManager
         Discipline discipline = forgeron.getMainDiscipline();
         List<Talent> talents = discipline.getKnownTalents();
         discipline.setTalentRank(talents.get(0), 8); // ArmesMelee
-        discipline.setTalentRank(talents.get(1), 7); // Esquive
+        discipline.setTalentRank(talents.get(1), 8); // Esquive
         discipline.setTalentRank(talents.get(2), 6); // HistoireArmes
         discipline.setTalentRank(talents.get(3), 6); // PerfectionnementLame
-        discipline.setTalentRank(talents.get(4), 7); // VolonteFer
+        discipline.setTalentRank(talents.get(4), 8); // VolonteFer
         discipline.setTalentRank(talents.get(5), 2); // RituelKarma
         discipline.setTalentRank(talents.get(6), 7); // Endurance
         discipline.setTalentRank(talents.get(7), 5); // LectureEcriture
@@ -231,9 +231,9 @@ public final class CharacterManager
         discipline.setTalentRank(talents.get(11), 5); // DonLangues
         discipline.setTalentRank(talents.get(12), 6); // TissageForgeron
         discipline.setTalentRank(talents.get(13), 4); // AlterationArmeTir
-        discipline.setTalentRank(talents.get(14), 6); // Endurcissement
+        discipline.setTalentRank(talents.get(14), 7); // Endurcissement
         discipline.setTalentRank(talents.get(15), 0); // RituelMaitreFantome
-        discipline.setTalentRank(talents.get(16), 5); // DetectionDefautsArmure
+        discipline.setTalentRank(talents.get(16), 6); // DetectionDefautsArmure
         discipline.setTalentRank(talents.get(17), 1); // DissimulationArme
 
         discipline = forgeron.getSecondDiscipline();
@@ -252,7 +252,7 @@ public final class CharacterManager
         discipline.setTalentRank(talents.get(11), 5); // Sarcasmes
         discipline.setTalentRank(talents.get(12), 1); // TissageTroubadour
         discipline.setTalentRank(talents.get(13), 1); // ArmesJet
-        discipline.setTalentRank(talents.get(14), 3); // Distraction
+        discipline.setTalentRank(talents.get(14), 4); // Distraction
         discipline.setTalentRank(talents.get(15), 0); // RituelMaitreFantome
 
         // Anneau à filaments
@@ -312,8 +312,9 @@ public final class CharacterManager
         forgeron.addSkill(new Skill("Natation", Attributs.STR, true, 1));
         forgeron.addSkill(new Skill("Escalade", Attributs.DEX, true, 0));
 
-        forgeron.incrementKarmaBought(10);
-        forgeron.incrementLegendPoints(86000);
+        forgeron.incrementKarmaBought(18);
+        forgeron.incrementKarmaSpent(11);
+        forgeron.incrementLegendPoints(96000);
 
         return forgeron;
     }

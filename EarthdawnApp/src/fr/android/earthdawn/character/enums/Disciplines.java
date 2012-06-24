@@ -7,8 +7,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import fr.android.earthdawn.character.actions.impl.EndurancePostAction;
 import fr.android.earthdawn.character.actions.impl.InitPostAction;
 import fr.android.earthdawn.character.actions.impl.InitPreAction;
+import fr.android.earthdawn.character.actions.impl.RemoveTmpModAction;
 import fr.android.earthdawn.character.actions.impl.TempModAction;
 
 /**
@@ -332,7 +334,7 @@ public enum Disciplines implements Serializable
             new Talent(Talents.DonLangues, 4, false, null, null),
             new Talent(Talents.TissageForgeron, 4, true, null, null),
             new Talent(Talents.AlterationArmeTir, 5, true, null, null),
-            new Talent(Talents.Endurcissement, 5, true, null, null),
+            new Talent(Talents.Endurcissement, 5, true, new RemoveTmpModAction(Pointcuts.UNCOUNSCIOUSNESS_THRESHOLD, Pointcuts.HEALTH_POINTS, Pointcuts.WOUND_THRESHOLD), new EndurancePostAction(Pointcuts.UNCOUNSCIOUSNESS_THRESHOLD, Pointcuts.HEALTH_POINTS, Pointcuts.WOUND_THRESHOLD)),
             new Talent(Talents.RituelMaitreFantome, 5, true, null, null),
             new Talent(Talents.DetectionDefautsArmure, 6, true, null, null),
             new Talent(Talents.DissimulationArme, 6, false, null, null),
