@@ -50,7 +50,8 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
         RadioButton rd;
 
         int i=0;
-        for (final int size=weapons.size(); i<size; i++)
+        final int size=weapons.size();
+        for (; i<size; i++)
         {
             final IEquipment weapon = weapons.get(i);
             rd = new RadioButton(getActivity());
@@ -63,6 +64,7 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
         rd = new RadioButton(getActivity());
         rd.setText("Mains nues (+0)");
         rd.setId(i++);
+        rd.setChecked(size==0);
         rg.addView(rd);
 
         // Close Button

@@ -60,12 +60,8 @@ public class TalentWithKarmaFragment extends DialogFragment implements View.OnCl
 
         // Discipline checkbox
         box = (CheckBox) view.findViewById(R.id.talent_with_karma_discipline);
-        box.setChecked(true);
-        if (talent.isKarmaMandatory() && availablePoints == 1 || !talent.isKarmaMandatory() && availablePoints == 0)
-        {
-            box.setChecked(false);
-            box.setClickable(false);
-        }
+        box.setChecked(false);
+        box.setClickable(!(talent.isKarmaMandatory() && availablePoints == 1 || !talent.isKarmaMandatory() && availablePoints == 0));
 
         // Available karma points
         ((TextView) view.findViewById(R.id.talent_with_karma_available_points)).setText(getString(R.string.talent_with_karma_available_points, availablePoints));
