@@ -32,6 +32,7 @@ public final class CharacterManager
     private static final String MALACK = "Malack";
     private static final String PURIFICATEUR = "Ajmar Coeur-Tendre";
     private static final String FORGERON = "Arjaän Messarim";
+    private static final String VOLEUR = "Hyacinthe Casteltourbe";
 
     private CharacterManager() {}
 
@@ -67,6 +68,10 @@ public final class CharacterManager
         else if (FORGERON.equals(id))
         {
             return loadForgeron();
+        }
+        else if (VOLEUR.equals(id))
+        {
+            return loadHyacinthe();
         }
         return loadForgeron();
     }
@@ -319,6 +324,68 @@ public final class CharacterManager
         return forgeron;
     }
 
+    private static EDCharacter loadHyacinthe()
+    {
+        final EDCharacter hyacinthe = new EDCharacter(VOLEUR, "Homme", 111, 195, 72, Races.Elfe, 17, 0, 11, 2, 12, 0, 14, 1, 9, 0, 15, 1);
+        hyacinthe.setMainDiscipline(Disciplines.MaitreArmes, 6);
+        hyacinthe.setSecondDiscipline(Disciplines.Voleur, 5);
+
+        Discipline discipline = hyacinthe.getMainDiscipline();
+        List<Talent> talents = discipline.getKnownTalents();
+        discipline.setTalentRank(talents.get(0), 8); // ArmesMelee
+        discipline.setTalentRank(talents.get(1), 3); // RituelKarma
+        discipline.setTalentRank(talents.get(2), 6); // Esquive
+        discipline.setTalentRank(talents.get(3), 6); // Manoeuvre
+        discipline.setTalentRank(talents.get(4), 7); // Sarcasmes
+        discipline.setTalentRank(talents.get(5), 4); // Stabilite
+        discipline.setTalentRank(talents.get(6), 7); // Endurance
+        discipline.setTalentRank(talents.get(7), 6); // PremiereImpression
+        discipline.setTalentRank(talents.get(8), 8); // Riposte
+        discipline.setTalentRank(talents.get(9), 4); // ArmesJet
+        discipline.setTalentRank(talents.get(10), 4); // RireEncourageant
+        discipline.setTalentRank(talents.get(11), 3); // DonLangues
+        discipline.setTalentRank(talents.get(12), 5); // TissageMaitreArmes
+        discipline.setTalentRank(talents.get(13), 7); // DeuxiemeArme
+        discipline.setTalentRank(talents.get(14), 0); // RituelMaitreFantome
+        discipline.setTalentRank(talents.get(15), 6); // SourireRavageur
+        discipline.setTalentRank(talents.get(16), 7); // Desarmement
+        discipline.setTalentRank(talents.get(17), 3); // Distraction
+
+        discipline = hyacinthe.getSecondDiscipline();
+        talents = discipline.getKnownTalents();
+        discipline.setTalentRank(talents.get(0), 0); // ArmesMelee
+        discipline.setTalentRank(talents.get(1), 1); // RituelKarma
+        discipline.setTalentRank(talents.get(2), 6); // Crochetage
+        discipline.setTalentRank(talents.get(3), 5); // DeplacementSilencieux
+        discipline.setTalentRank(talents.get(4), 4); // Escalade
+        discipline.setTalentRank(talents.get(5), 6); // VolTire
+        discipline.setTalentRank(talents.get(6), 0); // Endurance
+        discipline.setTalentRank(talents.get(7), 4); // AttaqueSurprise
+        discipline.setTalentRank(talents.get(8), 6); // SensSerrures
+        discipline.setTalentRank(talents.get(9), 0); // Esquive
+        discipline.setTalentRank(talents.get(10), 4); // Recel
+        discipline.setTalentRank(talents.get(11), 3); // EsquivePieges
+        discipline.setTalentRank(talents.get(12), 5); // TissageVoleur
+        discipline.setTalentRank(talents.get(13), 4); // DesarmocagePieges
+        discipline.setTalentRank(talents.get(14), 5); // DetectionPieges
+        discipline.setTalentRank(talents.get(15), 0); // RituelMaitreFantome
+
+        hyacinthe.addEquipment(new Equipment("Dague forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 0.5))));
+        hyacinthe.addEquipment(new Equipment("Rapière forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 8), Mod.get(Pointcuts.WEIGHT, 1.5))));
+        hyacinthe.addEquipment(new Equipment("Dague filante", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 1.5))));
+        hyacinthe.addEquipment(new Equipment("Arc court en if", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 1.5))));
+
+        hyacinthe.addSkill(new Skill("Chant d'émotion", Attributs.CHA, true, 0).incrementRank());
+        hyacinthe.addSkill(new Skill("Etiquette", Attributs.PER, true, 0));
+
+
+        hyacinthe.incrementKarmaBought(18);
+        hyacinthe.incrementKarmaSpent(11);
+        hyacinthe.incrementLegendPoints(96000);
+
+        return hyacinthe;
+    }
+
     public static String[] getAvailableCharacters(final Context ctx)
     {
         final String[] files = ctx.fileList();
@@ -333,7 +400,7 @@ public final class CharacterManager
         }
         // TODO
        // return new String[] {MALACK, ARDAMIR, FORGERON, PURIFICATEUR, MENESTREL};
-        return new String[] {MALACK, FORGERON, PURIFICATEUR};
+        return new String[] {MALACK, FORGERON, PURIFICATEUR, VOLEUR};
     }
 
 }
