@@ -86,7 +86,7 @@ public class BuyKarmaFragment extends DialogFragment implements View.OnClickList
 
                 dismiss();
 
-                Toast.makeText(getActivity(), getString(R.string.popup_buy_karma_toast, karmaBought), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.popup_buy_karma_toast, Integer.toString(karmaBought)), Toast.LENGTH_LONG).show();
                 break;
         }
 

@@ -30,7 +30,7 @@
     <TextView android:id="@+id/talent_with_karma_available_points" 
         android:layout_width="wrap_content" 
         android:layout_height="wrap_content" 
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        style="@style/medium"
         android:padding="4dp" />
     
 	<include layout="@layout/popup_buttons"/>

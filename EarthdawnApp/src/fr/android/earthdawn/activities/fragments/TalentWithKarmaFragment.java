@@ -38,7 +38,7 @@ public class TalentWithKarmaFragment extends DialogFragment implements View.OnCl
         // Title
 
         talent = (Talent) getArguments().get(Constants.BUNDLE_TALENT);
-        talentLevel = (Integer) getArguments().get(Constants.BUNDLE_TALENT_LEVEL);
+        talentLevel = getArguments().getInt(Constants.BUNDLE_TALENT_LEVEL);
         getDialog().setTitle(getString(R.string.talent_with_karma_title, getString(talent.getName())));
 
         // Retrieve concerned character and talent
@@ -64,7 +64,7 @@ public class TalentWithKarmaFragment extends DialogFragment implements View.OnCl
         box.setClickable(!(talent.isKarmaMandatory() && availablePoints == 1 || !talent.isKarmaMandatory() && availablePoints == 0));
 
         // Available karma points
-        ((TextView) view.findViewById(R.id.talent_with_karma_available_points)).setText(getString(R.string.talent_with_karma_available_points, availablePoints));
+        ((TextView) view.findViewById(R.id.talent_with_karma_available_points)).setText(getString(R.string.talent_with_karma_available_points, Integer.toString(availablePoints)));
 
         // Close Button
         view.findViewById(R.id.popup_close).setOnClickListener(this);

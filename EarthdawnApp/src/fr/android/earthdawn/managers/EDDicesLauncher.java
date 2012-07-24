@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import android.content.Context;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.dices.DicesLauncher;
+import fr.android.earthdawn.utils.NumberUtils;
 
 /**
  * @author DrMabulle
@@ -34,9 +35,12 @@ public final class EDDicesLauncher
         final boolean rerollMax = shouldRerollOnMax(aRollKind);
         final boolean rerollMins = shouldRerollOnMin(aRollKind);
 
-        final int result = DicesLauncher.rollDices(aRank, rerollMax, rerollMins) - wounds;
+        // X blessures graves font un malus de X-1 points (min 0)
+        final int malusWounds = NumberUtils.ensureMinimum(wounds - 1, 0);
 
-        addRollToHistory(new Roll(aRollKind, aRollNameId, aRank, result, DicesLauncher.getRollLogs(), wounds));
+        final int result = DicesLauncher.rollDices(aRank, rerollMax, rerollMins) - malusWounds;
+
+        addRollToHistory(new Roll(aRollKind, aRollNameId, aRank, result, DicesLauncher.getRollLogs(), malusWounds));
 
         return result;
     }
@@ -46,9 +50,12 @@ public final class EDDicesLauncher
         final boolean rerollMax = shouldRerollOnMax(aRollKind);
         final boolean rerollMins = shouldRerollOnMin(aRollKind);
 
-        final int result = DicesLauncher.rollDices(aDicesInfos, rerollMax, rerollMins) - wounds;
+        // X blessures graves font un malus de X-1 points (min 0)
+        final int malusWounds = NumberUtils.ensureMinimum(wounds - 1, 0);
 
-        addRollToHistory(new Roll(aRollKind, aRollNameId, aDicesInfos, result, DicesLauncher.getRollLogs(), wounds));
+        final int result = DicesLauncher.rollDices(aDicesInfos, rerollMax, rerollMins) - malusWounds;
+
+        addRollToHistory(new Roll(aRollKind, aRollNameId, aDicesInfos, result, DicesLauncher.getRollLogs(), malusWounds));
 
         return result;
     }
@@ -84,11 +91,39 @@ public final class EDDicesLauncher
         return rollsHistory.getFirst().rollNameId;
     }
 
+    public static boolean testInputDicesInfos(final String dicesInfos)
+    {
+        return DicesLauncher.testInputDicesInfos(dicesInfos);
+    }
+
+    public static int getRollHistorySize()
+    {
+        return rollsHistory.size();
+    }
+
+    public static String getRollHistoryMsg(final Context ctx, final int aPosition)
+    {
+        // <Talent> : <result>
+        final Roll roll = rollsHistory.get(aPosition);
+        return ctx.getString(R.string.roller_history_info, ctx.getString(roll.rollNameId), Integer.toString(roll.rollResult));
+    }
+
+    public static String getRollHistoryDetails(final Context ctx, final int aPosition)
+    {
+        final Roll roll = rollsHistory.get(aPosition);
+        return getDetailedMessage(ctx, roll);
+    }
+
     public static String getDetailedMessage(final Context ctx)
     {
         final Roll roll = rollsHistory.getFirst();
+        return getDetailedMessage(ctx, roll);
+    }
+
+    private static String getDetailedMessage(final Context ctx, final Roll roll)
+    {
         final String msg = getRolledDicesInfos(ctx);
-        return ctx.getString(R.string.roller_message, msg, roll.rollResult, roll.rollWounds, roll.rollLogs);
+        return ctx.getString(R.string.roller_message, msg, Integer.toString(roll.rollResult), Integer.toString(roll.rollWounds), roll.rollLogs);
     }
 
     public static String getRolledDicesInfos(final Context ctx)
@@ -101,14 +136,9 @@ public final class EDDicesLauncher
         }
         else
         {
-            msg = ctx.getString(R.string.roller_rank_msg, roll.rollRank, RankManager.getDicesFromRank(roll.rollRank));
+            msg = ctx.getString(R.string.roller_rank_msg, Integer.toString(roll.rollRank), RankManager.getDicesFromRank(roll.rollRank));
         }
         return msg;
-    }
-
-    public static boolean testInputDicesInfos(final String dicesInfos)
-    {
-        return DicesLauncher.testInputDicesInfos(dicesInfos);
     }
 
 

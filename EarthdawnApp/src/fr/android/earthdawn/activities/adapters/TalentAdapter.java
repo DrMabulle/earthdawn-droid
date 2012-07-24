@@ -103,7 +103,7 @@ public class TalentAdapter extends BaseAdapter
         else
         {
             ((ImageButton) convertView.findViewById(R.id.talent_roll)).setVisibility(ImageButton.INVISIBLE);
-            ((TextView) convertView.findViewById(R.id.talents_level)).setText("");
+            //((TextView) convertView.findViewById(R.id.talents_level)).setText("");
         }
 
         return convertView;
