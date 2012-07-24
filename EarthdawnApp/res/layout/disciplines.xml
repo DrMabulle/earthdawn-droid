@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <TableLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:id="@+id/sheet_disciplines" android:layout_margin="2dp"
+		android:background="@android:drawable/gallery_thumb">
+    
+    	<TableRow android:layout_width="match_parent">
+        	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
+			    android:layout_gravity="center_horizontal" android:padding="2dp" android:layout_weight="3" 
+			    android:text="@string/sheet_disciplines" />
+        	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
+			    android:layout_gravity="center_horizontal" android:padding="2dp" android:layout_weight="2" 
+			    android:text="@string/sheet_circle" />
+        </TableRow>
+        
+        <TableRow android:layout_width="match_parent">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:id="@+id/sheet_main_discipline" 
+			    android:padding="2dp" android:layout_weight="3" />    
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_gravity="center_horizontal" android:padding="2dp" android:layout_weight="2"
+			    android:id="@+id/sheet_main_circle" />    
+        </TableRow>
+        
+        <TableRow android:layout_width="match_parent">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:id="@+id/sheet_second_discipline" 
+			    android:padding="2dp" android:layout_weight="3" />    
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_gravity="center_horizontal" android:padding="2dp" android:layout_weight="2"
+			    android:id="@+id/sheet_second_circle" />    
+        </TableRow>
+        
+        <TableRow android:layout_width="match_parent">
+        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:id="@+id/sheet_third_discipline" 
+			    android:padding="2dp" android:layout_weight="3" />    
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			    android:layout_gravity="center_horizontal" android:padding="2dp"  android:layout_weight="2"
+			    android:id="@+id/sheet_third_circle" />    
+        </TableRow>
+        
+    </TableLayout>

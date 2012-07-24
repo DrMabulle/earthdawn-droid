@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center" >
+    
+    <TextView 
+        android:layout_height="wrap_content" 
+        android:layout_width="match_parent"
+	    android:gravity="center" android:layout_gravity="center" 
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:padding="4dp"
+	    android:text="@string/popup_take_damages_title" />
+    
+    <LinearLayout 
+        android:layout_height="wrap_content" 
+    	android:layout_width="match_parent"
+    	android:orientation="horizontal"
+    	android:gravity="center"
+	    android:layout_margin="10dp" >
+        
+        <NumberPicker
+            android:id="@+id/damagesPicker"
+            android:layout_width="75dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:orientation="vertical" />
+        
+        <RadioGroup
+	        android:id="@+id/radioGroupArmor"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	    	android:layout_margin="20dp" 
+	        android:layout_gravity="center_vertical" >
+
+	        <RadioButton
+	            android:id="@+id/radioArmorPhy"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:checked="true"
+	            android:text="@string/popup_take_damages_arm_phy"
+	            android:textAppearance="?android:attr/textAppearanceMedium"
+	            android:singleLine="true"
+	            android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
+
+	        <RadioButton 
+	        	android:id="@+id/radioArmorMys"
+	            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content" 
+	            android:text="@string/popup_take_damages_arm_mys"
+	            android:textAppearance="?android:attr/textAppearanceMedium"
+	            android:singleLine="true"
+	            android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
+	        
+	        <RadioButton 
+	        	android:id="@+id/radioNoArmor"
+	            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content" 
+	            android:text="@string/popup_take_damages_no_arm"
+	            android:textAppearance="?android:attr/textAppearanceMedium"
+	            android:singleLine="true"
+	            android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
+    	</RadioGroup>
+    </LinearLayout>
+    
+	<include layout="@layout/popup_buttons"/>
+    
+</LinearLayout>

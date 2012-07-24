@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center" >
+    
+    <TextView 
+        android:layout_height="wrap_content" 
+        android:layout_width="wrap_content"
+	    android:textAppearance="?android:attr/textAppearanceMedium"
+	    android:padding="4dp"
+	    android:text="@string/popup_buy_karma_info" />
+
+        
+    <NumberPicker
+        android:id="@+id/karmaPicker"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_margin="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:orientation="vertical" />
+    
+	<include layout="@layout/popup_buttons"/>
+    
+</LinearLayout>
