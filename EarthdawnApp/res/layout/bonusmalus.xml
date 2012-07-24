@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+	   	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
+		    android:layout_width="wrap_content" android:layout_height="wrap_content"
+		    android:text="@string/bonusmalus" android:padding="4dp" />
+
+	   	<Button
+	   	    android:id="@+id/remove_bonuses"
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:text="@string/bonusmalus_removeall" />
+	   	
+	</LinearLayout>
+	
+   	<ListView
+   	    xmlns:android="http://schemas.android.com/apk/res/android"
+   	    android:id="@android:id/list"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="match_parent" 
+    	android:padding="8dp" />
+	
+	<TextView android:id="@id/android:empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/bonusmalus_no_data" 
+    	android:padding="8dp"/>
+	
+</LinearLayout> 
