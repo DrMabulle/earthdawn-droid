@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  android:orientation="horizontal" 
 	android:id="@+id/sheet_deductibles" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_margin="2dp"
-	android:baselineAligned="false" android:layout_weight="10">
+	android:baselineAligned="false" android:layout_weight="10"
+	android:background="@android:drawable/gallery_thumb" >
 	
-		<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+		<TableLayout
 			android:layout_width="match_parent" android:layout_height="wrap_content"
 	    	android:layout_margin="2dp" android:layout_weight="5">
 	    	
 	    	<!-- Defenses -->
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	    		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
+	    		<TextView style="@style/title"
 		    		android:layout_width="match_parent" android:layout_height="wrap_content" 
-		    		android:text="@string/sheet_defenses" android:padding="2dp" android:layout_span="2" android:layout_weight="5"/>
+		    		android:text="@string/sheet_defenses" android:layout_span="2" android:layout_weight="5"/>
 	    	</TableRow>
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_def_phy" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
-				    android:id="@+id/sheet_def_phy" android:padding="2dp" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_def_mag" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"
-				    android:id="@+id/sheet_def_mag" android:padding="2dp" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_def_soc" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_def_phy" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_def_soc" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_def_phy" android:layout_weight="2"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView style="@style/medium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_def_mag" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_def_mag" android:layout_weight="2"/>
+	        </TableRow>
+	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+	        	<TextView style="@style/medium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content"
+				    android:text="@string/sheet_def_soc" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+				    android:id="@+id/sheet_def_soc" android:layout_weight="2"/>
 	        </TableRow>
 	    
 	    	<!-- Equipment -->
@@ -45,20 +46,20 @@
 		    		android:text="@string/sheet_equipement" android:layout_span="2" android:layout_weight="5"/>
 	    	</TableRow>
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_equ_tra" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_equ_tra" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_equ_tra" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_equ_tra" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_equ_lev" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_equ_lev" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_equ_lev" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_equ_lev" android:layout_weight="2"/>
 	        </TableRow>
 	    
 	    	<!-- Initiative -->
@@ -68,33 +69,33 @@
 		    		android:text="@string/sheet_initiative" android:layout_span="2" android:layout_weight="5"/>
 	    	</TableRow>
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_dex" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_init_dex" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_init_dex" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_init_dex" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_pen" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_init_pen" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_init_pen" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_init_pen" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_lvl" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_init_lvl" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_init_lvl" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_init_lvl" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_roll" android:padding="2dp"
+				    android:text="@string/sheet_init_roll"
 				    android:layout_gravity="center_vertical" android:layout_weight="3"/>
 	        	<ImageButton android:id="@+id/roll_initiative" android:src="@drawable/dice" android:contentDescription="@string/roll"
 	        		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2"/>
@@ -102,39 +103,38 @@
 	   	</TableLayout>
 
 			   
-		<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+		<TableLayout 
 			android:layout_width="match_parent" android:layout_height="wrap_content"
 	    	android:layout_margin="2dp" android:layout_weight="5">
 	        
 	        <!-- Armors -->
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	    		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
-		    		android:layout_width="match_parent" android:layout_height="wrap_content" 
+	    		<TextView style="@style/title" android:layout_width="match_parent" android:layout_height="wrap_content" 
 		    		android:text="@string/sheet_armor" android:layout_span="2" android:layout_weight="5"/>
 	    	</TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_arm_type" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_arm_type" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_arm_type" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_arm_type" android:layout_weight="2"/>
 	        </TableRow>
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_arm_phy" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_arm_phy" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_arm_phy" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_arm_phy" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_arm_mag" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_arm_mag" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_arm_mag" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_arm_mag" android:layout_weight="2"/>
 	        </TableRow>
 	    
 	    	<!-- Mouvement -->
@@ -144,47 +144,47 @@
 		    		android:text="@string/sheet_mouvement" android:layout_span="2" android:layout_weight="5"/>
 	    	</TableRow>
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_mvn_run" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_mvn_run" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_mvn_run" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_mvn_run" android:layout_weight="2"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_mvn_cbt" android:padding="2dp" android:layout_weight="3"/>
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				    android:text="@string/sheet_mvn_cbt" android:layout_weight="3"/>
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_mvn_cbt" android:padding="2dp" android:layout_weight="2"/>
+				    android:id="@+id/sheet_mvn_cbt" android:layout_weight="2"/>
 	        </TableRow>
 	    
 	    	<!-- Aptitudes raciales -->
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
 	    		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
 		    		android:layout_width="match_parent" android:layout_height="wrap_content" 
-		    		android:text="@string/sheet_racial" android:padding="2dp" android:layout_span="2" android:layout_weight="5"/>
+		    		android:text="@string/sheet_racial" android:layout_span="2" android:layout_weight="5"/>
 	    	</TableRow>
 	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" 
-				    android:id="@+id/sheet_racial_apt1" android:padding="2dp" android:layout_span="2" android:layout_weight="5"/>
+				    android:id="@+id/sheet_racial_apt1" android:layout_span="2" android:layout_weight="5"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content" 
-				    android:id="@+id/sheet_racial_apt2" android:padding="2dp" android:layout_span="2" android:layout_weight="5"/>
+				    android:id="@+id/sheet_racial_apt2" android:layout_span="2" android:layout_weight="5"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:id="@+id/sheet_racial_apt3" android:padding="2dp" android:layout_span="2" android:layout_weight="5"/>
+				    android:id="@+id/sheet_racial_apt3" android:layout_span="2" android:layout_weight="5"/>
 	        </TableRow>
 	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+	        	<TextView style="@style/medium"
 				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:id="@+id/sheet_racial_apt4" android:padding="2dp" android:layout_span="2" android:layout_weight="5"/>
+				    android:id="@+id/sheet_racial_apt4" android:layout_span="2" android:layout_weight="5"/>
 	        </TableRow>
 	    </TableLayout>
 </LinearLayout>

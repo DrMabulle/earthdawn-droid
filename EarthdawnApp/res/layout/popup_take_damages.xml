@@ -45,7 +45,7 @@
 	            android:layout_height="wrap_content"
 	            android:checked="true"
 	            android:text="@string/popup_take_damages_arm_phy"
-	            android:textAppearance="?android:attr/textAppearanceMedium"
+	            style="@style/medium"
 	            android:singleLine="true"
 	            android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
 
@@ -54,7 +54,7 @@
 	            android:layout_width="wrap_content" 
 	            android:layout_height="wrap_content" 
 	            android:text="@string/popup_take_damages_arm_mys"
-	            android:textAppearance="?android:attr/textAppearanceMedium"
+	            style="@style/medium"
 	            android:singleLine="true"
 	            android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
 	        
@@ -63,7 +63,7 @@
 	            android:layout_width="wrap_content" 
 	            android:layout_height="wrap_content" 
 	            android:text="@string/popup_take_damages_no_arm"
-	            android:textAppearance="?android:attr/textAppearanceMedium"
+	            style="@style/medium"
 	            android:singleLine="true"
 	            android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
     	</RadioGroup>

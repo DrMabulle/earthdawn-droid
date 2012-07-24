@@ -55,14 +55,14 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
         {
             final IEquipment weapon = weapons.get(i);
             rd = new RadioButton(getActivity());
-            rd.setText(weapon.getName() + " (+" + getDamageRank(weapon) + ")");
+            rd.setText(getString(R.string.weapon_description, weapon.getName(), Integer.toString(getDamageRank(weapon))));
             rd.setId(i);
             rd.setChecked(i==0);
             rg.addView(rd);
         }
         // Ajouter le combat à mains nues
         rd = new RadioButton(getActivity());
-        rd.setText("Mains nues (+0)");
+        rd.setText(R.string.bare_hands);
         rd.setId(i++);
         rd.setChecked(size==0);
         rg.addView(rd);

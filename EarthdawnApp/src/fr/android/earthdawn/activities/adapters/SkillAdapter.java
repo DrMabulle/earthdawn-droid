@@ -12,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
@@ -23,7 +22,7 @@ import fr.android.earthdawn.character.enums.Skill;
  * @author DrMabulle
  *
  */
-public class SkillAdapter extends BaseAdapter implements ListAdapter
+public class SkillAdapter extends BaseAdapter
 {
     private final LayoutInflater inflater;
     private final List<Skill> skills;

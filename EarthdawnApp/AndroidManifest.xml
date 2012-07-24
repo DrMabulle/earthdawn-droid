@@ -29,7 +29,8 @@
         </activity>
         
         <activity android:name=".activities.ChooseCharacterActivity"
-                  android:label="@string/app_name"> 
+                  android:label="@string/app_name"
+                android:exported="false"> 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="fr.android.earthdawn.activities.CHARACTER_SHEET" />
@@ -37,7 +38,8 @@
         </activity>
         
         <activity android:name=".activities.ActionBarTabsPager"
-                android:label="@string/app_name">
+                android:label="@string/app_name"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="fr.android.earthdawn.activities.CHARACTER_SHEET" />
@@ -45,7 +47,8 @@
         </activity>
         
         <activity android:name=".activities.MapViewActivity"
-                android:label="@string/app_name">
+                android:label="@string/app_name"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="fr.android.earthdawn.activities.MAP" />
@@ -53,7 +56,8 @@
         </activity>
         
         <activity android:name=".activities.BonusMalusActivity"
-                android:label="@string/app_name">
+                android:label="@string/app_name"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="fr.android.earthdawn.activities.BONUS_MALUS" />

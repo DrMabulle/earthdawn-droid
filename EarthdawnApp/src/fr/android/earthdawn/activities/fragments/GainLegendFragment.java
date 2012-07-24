@@ -61,7 +61,7 @@ public class GainLegendFragment extends DialogFragment implements OnClickListene
                 final int legend = Integer.parseInt(edit.getText().toString());
 
                 CharacterManager.getLoadedCharacter().incrementLegendPoints(legend);
-                Toast.makeText(getActivity(), getString(R.string.popup_legend_msg_ok, legend), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.popup_legend_msg_ok, Integer.toString(legend)), Toast.LENGTH_LONG).show();
                 this.dismiss();
                 break;
         }

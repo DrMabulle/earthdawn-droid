@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.enums.Mod;
@@ -22,7 +20,7 @@ import fr.android.earthdawn.character.equipement.impl.MagicalEquipment;
  * @author DrMabulle
  *
  */
-public class EquipmentAdapter extends BaseAdapter implements ListAdapter
+public class EquipmentAdapter extends BaseAdapter
 {
     private static final String TAB = "        ";
     private static final String EMPTY = "";
@@ -69,7 +67,7 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
             final IEquipment possession = possessions.get(position);
 
             ((TextView) convertView.findViewById(R.id.possession_name)).setText(possession.getName());
-            final LinearLayout details = (LinearLayout) convertView.findViewById(R.id.possession_details);
+            final TextView details = (TextView) convertView.findViewById(R.id.possession_details);
 
             // Draw details for magical equipment
             if (possession.isMagical())
@@ -86,7 +84,7 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
                     if (i > 0)
                     {
                         tab = TAB;
-                        msg.append(ctx.getString(R.string.msg_loot_thread, i, loot.getCosts()[i - 1]));
+                        msg.append(ctx.getString(R.string.msg_loot_thread, Integer.toString(i), Integer.toString(loot.getCosts()[i - 1])));
                         msg.append('\n');
                     }
                     for (final Mod mod : mods)
@@ -96,9 +94,7 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
                         msg.append('\n');
                     }
                 }
-                final TextView tv = new TextView(ctx);
-                tv.setText(msg.toString());
-                details.addView(tv);
+                details.setText(msg.toString());
             }
             // Draw details for classical equipment
             else
@@ -110,14 +106,13 @@ public class EquipmentAdapter extends BaseAdapter implements ListAdapter
                     msg.append(mod.toString());
                     msg.append('\n');
                 }
-                final TextView tv = new TextView(ctx);
-                tv.setText(msg.toString());
-                details.addView(tv);
+                details.setText(msg.toString());
             }
         }
 
+
         final boolean visible = isVisible(position);
-        ((LinearLayout) convertView.findViewById(R.id.possession_details)).setVisibility(visible ? View.VISIBLE : View.GONE);
+        convertView.findViewById(R.id.possession_details).setVisibility(visible ? View.VISIBLE : View.GONE);
 
         return convertView;
     }

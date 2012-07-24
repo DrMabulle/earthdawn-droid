@@ -12,5 +12,8 @@
 	<item android:title="@string/menu_full_health" android:id="@+id/itemHealEverything"></item>
 	
     <item android:title="@string/menu_gain_legend" android:id="@+id/itemGainLegend"></item>
+    
+    <item android:title="@string/menu_free_rolls" android:id="@+id/itemFreeRolls"></item>
+    <item android:title="@string/menu_roll_hystory" android:id="@+id/itemRollHistory"></item>
 
 </menu>
