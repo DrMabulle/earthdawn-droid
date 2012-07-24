@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.enums.Mod;
@@ -19,7 +18,7 @@ import fr.android.earthdawn.character.enums.Mod;
  * @author DrMabulle
  *
  */
-public class BonusMalusAdapter extends BaseAdapter implements ListAdapter
+public class BonusMalusAdapter extends BaseAdapter
 {
     private final LayoutInflater inflater;
     private final List<Mod> mods;

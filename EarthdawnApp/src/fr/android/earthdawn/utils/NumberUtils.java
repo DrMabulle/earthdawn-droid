@@ -5,7 +5,7 @@ package fr.android.earthdawn.utils;
 
 
 /**
- * @author Bubulle
+ * @author DrMabulle
  *
  */
 public final class NumberUtils

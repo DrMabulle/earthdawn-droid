@@ -97,7 +97,7 @@ public final class DicesLauncher
         // ... and fixed values
         else
         {
-            int value = Integer.valueOf(infos.trim());
+            int value = Integer.parseInt(infos.trim());
             if (isNegative)
             {
                 value *= -1;
@@ -239,8 +239,8 @@ public final class DicesLauncher
         }
         else
         {
-            msg = ctx.getString(R.string.roller_rank_msg, rank, RankManager.getDicesFromRank(rank));
+            msg = ctx.getString(R.string.roller_rank_msg, Integer.toString(rank), RankManager.getDicesFromRank(rank));
         }
-        return ctx.getString(R.string.roller_message, msg, result, logs.toString());
+        return ctx.getString(R.string.roller_message, msg, Integer.toString(result), logs.toString());
     }
 }

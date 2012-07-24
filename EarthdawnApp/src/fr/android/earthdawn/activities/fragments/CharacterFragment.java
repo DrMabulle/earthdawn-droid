@@ -177,12 +177,12 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
     {
         // Points de karma disponibles : <available> / <max>
         final String karmaAvailable = getString(R.string.sheet_karma_available_detail,
-                character.getAvailableKarma(),
-                CharacterUtils.getMaxKarma(character));
+                Integer.toString(character.getAvailableKarma()),
+                Integer.toString(CharacterUtils.getMaxKarma(character)));
         ((TextView) view.findViewById(R.id.sheet_karma_available)).setText(karmaAvailable);
         // Niveau de karma : <level> (<dices>)
         final String karmaLvl = getString(R.string.sheet_karma_lvl_detail,
-                character.getRace().getKarmaRank(),
+                Integer.toString(character.getRace().getKarmaRank()),
                 RankManager.getDicesFromRank(character.getRace().getKarmaRank()));
         ((TextView) view.findViewById(R.id.sheet_karma_level)).setText(karmaLvl);
         // Special uses

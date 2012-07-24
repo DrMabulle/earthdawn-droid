@@ -13,10 +13,11 @@
     
     <string name="roller_popup_title">Résultat du jet de dés :</string>
     <string name="roller_popup_title2">Résultat du jet de %1$s :</string>
-    <string name="roller_format_error">Le format est incorrect.\nLe format attendu est xDy, répété à l\'envie, séparé par un espace.\nExemples :\n1D20\n1D20 2D12\n1D20 1D12 2D10 1D8 1D6 3D4\n1D4 -2</string>
-    <string name="roller_message">Vous avez jeté %1$s \nRésultat : %2$d \n\nDétails du lancé : \nMalus dus aux blessures graves : %3$d\n%4$s</string>
-    <string name="roller_rank_msg">un rang %1$d soit %2$s</string>
+    <string name="roller_format_error">Le format est incorrect.\nLe format attendu est xDy, répété à l\'envi, séparé par un espace.\nExemples :\n1D20\n1D20 2D12\n1D20 1D12 2D10 1D8 1D6 3D4\n1D4 -2</string>
+    <string name="roller_message">Vous avez jeté %1$s \nRésultat : %2$s \n\nDétails du lancé : \nMalus dus aux blessures graves : %3$s\n%4$s</string>
+    <string name="roller_rank_msg">un rang %1$s soit %2$s</string>
     <string name="roller_or">OU</string>
+    <string name="roller_history_info">Jet de %1$s a donné %2$s</string>
     
     <string name="sheet_infos_title">Informations générales</string>
     <string name="sheet_name">Nom</string>
@@ -57,9 +58,9 @@
     
     <string name="sheet_karma_title">Karma</string>
     <string name="sheet_karma_available">Points de Karma disponibles : </string>
-    <string name="sheet_karma_available_detail">%1$d / %2$d</string>
+    <string name="sheet_karma_available_detail">%1$s / %2$s</string>
     <string name="sheet_karma_level">Niveau : </string>
-    <string name="sheet_karma_lvl_detail">%1$d (%2$s)</string>
+    <string name="sheet_karma_lvl_detail">%1$s (%2$s)</string>
     <string name="sheet_karma_uses">Utilisations spéciales : </string>
     <string name="sheet_karma_radio_dex">DEX</string>
     <string name="sheet_karma_radio_str">FOR</string>
@@ -142,17 +143,17 @@
     <string name="popup_take_damages_no_arm">Ignorer l\'armure</string>
     <string name="popup_take_damages_button">Subir</string>
     <string name="popup_damages_taken_title">Récapitulatif des dommages subis</string>
-    <string name="popup_damages_taken_msg">%1$s \nVous avez perdu %2$d point(s) de vie.\nVous avez subi %3$d blessure(s) grave(s).</string>
+    <string name="popup_damages_taken_msg">%1$s \nVous avez perdu %2$s point(s) de vie.\nVous avez subi %3$s blessure(s) grave(s).</string>
     
     <string name="popup_legend_title">Gain de points de Légende</string>
     <string name="popup_legend_msg">Félicitation ! \nVous avez gagné des points de Légende. \nCombien ?</string>
-    <string name="popup_legend_msg_ok">%1$d points de Légende correctement ajoutés au personnage.</string>
+    <string name="popup_legend_msg_ok">%1$s points de Légende correctement ajoutés au personnage.</string>
     <string name="popup_legend_button">Ajouter</string>
     
     <string name="popup_buy_karma_title">Achat de Karma</string>
     <string name="popup_buy_karma_info">Combien de points de karma souhaitez-vous acheter ? (10PL / point)</string>
     <string name="popup_buy_karma_button">Acheter</string>
-    <string name="popup_buy_karma_toast">Achat de %1$d point(s) de karma effecté avec succès.</string>
+    <string name="popup_buy_karma_toast">Achat de %1$s point(s) de karma effecté avec succès.</string>
     
     <string name="popup_init_title">Talents modificateurs d\'Initiative</string>
     <string name="popup_init_msg">Choix des talents à activer pour modifier le rang d\'initiative</string>
@@ -160,16 +161,16 @@
     <string name="equipment_title">Liste de vos possessions</string>
     <string name="equipment_no_data">Aucun équipement</string>
     
-    <string name="msg_health_status">Fatigue : %1$d \nBlessure(s) : %2$d \nBlessure(s) grave(s) : %3$d</string>
+    <string name="msg_health_status">Fatigue : %1$s \nBlessure(s) : %2$s \nBlessure(s) grave(s) : %3$s</string>
     <string name="msg_health_status_uncounscious">Personnage dans l\'inconscience.</string>
     <string name="msg_health_status_dead">Personnage mort.</string>
     <string name="msg_health_status_normal">Personnage conscient.</string>
     <string name="msg_wound_healed">Une blessure grave a été soignée.</string>
-    <string name="msg_damages_healed">Résultat du jet de récupération : %1$d.\nNombre de blessures graves : %2$d.\nPoints de vie réucpérés : %3$d.</string>
+    <string name="msg_damages_healed">Résultat du jet de récupération : %1$s.\nNombre de blessures graves : %2$s.\nPoints de vie réucpérés : %3$s.</string>
     <string name="msg_fully_healed">Toutes les blessures ont été supprimées.</string>
     <string name="msg_strain_healed">Fatigue récupérée.</string>
     
-    <string name="msg_loot_thread">Filament %1$d (%2$d PL)</string>
+    <string name="msg_loot_thread">Filament %1$s (%2$s PL)</string>
     
     <string name="menu_bonus_malus">Bonus / Malus</string>
     <string name="menu_subir_degats">Subir des dégats</string>
@@ -180,6 +181,8 @@
     <string name="menu_heal_wounds">Guérir une blessure grave</string>
     <string name="menu_full_health">Guérison complète</string>
     <string name="menu_gain_legend">Recevoir des points de Légende</string>
+    <string name="menu_free_rolls">Jets de dés libres</string>
+    <string name="menu_roll_hystory">Historique des jets</string>
         
     <string name="bonusmalus">Bonus-Malus</string>
     <string name="bonusmalus_removeall">Effacer les bonus temporaires</string>
@@ -216,11 +219,14 @@
     <string name="talent_with_karma_msg">Talent de discipline. Souhaitez-vous utiliser du karma ?</string> 
     <string name="talent_with_karma_discipline">karma de discipline</string> 
     <string name="talent_with_karma_mandatory">karma obligatoire</string>
-    <string name="talent_with_karma_available_points">Points de karma disponibles : %1$d</string>
+    <string name="talent_with_karma_available_points">Points de karma disponibles : %1$s</string>
     <string name="talent_with_karma_alert_title">Action impossible</string>
     <string name="talent_with_karma_alert_msg">Vous n\'avez pas assez de karma pour effectuer cette action.</string>
     
     <string name="cannot_buy_karma_title">Action impossible</string>
     <string name="cannot_buy_karma_msg">Vous ne pouvez pas acheter de points de karma.\nRaisons possibles :\n- Pas assez de Points de Légende\n- Nombre de points de karma maximum atteint</string>
+    
+    <string name="bare_hands">Mains nues (+0)</string>
+    <string name="weapon_description">%1$s (+%2$s)</string>
     
 </resources>

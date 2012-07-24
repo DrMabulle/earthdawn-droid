@@ -4,11 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import fr.android.earthdawn.character.enums.Attributs;
 
-public class AttributsAdapter extends BaseAdapter implements SpinnerAdapter
+public class AttributsAdapter extends BaseAdapter
 {
     private final Context ctx;
 

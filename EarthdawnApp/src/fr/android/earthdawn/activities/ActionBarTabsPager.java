@@ -34,6 +34,7 @@ import fr.android.earthdawn.activities.fragments.CharacterFragment;
 import fr.android.earthdawn.activities.fragments.EquipmentFragment;
 import fr.android.earthdawn.activities.fragments.GainLegendFragment;
 import fr.android.earthdawn.activities.fragments.RollDamagesFragment;
+import fr.android.earthdawn.activities.fragments.RollHystoryFragment;
 import fr.android.earthdawn.activities.fragments.SkillsFragment;
 import fr.android.earthdawn.activities.fragments.TakeDamagesFragment;
 import fr.android.earthdawn.activities.fragments.TalentsFragment;
@@ -143,8 +144,8 @@ public class ActionBarTabsPager extends Activity
                 builder.setTitle(R.string.popup_damages_taken_title);
                 builder.setMessage(getString(R.string.popup_damages_taken_msg,
                         args.getCharSequence(Constants.BUNDLE_DMG_TAKEN_ARM),
-                        args.getInt(Constants.BUNDLE_DMG_TAKEN_PV),
-                        args.getInt(Constants.BUNDLE_DMG_TAKEN_WOUND)));
+                        Integer.toString(args.getInt(Constants.BUNDLE_DMG_TAKEN_PV)),
+                        Integer.toString(args.getInt(Constants.BUNDLE_DMG_TAKEN_WOUND))));
                 break;
 
             default:
@@ -178,8 +179,8 @@ public class ActionBarTabsPager extends Activity
                 alert.setTitle(R.string.popup_damages_taken_title);
                 alert.setMessage(getString(R.string.popup_damages_taken_msg,
                         args.getCharSequence(Constants.BUNDLE_DMG_TAKEN_ARM),
-                        args.getInt(Constants.BUNDLE_DMG_TAKEN_PV),
-                        args.getInt(Constants.BUNDLE_DMG_TAKEN_WOUND)));
+                        Integer.toString(args.getInt(Constants.BUNDLE_DMG_TAKEN_PV)),
+                        Integer.toString(args.getInt(Constants.BUNDLE_DMG_TAKEN_WOUND))));
                 break;
 
             default:
@@ -221,7 +222,10 @@ public class ActionBarTabsPager extends Activity
                 return true;
             case R.id.itemHealthStatus:
                 final StringBuilder builder = new StringBuilder();
-                builder.append(getString(R.string.msg_health_status, character.getStrain(), character.getDamages(), character.getWounds()));
+                builder.append(getString(R.string.msg_health_status,
+                        Integer.toString(character.getStrain()),
+                        Integer.toString(character.getDamages()),
+                        Integer.toString(character.getWounds())));
                 if (character.getStrain() + character.getDamages() >= character.getHealthPoints())
                 {
                     builder.append('\n').append(getString(R.string.msg_health_status_dead));
@@ -246,7 +250,10 @@ public class ActionBarTabsPager extends Activity
                 // soustraire les blessures graves aux PV récupérés (min 1)
                 final int healed = NumberUtils.ensureMinimum(result - character.getWounds(), 1);
                 character.incrementDamages(healed * -1);
-                final String msg = getString(R.string.msg_damages_healed, result, character.getWounds(), healed);
+                final String msg = getString(R.string.msg_damages_healed,
+                        Integer.toString(result),
+                        Integer.toString(character.getWounds()),
+                        Integer.toString(healed));
                 Toast.makeText(getApplication(), msg, Toast.LENGTH_LONG).show();
                 return true;
             case R.id.itemHealWounds:
@@ -261,6 +268,12 @@ public class ActionBarTabsPager extends Activity
                 return true;
             case R.id.itemGainLegend:
                 new GainLegendFragment().show(ft, "tag");
+                return true;
+            case R.id.itemFreeRolls:
+                startActivity(new Intent(ActionBarTabsPager.this, RollerActivity.class));
+                return true;
+            case R.id.itemRollHistory:
+                new RollHystoryFragment().show(ft, "tag");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

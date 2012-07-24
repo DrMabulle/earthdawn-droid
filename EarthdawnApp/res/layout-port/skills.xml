@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
     
     <Button android:layout_width="wrap_content" 
@@ -12,14 +12,14 @@
 		android:layout_marginRight="50dp" 
 		android:layout_gravity="right" >
 	</Button>
-    <LinearLayout android:layout_width="fill_parent" android:layout_gravity="center_horizontal" android:gravity="center_horizontal" android:layout_height="wrap_content" android:orientation="horizontal" >
-	    <TextView android:text="@string/skills_skill" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp" android:layout_width="400dp"/>
-	    <TextView android:layout_width="75dp" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:padding="2dp" android:text="@string/skills_rank" android:textAppearance="?android:attr/textAppearanceMedium" android:visibility="gone" />
-	    <TextView android:layout_width="75dp" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:padding="2dp" android:text="@string/skills_attribut" android:textAppearance="?android:attr/textAppearanceMedium" android:visibility="gone" />
-	    <TextView android:text="@string/skills_level" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp" android:layout_width="75dp"/>
-	    <TextView android:text="@string/skills_action" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp" android:layout_width="75dp"/>
-	    <TextView android:text="@string/skills_effort" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp"  android:layout_width="75dp"/>
-	    <TextView android:text="@string/skills_roll" android:layout_gravity="center" android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:padding="2dp" android:layout_width="75dp"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_gravity="center_horizontal" android:gravity="center_horizontal" android:layout_height="wrap_content" android:orientation="horizontal" >
+	    <TextView android:text="@string/skills_skill" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" android:layout_width="400dp"/>
+	    <TextView android:text="@string/skills_rank" android:layout_width="75dp" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:visibility="gone" />
+	    <TextView android:text="@string/skills_attribut" android:layout_width="75dp" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:visibility="gone" />
+	    <TextView android:text="@string/skills_level" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" android:layout_width="75dp"/>
+	    <TextView android:text="@string/skills_action" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" android:layout_width="75dp"/>
+	    <TextView android:text="@string/skills_effort" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content"  android:layout_width="75dp"/>
+	    <TextView android:text="@string/skills_roll" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" android:layout_width="75dp"/>
     </LinearLayout>
     
 	<ListView android:id="@+id/sheet_skill_list"

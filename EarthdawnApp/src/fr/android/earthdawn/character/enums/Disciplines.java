@@ -3,7 +3,6 @@
  */
 package fr.android.earthdawn.character.enums;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import fr.android.earthdawn.character.actions.impl.TempModAction;
  * @author DrMabulle
  *
  */
-public enum Disciplines implements Serializable
+public enum Disciplines
 {
     Archer("Archer",
         Arrays.asList(new Talent(Talents.RituelKarma, 1, false, null, null),

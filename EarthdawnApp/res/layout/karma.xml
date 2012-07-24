@@ -6,35 +6,34 @@
 		android:background="@android:drawable/gallery_thumb">
         
         <TableRow android:layout_width="match_parent">
-            <TextView android:textAppearance="?android:attr/textAppearanceLarge"
+            <TextView style="@style/title"
                 android:layout_width="match_parent"
-                android:layout_gravity="center_horizontal" android:padding="2dp"
                 android:text="@string/sheet_karma_title" 
                 android:layout_span="2" android:layout_weight="5" />
         </TableRow>
         
         <TableRow android:layout_width="match_parent">
-        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+        	<TextView style="@style/medium"
 			    android:text="@string/sheet_karma_available" 
-			    android:padding="2dp" android:layout_weight="3" />    
-			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-			    android:padding="2dp" android:layout_weight="2"
+			    android:layout_weight="3" />    
+			<TextView style="@style/medium"
+			    android:layout_weight="2"
 			    android:id="@+id/sheet_karma_available" />    
         </TableRow>
         
         <TableRow android:layout_width="match_parent">
-        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+        	<TextView style="@style/medium"
 			    android:text="@string/sheet_karma_level" 
-			    android:padding="2dp" android:layout_weight="3" />    
-			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-			    android:padding="2dp" android:layout_weight="2"
+			    android:layout_weight="3" />    
+			<TextView style="@style/medium"
+			    android:layout_weight="2"
 			    android:id="@+id/sheet_karma_level" />    
         </TableRow>
         
         <TableRow android:layout_width="match_parent">
-        	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+        	<TextView style="@style/medium"
 			    android:text="@string/sheet_karma_uses" 
-			    android:padding="2dp" android:layout_weight="5" android:layout_span="2" />    
+			    android:layout_weight="5" android:layout_span="2" />    
         </TableRow>
 
            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" 
