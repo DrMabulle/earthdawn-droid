@@ -26,22 +26,22 @@ public final class CharacterUtils
 
     public static int computeDeathThreshold(final int indice)
     {
-        return (int) (indice + 18 + Math.ceil(indice / 3));
+        return indice + 18 + indice / 3;
     }
 
     public static int computeUnconsciousnessThreshold(final int indice)
     {
-        return (int) (indice + 9 + Math.ceil(indice / 3) + Math.ceil((indice - 1) / 10));
+        return indice + 9 + indice / 3 + (indice - 1) / 10;
     }
 
     public static int computeWoundThreshold(final int indice)
     {
-        return (int) Math.ceil(indice / 2.0 + 2.5 - Math.ceil((indice + 1) / 22) / 2.0 - Math.ceil(indice / 27) / 2.0);
+        return (int) Math.ceil(indice / 2.0 + 2.5 - (indice + 1) / 22 / 2.0 - indice / 27 / 2.0);
     }
 
     public static int computeIndiceDefense(final int indice)
     {
-        return (int) Math.ceil(indice / 2.0 + 1.5 - Math.ceil((indice + 1) / 7) / 2.0);
+        return (int) Math.ceil(indice / 2.0 + 1.5 - (indice + 1) / 7 / 2.0);
     }
 
     public static int computeMysticArmor(final int indice)
