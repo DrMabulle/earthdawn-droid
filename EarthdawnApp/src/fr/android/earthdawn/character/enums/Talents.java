@@ -3,17 +3,14 @@
  */
 package fr.android.earthdawn.character.enums;
 
-import java.io.Serializable;
-
 import fr.android.earthdawn.R;
 
 /**
  * @author DrMabulle
  *
  */
-public enum Talents implements Serializable
+public enum Talents
 {
-
     AbriVegetal(R.string.AbriVegetal, Attributs.CHA, true, false, 0, 167),
     AcrobatiesEnSelle(R.string.AcrobatiesEnSelle, Attributs.DEX, false, false, 0, 168),
     AffolementTroupeaux(R.string.AffolementTroupeaux, Attributs.VOL, true, false, 0, 168),

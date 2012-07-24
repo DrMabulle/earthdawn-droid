@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.enums.Mod;
@@ -22,7 +21,7 @@ import fr.android.earthdawn.character.equipement.impl.MagicalEquipment;
  * @author DrMabulle
  *
  */
-public class EquipmentAdapter extends BaseAdapter implements ListAdapter
+public class EquipmentAdapter extends BaseAdapter
 {
     private static final String TAB = "        ";
     private static final String EMPTY = "";

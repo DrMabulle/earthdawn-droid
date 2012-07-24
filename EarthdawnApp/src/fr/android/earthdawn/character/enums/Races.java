@@ -3,15 +3,13 @@
  */
 package fr.android.earthdawn.character.enums;
 
-import java.io.Serializable;
-
 import fr.android.earthdawn.R;
 
 /**
  * @author DrMabulle
  *
  */
-public enum Races implements Serializable
+public enum Races
 {
     Elfe("Elfe", 2, 0, -2, 1, 1, 1, 4, 10, 6, 25, 0, 0, 0, 1, R.string.apt1),
     Humain("Humain", 0, 0, 0, 0, 0, 0, 5, 6, 10, 40, 0, 0, 0, 0, R.string.apt3),
