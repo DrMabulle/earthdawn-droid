@@ -17,7 +17,7 @@ import fr.android.earthdawn.activities.utils.AlertDialogUtils;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.Constants;
 
-public class RollerActivity extends Activity
+public class RollerActivity extends Activity implements OnClickListener
 {
     /** Called when the activity is first created. */
     @Override
@@ -40,46 +40,43 @@ public class RollerActivity extends Activity
         // Suppress soft keyboard from the beginning
         ((EditText) rankPicker.getChildAt(1)).setInputType(InputType.TYPE_NULL);
 
-        findViewById(R.id.rollerButton).setOnClickListener(mAddContentListener);
+        findViewById(R.id.rollerButton).setOnClickListener(this);
     }
 
-    private final OnClickListener mAddContentListener = new OnClickListener()
+    @Override
+    public void onClick(final View v)
     {
-        @Override
-        public void onClick(final View v)
+        final EditText editText = (EditText) findViewById(R.id.rollerDiceText);
+        final String dicesInfos = editText.getText().toString();
+
+        if (dicesInfos != null && dicesInfos.length() > 0)
         {
-            final EditText editText = (EditText) findViewById(R.id.rollerDiceText);
-            final String dicesInfos = editText.getText().toString();
 
-            if (dicesInfos != null && dicesInfos.length() > 0)
+            final boolean isInputCorrect = EDDicesLauncher.testInputDicesInfos(dicesInfos);
+
+            if (!isInputCorrect)
             {
-
-                final boolean isInputCorrect = EDDicesLauncher.testInputDicesInfos(dicesInfos);
-
-                if (!isInputCorrect)
-                {
-                    // Open error popup
-                    showDialog(Constants.DIALOG_SHOW_ERROR, null);
-                }
-                else
-                {
-                    // Open result popup
-                    EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, dicesInfos, 0);
-                    AlertDialogUtils.showDialogResult(getFragmentManager());
-                }
+                // Open error popup
+                showDialog(Constants.DIALOG_SHOW_ERROR, null);
             }
             else
             {
-                final NumberPicker rankPicker = (NumberPicker) findViewById(R.id.rankPicker);
-                final int rank = rankPicker.getValue();
-
                 // Open result popup
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, rank, 0);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, dicesInfos, 0);
                 AlertDialogUtils.showDialogResult(getFragmentManager());
             }
-
         }
-    };
+        else
+        {
+            final NumberPicker rankPicker = (NumberPicker) findViewById(R.id.rankPicker);
+            final int rank = rankPicker.getValue();
+
+            // Open result popup
+            EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, rank, 0);
+            AlertDialogUtils.showDialogResult(getFragmentManager());
+        }
+
+    }
 
     @Override
     protected Dialog onCreateDialog(final int id, final Bundle args)
@@ -91,7 +88,7 @@ public class RollerActivity extends Activity
                 builder.setIcon(android.R.drawable.ic_dialog_info);
                 builder.setTitle("Erreur de saisie");
                 builder.setMessage(this.getString(R.string.roller_format_error));
-                builder.setNeutralButton("Close", new DialogInterface.OnClickListener()
+                builder.setNeutralButton(R.string.popup_close, new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(final DialogInterface dialog, final int whichButton)
@@ -108,7 +105,7 @@ public class RollerActivity extends Activity
 
                 builder2.setMessage(buildMessage());
 
-                builder2.setNeutralButton("Close", new DialogInterface.OnClickListener()
+                builder2.setNeutralButton(R.string.popup_close, new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(final DialogInterface dialog, final int whichButton)

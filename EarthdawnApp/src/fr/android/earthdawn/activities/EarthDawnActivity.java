@@ -12,8 +12,6 @@ import fr.android.earthdawn.R;
 
 public class EarthDawnActivity extends Activity implements View.OnClickListener
 {
-
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(final Bundle savedInstanceState)
     {
@@ -53,7 +51,7 @@ public class EarthDawnActivity extends Activity implements View.OnClickListener
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setTitle(R.string.not_yet_implemented);
         builder.setMessage(R.string.not_yet_implemented);
-        builder.setNeutralButton("Close", new DialogInterface.OnClickListener()
+        builder.setNeutralButton(R.string.popup_close, new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(final DialogInterface dialog, final int whichButton)

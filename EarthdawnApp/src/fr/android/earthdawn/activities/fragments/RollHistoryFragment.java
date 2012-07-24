@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.adapters.RollHistoryAdapter;
@@ -18,9 +20,9 @@ import fr.android.earthdawn.managers.EDDicesLauncher;
  * @author DrMabulle
  *
  */
-public class RollHystoryFragment extends DialogFragment implements OnClickListener
+public class RollHistoryFragment extends DialogFragment implements OnClickListener, OnItemClickListener
 {
-    public RollHystoryFragment()
+    public RollHistoryFragment()
     {
         super();
     }
@@ -30,13 +32,13 @@ public class RollHystoryFragment extends DialogFragment implements OnClickListen
     {
         final View v = inflater.inflate(R.layout.popup_roll_history, container, false);
 
-        // XXX Externalise String
         // title of the dialog fragment
-        getDialog().setTitle("Historique des jets");
+        getDialog().setTitle(R.string.popup_roll_history_title);
 
         final ListView listV = (ListView) v.findViewById(R.id.popup_roll_history_list);
         final RollHistoryAdapter adpater = new RollHistoryAdapter(getActivity(), EDDicesLauncher.getRollHistorySize());
         listV.setAdapter(adpater);
+        listV.setOnItemClickListener(this);
 
 
         // Close Button
@@ -58,5 +60,12 @@ public class RollHystoryFragment extends DialogFragment implements OnClickListen
                 dismiss();
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id)
+    {
+        final ListView listV = (ListView) parent.findViewById(R.id.popup_roll_history_list);
+        ((RollHistoryAdapter) listV.getAdapter()).toggle(position);
     }
 }

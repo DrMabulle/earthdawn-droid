@@ -45,9 +45,6 @@ public class SkillsFragment extends Fragment implements View.OnClickListener
             // Level of the skill
             final int level = Integer.parseInt((String) ((TextView) parent.findViewById(R.id.skills_level)).getText());
 
-//            // XXX Name of the skill
-//            final String skillname = (String) ((TextView) parent.findViewById(R.id.skills_skill)).getText();
-
             // Définir le niveau à lancer
             EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_SKILL, R.string.skill, level, character.getWounds()); // XXX
 
