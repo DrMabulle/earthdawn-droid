@@ -8,13 +8,13 @@
   <TextView android:layout_width="match_parent"
   	android:layout_height="wrap_content"
   	style="@style/medium"
-  	android:id="@+id/possession_name"
+  	android:id="@+id/roll_hitory_item_info"
   	android:padding="4dp"/>
   	
   <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-	android:id="@+id/possession_details" 
+    android:id="@+id/roll_hitory_item_details" 
     android:padding="8dp"/>
   
 </LinearLayout>
