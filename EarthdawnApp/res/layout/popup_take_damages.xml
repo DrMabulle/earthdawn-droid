@@ -10,8 +10,7 @@
         android:layout_height="wrap_content" 
         android:layout_width="match_parent"
 	    android:gravity="center" android:layout_gravity="center" 
-	    android:textAppearance="?android:attr/textAppearanceLarge"
-	    android:padding="4dp"
+	    style="@style/medium"
 	    android:text="@string/popup_take_damages_title" />
     
     <LinearLayout 
@@ -45,7 +44,7 @@
 	            android:layout_height="wrap_content"
 	            android:checked="true"
 	            android:text="@string/popup_take_damages_arm_phy"
-	            style="@style/medium"
+	            android:textAppearance="?android:attr/textAppearanceMedium"
 	            android:singleLine="true"
 	            android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
 
@@ -54,7 +53,7 @@
 	            android:layout_width="wrap_content" 
 	            android:layout_height="wrap_content" 
 	            android:text="@string/popup_take_damages_arm_mys"
-	            style="@style/medium"
+	            android:textAppearance="?android:attr/textAppearanceMedium"
 	            android:singleLine="true"
 	            android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
 	        
@@ -63,7 +62,7 @@
 	            android:layout_width="wrap_content" 
 	            android:layout_height="wrap_content" 
 	            android:text="@string/popup_take_damages_no_arm"
-	            style="@style/medium"
+	            android:textAppearance="?android:attr/textAppearanceMedium"
 	            android:singleLine="true"
 	            android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
     	</RadioGroup>

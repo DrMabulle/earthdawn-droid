@@ -158,6 +158,8 @@
     <string name="popup_init_title">Talents modificateurs d\'Initiative</string>
     <string name="popup_init_msg">Choix des talents à activer pour modifier le rang d\'initiative</string>
     
+    <string name="popup_roll_history_title">Historique des jets</string>
+    
     <string name="equipment_title">Liste de vos possessions</string>
     <string name="equipment_no_data">Aucun équipement</string>
     

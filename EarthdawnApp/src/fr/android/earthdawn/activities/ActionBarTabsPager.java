@@ -34,7 +34,7 @@ import fr.android.earthdawn.activities.fragments.CharacterFragment;
 import fr.android.earthdawn.activities.fragments.EquipmentFragment;
 import fr.android.earthdawn.activities.fragments.GainLegendFragment;
 import fr.android.earthdawn.activities.fragments.RollDamagesFragment;
-import fr.android.earthdawn.activities.fragments.RollHystoryFragment;
+import fr.android.earthdawn.activities.fragments.RollHistoryFragment;
 import fr.android.earthdawn.activities.fragments.SkillsFragment;
 import fr.android.earthdawn.activities.fragments.TakeDamagesFragment;
 import fr.android.earthdawn.activities.fragments.TalentsFragment;
@@ -273,7 +273,7 @@ public class ActionBarTabsPager extends Activity
                 startActivity(new Intent(ActionBarTabsPager.this, RollerActivity.class));
                 return true;
             case R.id.itemRollHistory:
-                new RollHystoryFragment().show(ft, "tag");
+                new RollHistoryFragment().show(ft, "tag");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

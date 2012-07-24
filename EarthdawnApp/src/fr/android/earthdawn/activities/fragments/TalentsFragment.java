@@ -80,7 +80,6 @@ public class TalentsFragment extends Fragment implements View.OnClickListener
                 }
                 else
                 {
-                    // TODO Talents pre and post actions.
                     talent.executePreAction();
 
                     if (talent.isKarmaMandatory())
