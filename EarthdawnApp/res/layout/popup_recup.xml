@@ -5,7 +5,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical" >
-
+
     <TextView
         android:id="@+id/popup_recup_default_rank"
         style="@style/medium"

@@ -2,48 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:divider="?android:attr/dividerHorizontal"
+    android:dividerPadding="0dp"
     android:orientation="vertical"
-        android:divider="?android:attr/dividerHorizontal"
-        android:showDividers="beginning"
-        android:dividerPadding="0dp" >
-    
-    <LinearLayout 
-   	    android:layout_width="match_parent"
-	    android:layout_height="60dp"
-	    android:orientation="horizontal"
+    android:showDividers="beginning" >
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:divider="?android:attr/dividerVertical"
-        android:showDividers="middle"
-        android:dividerPadding="0dp"            
-	    style="?android:attr/buttonBarStyle">
-	    
-	    <Button android:id="@+id/popup_close" 
-	        android:layout_weight="1" 
-	        android:gravity="center"
+        android:dividerPadding="0dp"
+        android:orientation="horizontal"
+        android:showDividers="middle" >
+
+        <Button
+            android:id="@+id/popup_close"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="left"
-	        android:layout_width="match_parent" 
-	        android:layout_height="match_parent" 
-	        style="?android:attr/buttonBarButtonStyle"
-	        android:textAppearance="?android:attr/textAppearanceMedium"
-	        android:text="@string/popup_close" />
-	    
-	    <Button android:id="@+id/popup_action" 
-	        android:layout_weight="1" 
-	        android:gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/popup_close"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/popup_action"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-	        android:layout_width="match_parent" 
-	        android:layout_height="match_parent" 
-	        style="?android:attr/buttonBarButtonStyle"
-	        android:textAppearance="?android:attr/textAppearanceMedium" />
-	    
-	    <ImageButton android:id="@+id/popup_roll" 
-	        android:layout_weight="1" 
-	        android:gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageButton
+            android:id="@+id/popup_roll"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="right"
-	        android:layout_width="match_parent" 
-	        android:layout_height="match_parent" 
-	        style="?android:attr/buttonBarButtonStyle"
-	        android:src="@drawable/dice"
-	        android:contentDescription="@string/roll" />
+            android:layout_weight="1"
+            android:contentDescription="@string/roll"
+            android:gravity="center"
+            android:src="@drawable/dice" />
     </LinearLayout>
 
 </LinearLayout>

@@ -20,6 +20,7 @@ public final class EDDicesLauncher
     public static final int ROLL_TALENT = 2;
     public static final int ROLL_SKILL = 3;
     public static final int ROLL_DAMAGES = 4;
+    public static final int ROLL_RECOVERY = 5;
     public static final int ROLL_OTHER = 100;
 
     /**
@@ -78,7 +79,7 @@ public final class EDDicesLauncher
 
     private static boolean shouldRerollOnMin(final int aRollKind)
     {
-        return ROLL_DAMAGES != aRollKind;
+        return ROLL_DAMAGES != aRollKind && ROLL_RECOVERY != aRollKind;
     }
 
     public static int getRollResult()
@@ -122,13 +123,18 @@ public final class EDDicesLauncher
 
     private static String getDetailedMessage(final Context ctx, final Roll roll)
     {
-        final String msg = getRolledDicesInfos(ctx);
+        final String msg = getRolledDicesInfos(ctx, roll);
         return ctx.getString(R.string.roller_message, msg, Integer.toString(roll.rollResult), Integer.toString(roll.rollWounds), roll.rollLogs);
     }
 
     public static String getRolledDicesInfos(final Context ctx)
     {
         final Roll roll = rollsHistory.getFirst();
+        return getRolledDicesInfos(ctx, roll);
+    }
+
+    private static String getRolledDicesInfos(final Context ctx, final Roll roll)
+    {
         String msg = null;
         if (roll.rollDicesInfos != null)
         {

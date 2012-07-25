@@ -1,28 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1" 
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
     android:orientation="horizontal"
-    android:layout_gravity="center_horizontal" android:gravity="center_horizontal" >
-    
-    <TextView android:id="@+id/talents_talent_id" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
-    <TextView android:id="@+id/talents_talent" android:layout_width="350dp" android:layout_gravity="center_vertical" android:gravity="center_vertical" style="@style/medium" android:layout_height="wrap_content" />
-    <TextView android:id="@+id/talents_circle" android:layout_width="70dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content"  android:visibility="gone"/>
-    <TextView android:id="@+id/talents_rank" android:layout_width="70dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content"  android:visibility="gone"/>
-    <TextView android:id="@+id/talents_attribut" android:layout_width="70dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content"  android:visibility="gone"/>
-    <TextView android:id="@+id/talents_level" android:layout_width="70dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" />
-    <RadioButton android:id="@+id/talents_discipline" android:layout_width="100dp" android:layout_gravity="center" android:gravity="center" android:clickable="false" android:layout_height="wrap_content" />
-    <RadioButton android:id="@+id/talents_karma" android:layout_width="70dp" android:layout_gravity="center" android:gravity="center" android:clickable="false"  android:layout_height="wrap_content" />
-    <RadioButton android:id="@+id/talents_action" android:layout_width="65dp" android:layout_gravity="center" android:gravity="center" android:clickable="false" android:layout_height="wrap_content" />
-    <TextView android:id="@+id/talents_effort" android:layout_width="70dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" />
-   	<ImageButton android:id="@+id/talent_roll" android:layout_width="70dp" android:layout_gravity="center" android:gravity="center" android:src="@drawable/dice" android:layout_height="wrap_content" android:contentDescription="@string/roll"/>
-    <TextView android:id="@+id/talents_page" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content"  android:visibility="gone"/>
-    
-</LinearLayout>    
+    android:weightSum="1" >
 
-    
+    <TextView
+        android:id="@+id/talents_talent_id"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/talents_talent"
+        style="@style/medium"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical" />
 
+    <TextView
+        android:id="@+id/talents_circle"
+        style="@style/medium"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/talents_rank"
+        style="@style/medium"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/talents_attribut"
+        style="@style/medium"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/talents_level"
+        style="@style/medium"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <RadioButton
+        android:id="@+id/talents_discipline"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:gravity="center" />
+
+    <RadioButton
+        android:id="@+id/talents_karma"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:gravity="center" />
+
+    <RadioButton
+        android:id="@+id/talents_action"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/talents_effort"
+        style="@style/medium"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <ImageButton
+        android:id="@+id/talent_roll"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/roll"
+        android:gravity="center"
+        android:src="@drawable/dice" />
+
+    <TextView
+        android:id="@+id/talents_page"
+        style="@style/medium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>
