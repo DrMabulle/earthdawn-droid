@@ -44,4 +44,14 @@ public class RankManagerTest
             DicesLauncher.rollDices(RankManager.getDicesFromRank(i), false, false);
         }
     }
+
+    @Test
+    public void testGetDicesFromRankWithBonus()
+    {
+        Assert.assertEquals("1D4 -2 + 1", RankManager.getDicesFromRank(1, 1));
+        Assert.assertEquals("1D8", RankManager.getDicesFromRank(5, 0));
+        Assert.assertEquals("1D10 + 1D6 + 10", RankManager.getDicesFromRank(10, 10));
+        Assert.assertEquals("1D20 + 1D6 -12", RankManager.getDicesFromRank(15, -12));
+        Assert.assertEquals("1D20 + 1D8 + 1D6 + 5", RankManager.getDicesFromRank(20, 5));
+    }
 }

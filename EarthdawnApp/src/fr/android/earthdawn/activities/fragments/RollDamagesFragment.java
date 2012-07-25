@@ -41,7 +41,7 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
         final View v = inflater.inflate(R.layout.popup_roll_damages, container, false);
 
         // title of the dialog fragment
-        getDialog().setTitle("Jet de dégâts");
+        getDialog().setTitle(R.string.popup_roll_damages_title);
 
         // Fill RadioGroup with avaliables weapons
         final RadioGroup rg = (RadioGroup) v.findViewById(R.id.radioGroupDamages);

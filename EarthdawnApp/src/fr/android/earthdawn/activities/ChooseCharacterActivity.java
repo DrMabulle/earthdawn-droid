@@ -46,7 +46,7 @@ public class ChooseCharacterActivity extends Activity implements View.OnClickLis
 
         CharacterManager.getCharacter(charName, this);
 
-        startActivity(new Intent(ChooseCharacterActivity.this, ActionBarTabsPager.class));
+        startActivity(new Intent(ChooseCharacterActivity.this, CharacterSheetActivity.class));
     }
 
 }

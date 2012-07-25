@@ -39,7 +39,7 @@ public class TakeDamagesFragment extends DialogFragment implements OnClickListen
         final View v = inflater.inflate(R.layout.popup_take_damages, container, false);
 
         // title of the dialog fragment
-        getDialog().setTitle("Subir des dégâts");
+        getDialog().setTitle(R.string.popup_take_damages_title);
 
         final NumberPicker rankPicker = (NumberPicker) v.findViewById(R.id.damagesPicker);
         rankPicker.setMinValue(1);
