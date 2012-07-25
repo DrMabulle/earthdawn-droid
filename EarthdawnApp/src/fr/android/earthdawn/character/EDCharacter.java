@@ -506,7 +506,12 @@ public class EDCharacter implements Serializable
 
     public String getRecoveryDices()
     {
-        return RankManager.getDicesFromRank(getAttributRank(Attributs.END) + computeBonusesInt(Pointcuts.RECOVERY_LVL));
+        return RankManager.getDicesFromRank(getRecoveryRank());
+    }
+
+    public int getRecoveryRank()
+    {
+        return getAttributRank(Attributs.END) + computeBonusesInt(Pointcuts.RECOVERY_LVL);
     }
 
     public double getNbRecoveryTests()

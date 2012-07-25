@@ -2,24 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_gravity="center"
     android:gravity="center"
-    android:layout_gravity="center" >
-    
-    <TextView 
-        android:layout_height="wrap_content" 
+    android:orientation="vertical" >
+
+    <TextView
+        style="@style/medium"
         android:layout_width="wrap_content"
-	    style="@style/medium"
-	    android:text="@string/popup_roll_damages_title" />
+        android:layout_height="wrap_content"
+        android:text="@string/popup_roll_damages_msg" />
 
     <RadioGroup
         android:id="@+id/radioGroupDamages"
+        style="@style/medium"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:padding="4dp"
-	    style="@style/medium"
-	    android:layout_marginTop="10dp" android:layout_marginBottom="10dp" />
-     	
-	<include layout="@layout/popup_buttons"/>
-    
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="4dp" />
+
+    <include layout="@layout/popup_buttons" />
+
 </LinearLayout>

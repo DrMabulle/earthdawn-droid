@@ -33,6 +33,7 @@ import fr.android.earthdawn.activities.adapters.TabsAdapter;
 import fr.android.earthdawn.activities.fragments.CharacterFragment;
 import fr.android.earthdawn.activities.fragments.EquipmentFragment;
 import fr.android.earthdawn.activities.fragments.GainLegendFragment;
+import fr.android.earthdawn.activities.fragments.RecoveryFragment;
 import fr.android.earthdawn.activities.fragments.RollDamagesFragment;
 import fr.android.earthdawn.activities.fragments.RollHistoryFragment;
 import fr.android.earthdawn.activities.fragments.SkillsFragment;
@@ -42,14 +43,12 @@ import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
 import fr.android.earthdawn.utils.Constants;
-import fr.android.earthdawn.utils.NumberUtils;
 import fr.android.earthdawn.utils.SerializationUtils;
 
 /**
- * This demonstrates the use of action bar tabs and how they interact
- * with other action bar features.
+ * DrMabulle
  */
-public class ActionBarTabsPager extends Activity
+public class CharacterSheetActivity extends Activity
 {
     private static final String TAB = "tab";
     private ViewPager mViewPager;
@@ -210,7 +209,7 @@ public class ActionBarTabsPager extends Activity
         // Depending on chosen action
         switch (item.getItemId()) {
             case R.id.itemBonusMalus:
-                startActivity(new Intent(ActionBarTabsPager.this, BonusMalusActivity.class));
+                startActivity(new Intent(CharacterSheetActivity.this, BonusMalusActivity.class));
                 return true;
             case R.id.itemRollDamages:
                 // Show Roll Damages Fragment popup
@@ -245,16 +244,7 @@ public class ActionBarTabsPager extends Activity
                 Toast.makeText(getApplication(), R.string.msg_strain_healed, Toast.LENGTH_LONG).show();
                 return true;
             case R.id.itemHealDamages:
-                final String recoveryDices = character.getRecoveryDices();
-                final int result = EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.recup, recoveryDices, 0);
-                // soustraire les blessures graves aux PV récupérés (min 1)
-                final int healed = NumberUtils.ensureMinimum(result - character.getWounds(), 1);
-                character.incrementDamages(healed * -1);
-                final String msg = getString(R.string.msg_damages_healed,
-                        Integer.toString(result),
-                        Integer.toString(character.getWounds()),
-                        Integer.toString(healed));
-                Toast.makeText(getApplication(), msg, Toast.LENGTH_LONG).show();
+                new RecoveryFragment().show(ft, "tag");
                 return true;
             case R.id.itemHealWounds:
                 character.incrementWounds(-1);
@@ -270,7 +260,7 @@ public class ActionBarTabsPager extends Activity
                 new GainLegendFragment().show(ft, "tag");
                 return true;
             case R.id.itemFreeRolls:
-                startActivity(new Intent(ActionBarTabsPager.this, RollerActivity.class));
+                startActivity(new Intent(CharacterSheetActivity.this, RollerActivity.class));
                 return true;
             case R.id.itemRollHistory:
                 new RollHistoryFragment().show(ft, "tag");

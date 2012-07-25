@@ -9,6 +9,22 @@ public final class RankManager
     {
         return indice <= 0 ? 0 : (int) (Math.ceil(indice / 3.0) + 1);
     }
+    public static final String getDicesFromRank(final int rank, final int bonus)
+    {
+        final StringBuilder builder = new StringBuilder(30);
+        builder.append(getDicesFromRank(rank));
+        if (bonus > 0)
+        {
+            builder.append(" + ");
+            builder.append(bonus);
+        }
+        else if (bonus < 0)
+        {
+            builder.append(' ');
+            builder.append(bonus);
+        }
+        return builder.toString();
+    }
 
     public static final String getDicesFromRank(final int rank)
     {

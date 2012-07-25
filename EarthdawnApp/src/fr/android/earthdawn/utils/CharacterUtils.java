@@ -284,24 +284,7 @@ public final class CharacterUtils
     {
         final int initiativeRank = character.getInitiativeLevel();
         final int initiativeMod = character.computeBonusesInt(Pointcuts.INIT_MOD);
-        final StringBuilder result = new StringBuilder(24);
-        String sign = "";
-        if (initiativeRank > 0 || initiativeRank == 0 && initiativeMod == 0)
-        {
-            result.append(RankManager.getDicesFromRank(initiativeRank));
-            sign = " + ";
-        }
 
-        if (initiativeMod > 0)
-        {
-            result.append(sign);
-            result.append(initiativeMod);
-        }
-        else if (initiativeMod < 0)
-        {
-            result.append(' ');
-            result.append(initiativeMod);
-        }
-        return result.toString();
+        return RankManager.getDicesFromRank(initiativeRank, initiativeMod);
     }
 }
