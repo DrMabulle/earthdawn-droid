@@ -36,7 +36,7 @@ public class RecoveryFragment extends DialogFragment implements OnClickListener
 
         // Infos on recovery level
         final EDCharacter character = CharacterManager.getLoadedCharacter();
-        ((TextView) v.findViewById(R.id.popup_recup_default_rank)).setText(getString(R.string.popup_recup_title, Integer.toBinaryString(character.getRecoveryRank())));
+        ((TextView) v.findViewById(R.id.popup_recup_default_rank)).setText(getString(R.string.popup_recup_default_rank, Integer.toString(character.getRecoveryRank())));
 
         // Numberpickers : set values and prevent keyboard from showing up
         final OnFocusChangeListener fcl = new OnFocusChangeListener() {
@@ -47,7 +47,7 @@ public class RecoveryFragment extends DialogFragment implements OnClickListener
         };
 
         final NumberPicker rankPicker = (NumberPicker) v.findViewById(R.id.recup_rank_bonus);
-        rankPicker.setMinValue(-100);
+        rankPicker.setMinValue(0);
         rankPicker.setMaxValue(100);
         rankPicker.setValue(0);
         // Hide soft keyboard on NumberPickers by overwriting the OnFocusChangeListener
@@ -55,8 +55,8 @@ public class RecoveryFragment extends DialogFragment implements OnClickListener
         // Suppress soft keyboard from the beginning
         ((EditText) rankPicker.getChildAt(1)).setInputType(InputType.TYPE_NULL);
 
-        final NumberPicker bonusPicker = (NumberPicker) v.findViewById(R.id.recup_rank_bonus);
-        bonusPicker.setMinValue(-100);
+        final NumberPicker bonusPicker = (NumberPicker) v.findViewById(R.id.recup_fix_bonus);
+        bonusPicker.setMinValue(0);
         bonusPicker.setMaxValue(100);
         bonusPicker.setValue(0);
         // Hide soft keyboard on NumberPickers by overwriting the OnFocusChangeListener
@@ -99,7 +99,7 @@ public class RecoveryFragment extends DialogFragment implements OnClickListener
                 final String recoveryDices = RankManager.getDicesFromRank(recoveryRank + rankBonus, fixBonus);
 
                 // Roll the dices
-                final int result = EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, R.string.recup, recoveryDices, 0);
+                final int result = EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_RECOVERY, R.string.recup, recoveryDices, 0);
 
                 // Remove wounds
                 final int healed = NumberUtils.ensureMinimum(result - character.getWounds(), 1);

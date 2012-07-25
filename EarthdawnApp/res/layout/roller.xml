@@ -2,41 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1" 
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
-    
-    <LinearLayout android:layout_height="wrap_content" 
-    	android:layout_width="wrap_content"
-    	android:orientation="horizontal"
-    	android:gravity="center">
-        
-		<NumberPicker android:id="@+id/rankPicker" 
-			android:layout_height="wrap_content" 
-			android:layout_width="50dp"
-			android:orientation="vertical" >
-		</NumberPicker>
-        <TextView android:layout_weight="1"
-        	android:layout_width="wrap_content" 
-        	android:layout_height="wrap_content"
-        	android:text="@string/roller_or" 
-        	android:textAppearance="?android:attr/textAppearanceLarge" 
-        	android:layout_marginLeft="20dp" 
-        	android:layout_marginRight="20dp">
+    android:weightSum="1" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <NumberPicker
+            android:id="@+id/rankPicker"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </NumberPicker>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text="@string/roller_or"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
         </TextView>
-        <EditText android:layout_weight="1" 
-        	android:layout_width="300dp" 
-        	android:layout_height="wrap_content" 
-        	android:id="@+id/rollerDiceText"
-        	android:inputType="textCapCharacters">
+
+        <EditText
+            android:id="@+id/rollerDiceText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="textCapCharacters" >
         </EditText>
     </LinearLayout>
-    
-	<Button android:id="@+id/rollerButton" 
-		android:text="@string/roll" 
-		android:layout_height="wrap_content" 
-		android:layout_width="wrap_content" 
-		android:gravity="center"
-    	android:layout_marginTop="30dp" >
-	</Button>
+
+    <Button
+        android:id="@+id/rollerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/roll" >
+    </Button>
+
 </LinearLayout>

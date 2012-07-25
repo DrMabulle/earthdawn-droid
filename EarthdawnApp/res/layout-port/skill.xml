@@ -1,22 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:layout_gravity="center_horizontal" android:gravity="center_horizontal" >
-    
-    <TextView android:id="@+id/skills_skill" android:layout_width="400dp" android:layout_gravity="center_vertical" android:gravity="center_vertical" style="@style/medium" android:layout_height="wrap_content" />
-    <TextView android:id="@+id/skills_rank" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" android:visibility="gone" />
-    <TextView android:id="@+id/skills_attribut" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" android:visibility="gone" />
-    <TextView android:id="@+id/skills_level" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" />
-    <RadioButton android:id="@+id/skills_action" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:clickable="false" android:layout_height="wrap_content" />
-    <TextView android:id="@+id/skills_effort" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" style="@style/medium" android:layout_height="wrap_content" />
-   	<ImageButton android:id="@+id/skill_roll" android:layout_width="75dp" android:layout_gravity="center" android:gravity="center" android:src="@drawable/dice" android:layout_height="wrap_content" android:contentDescription="@string/roll"/>
-    
-</LinearLayout>    
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal" >
 
-    
+    <TextView
+        android:id="@+id/skills_skill"
+        style="@style/medium"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical" />
 
+    <TextView
+        android:id="@+id/skills_rank"
+        style="@style/medium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/skills_attribut"
+        style="@style/medium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/skills_level"
+        style="@style/medium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <RadioButton
+        android:id="@+id/skills_action"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/skills_effort"
+        style="@style/medium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <ImageButton
+        android:id="@+id/skill_roll"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/roll"
+        android:gravity="center"
+        android:src="@drawable/dice" />
+
+</LinearLayout>

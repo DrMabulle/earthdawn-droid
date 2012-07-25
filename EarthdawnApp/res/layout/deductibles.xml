@@ -1,190 +1,453 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sheet_deductibles"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:layout_weight="3"
+    android:background="@android:drawable/gallery_thumb"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  android:orientation="horizontal" 
-	android:id="@+id/sheet_deductibles" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_margin="2dp"
-	android:baselineAligned="false" android:layout_weight="3"
-	android:background="@android:drawable/gallery_thumb">
-	
-	    <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-	    	android:layout_margin="2dp" android:layout_weight="1">
-	    	
-	    	<!-- Defenses -->
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	    		<TextView style="@style/large" android:gravity="center_horizontal"
-		    		android:layout_width="match_parent" android:layout_height="wrap_content" 
-		    		android:text="@string/sheet_defenses" android:layout_span="2" android:layout_weight="5"/>
-	    	</TableRow>
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_def_phy" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_def_phy" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_def_mag" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_def_mag" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_def_soc" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_def_soc" android:layout_weight="2"/>
-	        </TableRow>
-	    
-	    	<!-- Equipment -->
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	    		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
-		    		android:layout_width="match_parent" android:layout_height="wrap_content" 
-		    		android:text="@string/sheet_equipement" android:layout_span="2" android:layout_weight="5"/>
-	    	</TableRow>
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_equ_tra" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_equ_tra" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_equ_lev" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_equ_lev" android:layout_weight="2"/>
-	        </TableRow>
-	    
-	    	<!-- Initiative -->
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	    		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
-		    		android:layout_width="match_parent" android:layout_height="wrap_content" 
-		    		android:text="@string/sheet_initiative" android:layout_span="2" android:layout_weight="5"/>
-	    	</TableRow>
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_dex" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_init_dex" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_pen" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_init_pen" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_lvl" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_init_lvl" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_init_roll" android:padding="2dp"
-				    android:layout_gravity="center_vertical" android:layout_weight="3"/>
-	        	<ImageButton android:id="@+id/roll_initiative" android:src="@drawable/dice" android:contentDescription="@string/roll"
-	        		android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2"/>
-	        </TableRow>
-	    </TableLayout>
-	    
-	    
-	    <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-	    	android:layout_margin="2dp" android:layout_weight="1">
-	        
-	        <!-- Armors -->
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	    		<TextView style="@style/large" android:gravity="center_horizontal"
-		    		android:layout_width="match_parent" android:layout_height="wrap_content" 
-		    		android:text="@string/sheet_armor" android:layout_span="2" android:layout_weight="5"/>
-	    	</TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_arm_type" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_arm_type" android:layout_weight="2"/>
-	        </TableRow>
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_arm_phy" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_arm_phy" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_arm_mag" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_arm_mag" android:layout_weight="2"/>
-	        </TableRow>
-	    
-	    	<!-- Mouvement -->
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	    		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
-		    		android:layout_width="match_parent" android:layout_height="wrap_content" 
-		    		android:text="@string/sheet_mouvement" android:layout_span="2" android:layout_weight="5"/>
-	    	</TableRow>
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_mvn_run" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_mvn_run" android:layout_weight="2"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:text="@string/sheet_mvn_cbt" android:layout_weight="3"/>
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-				    android:id="@+id/sheet_mvn_cbt" android:layout_weight="2"/>
-	        </TableRow>
-	    
-	    	<!-- Aptitudes raciales -->
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	    		<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_horizontal"
-		    		android:layout_width="match_parent" android:layout_height="wrap_content" 
-		    		android:text="@string/sheet_racial" android:layout_span="2" android:layout_weight="5"/>
-	    	</TableRow>
-	    	<TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" 
-				    android:id="@+id/sheet_racial_apt1" android:layout_span="2" android:layout_weight="5"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content" 
-				    android:id="@+id/sheet_racial_apt2" android:layout_span="2" android:layout_weight="5"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:id="@+id/sheet_racial_apt3" android:layout_span="2" android:layout_weight="5"/>
-	        </TableRow>
-	        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-	        	<TextView style="@style/medium"
-				    android:layout_width="wrap_content" android:layout_height="wrap_content"
-				    android:id="@+id/sheet_racial_apt4" android:layout_span="2" android:layout_weight="5"/>
-	        </TableRow>
-	    </TableLayout>
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:layout_weight="1" >
+
+        <!-- Defenses -->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5"
+                android:text="@string/sheet_defenses" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_def_phy" />
+
+            <TextView
+                android:id="@+id/sheet_def_phy"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_def_mag" />
+
+            <TextView
+                android:id="@+id/sheet_def_mag"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_def_soc" />
+
+            <TextView
+                android:id="@+id/sheet_def_soc"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <!-- Equipment -->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5"
+                android:gravity="center_horizontal"
+                android:text="@string/sheet_equipement"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_equ_tra" />
+
+            <TextView
+                android:id="@+id/sheet_equ_tra"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_equ_lev" />
+
+            <TextView
+                android:id="@+id/sheet_equ_lev"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <!-- Initiative -->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5"
+                android:gravity="center_horizontal"
+                android:text="@string/sheet_initiative"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_init_dex" />
+
+            <TextView
+                android:id="@+id/sheet_init_dex"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_init_pen" />
+
+            <TextView
+                android:id="@+id/sheet_init_pen"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_init_lvl" />
+
+            <TextView
+                android:id="@+id/sheet_init_lvl"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:text="@string/sheet_init_roll" />
+
+            <ImageButton
+                android:id="@+id/roll_initiative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:contentDescription="@string/roll"
+                android:src="@drawable/dice" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:layout_weight="1" >
+
+        <!-- Armors -->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5"
+                android:text="@string/sheet_armor" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_arm_type" />
+
+            <TextView
+                android:id="@+id/sheet_arm_type"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_arm_phy" />
+
+            <TextView
+                android:id="@+id/sheet_arm_phy"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_arm_mag" />
+
+            <TextView
+                android:id="@+id/sheet_arm_mag"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <!-- Mouvement -->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5"
+                android:gravity="center_horizontal"
+                android:text="@string/sheet_mouvement"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_mvn_run" />
+
+            <TextView
+                android:id="@+id/sheet_mvn_run"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/sheet_mvn_cbt" />
+
+            <TextView
+                android:id="@+id/sheet_mvn_cbt"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <!-- Aptitudes raciales -->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5"
+                android:gravity="center_horizontal"
+                android:text="@string/sheet_racial"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/sheet_racial_apt1"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/sheet_racial_apt2"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/sheet_racial_apt3"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/sheet_racial_apt4"
+                style="@style/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_weight="5" />
+        </TableRow>
+    </TableLayout>
+
 </LinearLayout>

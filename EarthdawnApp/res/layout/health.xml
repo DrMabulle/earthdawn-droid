@@ -1,62 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sheet_health"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:background="@android:drawable/gallery_thumb" >
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    	android:layout_width="match_parent" android:layout_height="wrap_content"
-    	android:id="@+id/sheet_health" android:layout_margin="2dp"
-		android:background="@android:drawable/gallery_thumb" >
-    	
-    	<TableRow android:layout_width="match_parent" >
-    		<TextView style="@style/title" 
-	    		android:layout_width="match_parent" 
-	    		android:layout_span="2" android:layout_weight="5"
-	    		android:text="@string/sheet_health_title" />
-    	</TableRow>
-        <TableRow android:layout_width="match_parent" >
-        	<TextView style="@style/medium"
-			    android:text="@string/sheet_health_points" 
-			    android:layout_weight="3" />
-			<TextView style="@style/medium"
-			    android:id="@+id/sheet_health_points" 
-			    android:layout_weight="2" /> 
-        </TableRow>
-        <TableRow android:layout_width="match_parent" >
-	        <TextView style="@style/medium"
-			    android:text="@string/sheet_h_blood_magic" 
-			    android:layout_weight="3" />
-			<TextView style="@style/medium"
-			    android:id="@+id/sheet_h_blood_magic" 
-			    android:layout_weight="2" /> 
-        </TableRow>
-        <TableRow android:layout_width="match_parent" >
-	       	<TextView style="@style/medium"
-			    android:text="@string/sheet_h_inconsciousness" 
-			    android:layout_weight="3" />
-			<TextView style="@style/medium"
-			    android:id="@+id/sheet_h_inconsciousness" 
-			    android:layout_weight="2" /> 
-        </TableRow>
-        <TableRow android:layout_width="match_parent" >
-	        <TextView style="@style/medium"
-			    android:text="@string/sheet_h_restore_dices" 
-			    android:layout_weight="3" />
-			<TextView style="@style/medium"
-			    android:id="@+id/sheet_h_restore_dices" 
-			    android:layout_weight="2" /> 
-        </TableRow>
-        <TableRow android:layout_width="match_parent" >
-	        <TextView style="@style/medium"
-			    android:text="@string/sheet_h_restore_dices_infos" 
-			    android:layout_weight="3" />
-			<TextView style="@style/medium"
-			    android:id="@+id/sheet_h_restore_dices_infos" 
-			    android:layout_weight="2" /> 
-        </TableRow>
-        <TableRow android:layout_width="match_parent" >
-	        <TextView style="@style/medium"
-			    android:text="@string/sheet_h_wound_threshold" 
-			    android:layout_weight="3" />
-			<TextView style="@style/medium"
-			    android:id="@+id/sheet_h_wound_threshold" 
-			    android:layout_weight="2" /> 
-        </TableRow>
-    </TableLayout>
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:layout_span="2"
+            android:layout_weight="5"
+            android:text="@string/sheet_health_title" />
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/medium"
+            android:layout_weight="3"
+            android:text="@string/sheet_health_points" />
+
+        <TextView
+            android:id="@+id/sheet_health_points"
+            style="@style/medium"
+            android:layout_weight="2" />
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/medium"
+            android:layout_weight="3"
+            android:text="@string/sheet_h_blood_magic" />
+
+        <TextView
+            android:id="@+id/sheet_h_blood_magic"
+            style="@style/medium"
+            android:layout_weight="2" />
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/medium"
+            android:layout_weight="3"
+            android:text="@string/sheet_h_inconsciousness" />
+
+        <TextView
+            android:id="@+id/sheet_h_inconsciousness"
+            style="@style/medium"
+            android:layout_weight="2" />
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/medium"
+            android:layout_weight="3"
+            android:text="@string/sheet_h_restore_dices" />
+
+        <TextView
+            android:id="@+id/sheet_h_restore_dices"
+            style="@style/medium"
+            android:layout_weight="2" />
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/medium"
+            android:layout_weight="3"
+            android:text="@string/sheet_h_restore_dices_infos" />
+
+        <TextView
+            android:id="@+id/sheet_h_restore_dices_infos"
+            style="@style/medium"
+            android:layout_weight="2" />
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/medium"
+            android:layout_weight="3"
+            android:text="@string/sheet_h_wound_threshold" />
+
+        <TextView
+            android:id="@+id/sheet_h_wound_threshold"
+            style="@style/medium"
+            android:layout_weight="2" />
+    </TableRow>
+
+</TableLayout>

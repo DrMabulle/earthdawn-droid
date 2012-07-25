@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    
-    <TextView 
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:text="@string/equipment_title"
-    	android:textAppearance="?android:attr/textAppearanceLarge" 
-    	android:padding="4dp"/>
-    
-	<ListView android:id="@android:id/list"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="@string/equipment_title"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:drawSelectorOnTop="false" 
-    	android:padding="4dp"/>
+        android:drawSelectorOnTop="false"
+        android:padding="4dp" />
 
-    <TextView android:id="@id/android:empty"
+    <TextView
+        android:id="@id/android:empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/equipment_no_data" 
-    	android:padding="8dp"/>
-    
-</LinearLayout>    
+        android:padding="8dp"
+        android:text="@string/equipment_no_data" />
 
-    
-
-
-
+</LinearLayout>
