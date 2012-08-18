@@ -9,8 +9,18 @@ import android.content.DialogInterface;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.fragments.ShowResultFragment;
 
+/**
+ * Utility class for creating AlertDialogs
+ * @author DrMabulle
+ */
 public class AlertDialogUtils
 {
+    /**
+     * Creates and open an AlertDialog with the given title and message
+     * @param ctx Android Context
+     * @param title a title to display
+     * @param msg a message to display
+     */
     public static final void openAlertDialog(final Context ctx, final int title, final int msg)
     {
         final Builder builder = new AlertDialog.Builder(ctx);
@@ -29,6 +39,10 @@ public class AlertDialogUtils
         dialog.show();
     }
 
+    /**
+     * Creates an popup showing the Dice Roll Result and message.
+     * @param manager Fragment Manager
+     */
     public static void showDialogResult(final FragmentManager manager)
     {
         final FragmentTransaction ft = manager.beginTransaction();

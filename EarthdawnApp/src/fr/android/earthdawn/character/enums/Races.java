@@ -11,14 +11,14 @@ import fr.android.earthdawn.R;
  */
 public enum Races
 {
-    Elfe("Elfe", 2, 0, -2, 1, 1, 1, 4, 10, 6, 25, 0, 0, 0, 1, R.string.apt1),
-    Humain("Humain", 0, 0, 0, 0, 0, 0, 5, 6, 10, 40, 0, 0, 0, 0, R.string.apt3),
-    Nain("Nain", 0, 2, 3, 0, 0, -2, 4, 10, 6, 25, 0, 0, 0, -2, R.string.apt2),
-    Obsidien("Obsidien", -2, 6, 4, -1, 0, -1, 3, 10, 5, 20, 0, 3, 3, -3, R.string.apt4, R.string.apt5, R.string.apt6),
-    Ork("Ork", 0, 3, 1, 0, -2, -1, 5, 7, 10, 40, 0, 0, 0, 1, R.string.apt7, R.string.apt1),
-    Sylphelin("Sylphelin", 1, -4, -3, 1, 0, 2, 6, 5, 15, 60, 3, 0, 0, 2, R.string.apt8, R.string.apt9, R.string.apt10, R.string.apt11),
-    Troll("Troll", 0, 4, 2, -1, 1, 0, 3, 10, 5, 20, 0, 0, 0, 0, R.string.apt12, R.string.apt13, R.string.apt2),
-    Tskrang("T'skrang", 1, 0, 1, 0, 0, 1, 4, 8, 6, 25, 0, 0, 0, 0, R.string.apt14);
+    Elfe("Elfe", 2, 0, -2, 1, 1, 1, 4, 6, 25, 0, 0, 0, 1, R.string.apt1),
+    Humain("Humain", 0, 0, 0, 0, 0, 0, 5, 10, 40, 0, 0, 0, 0, R.string.apt3),
+    Nain("Nain", 0, 2, 3, 0, 0, -2, 4, 6, 25, 0, 0, 0, -2, R.string.apt2),
+    Obsidien("Obsidien", -2, 6, 4, -1, 0, -1, 3, 5, 20, 0, 3, 3, -3, R.string.apt4, R.string.apt5, R.string.apt6),
+    Ork("Ork", 0, 3, 1, 0, -2, -1, 5, 10, 40, 0, 0, 0, 1, R.string.apt7, R.string.apt1),
+    Sylphelin("Sylphelin", 1, -4, -3, 1, 0, 2, 6, 15, 60, 3, 0, 0, 2, R.string.apt8, R.string.apt9, R.string.apt10, R.string.apt11),
+    Troll("Troll", 0, 4, 2, -1, 1, 0, 3, 5, 20, 0, 0, 0, 0, R.string.apt12, R.string.apt13, R.string.apt2),
+    Tskrang("T'skrang", 1, 0, 1, 0, 0, 1, 4, 6, 25, 0, 0, 0, 0, R.string.apt14);
 
     private String name;
     private int bonusDex;
@@ -28,7 +28,6 @@ public enum Races
     private int bonusVol;
     private int bonusCha;
     private int karmaRank;
-    private int karmaCost;
     private int karmaInit;
     private int karmaMax;
     private int bonusPhyDef;
@@ -49,7 +48,7 @@ public enum Races
      * @param aKarmaRank
      */
     private Races(final String aName, final int aBonusDex, final int aBonusStr, final int aBonusEnd, final int aBonusPer,
-            final int aBonusVol, final int aBonusCha, final int aKarmaRank, final int aKarmaCost, final int aKarmaInit, final int aKarmaMax,
+            final int aBonusVol, final int aBonusCha, final int aKarmaRank, final int aKarmaInit, final int aKarmaMax,
             final int aBonusPhyDef, final int aBonusPhyArm, final int aBonusWound,
             final int aBonusMvt, final int... aAptitudes)
     {
@@ -61,7 +60,6 @@ public enum Races
         this.bonusVol = aBonusVol;
         this.bonusCha = aBonusCha;
         this.karmaRank = aKarmaRank;
-        this.karmaCost = aKarmaCost;
         this.karmaInit = aKarmaInit;
         this.karmaMax = aKarmaMax;
         this.bonusPhyDef = aBonusPhyDef;
@@ -133,14 +131,6 @@ public enum Races
     public final int getKarmaRank()
     {
         return karmaRank;
-    }
-
-    /**
-     * @return the karmaCost
-     */
-    public int getKarmaCost()
-    {
-        return karmaCost;
     }
 
     /**

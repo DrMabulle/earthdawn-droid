@@ -4,25 +4,27 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.Test;
 
 import fr.android.earthdawn.dices.impl.Dice;
 import fr.android.earthdawn.dices.impl.FixedValueDice;
+import fr.android.earthdawn.managers.RankManager;
 
-public class DicesLauncherTest
+public class DicesLauncherTest extends TestCase
 {
     @Test
     public void testTestInputDicesInfos()
     {
-        Assert.assertTrue(DicesLauncher.testInputDicesInfos("1D20"));
-        Assert.assertTrue(DicesLauncher.testInputDicesInfos("1d20"));
-        Assert.assertTrue(DicesLauncher.testInputDicesInfos("1D20 2D10 -2"));
+        assertTrue(DicesLauncher.testInputDicesInfos("1D20"));
+        assertTrue(DicesLauncher.testInputDicesInfos("1d20"));
+        assertTrue(DicesLauncher.testInputDicesInfos("1D20 + 2D10 -2"));
+        assertTrue(DicesLauncher.testInputDicesInfos("1D20 + 3"));
 
-        Assert.assertFalse(DicesLauncher.testInputDicesInfos("-1D20"));
-        Assert.assertFalse(DicesLauncher.testInputDicesInfos("1D20 +3"));
-        Assert.assertFalse(DicesLauncher.testInputDicesInfos("1D20 + 2D10"));
+        assertFalse(DicesLauncher.testInputDicesInfos("-1D20"));
+        assertFalse(DicesLauncher.testInputDicesInfos("1D20 2D10"));
+        assertFalse(DicesLauncher.testInputDicesInfos("1D20 3"));
     }
 
     @Test
@@ -32,7 +34,7 @@ public class DicesLauncherTest
         for (int i = 0; i < 100; i++)
         {
             tmp = DicesLauncher.rollDices(7, false, false);
-            Assert.assertTrue(tmp > 0 && tmp < 13);
+            assertTrue(tmp > 0 && tmp < 13);
         }
     }
 
@@ -53,7 +55,7 @@ public class DicesLauncherTest
         for (int i = 0; i < 100; i++)
         {
             tmp = DicesLauncher.rollDices("1D12", false, false);
-            Assert.assertTrue(tmp > 0 && tmp < 13);
+            assertTrue(tmp > 0 && tmp < 13);
         }
     }
 
@@ -72,20 +74,20 @@ public class DicesLauncherTest
     {
         // Test 1
         List<Rollable> dices = DicesLauncher.parseDicesInfos("1D20 + 2D10 + 6D6 -2");
-        Assert.assertTrue(dices != null && dices.size() == 10);
-        Assert.assertEquals("D20", dices.get(0).toString());
-        Assert.assertEquals("D10", dices.get(1).toString());
-        Assert.assertEquals("D6", dices.get(8).toString());
-        Assert.assertTrue(dices.get(9).compareTo(new FixedValueDice(-2)) == 0);
+        assertTrue(dices != null && dices.size() == 10);
+        assertEquals("D20", dices.get(0).toString());
+        assertEquals("D10", dices.get(1).toString());
+        assertEquals("D6", dices.get(8).toString());
+        assertTrue(dices.get(9).compareTo(new FixedValueDice(-2)) == 0);
 
         // Test 2
         dices = DicesLauncher.parseDicesInfos("1D20 + 5 + 1D6 -2 + 1D4");
-        Assert.assertTrue(dices != null && dices.size() == 5);
-        Assert.assertEquals("D20", dices.get(0).toString());
-        Assert.assertTrue(dices.get(1).compareTo(new FixedValueDice(5)) == 0);
-        Assert.assertEquals("D6", dices.get(2).toString());
-        Assert.assertTrue(dices.get(3).compareTo(new FixedValueDice(-2)) == 0);
-        Assert.assertEquals("D4", dices.get(4).toString());
+        assertTrue(dices != null && dices.size() == 5);
+        assertEquals("D20", dices.get(0).toString());
+        assertTrue(dices.get(1).compareTo(new FixedValueDice(5)) == 0);
+        assertEquals("D6", dices.get(2).toString());
+        assertTrue(dices.get(3).compareTo(new FixedValueDice(-2)) == 0);
+        assertEquals("D4", dices.get(4).toString());
     }
 
     @Test
@@ -96,7 +98,7 @@ public class DicesLauncherTest
         for (int i = 0; i < 100; i++)
         {
             tmp = DicesLauncher.rollDices(dices, false, false);
-            Assert.assertTrue(tmp > 0 && tmp < 21);
+            assertTrue(tmp > 0 && tmp < 21);
         }
     }
 
@@ -108,7 +110,7 @@ public class DicesLauncherTest
         for (int i = 0; i < 100; i++)
         {
             tmp = DicesLauncher.simpleRoll(dices);
-            Assert.assertTrue(tmp > 0 && tmp < 101);
+            assertTrue(tmp > 0 && tmp < 101);
         }
     }
 
@@ -120,7 +122,7 @@ public class DicesLauncherTest
         for (int i = 0; i < 100; i++)
         {
             tmp = DicesLauncher.manageRerolls(dices, false, false);
-            Assert.assertTrue(tmp == 0);
+            assertTrue(tmp == 0);
         }
     }
 
@@ -141,9 +143,9 @@ public class DicesLauncherTest
         DicesLauncher.removeCancelledDices(dicesMax, dicesMin);
 
         // assert
-        Assert.assertTrue(dicesMax.size() == 1);
-        Assert.assertTrue(dicesMin.size() == 0);
-        Assert.assertEquals(new Dice(6), dicesMax.get(0));
+        assertTrue(dicesMax.size() == 1);
+        assertTrue(dicesMin.size() == 0);
+        assertEquals(new Dice(6), dicesMax.get(0));
     }
 
     @Test
@@ -165,9 +167,9 @@ public class DicesLauncherTest
         DicesLauncher.removeCancelledDices(dicesMax, dicesMin);
 
         // assert
-        Assert.assertTrue(dicesMax.size() == 0);
-        Assert.assertTrue(dicesMin.size() == 1);
-        Assert.assertEquals(new Dice(6), dicesMin.get(0));
+        assertTrue(dicesMax.size() == 0);
+        assertTrue(dicesMin.size() == 1);
+        assertEquals(new Dice(6), dicesMin.get(0));
     }
 
     private static Rollable initDiceToValue(final int maxValue, final int desiredValue)
@@ -196,7 +198,7 @@ public class DicesLauncherTest
         dicesMax.add(initDiceToValue(4, 4));
 
         final int result = DicesLauncher.rerollMaxs(dicesMax);
-        Assert.assertTrue(result > 6);
+        assertTrue(result > 6);
     }
 
     @Test
@@ -215,7 +217,7 @@ public class DicesLauncherTest
         dicesMax.add(initDiceToValue(4, 4));
 
         final int result = DicesLauncher.rerollMaxs(dicesMax);
-        Assert.assertTrue(result > 6);
+        assertTrue(result > 6);
 
         System.out.println("#### Test Reroll Max ####");
         System.out.println(DicesLauncher.getRollLogs());
@@ -236,7 +238,7 @@ public class DicesLauncherTest
         dicesMin.add(initDiceToValue(4, 1));
 
         final int result = DicesLauncher.rerollMins(dicesMin);
-        Assert.assertTrue(result < -6);
+        assertTrue(result < -6);
     }
 
     @Test
@@ -255,7 +257,7 @@ public class DicesLauncherTest
         dicesMin.add(initDiceToValue(4, 1));
 
         final int result = DicesLauncher.rerollMins(dicesMin);
-        Assert.assertTrue(result < -6);
+        assertTrue(result < -6);
 
         System.out.println("#### Test Reroll Min ####");
         System.out.println(DicesLauncher.getRollLogs());
@@ -277,7 +279,7 @@ public class DicesLauncherTest
 
     private static void runLotsOfRolls(final int rank)
     {
-        final double nbTests = 100000;
+        final double nbTests = 500000;
         int sum = 0;
         for (int i = 0; i < nbTests; i++)
         {
@@ -285,6 +287,6 @@ public class DicesLauncherTest
         }
         final BigDecimal bd = new BigDecimal(sum);
         final BigDecimal average = bd.divide(new BigDecimal(nbTests));
-        System.out.println("Moyenne pour rang " + rank + " : " + average.toString());
+        System.out.println("Moyenne pour rang " + rank + " : " + average.toString() + "  (" + RankManager.getDicesFromRank(rank) + ")");
     }
 }

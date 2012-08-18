@@ -11,7 +11,8 @@
     <string name="main_roller">Lanceur de dés</string>
     <string name="roller_popup_title">Résultat du jet de dés :</string>
     <string name="roller_popup_title2">Résultat du jet de %1$s :</string>
-    <string name="roller_format_error">Le format est incorrect.\nLe format attendu est xDy, répété à l\'envi, séparé par un espace.\nExemples :\n1D20\n1D20 2D12\n1D20 1D12 2D10 1D8 1D6 3D4\n1D4 -2</string>
+    <string name="roller_format_error_title">Erreur de saisie</string>
+    <string name="roller_format_error">Le format est incorrect.\nLe format attendu est xDy, répété à l\'envi, séparé par + .\nExemples :\n1D20\n1D20 + 2D12\n1D20 + 1D12 + 2D10 + 1D8 + 1D6 + 3D4\n1D4 -2</string>
     <string name="roller_message">Vous avez jeté %1$s \nRésultat : %2$s \n\nDétails du lancé : \nMalus dus aux blessures graves : %3$s\n%4$s</string>
     <string name="roller_rank_msg">un rang %1$s soit %2$s</string>
     <string name="roller_or">OU</string>

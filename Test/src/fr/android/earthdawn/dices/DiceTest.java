@@ -3,7 +3,8 @@
  */
 package fr.android.earthdawn.dices;
 
-import org.junit.Assert;
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
 import fr.android.earthdawn.dices.impl.Dice;
@@ -12,7 +13,7 @@ import fr.android.earthdawn.dices.impl.Dice;
  * @author DrMabulle
  *
  */
-public class DiceTest
+public class DiceTest extends TestCase
 {
 
     /**
@@ -24,23 +25,23 @@ public class DiceTest
         final Dice dice = new Dice(20);
 
         int result = dice.roll();
-        Assert.assertTrue(result > 0 && result <= 20);
+        assertTrue(result > 0 && result <= 20);
         System.out.println(dice.toString() + " rolled " + result);
 
         result = dice.roll();
-        Assert.assertTrue(result > 0 && result <= 20);
+        assertTrue(result > 0 && result <= 20);
         System.out.println(dice.toString() + " rolled " + result);
 
         result = dice.roll();
-        Assert.assertTrue(result > 0 && result <= 20);
+        assertTrue(result > 0 && result <= 20);
         System.out.println(dice.toString() + " rolled " + result);
 
         result = dice.roll();
-        Assert.assertTrue(result > 0 && result <= 20);
+        assertTrue(result > 0 && result <= 20);
         System.out.println(dice.toString() + " rolled " + result);
 
         result = dice.roll();
-        Assert.assertTrue(result > 0 && result <= 20);
+        assertTrue(result > 0 && result <= 20);
         System.out.println(dice.toString() + " rolled " + result);
     }
 
@@ -54,32 +55,32 @@ public class DiceTest
 
         int result1 = dice.roll();
         int result2 = dice.getPreviousResult();
-        Assert.assertEquals(result1, result2);
-        Assert.assertTrue(result1 > 0 && result1 <= 20);
+        assertEquals(result1, result2);
+        assertTrue(result1 > 0 && result1 <= 20);
         System.out.println(dice.toString() + " rolled " + result1);
 
         result1 = dice.roll();
         result2 = dice.getPreviousResult();
-        Assert.assertEquals(result1, result2);
-        Assert.assertTrue(result1 > 0 && result1 <= 20);
+        assertEquals(result1, result2);
+        assertTrue(result1 > 0 && result1 <= 20);
         System.out.println(dice.toString() + " rolled " + result1);
 
         result1 = dice.roll();
         result2 = dice.getPreviousResult();
-        Assert.assertEquals(result1, result2);
-        Assert.assertTrue(result1 > 0 && result1 <= 20);
+        assertEquals(result1, result2);
+        assertTrue(result1 > 0 && result1 <= 20);
         System.out.println(dice.toString() + " rolled " + result1);
 
         result1 = dice.roll();
         result2 = dice.getPreviousResult();
-        Assert.assertEquals(result1, result2);
-        Assert.assertTrue(result1 > 0 && result1 <= 20);
+        assertEquals(result1, result2);
+        assertTrue(result1 > 0 && result1 <= 20);
         System.out.println(dice.toString() + " rolled " + result1);
 
         result1 = dice.roll();
         result2 = dice.getPreviousResult();
-        Assert.assertEquals(result1, result2);
-        Assert.assertTrue(result1 > 0 && result1 <= 20);
+        assertEquals(result1, result2);
+        assertTrue(result1 > 0 && result1 <= 20);
         System.out.println(dice.toString() + " rolled " + result1);
     }
 
@@ -97,9 +98,9 @@ public class DiceTest
             result = dice.roll();
         }
 
-        Assert.assertTrue(dice.getPreviousResult() == 20);
-        Assert.assertTrue(dice.isMaxValue());
-        Assert.assertFalse(dice.isMinValue());
+        assertTrue(dice.getPreviousResult() == 20);
+        assertTrue(dice.isMaxValue());
+        assertFalse(dice.isMinValue());
     }
 
     /**
@@ -116,9 +117,9 @@ public class DiceTest
             result = dice.roll();
         }
 
-        Assert.assertTrue(dice.getPreviousResult() == 1);
-        Assert.assertFalse(dice.isMaxValue());
-        Assert.assertTrue(dice.isMinValue());
+        assertTrue(dice.getPreviousResult() == 1);
+        assertFalse(dice.isMaxValue());
+        assertTrue(dice.isMinValue());
     }
 
 }

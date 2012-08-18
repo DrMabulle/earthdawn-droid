@@ -14,7 +14,7 @@ public class Skill implements Serializable
     private static final long serialVersionUID = 5893341632241346616L;
 
     private final String label;
-    private final Attributs attribut;
+    private final Attributes attribut;
     private final boolean action;
     private int strain = 0;
     private int rank = 1;
@@ -26,7 +26,7 @@ public class Skill implements Serializable
      * @param isAction
      * @param aStrain
      */
-    public Skill(final String aLabel, final Attributs aAttribut, final boolean isAction, final int aStrain)
+    public Skill(final String aLabel, final Attributes aAttribut, final boolean isAction, final int aStrain)
     {
         super();
         this.label = aLabel;
@@ -39,7 +39,7 @@ public class Skill implements Serializable
     /**
      * @return the attribut
      */
-    public Attributs getAttribut()
+    public Attributes getAttribut()
     {
         return attribut;
     }

@@ -9,7 +9,7 @@ import fr.android.earthdawn.R;
  * @author DrMabulle
  *
  */
-public enum Attributs
+public enum Attributes
 {
     DEX(0, "DEX", R.string.dex),
     STR(1, "FOR", R.string.str),
@@ -23,7 +23,7 @@ public enum Attributs
     private String label;
     private int fullName;
 
-    Attributs(final int aId, final String aLabel, final int aFullName)
+    Attributes(final int aId, final String aLabel, final int aFullName)
     {
         id = aId;
         label = aLabel;

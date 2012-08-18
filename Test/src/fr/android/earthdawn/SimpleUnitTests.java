@@ -26,7 +26,7 @@ import fr.android.earthdawn.utils.NumberUtilsTest;
         CharacterUtilsTest.class,
         EDDicesLauncherTest.class,
         DicesLauncherTest.class })
-public class AllTests
+public class SimpleUnitTests
 {
     // Tests
 }

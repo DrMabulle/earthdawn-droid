@@ -9,7 +9,7 @@ import java.util.List;
 
 import android.content.Context;
 import fr.android.earthdawn.character.EDCharacter;
-import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Attributes;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Mod;
@@ -36,10 +36,20 @@ public final class CharacterManager
 
     private CharacterManager() {}
 
+    /**
+     * Retrieves previously loaded character
+     * @return  previously loaded character
+     */
     public static EDCharacter getLoadedCharacter()
     {
         return CHAR;
     }
+    /**
+     * Loads a character in memory, given its ID (character name)
+     * @param id ID of the character to load (character name)
+     * @param ctx Android Context
+     * @return the loaded character
+     */
     public static EDCharacter getCharacter(final String id, final Context ctx)
     {
         final Object test = SerializationUtils.deserializeFromDisk(id, ctx);
@@ -49,6 +59,7 @@ public final class CharacterManager
         }
         else
         {
+            // XXX Remove this before release
             CHAR = loadCharacter(id);
         }
         return CHAR;
@@ -305,17 +316,17 @@ public final class CharacterManager
         forgeron.addEquipment(new Equipment("Dague forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 0.5))));
         forgeron.addEquipment(new Equipment("Epée large forgée", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 8), Mod.get(Pointcuts.WEIGHT, 1.5))));
 
-        forgeron.addSkill(new Skill("Création d'armes", Attributs.PER, true, 0).incrementRank().incrementRank());
-        forgeron.addSkill(new Skill("Création d'armures", Attributs.PER, true, 0).incrementRank());
-        forgeron.addSkill(new Skill("Cartographie", Attributs.PER, true, 0).incrementRank());
-        forgeron.addSkill(new Skill("Survie", Attributs.PER, true, 0).incrementRank());
-        forgeron.addSkill(new Skill("Connaissances : Horreurs", Attributs.PER, true, 0));
-        forgeron.addSkill(new Skill("Connaissances : Géographie de Barsaive", Attributs.PER, true, 0).incrementRank());
-        forgeron.addSkill(new Skill("Connaissances : Histoire de Barsaive", Attributs.PER, true, 0).incrementRank());
-        forgeron.addSkill(new Skill("Connaissances : Légendes et Héros", Attributs.PER, true, 0).incrementRank().incrementRank());
-        forgeron.addSkill(new Skill("Analyse de créature", Attributs.PER, true, 1));
-        forgeron.addSkill(new Skill("Natation", Attributs.STR, true, 1));
-        forgeron.addSkill(new Skill("Escalade", Attributs.DEX, true, 0));
+        forgeron.addSkill(new Skill("Création d'armes", Attributes.PER, true, 0).incrementRank().incrementRank());
+        forgeron.addSkill(new Skill("Création d'armures", Attributes.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Cartographie", Attributes.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Survie", Attributes.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Connaissances : Horreurs", Attributes.PER, true, 0));
+        forgeron.addSkill(new Skill("Connaissances : Géographie de Barsaive", Attributes.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Connaissances : Histoire de Barsaive", Attributes.PER, true, 0).incrementRank());
+        forgeron.addSkill(new Skill("Connaissances : Légendes et Héros", Attributes.PER, true, 0).incrementRank().incrementRank());
+        forgeron.addSkill(new Skill("Analyse de créature", Attributes.PER, true, 1));
+        forgeron.addSkill(new Skill("Natation", Attributes.STR, true, 1));
+        forgeron.addSkill(new Skill("Escalade", Attributes.DEX, true, 0));
 
         forgeron.incrementKarmaBought(18);
         forgeron.incrementKarmaSpent(11);
@@ -375,8 +386,8 @@ public final class CharacterManager
         hyacinthe.addEquipment(new Equipment("Dague filante", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 1.5))));
         hyacinthe.addEquipment(new Equipment("Arc court en if", Arrays.asList(Mod.get(Pointcuts.WEAPON_DAMAGE, 3), Mod.get(Pointcuts.WEIGHT, 1.5))));
 
-        hyacinthe.addSkill(new Skill("Chant d'émotion", Attributs.CHA, true, 0).incrementRank());
-        hyacinthe.addSkill(new Skill("Etiquette", Attributs.PER, true, 0));
+        hyacinthe.addSkill(new Skill("Chant d'émotion", Attributes.CHA, true, 0).incrementRank());
+        hyacinthe.addSkill(new Skill("Etiquette", Attributes.PER, true, 0));
 
 
         hyacinthe.incrementKarmaBought(18);
@@ -386,6 +397,11 @@ public final class CharacterManager
         return hyacinthe;
     }
 
+    /**
+     * List all character available for loading
+     * @param ctx Android Context
+     * @return all character available for loading
+     */
     public static String[] getAvailableCharacters(final Context ctx)
     {
         final String[] files = ctx.fileList();

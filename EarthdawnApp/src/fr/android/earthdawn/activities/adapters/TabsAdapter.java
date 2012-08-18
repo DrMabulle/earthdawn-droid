@@ -4,6 +4,7 @@
 package fr.android.earthdawn.activities.adapters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -33,7 +34,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabLi
     private final Context mContext;
     private final ActionBar mActionBar;
     private final ViewPager mViewPager;
-    private final ArrayList<TabInfo> mTabs = new ArrayList<TabInfo>();
+    private final List<TabInfo> mTabs = new ArrayList<TabInfo>();
 
     static final class TabInfo
     {
