@@ -53,7 +53,7 @@ public class Talent implements Serializable
     /**
      * @return the attribut
      */
-    public Attributs getAttribut()
+    public Attributes getAttribut()
     {
         return talent.getAttribut();
     }

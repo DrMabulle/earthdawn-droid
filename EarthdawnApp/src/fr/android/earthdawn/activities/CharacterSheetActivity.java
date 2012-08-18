@@ -94,13 +94,13 @@ public class CharacterSheetActivity extends Activity
             bundle.putSerializable(Constants.BUNDLE_DISCIPLINE, character.getThirdDiscipline());
             mTabsAdapter.addTab(bar.newTab().setText(character.getThirdDiscipline().getName()), TalentsFragment.class, bundle);
         }
-        // Equipement
+        // Equipment
         mTabsAdapter.addTab(bar.newTab().setText(R.string.tab_stuff), EquipmentFragment.class, null);
 
-        // Compétences
+        // Skill
         mTabsAdapter.addTab(bar.newTab().setText(R.string.tab_skills), SkillsFragment.class, null);
 
-        // Grimoire
+        // TODO Grimoire
 
 
         if (savedInstanceState != null)
@@ -112,20 +112,24 @@ public class CharacterSheetActivity extends Activity
     @Override
     protected void onDestroy()
     {
-        super.onDestroy();
         // save character on disk
         final EDCharacter character = CharacterManager.getLoadedCharacter();
         SerializationUtils.serializeOnDisk(character, character.getName(), this);
+
+        // super call must be done at the end of the method
+        super.onDestroy();
     }
 
     @Override
     protected void onSaveInstanceState(final Bundle outState)
     {
-        super.onSaveInstanceState(outState);
         outState.putInt(TAB, getActionBar().getSelectedNavigationIndex());
         // save character on disk
         final EDCharacter character = CharacterManager.getLoadedCharacter();
         SerializationUtils.serializeOnDisk(character, character.getName(), this);
+
+        // super call must be done at the end of the method
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -201,7 +205,7 @@ public class CharacterSheetActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(final MenuItem item)
     {
-        // Commun code
+        // Common code
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
 
         final EDCharacter character = CharacterManager.getLoadedCharacter();

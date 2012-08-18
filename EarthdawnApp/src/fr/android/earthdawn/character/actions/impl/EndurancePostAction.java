@@ -2,7 +2,7 @@ package fr.android.earthdawn.character.actions.impl;
 
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.actions.IAction;
-import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Attributes;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Talents;
@@ -24,7 +24,7 @@ public class EndurancePostAction implements IAction
     {
         final EDCharacter character = CharacterManager.getLoadedCharacter();
         final int dicesResult = EDDicesLauncher.getRollResult();
-        if (dicesResult > character.getAttributRank(Attributs.END))
+        if (dicesResult > character.getAttributRank(Attributes.END))
         {
             // Ajouter le rang du talent aux seuils de blessure grave, de mort et d'inconscience.
             final int talentRank = CharacterUtils.getTalentRank(character, Talents.Endurance);

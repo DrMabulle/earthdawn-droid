@@ -21,6 +21,13 @@ public final class SerializationUtils
 
     private SerializationUtils() {}
 
+    /**
+     * Serializes an Object on the device's disk.
+     * Data are saved in a .ser file, saved in private mode.
+     * @param obj the Object to serialize
+     * @param fileName name of the file where the Object shall be serialized into
+     * @param ctx an Android context
+     */
     public static final void serializeOnDisk(final Object obj, final String fileName, final Context ctx)
     {
         ObjectOutput out = null;
@@ -39,6 +46,12 @@ public final class SerializationUtils
         }
     }
 
+    /**
+     * Deserializes an Object from device's disk.
+     * @param fileName
+     * @param ctx
+     * @return
+     */
     public static final Object deserializeFromDisk(final String fileName, final Context ctx)
     {
         ObjectInputStream in = null;

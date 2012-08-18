@@ -20,8 +20,6 @@ import fr.android.earthdawn.managers.RankManager;
  */
 public final class DicesLauncher
 {
-    private static final String REGEX = "([1-9]+D[0-9]+[ ]*)+(-[0-9]+)*";
-
     protected static final StringBuilder logs = new StringBuilder(512);
     private static int result = 0;
     private static int rank = 0;
@@ -29,11 +27,32 @@ public final class DicesLauncher
 
     private DicesLauncher() {}
 
+    /**
+     * Checks whether the given dices informations respect the expected syntax
+     * @param aDicesInfos some dices informations
+     * @return true if the given dices informations respect the expected syntax
+     */
     public static boolean testInputDicesInfos(final String aDicesInfos)
     {
-        return aDicesInfos != null && aDicesInfos.length() > 0 && aDicesInfos.toUpperCase().matches(REGEX);
+        List<Rollable> dices = null;
+        try
+        {
+            dices = parseDicesInfos(aDicesInfos.toUpperCase());
+        }
+        catch (final Exception e)
+        {
+            // do nothing
+        }
+        return dices != null && dices.size() > 0;
     }
 
+    /**
+     * Roll dices according to EarthDawn rules
+     * @param aRank rank (step) to be rolled
+     * @param rerollMax indicates whether max values should be rerolled
+     * @param rerollMins  indicates whether min values should be rerolled
+     * @return result of the roll
+     */
     public static int rollDices(final int aRank, final boolean rerollMax, final boolean rerollMins)
     {
         rank = aRank;
@@ -41,6 +60,13 @@ public final class DicesLauncher
         return rollDices(parseDicesInfos(RankManager.getDicesFromRank(rank)), rerollMax, rerollMins);
     }
 
+    /**
+     * Roll dices according to EarthDawn rules
+     * @param aDicesInfos dices to be rolled
+     * @param rerollMax indicates whether max values should be rerolled
+     * @param rerollMins  indicates whether min values should be rerolled
+     * @return result of the roll
+     */
     public static int rollDices(final String aDicesInfos, final boolean rerollMax, final boolean rerollMins)
     {
         rank = 0;
@@ -220,16 +246,27 @@ public final class DicesLauncher
         return sum;
     }
 
+    /**
+     * @return result of the roll
+     */
     public static int getRollResult()
     {
         return result;
     }
 
+    /**
+     * @return Logs of the roll
+     */
     public static String getRollLogs()
     {
         return logs.toString();
     }
 
+    /**
+     * Prepares a detailed message for display
+     * @param ctx Android Context
+     * @return a detailed message for display
+     */
     public static String getDetailedMessage(final Context ctx)
     {
         String msg = null;

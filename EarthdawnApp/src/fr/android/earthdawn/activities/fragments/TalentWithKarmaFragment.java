@@ -27,7 +27,9 @@ public class TalentWithKarmaFragment extends DialogFragment implements View.OnCl
 
     public TalentWithKarmaFragment()
     {
+        super();
         // Empty constructor required for DialogFragment
+        talent = null;
     }
 
     @Override

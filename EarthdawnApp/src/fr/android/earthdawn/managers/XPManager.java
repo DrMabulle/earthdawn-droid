@@ -6,9 +6,8 @@ package fr.android.earthdawn.managers;
 import java.util.List;
 
 import fr.android.earthdawn.character.EDCharacter;
-import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Attributes;
 import fr.android.earthdawn.character.enums.Discipline;
-import fr.android.earthdawn.character.enums.Races;
 import fr.android.earthdawn.character.enums.Skill;
 import fr.android.earthdawn.character.enums.Talent;
 import fr.android.earthdawn.character.equipement.IEquipment;
@@ -26,10 +25,17 @@ public final class XPManager
     private static final int[] FORTH_COL = new int[] {0, 500, 1300, 2600, 4700, 8100, 13600, 22500, 36900, 60200, 97900, 158900, 257600, 417300, 675700, 1093800};
     private static final int[][] talentCost = new int[][] {FIRST_COL, SECOND_COL, THIRD_COL, FORTH_COL};
 
-    private static final int[] attributsCost = new int[] {0, 800, 2100, 4200, 7600, 13100};
+    private static final int[] attributesCost = new int[] {0, 800, 2100, 4200, 7600, 13100};
+
+    private static final int KARMA_COST = 10;
 
     private XPManager() {}
 
+    /**
+     * Computes the total number of Legend Points spent buy a given character
+     * @param character a character to analyze
+     * @return the total number of Legend Points spent buy the given character
+     */
     public static int evaluateCharacter(final EDCharacter character)
     {
         int total = 0;
@@ -38,27 +44,27 @@ public final class XPManager
         total += evaluateDiscipline(character.getSecondDiscipline());
         total += evaluateDiscipline(character.getThirdDiscipline());
 
-        // Attributs
-        total += evaluateAttributs(character.getAttributEvols(Attributs.CHA));
-        total += evaluateAttributs(character.getAttributEvols(Attributs.DEX));
-        total += evaluateAttributs(character.getAttributEvols(Attributs.END));
-        total += evaluateAttributs(character.getAttributEvols(Attributs.PER));
-        total += evaluateAttributs(character.getAttributEvols(Attributs.STR));
-        total += evaluateAttributs(character.getAttributEvols(Attributs.VOL));
+        // Attributes
+        total += evaluateAttributes(character.getAttributEvols(Attributes.CHA));
+        total += evaluateAttributes(character.getAttributEvols(Attributes.DEX));
+        total += evaluateAttributes(character.getAttributEvols(Attributes.END));
+        total += evaluateAttributes(character.getAttributEvols(Attributes.PER));
+        total += evaluateAttributes(character.getAttributEvols(Attributes.STR));
+        total += evaluateAttributes(character.getAttributEvols(Attributes.VOL));
 
-        // compétences
+        // Skills
         total += evaluateSkills(character.getSkills());
 
         // Karma
-        total += evaluateKarma(character.getRace(), character.getKarmaBought());
+        total += evaluateKarma(character.getKarmaBought());
 
-        // Equipement magique
+        // Magical Equipment
         total += evaluateEquipment(character);
 
         return total;
     }
 
-    public static int evaluateDiscipline(final Discipline discipline)
+    protected static int evaluateDiscipline(final Discipline discipline)
     {
         int total = 0;
 
@@ -73,7 +79,7 @@ public final class XPManager
 
         return total;
     }
-    public static int evaluateTalent(final Talent talent, final int rank)
+    protected static int evaluateTalent(final Talent talent, final int rank)
     {
         int col = 0;
         if (talent.getCircle() < 5)
@@ -95,12 +101,12 @@ public final class XPManager
         return talentCost[col][rank];
     }
 
-    public static int evaluateAttributs(final int nbEvols)
+    protected static int evaluateAttributes(final int nbEvols)
     {
-        return attributsCost[nbEvols];
+        return attributesCost[nbEvols];
     }
 
-    public static int evaluateEquipment(final EDCharacter character)
+    protected static int evaluateEquipment(final EDCharacter character)
     {
         int sum = 0;
 
@@ -116,7 +122,7 @@ public final class XPManager
         return sum;
     }
 
-    public static int evaluateEquipment(final MagicalEquipment equipment)
+    protected static int evaluateEquipment(final MagicalEquipment equipment)
     {
         final int[] costs = equipment.getCosts();
         final int rank = equipment.getRank();
@@ -129,12 +135,17 @@ public final class XPManager
         return sum;
     }
 
-    public static int evaluateKarma(final Races race, final int karmaBought)
+    /**
+     * Computes the number of Legend Points spent buy a given character on Karma Points
+     * @param karmaBought number of karma points bought
+     * @return the total number of Legend Points spent buy the given character on Karma Points
+     */
+    public static int evaluateKarma(final int karmaBought)
     {
-        return karmaBought * race.getKarmaCost();
+        return karmaBought * KARMA_COST;
     }
 
-    public static int evaluateSkills(final List<Skill> skills)
+    protected static int evaluateSkills(final List<Skill> skills)
     {
         // Skills are equivalent to talents 5-8
         int sum = 0;

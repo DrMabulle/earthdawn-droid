@@ -15,7 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.utils.AlertDialogUtils;
-import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Attributes;
 import fr.android.earthdawn.character.equipement.IEquipment;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
@@ -33,6 +33,7 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
     public RollDamagesFragment()
     {
         super();
+        weapons = null;
     }
 
     @Override
@@ -113,7 +114,7 @@ public class RollDamagesFragment extends DialogFragment implements OnClickListen
 
     private static int getCharacterStrengh()
     {
-        return CharacterManager.getLoadedCharacter().getAttributRank(Attributs.STR);
+        return CharacterManager.getLoadedCharacter().getAttributRank(Attributes.STR);
     }
 
     private static int getDamageRank(final IEquipment weapon)

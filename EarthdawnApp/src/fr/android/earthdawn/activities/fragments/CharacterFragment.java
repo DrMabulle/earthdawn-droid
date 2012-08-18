@@ -13,7 +13,7 @@ import android.widget.TextView;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.activities.utils.AlertDialogUtils;
 import fr.android.earthdawn.character.EDCharacter;
-import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Attributes;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.managers.CharacterManager;
 import fr.android.earthdawn.managers.EDDicesLauncher;
@@ -74,34 +74,34 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
     private void fillAttributs(final View view)
     {
         // Dex
-        ((ProgressBar) view.findViewById(R.id.progressDex)).setProgress(character.getAttributEvols(Attributs.DEX));
-        ((TextView) view.findViewById(R.id.sheet_indice_dex)).setText(Integer.toString(character.getAttributIndice(Attributs.DEX)));
-        ((TextView) view.findViewById(R.id.sheet_level_dex)).setText(Integer.toString(character.getAttributRank(Attributs.DEX)));
+        ((ProgressBar) view.findViewById(R.id.progressDex)).setProgress(character.getAttributEvols(Attributes.DEX));
+        ((TextView) view.findViewById(R.id.sheet_indice_dex)).setText(Integer.toString(character.getAttributIndice(Attributes.DEX)));
+        ((TextView) view.findViewById(R.id.sheet_level_dex)).setText(Integer.toString(character.getAttributRank(Attributes.DEX)));
         ((ImageButton) view.findViewById(R.id.sheet_dex_roll)).setOnClickListener(this);
         // Str
-        ((ProgressBar) view.findViewById(R.id.progressStr)).setProgress(character.getAttributEvols(Attributs.STR));
-        ((TextView) view.findViewById(R.id.sheet_indice_str)).setText(Integer.toString(character.getAttributIndice(Attributs.STR)));
-        ((TextView) view.findViewById(R.id.sheet_level_str)).setText(Integer.toString(character.getAttributRank(Attributs.STR)));
+        ((ProgressBar) view.findViewById(R.id.progressStr)).setProgress(character.getAttributEvols(Attributes.STR));
+        ((TextView) view.findViewById(R.id.sheet_indice_str)).setText(Integer.toString(character.getAttributIndice(Attributes.STR)));
+        ((TextView) view.findViewById(R.id.sheet_level_str)).setText(Integer.toString(character.getAttributRank(Attributes.STR)));
         ((ImageButton) view.findViewById(R.id.sheet_str_roll)).setOnClickListener(this);
         // End
-        ((ProgressBar) view.findViewById(R.id.progressEnd)).setProgress(character.getAttributEvols(Attributs.END));
-        ((TextView) view.findViewById(R.id.sheet_indice_end)).setText(Integer.toString(character.getAttributIndice(Attributs.END)));
-        ((TextView) view.findViewById(R.id.sheet_level_end)).setText(Integer.toString(character.getAttributRank(Attributs.END)));
+        ((ProgressBar) view.findViewById(R.id.progressEnd)).setProgress(character.getAttributEvols(Attributes.END));
+        ((TextView) view.findViewById(R.id.sheet_indice_end)).setText(Integer.toString(character.getAttributIndice(Attributes.END)));
+        ((TextView) view.findViewById(R.id.sheet_level_end)).setText(Integer.toString(character.getAttributRank(Attributes.END)));
         ((ImageButton) view.findViewById(R.id.sheet_end_roll)).setOnClickListener(this);
         // Per
-        ((ProgressBar) view.findViewById(R.id.progressPer)).setProgress(character.getAttributEvols(Attributs.PER));
-        ((TextView) view.findViewById(R.id.sheet_indice_per)).setText(Integer.toString(character.getAttributIndice(Attributs.PER)));
-        ((TextView) view.findViewById(R.id.sheet_level_per)).setText(Integer.toString(character.getAttributRank(Attributs.PER)));
+        ((ProgressBar) view.findViewById(R.id.progressPer)).setProgress(character.getAttributEvols(Attributes.PER));
+        ((TextView) view.findViewById(R.id.sheet_indice_per)).setText(Integer.toString(character.getAttributIndice(Attributes.PER)));
+        ((TextView) view.findViewById(R.id.sheet_level_per)).setText(Integer.toString(character.getAttributRank(Attributes.PER)));
         ((ImageButton) view.findViewById(R.id.sheet_per_roll)).setOnClickListener(this);
         // Vol
-        ((ProgressBar) view.findViewById(R.id.progressVol)).setProgress(character.getAttributEvols(Attributs.VOL));
-        ((TextView) view.findViewById(R.id.sheet_indice_vol)).setText(Integer.toString(character.getAttributIndice(Attributs.VOL)));
-        ((TextView) view.findViewById(R.id.sheet_level_vol)).setText(Integer.toString(character.getAttributRank(Attributs.VOL)));
+        ((ProgressBar) view.findViewById(R.id.progressVol)).setProgress(character.getAttributEvols(Attributes.VOL));
+        ((TextView) view.findViewById(R.id.sheet_indice_vol)).setText(Integer.toString(character.getAttributIndice(Attributes.VOL)));
+        ((TextView) view.findViewById(R.id.sheet_level_vol)).setText(Integer.toString(character.getAttributRank(Attributes.VOL)));
         ((ImageButton) view.findViewById(R.id.sheet_vol_roll)).setOnClickListener(this);
         // Cha
-        ((ProgressBar) view.findViewById(R.id.progressCha)).setProgress(character.getAttributEvols(Attributs.CHA));
-        ((TextView) view.findViewById(R.id.sheet_indice_cha)).setText(Integer.toString(character.getAttributIndice(Attributs.CHA)));
-        ((TextView) view.findViewById(R.id.sheet_level_cha)).setText(Integer.toString(character.getAttributRank(Attributs.CHA)));
+        ((ProgressBar) view.findViewById(R.id.progressCha)).setProgress(character.getAttributEvols(Attributes.CHA));
+        ((TextView) view.findViewById(R.id.sheet_indice_cha)).setText(Integer.toString(character.getAttributIndice(Attributes.CHA)));
+        ((TextView) view.findViewById(R.id.sheet_level_cha)).setText(Integer.toString(character.getAttributRank(Attributes.CHA)));
         ((ImageButton) view.findViewById(R.id.sheet_cha_roll)).setOnClickListener(this);
     }
 
@@ -126,7 +126,7 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
         ((TextView) view.findViewById(R.id.sheet_equ_tra)).setText(Integer.toString(character.getCarryingCapacity()));
         ((TextView) view.findViewById(R.id.sheet_equ_lev)).setText(Integer.toString(character.getLiftingCapacity()));
 
-        ((TextView) view.findViewById(R.id.sheet_init_dex)).setText(Integer.toString(character.getAttributRank(Attributs.DEX)));
+        ((TextView) view.findViewById(R.id.sheet_init_dex)).setText(Integer.toString(character.getAttributRank(Attributes.DEX)));
         ((TextView) view.findViewById(R.id.sheet_init_pen)).setText(Integer.toString(character.computeBonusesInt(Pointcuts.INIT)));
         ((TextView) view.findViewById(R.id.sheet_init_lvl)).setText(Integer.toString(character.getInitiativeLevel()));
         ((ImageButton) view.findViewById(R.id.roll_initiative)).setOnClickListener(this);
@@ -167,7 +167,7 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
         final int legendSpent = XPManager.evaluateCharacter(character);
         ((TextView) view.findViewById(R.id.sheet_legend_spent)).setText(Integer.toString(legendSpent));
         // Spent in karma
-        final int legendKarma = XPManager.evaluateKarma(character.getRace(), character.getKarmaBought());
+        final int legendKarma = XPManager.evaluateKarma(character.getKarmaBought());
         ((TextView) view.findViewById(R.id.sheet_legend_karma)).setText(Integer.toString(legendKarma));
         // Available
         ((TextView) view.findViewById(R.id.sheet_legend_available)).setText(Integer.toString(character.getLegendPoints() - legendSpent));
@@ -186,12 +186,12 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
                 RankManager.getDicesFromRank(character.getRace().getKarmaRank()));
         ((TextView) view.findViewById(R.id.sheet_karma_level)).setText(karmaLvl);
         // Special uses
-        ((RadioButton) view.findViewById(R.id.karma_dex)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.DEX) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_str)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.STR) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_end)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.END) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_per)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.PER) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_vol)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.VOL) > 0);
-        ((RadioButton) view.findViewById(R.id.karma_cha)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributs.CHA) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_dex)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributes.DEX) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_str)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributes.STR) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_end)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributes.END) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_per)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributes.PER) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_vol)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributes.VOL) > 0);
+        ((RadioButton) view.findViewById(R.id.karma_cha)).setChecked(CharacterUtils.computePerks(character, Pointcuts.KARMA_USE, Attributes.CHA) > 0);
         view.findViewById(R.id.karma_buy).setOnClickListener(this);
     }
 
@@ -202,27 +202,27 @@ public class CharacterFragment extends Fragment implements View.OnClickListener
         switch (view.getId())
         {
             case R.id.sheet_dex_roll:
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.DEX.getFullName(), character.getAttributRank(Attributs.DEX), character.getWounds());
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributes.DEX.getFullName(), character.getAttributRank(Attributes.DEX), character.getWounds());
                 AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_str_roll:
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.STR.getFullName(), character.getAttributRank(Attributs.STR), character.getWounds());
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributes.STR.getFullName(), character.getAttributRank(Attributes.STR), character.getWounds());
                 AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_end_roll:
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.END.getFullName(), character.getAttributRank(Attributs.END), character.getWounds());
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributes.END.getFullName(), character.getAttributRank(Attributes.END), character.getWounds());
                 AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_per_roll:
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.PER.getFullName(), character.getAttributRank(Attributs.PER), character.getWounds());
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributes.PER.getFullName(), character.getAttributRank(Attributes.PER), character.getWounds());
                 AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_vol_roll:
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.VOL.getFullName(), character.getAttributRank(Attributs.VOL), character.getWounds());
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributes.VOL.getFullName(), character.getAttributRank(Attributes.VOL), character.getWounds());
                 AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.sheet_cha_roll:
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributs.CHA.getFullName(), character.getAttributRank(Attributs.CHA), character.getWounds());
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_ATTRIBUT, Attributes.CHA.getFullName(), character.getAttributRank(Attributes.CHA), character.getWounds());
                 AlertDialogUtils.showDialogResult(getFragmentManager());
                 break;
             case R.id.roll_initiative:

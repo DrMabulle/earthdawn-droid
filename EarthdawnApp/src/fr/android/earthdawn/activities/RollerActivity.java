@@ -86,7 +86,7 @@ public class RollerActivity extends Activity implements OnClickListener
             case Constants.DIALOG_SHOW_ERROR:
                 final Builder builder = new AlertDialog.Builder(this);
                 builder.setIcon(android.R.drawable.ic_dialog_info);
-                builder.setTitle("Erreur de saisie");
+                builder.setTitle(R.string.roller_format_error_title);
                 builder.setMessage(this.getString(R.string.roller_format_error));
                 builder.setNeutralButton(R.string.popup_close, new DialogInterface.OnClickListener()
                 {

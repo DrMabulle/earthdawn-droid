@@ -24,36 +24,71 @@ public final class CharacterUtils
 {
     private CharacterUtils() {}
 
+    /**
+     * Computes Death Threshold given an attribute value
+     * @param indice the attribute value
+     * @return Death Threshold for the given attribute value
+     */
     public static int computeDeathThreshold(final int indice)
     {
         return indice + 18 + indice / 3;
     }
 
+    /**
+     * Computes Unconsciousness Threshold given an attribute value
+     * @param indice the attribute value
+     * @return Unconsciousness Threshold for the given attribute value
+     */
     public static int computeUnconsciousnessThreshold(final int indice)
     {
         return indice + 9 + indice / 3 + (indice - 1) / 10;
     }
 
+    /**
+     * Computes Wound Threshold given an attribute value
+     * @param indice the attribute value
+     * @return Wound Threshold for the given attribute value
+     */
     public static int computeWoundThreshold(final int indice)
     {
         return (int) Math.ceil(indice / 2.0 + 2.5 - (indice + 1) / 22 / 2.0 - indice / 27 / 2.0);
     }
 
+    /**
+     * Computes Defence value given an attribute value
+     * @param indice the attribute value
+     * @return Defence value for the given attribute value
+     */
     public static int computeIndiceDefense(final int indice)
     {
         return (int) Math.ceil(indice / 2.0 + 1.5 - (indice + 1) / 7 / 2.0);
     }
 
+    /**
+     * Computes Mystic Armor given an attribute value
+     * @param indice the attribute value
+     * @return Wound Threshold for the given attribute value
+     */
     public static int computeMysticArmor(final int indice)
     {
         return (int) Math.ceil(Math.max(indice - 10, 0)  / 3.0);
     }
 
+    /**
+     * Computes Carrying Capacity given an attribute value
+     * @param indice the attribute value
+     * @return Carrying Capacity for the given attribute value
+     */
     public static int computeCarryingCapacity(final int indice)
     {
         return (int) Math.ceil(computeLiftingCapacity(indice) / 2.0);
     }
 
+    /**
+     * Computes Lifting Capacity given an attribute value
+     * @param indice the attribute value
+     * @return Lifting Capacity for the given attribute value
+     */
     public static int computeLiftingCapacity(final int indice)
     {
         if (indice <= 6)
@@ -90,11 +125,21 @@ public final class CharacterUtils
         }
     }
 
-    public static int computeRunningMouvement(final int indice)
+    /**
+     * Computes Running Movement given an attribute value
+     * @param indice the attribute value
+     * @return Running Movement for the given attribute value
+     */
+    public static int computeRunningMovement(final int indice)
     {
-        return computeCombatMouvement(indice) * 2;
+        return computeCombatMovement(indice) * 2;
     }
-    public static int computeCombatMouvement(final int indice)
+    /**
+     * Computes Combat Movement given an attribute value
+     * @param indice the attribute value
+     * @return Combat Movement for the given attribute value
+     */
+    public static int computeCombatMovement(final int indice)
     {
         if (indice < 6)
         {
@@ -110,6 +155,11 @@ public final class CharacterUtils
         }
     }
 
+    /**
+     * Retrieves all the weapons carried by a given character
+     * @param character a character to analyze
+     * @return all the weapons carried by the given character
+     */
     public static List<IEquipment> getWeapons(final EDCharacter character)
     {
         final List<IEquipment> weapons = new ArrayList<IEquipment>();
@@ -139,6 +189,11 @@ public final class CharacterUtils
         return false;
     }
 
+    /**
+     * Computes maximum karma points for a given character
+     * @param character a character to analyze
+     * @return Maximum karma points for the given character
+     */
     public static final int getMaxKarma(final EDCharacter character)
     {
         int max = character.getRace().getKarmaMax();
@@ -146,6 +201,13 @@ public final class CharacterUtils
         return max;
     }
 
+    /**
+     * Computes Perk value for a given character regarding a given Poincut
+     * @param character a character to analyze
+     * @param pointcut the Pointcut to focus analysis
+     * @param additionnalInfos additionnal informations linked to the Pointcut (Talent name, Attribute, etc.)
+     * @return Perk value for the given character regarding the given Poincut
+     */
     @SuppressWarnings("rawtypes")
     public static final double computePerks(final EDCharacter character, final Pointcuts pointcut, final Enum... additionnalInfos)
     {
@@ -229,9 +291,16 @@ public final class CharacterUtils
         }
         return Math.max(rank1, Math.max(rank2, rank3));
     }
+    /**
+     * Retrieves the Talent object of a given CHaracter given a Talent descriptor (enum)
+     * @param aCharacter a Character to analyze
+     * @param aTalent a Talent descriptor (enum)
+     * @return the Talent object of the given Character according to the given Talent descriptor (enum)
+     */
     public static Talent getTalent(final EDCharacter aCharacter, final Talents aTalent)
     {
         Talent talent = null;
+        // Search primary Discipline
         Discipline disc = aCharacter.getMainDiscipline();
         if (disc != null)
         {
@@ -239,6 +308,7 @@ public final class CharacterUtils
         }
         if (talent == null)
         {
+            // Search secondary Discipline
             disc = aCharacter.getSecondDiscipline();
             if (disc != null)
             {
@@ -246,22 +316,33 @@ public final class CharacterUtils
             }
             if (talent == null)
             {
+                // Search third Discipline
                 disc = aCharacter.getThirdDiscipline();
-            }
-            if (disc != null)
-            {
-                talent = disc.findTalent(aTalent);
+                if (disc != null)
+                {
+                    talent = disc.findTalent(aTalent);
+                }
             }
         }
         return talent;
     }
 
+    /**
+     * Checks whether a given character may buy Karma points
+     * @param aCharacter a character to analyze
+     * @return true if the given character can buy Karma points
+     */
     public static boolean canBuyKarma(final EDCharacter aCharacter)
     {
         // Check Legend points, max karma allowed
         return CharacterUtils.maxKarmaBuyable(aCharacter) > 0;
     }
 
+    /**
+     * Calculates how many Karma points a given character can buy. Checks legend points, karma pool and talent rank.
+     * @param aCharacter a character to analyze
+     * @return Max karma points that the given character can buy.
+     */
     public static int maxKarmaBuyable(final EDCharacter aCharacter)
     {
         // Level of talent Rituel de Karma
@@ -275,11 +356,22 @@ public final class CharacterUtils
         return Math.min(maxKarmaBuyable, Math.min(legend, maxKarma - availableKarma));
     }
 
+    /**
+     * Checks whether the character knows the given Talent or not.
+     * @param aCharacter a character to analyze
+     * @param aTalent a Talent to check
+     * @return true if the given character knows the given talent.
+     */
     public static boolean knowsTalent(final EDCharacter aCharacter, final Talents aTalent)
     {
         return CharacterUtils.getTalentRank(aCharacter, aTalent) > 0;
     }
 
+    /**
+     * Computes the dices to roll for the Initiative Test, given a character and its modificators (talents, equipment, etc.)
+     * @param character a character to analyze
+     * @return the dices to roll for the Initiative Test for the given character
+     */
     public static String computeInitiativeTest(final EDCharacter character)
     {
         final int initiativeRank = character.getInitiativeLevel();

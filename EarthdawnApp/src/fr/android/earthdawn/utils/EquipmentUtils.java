@@ -5,7 +5,7 @@ package fr.android.earthdawn.utils;
 
 import java.util.List;
 
-import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Attributes;
 import fr.android.earthdawn.character.enums.Mod;
 import fr.android.earthdawn.character.enums.Pointcuts;
 import fr.android.earthdawn.character.enums.Talents;
@@ -19,6 +19,11 @@ public final class EquipmentUtils
 {
     private EquipmentUtils() {}
 
+    /**
+     * Computes and returns the damage rank of a given piece of equipment (weapon)
+     * @param weapon a piece of equipment to evaluate
+     * @return the damage rank of the given piece of equipment (weapon)
+     */
     public static final int getDamageRank(final IEquipment weapon)
     {
         final List<Mod> mods = weapon.getBonuses();
@@ -34,6 +39,15 @@ public final class EquipmentUtils
     }
 
 
+    /**
+     * Computes the modificator for a given Pointcut, considering the equipment and modificators affecting the character.
+     * @param equipment a list of pieces of equipment carried by the character
+     * @param permMod a list of permanent modificators affecting the character
+     * @param tmpMod a list of temporary modificators affecting the character
+     * @param pointcut the Pointcut to evaluate.
+     * @param additionnalInfos additionnal informations linked to the Pointcut (talent name, attribute, etc.)
+     * @return
+     */
     @SuppressWarnings("rawtypes")
     public static double computeMods(final List<IEquipment> equipment, final List<Mod> permMod, final List<Mod> tmpMod,
             final Pointcuts pointcut, final Enum... additionnalInfos)
@@ -65,10 +79,10 @@ public final class EquipmentUtils
         double result = aResult;
         if (pointcut.equals(mod.getPointcut()))
         {
-            // Attributs
+            // Attributes
             if (Pointcuts.ATTRIBUT.equals(pointcut))
             {
-                if(((Attributs) additionnalInfos[0]).equals(mod.getOtherInfos()[0]))
+                if(((Attributes) additionnalInfos[0]).equals(mod.getOtherInfos()[0]))
                 {
                     result += mod.getModificator();
                 }

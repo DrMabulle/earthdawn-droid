@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import fr.android.earthdawn.character.enums.Attributs;
+import fr.android.earthdawn.character.enums.Attributes;
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Mod;
@@ -47,7 +47,7 @@ public class EDCharacter implements Serializable
     private int karmaBought;
     private int karmaSpent;
 
-    private final Attribut[] attributs = new Attribut[7];
+    private final Attribute[] attributs = new Attribute[7];
 
     private Discipline discipline1;
     private Discipline discipline2;
@@ -75,21 +75,24 @@ public class EDCharacter implements Serializable
         this.height = aHeight;
         this.weight = aWeight;
         this.race = aRace;
+        discipline1 = null;
+        discipline2 = null;
+        discipline3 = null;
 
         // Dextérité
-        attributs[Attributs.DEX.getId()] = new Attribut(dexInd + aRace.getBonusDex(), dexEvol);
+        attributs[Attributes.DEX.getId()] = new Attribute(dexInd + aRace.getBonusDex(), dexEvol);
         // Force
-        attributs[Attributs.STR.getId()] = new Attribut(strInd + aRace.getBonusStr(), strEvol);
+        attributs[Attributes.STR.getId()] = new Attribute(strInd + aRace.getBonusStr(), strEvol);
         // Endurance
-        attributs[Attributs.END.getId()] = new Attribut(endInd + aRace.getBonusEnd(), endEvol);
+        attributs[Attributes.END.getId()] = new Attribute(endInd + aRace.getBonusEnd(), endEvol);
         // Perception
-        attributs[Attributs.PER.getId()] = new Attribut(perInd + aRace.getBonusPer(), perEvol);
+        attributs[Attributes.PER.getId()] = new Attribute(perInd + aRace.getBonusPer(), perEvol);
         // Velonté
-        attributs[Attributs.VOL.getId()] = new Attribut(volInd + aRace.getBonusVol(), volEvol);
+        attributs[Attributes.VOL.getId()] = new Attribute(volInd + aRace.getBonusVol(), volEvol);
         // Charisme
-        attributs[Attributs.CHA.getId()] = new Attribut(chaInd + aRace.getBonusCha(), chaEvol);
+        attributs[Attributes.CHA.getId()] = new Attribute(chaInd + aRace.getBonusCha(), chaEvol);
         // Null
-        attributs[Attributs.NUL.getId()] = new Attribut(0, 0);
+        attributs[Attributes.NUL.getId()] = new Attribute(0, 0);
     }
 
     public Discipline getMainDiscipline()
@@ -373,15 +376,15 @@ public class EDCharacter implements Serializable
         return race.getKarmaInit() + karmaBought - karmaSpent;
     }
 
-    public int getAttributIndice(final Attributs attribut)
+    public int getAttributIndice(final Attributes attribut)
     {
         return attributs[attribut.getId()].getResultingIndice() + computeBonusesInt(attribut);
     }
-    public int getAttributEvols(final Attributs attribut)
+    public int getAttributEvols(final Attributes attribut)
     {
         return attributs[attribut.getId()].getEvol();
     }
-    public int getAttributRank(final Attributs attribut)
+    public int getAttributRank(final Attributes attribut)
     {
         return RankManager.getRank(getAttributIndice(attribut));
     }
@@ -390,19 +393,19 @@ public class EDCharacter implements Serializable
 
     public int getPhysicalDefense()
     {
-        return CharacterUtils.computeIndiceDefense(getAttributIndice(Attributs.DEX)) + race.getBonusPhyDef() + computeBonusesInt(Pointcuts.DEF_PHY);
+        return CharacterUtils.computeIndiceDefense(getAttributIndice(Attributes.DEX)) + race.getBonusPhyDef() + computeBonusesInt(Pointcuts.DEF_PHY);
     }
     public int getMagicalDefense()
     {
-        return CharacterUtils.computeIndiceDefense(getAttributIndice(Attributs.PER)) + computeBonusesInt(Pointcuts.DEF_MAG);
+        return CharacterUtils.computeIndiceDefense(getAttributIndice(Attributes.PER)) + computeBonusesInt(Pointcuts.DEF_MAG);
     }
     public int getSocialDefense()
     {
-        return CharacterUtils.computeIndiceDefense(getAttributIndice(Attributs.CHA)) + computeBonusesInt(Pointcuts.DEF_SOC);
+        return CharacterUtils.computeIndiceDefense(getAttributIndice(Attributes.CHA)) + computeBonusesInt(Pointcuts.DEF_SOC);
     }
     public int getMysticArmor()
     {
-        return CharacterUtils.computeMysticArmor(getAttributIndice(Attributs.VOL)) + computeBonusesInt(Pointcuts.ARM_MYS);
+        return CharacterUtils.computeMysticArmor(getAttributIndice(Attributes.VOL)) + computeBonusesInt(Pointcuts.ARM_MYS);
     }
     public int getPhysicalArmor()
     {
@@ -411,42 +414,42 @@ public class EDCharacter implements Serializable
 
     protected int getDeathThreshold()
     {
-        return CharacterUtils.computeDeathThreshold(getAttributIndice(Attributs.END));
+        return CharacterUtils.computeDeathThreshold(getAttributIndice(Attributes.END));
     }
 
     protected int getUnconsciousnessThreshold()
     {
-        return CharacterUtils.computeUnconsciousnessThreshold(getAttributIndice(Attributs.END));
+        return CharacterUtils.computeUnconsciousnessThreshold(getAttributIndice(Attributes.END));
     }
 
     public int getWoundThreshold()
     {
-        return CharacterUtils.computeWoundThreshold(getAttributIndice(Attributs.END)) + race.getBonusWound() + computeBonusesInt(Pointcuts.WOUND_THRESHOLD);
+        return CharacterUtils.computeWoundThreshold(getAttributIndice(Attributes.END)) + race.getBonusWound() + computeBonusesInt(Pointcuts.WOUND_THRESHOLD);
     }
 
     public int getLiftingCapacity()
     {
-        return CharacterUtils.computeLiftingCapacity(getAttributIndice(Attributs.STR));
+        return CharacterUtils.computeLiftingCapacity(getAttributIndice(Attributes.STR));
     }
 
     public int getCarryingCapacity()
     {
-        return CharacterUtils.computeCarryingCapacity(getAttributIndice(Attributs.STR));
+        return CharacterUtils.computeCarryingCapacity(getAttributIndice(Attributes.STR));
     }
 
     public int getRunningMouvement()
     {
-        return CharacterUtils.computeRunningMouvement(getAttributIndice(Attributs.DEX) + race.getBonusMvt());
+        return CharacterUtils.computeRunningMovement(getAttributIndice(Attributes.DEX) + race.getBonusMvt());
     }
 
     public int getCombatMouvement()
     {
-        return CharacterUtils.computeCombatMouvement(getAttributIndice(Attributs.DEX) + race.getBonusMvt());
+        return CharacterUtils.computeCombatMovement(getAttributIndice(Attributes.DEX) + race.getBonusMvt());
     }
 
     public int getInitiativeLevel()
     {
-        return getAttributRank(Attributs.DEX) + computeBonusesInt(Pointcuts.INIT);
+        return getAttributRank(Attributes.DEX) + computeBonusesInt(Pointcuts.INIT);
     }
 
     public int getTalentLevel(final Talent talent, final Discipline discipline)
@@ -467,7 +470,7 @@ public class EDCharacter implements Serializable
         return getAttributRank(skill.getAttribut()) + skill.getRank();
     }
 
-    public int computeBonusesInt(final Attributs attribut)
+    public int computeBonusesInt(final Attributes attribut)
     {
         return (int) EquipmentUtils.computeMods(equipment, modPerm, modTmp, Pointcuts.ATTRIBUT, attribut);
     }
@@ -511,7 +514,7 @@ public class EDCharacter implements Serializable
 
     public int getRecoveryRank()
     {
-        return getAttributRank(Attributs.END) + computeBonusesInt(Pointcuts.RECOVERY_LVL);
+        return getAttributRank(Attributes.END) + computeBonusesInt(Pointcuts.RECOVERY_LVL);
     }
 
     public double getNbRecoveryTests()
@@ -523,7 +526,7 @@ public class EDCharacter implements Serializable
         // 20+ : 4
         // + bonus
         final int results = computeBonusesInt(Pointcuts.RECOVERY_TESTS);
-        final int endIndice = getAttributIndice(Attributs.END);
+        final int endIndice = getAttributIndice(Attributes.END);
         if (endIndice < 3)
         {
             return results + 0.5;

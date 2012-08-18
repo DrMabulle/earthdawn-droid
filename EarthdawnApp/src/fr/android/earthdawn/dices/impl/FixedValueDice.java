@@ -13,36 +13,60 @@ public class FixedValueDice implements Rollable
 {
     private final int value;
 
+    /**
+     * Default constructor
+     * @param aValue value of the fixed value dice
+     */
     public FixedValueDice(final int aValue)
     {
         super();
         this.value = aValue;
     }
 
+    /**
+     * {@inheritDoc}
+     * @see fr.android.earthdawn.dices.Rollable#roll()
+     */
     @Override
     public int roll()
     {
         return value;
     }
 
+    /**
+     * {@inheritDoc}
+     * @see fr.android.earthdawn.dices.Rollable#isMaxValue()
+     */
     @Override
     public boolean isMaxValue()
     {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     * @see fr.android.earthdawn.dices.Rollable#isMinValue()
+     */
     @Override
     public boolean isMinValue()
     {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     * @see fr.android.earthdawn.dices.Rollable#getPreviousResult()
+     */
     @Override
     public int getPreviousResult()
     {
         return value;
     }
 
+    /**
+     * {@inheritDoc}
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
     @Override
     public int compareTo(final Rollable dice)
     {
@@ -53,6 +77,10 @@ public class FixedValueDice implements Rollable
         return -1;
     }
 
+    /**
+     * {@inheritDoc}
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString()
     {
@@ -62,6 +90,10 @@ public class FixedValueDice implements Rollable
         return builder.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode()
     {
@@ -71,6 +103,10 @@ public class FixedValueDice implements Rollable
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(final Object obj)
     {

@@ -24,6 +24,10 @@ public final class EquipmentManager
 
     private EquipmentManager() {}
 
+    /**
+     * Returns the list of existing Weapons in EarthDawn
+     * @return the list of existing Weapons in EarthDawn
+     */
     public static List<IEquipment> getWeaponList()
     {
         if (weapons == null)
@@ -32,6 +36,10 @@ public final class EquipmentManager
         }
         return weapons;
     }
+    /**
+     * Returns the list of existing Armors in EarthDawn
+     * @return the list of existing Armors in EarthDawn
+     */
     public static List<IEquipment> getArmorList()
     {
         if (armors == null)
@@ -40,6 +48,10 @@ public final class EquipmentManager
         }
         return armors;
     }
+    /**
+     * Returns the list of existing Defenses in EarthDawn
+     * @return the list of existing Defenses in EarthDawn
+     */
     public static List<IEquipment> getDefensesList()
     {
         if (defenses == null)
