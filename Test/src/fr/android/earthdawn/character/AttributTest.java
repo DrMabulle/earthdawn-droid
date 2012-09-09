@@ -4,9 +4,6 @@
 package fr.android.earthdawn.character;
 
 import junit.framework.TestCase;
-
-import org.junit.Test;
-
 import fr.android.earthdawn.managers.RankManager;
 
 /**
@@ -15,20 +12,12 @@ import fr.android.earthdawn.managers.RankManager;
  */
 public class AttributTest extends TestCase
 {
-    /**
-     * Test method for {@link fr.android.earthdawn.character.Attribute#getResultingIndice()}.
-     */
-    @Test
     public void testGetResultingIndice()
     {
         final Attribute attribut = new Attribute(15, 1);
         assertEquals(16, attribut.getResultingIndice());
     }
 
-    /**
-     * Test method for {@link fr.android.earthdawn.character.Attribute#getRank()}.
-     */
-    @Test
     public void testGetRank()
     {
         // Indice 1 - rank 2
@@ -73,5 +62,4 @@ public class AttributTest extends TestCase
         attribut.incrementIndice();
         assertEquals(11, RankManager.getRank(attribut.getResultingIndice()));
     }
-
 }

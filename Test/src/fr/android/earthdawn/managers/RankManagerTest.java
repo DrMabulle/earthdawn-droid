@@ -1,14 +1,10 @@
 package fr.android.earthdawn.managers;
 
 import junit.framework.TestCase;
-
-import org.junit.Test;
-
 import fr.android.earthdawn.dices.DicesLauncher;
 
 public class RankManagerTest extends TestCase
 {
-    @Test
     public void testGetRank()
     {
         assertEquals(0, RankManager.getRank(-1));
@@ -25,7 +21,6 @@ public class RankManagerTest extends TestCase
         assertEquals(13, RankManager.getRank(34));
     }
 
-    @Test
     public void testGetDicesFromRank()
     {
         assertEquals("1D4 -2", RankManager.getDicesFromRank(1));
@@ -35,8 +30,6 @@ public class RankManagerTest extends TestCase
         assertEquals("1D20 + 1D8 + 1D6", RankManager.getDicesFromRank(20));
     }
 
-
-    @Test
     public void testRanks()
     {
         for (int i = 0; i < 101; i++)
@@ -45,7 +38,6 @@ public class RankManagerTest extends TestCase
         }
     }
 
-    @Test
     public void testGetDicesFromRankWithBonus()
     {
         assertEquals("1D4 -2 + 1", RankManager.getDicesFromRank(1, 1));

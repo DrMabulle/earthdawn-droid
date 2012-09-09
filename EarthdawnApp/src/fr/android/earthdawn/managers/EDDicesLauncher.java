@@ -6,6 +6,7 @@ package fr.android.earthdawn.managers;
 import java.util.LinkedList;
 
 import android.content.Context;
+import android.util.Log;
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.dices.DicesLauncher;
 import fr.android.earthdawn.utils.NumberUtils;
@@ -144,6 +145,7 @@ public final class EDDicesLauncher
     {
         // <Talent> : <result>
         final Roll roll = rollsHistory.get(aPosition);
+        Log.w("EDDicesLauncher", "Roll Name Id is: " + roll.rollNameId + ", roll kind: " + roll.rollKind);
         return ctx.getString(R.string.roller_history_info, ctx.getString(roll.rollNameId), Integer.toString(roll.rollResult));
     }
     /**

@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.TestCase;
-
-import org.junit.Test;
-
 import fr.android.earthdawn.R;
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributes;
@@ -24,7 +21,6 @@ import fr.android.earthdawn.managers.EquipmentManager;
 
 public class CharacterUtilsTest extends TestCase
 {
-    @Test
     public void testComputeDeathThreshold()
     {
         assertEquals(19, CharacterUtils.computeDeathThreshold(1));
@@ -42,7 +38,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(58, CharacterUtils.computeDeathThreshold(30));
     }
 
-    @Test
     public void testComputeUnconsciousnessThreshold()
     {
         assertEquals(10, CharacterUtils.computeUnconsciousnessThreshold(1));
@@ -66,7 +61,6 @@ public class CharacterUtilsTest extends TestCase
     }
 
 
-    @Test
     public void testComputeWoundThreshold()
     {
         assertEquals(3, CharacterUtils.computeWoundThreshold(1));
@@ -95,7 +89,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(17, CharacterUtils.computeWoundThreshold(30));
     }
 
-    @Test
     public void testComputeIndiceDefense()
     {
         assertEquals(2, CharacterUtils.computeIndiceDefense(1));
@@ -123,7 +116,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(15, CharacterUtils.computeIndiceDefense(30));
     }
 
-    @Test
     public void testComputeMysticArmor()
     {
         assertEquals(0, CharacterUtils.computeMysticArmor(1));
@@ -141,7 +133,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(7, CharacterUtils.computeMysticArmor(30));
     }
 
-    @Test
     public void testComputeCombatMouvement()
     {
         assertEquals(6, CharacterUtils.computeCombatMovement(1));
@@ -163,7 +154,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(70, CharacterUtils.computeCombatMovement(30));
     }
 
-    @Test
     public void testComputeRunningMouvement()
     {
         assertEquals(12, CharacterUtils.computeRunningMovement(1));
@@ -185,7 +175,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(140, CharacterUtils.computeRunningMovement(30));
     }
 
-    @Test
     public void testComputeLiftingCapacity()
     {
         assertEquals(5, CharacterUtils.computeLiftingCapacity(1));
@@ -207,7 +196,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(740, CharacterUtils.computeLiftingCapacity(30));
     }
 
-    @Test
     public void testComputeCarryingCapacity()
     {
         assertEquals(3, CharacterUtils.computeCarryingCapacity(1));
@@ -229,8 +217,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(370, CharacterUtils.computeCarryingCapacity(30));
     }
 
-
-    @Test
     public void testGetWeapons()
     {
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
@@ -247,7 +233,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(EquipmentManager.getWeaponList().get(0), weapons.get(0));
     }
 
-    @Test
     public void testGetMaxKarma()
     {
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
@@ -274,7 +259,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(65, CharacterUtils.getMaxKarma(elfe));
     }
 
-    @Test
     public void testComputePerks()
     {
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
@@ -291,7 +275,6 @@ public class CharacterUtilsTest extends TestCase
         assertTrue(CharacterUtils.computePerks(elfe, Pointcuts.KARMA_USE, Attributes.VOL) == 3);
     }
 
-    @Test
     public void testMaxKarmaBuyable()
     {
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
@@ -349,7 +332,6 @@ public class CharacterUtilsTest extends TestCase
         assertTrue(CharacterUtils.canBuyKarma(elfe));
     }
 
-    @Test
     public void testComputeInitiativeTest()
     {
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
@@ -371,7 +353,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals("1D8 + 1D6 -2", CharacterUtils.computeInitiativeTest(elfe));
     }
 
-    @Test
     public void testGetTalent()
     {
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
@@ -403,7 +384,6 @@ public class CharacterUtilsTest extends TestCase
         assertTrue(talent.isRollable());
     }
 
-    @Test
     public void testGetTalentRank()
     {
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
@@ -434,7 +414,6 @@ public class CharacterUtilsTest extends TestCase
         assertEquals(12, elfe.getTalentRank(talent, discipline));
     }
 
-    @Test
     public void testKnowsTalent()
     {
         final EDCharacter elfe = new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);

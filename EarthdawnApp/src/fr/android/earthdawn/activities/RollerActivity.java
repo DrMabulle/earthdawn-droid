@@ -62,7 +62,7 @@ public class RollerActivity extends Activity implements OnClickListener
             else
             {
                 // Open result popup
-                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, dicesInfos, 0);
+                EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.free_roll, dicesInfos, 0);
                 AlertDialogUtils.showDialogResult(getFragmentManager());
             }
         }
@@ -72,7 +72,7 @@ public class RollerActivity extends Activity implements OnClickListener
             final int rank = rankPicker.getValue();
 
             // Open result popup
-            EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.empty, rank, 0);
+            EDDicesLauncher.rollDices(EDDicesLauncher.ROLL_OTHER, R.string.free_roll, rank, 0);
             AlertDialogUtils.showDialogResult(getFragmentManager());
         }
 

@@ -4,11 +4,8 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import org.junit.Test;
-
 public class DisciplineTest extends TestCase
 {
-    @Test
     public void testGetTalentsUpTo()
     {
         final Discipline discipline = new Discipline(Disciplines.Guerrier, 6);
@@ -23,7 +20,6 @@ public class DisciplineTest extends TestCase
         }
     }
 
-    @Test
     public void testGetTalentRank()
     {
         final Discipline discipline = new Discipline(Disciplines.Guerrier, 10);

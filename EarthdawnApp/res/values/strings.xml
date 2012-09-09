@@ -156,8 +156,8 @@
     <string name="msg_strain_healed">Fatigue récupérée.</string>
     <string name="msg_loot_thread">Filament %1$s (%2$s PL)</string>
     <string name="menu_bonus_malus">Bonus / Malus</string>
-    <string name="menu_subir_degats">Subir des dégats</string>
-    <string name="menu_jet_degats">Jet dégats</string>
+    <string name="menu_subir_degats">Subir des dégâts</string>
+    <string name="menu_jet_degats">Jet de dégâts</string>
     <string name="menu_health_status">Etat de santé</string>
     <string name="menu_heal_strain">Récupérer fatigue</string>
     <string name="menu_heal_damages">Jet de récupération</string>
@@ -188,6 +188,7 @@
     <string name="init">Initiative</string>
     <string name="damages">Dommages</string>
     <string name="skill">Compétence</string>
+    <string name="free_roll">Dés Libres</string>
     <string name="empty"></string>
     <string name="not_yet_implemented">Not yet implemented</string>
     <string name="talent_with_karma_title">Talent : %1$s</string>

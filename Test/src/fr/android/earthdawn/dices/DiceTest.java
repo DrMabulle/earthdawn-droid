@@ -4,9 +4,6 @@
 package fr.android.earthdawn.dices;
 
 import junit.framework.TestCase;
-
-import org.junit.Test;
-
 import fr.android.earthdawn.dices.impl.Dice;
 
 /**
@@ -15,11 +12,6 @@ import fr.android.earthdawn.dices.impl.Dice;
  */
 public class DiceTest extends TestCase
 {
-
-    /**
-     * Test method for {@link fr.android.earthdawn.dices.impl.Dice#roll()}.
-     */
-    @Test
     public void testRoll()
     {
         final Dice dice = new Dice(20);
@@ -45,10 +37,6 @@ public class DiceTest extends TestCase
         System.out.println(dice.toString() + " rolled " + result);
     }
 
-    /**
-     * Test method for {@link fr.android.earthdawn.dices.impl.Dice#getPreviousResult()}.
-     */
-    @Test
     public void testGetPreviousResult()
     {
         final Dice dice = new Dice(20);
@@ -84,10 +72,6 @@ public class DiceTest extends TestCase
         System.out.println(dice.toString() + " rolled " + result1);
     }
 
-    /**
-     * Test method for {@link fr.android.earthdawn.dices.impl.Dice#isMaxValue()}.
-     */
-    @Test
     public void testIsMaxValue()
     {
         final Dice dice = new Dice(20);
@@ -103,10 +87,6 @@ public class DiceTest extends TestCase
         assertFalse(dice.isMinValue());
     }
 
-    /**
-     * Test method for {@link fr.android.earthdawn.dices.impl.Dice#isMinValue()}.
-     */
-    @Test
     public void testIsMinValue()
     {
         final Dice dice = new Dice(20);
@@ -121,5 +101,4 @@ public class DiceTest extends TestCase
         assertFalse(dice.isMaxValue());
         assertTrue(dice.isMinValue());
     }
-
 }

@@ -1,9 +1,6 @@
 package fr.android.earthdawn.character;
 
 import junit.framework.TestCase;
-
-import org.junit.Test;
-
 import fr.android.earthdawn.character.enums.Discipline;
 import fr.android.earthdawn.character.enums.Disciplines;
 import fr.android.earthdawn.character.enums.Races;
@@ -13,7 +10,6 @@ import fr.android.earthdawn.managers.EquipmentManager;
 
 public class CharacterTest extends TestCase
 {
-
     EDCharacter elfe =             new EDCharacter("elfe", "Mâle", 120, 225, 421, Races.Elfe, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
     EDCharacter humain =       new EDCharacter("humain", "Mâle", 120, 225, 421, Races.Humain, 17, 0, 15, 0, 13, 0, 13, 0, 11, 0, 8, 0);
     EDCharacter nain =             new EDCharacter("nain", "Mâle", 120, 225, 421, Races.Nain, 17, 0, 15, 0, 13, 0, 12, 0, 11, 0, 8, 0);
@@ -23,8 +19,6 @@ public class CharacterTest extends TestCase
     EDCharacter troll =          new EDCharacter("troll", "Mâle", 120, 225, 421, Races.Troll, 17, 0, 15, 0, 13, 0, 10, 0, 11, 0, 8, 0);
     EDCharacter tskrang =    new EDCharacter("tskrang", "Mâle", 120, 225, 421, Races.Tskrang, 17, 0, 15, 0, 13, 0, 10, 0, 11, 0, 8, 0);
 
-
-    @Test
     public void testGetTalentRank()
     {
         obsidien.setMainDiscipline(Disciplines.Guerrier, 6);
@@ -61,7 +55,6 @@ public class CharacterTest extends TestCase
         tskrang.setMainDiscipline(Disciplines.Guerrier, 1);
     }
 
-    @Test
     public void testGetPhysicalDefense()
     {
         initDisciplines();
@@ -75,7 +68,7 @@ public class CharacterTest extends TestCase
         assertEquals(9, troll.getPhysicalDefense());
         assertEquals(10, tskrang.getPhysicalDefense());
     }
-    @Test
+
     public void testGetMagicalDefense()
     {
         initDisciplines();
@@ -89,7 +82,7 @@ public class CharacterTest extends TestCase
         assertEquals(6, troll.getMagicalDefense());
         assertEquals(6, tskrang.getMagicalDefense());
     }
-    @Test
+
     public void testGetSocialDefense()
     {
         initDisciplines();
@@ -103,7 +96,7 @@ public class CharacterTest extends TestCase
         assertEquals(5, troll.getSocialDefense());
         assertEquals(6, tskrang.getSocialDefense());
     }
-    @Test
+
     public void testGetMysticArmor()
     {
         initDisciplines();
@@ -117,7 +110,7 @@ public class CharacterTest extends TestCase
         assertEquals(1, troll.getMysticArmor());
         assertEquals(1, tskrang.getMysticArmor());
     }
-    @Test
+
     public void testGetPhysicalArmor()
     {
         initDisciplines();
@@ -131,7 +124,6 @@ public class CharacterTest extends TestCase
         assertEquals(9, obsidien.getPhysicalArmor());
     }
 
-    @Test
     public void testGetWoundThreshold()
     {
         initDisciplines();
@@ -146,7 +138,6 @@ public class CharacterTest extends TestCase
         assertEquals(10, tskrang.getWoundThreshold());
     }
 
-    @Test
     public void testGetMouvement()
     {
         assertEquals(40, elfe.getCombatMouvement());
@@ -167,7 +158,6 @@ public class CharacterTest extends TestCase
         assertEquals(72, tskrang.getRunningMouvement());
     }
 
-    @Test
     public void testGetTransportCapacity()
     {
         assertEquals(140, elfe.getLiftingCapacity());
@@ -188,7 +178,6 @@ public class CharacterTest extends TestCase
         assertEquals(70, tskrang.getCarryingCapacity());
     }
 
-    @Test
     public void testCheckCircle()
     {
         // Valeurs accept�es
@@ -209,7 +198,6 @@ public class CharacterTest extends TestCase
         assertFalse(EDCharacter.checkCircle(22));
     }
 
-    @Test
     public void testCheckCircles()
     {
         // Valeurs accept�es
@@ -231,7 +219,6 @@ public class CharacterTest extends TestCase
         assertFalse(EDCharacter.checkCircles(16, 15));
     }
 
-    @Test
     public void testGetHealth()
     {
         elfe.setMainDiscipline(Disciplines.Archer, 6);

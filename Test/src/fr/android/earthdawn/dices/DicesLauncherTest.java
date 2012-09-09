@@ -5,16 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
-
-import org.junit.Test;
-
 import fr.android.earthdawn.dices.impl.Dice;
 import fr.android.earthdawn.dices.impl.FixedValueDice;
 import fr.android.earthdawn.managers.RankManager;
 
 public class DicesLauncherTest extends TestCase
 {
-    @Test
     public void testTestInputDicesInfos()
     {
         assertTrue(DicesLauncher.testInputDicesInfos("1D20"));
@@ -27,7 +23,6 @@ public class DicesLauncherTest extends TestCase
         assertFalse(DicesLauncher.testInputDicesInfos("1D20 3"));
     }
 
-    @Test
     public void testRollDicesRank()
     {
         int tmp;
@@ -38,7 +33,6 @@ public class DicesLauncherTest extends TestCase
         }
     }
 
-    @Test
     public void testRollDicesRank2()
     {
         DicesLauncher.logs.setLength(0);
@@ -48,7 +42,6 @@ public class DicesLauncherTest extends TestCase
         System.out.println(result);
     }
 
-    @Test
     public void testRollDicesInfos()
     {
         int tmp;
@@ -59,7 +52,6 @@ public class DicesLauncherTest extends TestCase
         }
     }
 
-    @Test
     public void testRollDicesInfos2()
     {
         DicesLauncher.logs.setLength(0);
@@ -69,7 +61,6 @@ public class DicesLauncherTest extends TestCase
         System.out.println(result);
     }
 
-    @Test
     public void testParseDicesInfos()
     {
         // Test 1
@@ -90,7 +81,6 @@ public class DicesLauncherTest extends TestCase
         assertEquals("D4", dices.get(4).toString());
     }
 
-    @Test
     public void testRollDicesDices()
     {
         final List<Rollable> dices = DicesLauncher.parseDicesInfos("1D20");
@@ -102,7 +92,6 @@ public class DicesLauncherTest extends TestCase
         }
     }
 
-    @Test
     public void testSimpleRoll()
     {
         final List<Rollable> dices = DicesLauncher.parseDicesInfos("5D20");
@@ -114,7 +103,6 @@ public class DicesLauncherTest extends TestCase
         }
     }
 
-    @Test
     public void testManageRerolls()
     {
         final List<Rollable> dices = DicesLauncher.parseDicesInfos("5D20");
@@ -126,7 +114,6 @@ public class DicesLauncherTest extends TestCase
         }
     }
 
-    @Test
     public void testRemoveCancelledDices1()
     {
         final List<Rollable> dicesMax = new ArrayList<Rollable>();
@@ -148,7 +135,6 @@ public class DicesLauncherTest extends TestCase
         assertEquals(new Dice(6), dicesMax.get(0));
     }
 
-    @Test
     public void testRemoveCancelledDices2()
     {
         final List<Rollable> dicesMax = new ArrayList<Rollable>();
@@ -184,7 +170,6 @@ public class DicesLauncherTest extends TestCase
         return dice;
     }
 
-    @Test
     public void testRerollMaxs()
     {
         DicesLauncher.logs.setLength(0);
@@ -201,7 +186,6 @@ public class DicesLauncherTest extends TestCase
         assertTrue(result > 6);
     }
 
-    @Test
     public void testRerollMaxs2()
     {
         DicesLauncher.logs.setLength(0);
@@ -224,7 +208,6 @@ public class DicesLauncherTest extends TestCase
         System.out.println(result);
     }
 
-    @Test
     public void testRerollMins()
     {
         DicesLauncher.logs.setLength(0);
@@ -241,7 +224,6 @@ public class DicesLauncherTest extends TestCase
         assertTrue(result < -6);
     }
 
-    @Test
     public void testRerollMins2()
     {
         DicesLauncher.logs.setLength(0);
@@ -264,7 +246,6 @@ public class DicesLauncherTest extends TestCase
         System.out.println(result);
     }
 
-    @Test
     public void testStatistiques()
     {
         runLotsOfRolls(6);
@@ -279,7 +260,7 @@ public class DicesLauncherTest extends TestCase
 
     private static void runLotsOfRolls(final int rank)
     {
-        final double nbTests = 500000;
+        final double nbTests = 5000;
         int sum = 0;
         for (int i = 0; i < nbTests; i++)
         {

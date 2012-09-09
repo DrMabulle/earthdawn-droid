@@ -2,11 +2,8 @@ package fr.android.earthdawn.utils;
 
 import junit.framework.TestCase;
 
-import org.junit.Test;
-
 public class NumberUtilsTest extends TestCase
 {
-    @Test
     public void testFormatNumber()
     {
         assertEquals("0.25", NumberUtils.format(0.25));
@@ -16,7 +13,6 @@ public class NumberUtilsTest extends TestCase
         assertEquals("32", NumberUtils.format(32));
     }
 
-    @Test
     public void testEnsureMinimum()
     {
         assertEquals(5, NumberUtils.ensureMinimum(5, 1));

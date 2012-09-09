@@ -24,6 +24,13 @@ public class EarthDawnActivityTest extends ActivityInstrumentationTestCase2<Eart
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
+    @Override
+    protected void tearDown() throws Exception
+    {
+        solo.finishOpenedActivities();
+        super.tearDown();
+    }
+
     @Smoke
     public void testButtons() throws Exception
     {

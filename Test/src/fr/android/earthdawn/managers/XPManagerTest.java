@@ -5,10 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.TestCase;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import fr.android.earthdawn.character.EDCharacter;
 import fr.android.earthdawn.character.enums.Attributes;
 import fr.android.earthdawn.character.enums.Discipline;
@@ -28,7 +24,6 @@ public class XPManagerTest extends TestCase
     private EDCharacter forgeron;
 
     @Override
-    @Before
     public void setUp() throws Exception
     {
         super.setUp();
@@ -175,14 +170,12 @@ public class XPManagerTest extends TestCase
         forgeron.incrementKarmaBought(20);
     }
 
-    @Test
     public void testEvaluateCharacter()
     {
         assertEquals(57900, XPManager.evaluateCharacter(malack));
         assertEquals(81900, XPManager.evaluateCharacter(forgeron));
     }
 
-    @Test
     public void testEvaluateDiscipline()
     {
         assertEquals(50000, XPManager.evaluateDiscipline(malack.getMainDiscipline()));
@@ -192,7 +185,6 @@ public class XPManagerTest extends TestCase
         assertEquals(12300, XPManager.evaluateDiscipline(forgeron.getSecondDiscipline()));
     }
 
-    @Test
     public void testEvaluateTalent()
     {
         final Talent talent1 = new Talent(Talents.AbriVegetal, 1, false, null, null);
@@ -235,7 +227,6 @@ public class XPManagerTest extends TestCase
         assertEquals(97900, XPManager.evaluateTalent(talent8, 10));
     }
 
-    @Test
     public void testEvaluateAttributs()
     {
         assertEquals(0, XPManager.evaluateAttributes(0));
@@ -246,13 +237,11 @@ public class XPManagerTest extends TestCase
         assertEquals(13100, XPManager.evaluateAttributes(5));
     }
 
-    @Test
     public void testEvaluateEquipment()
     {
         assertEquals(4000, XPManager.evaluateEquipment(forgeron));
     }
 
-    @Test
     public void testEvaluateSkills()
     {
         malack.addSkill(new Skill("Test1", Attributes.DEX, true, 1)); // 200 PL
@@ -268,10 +257,8 @@ public class XPManagerTest extends TestCase
         assertEquals(1900, XPManager.evaluateSkills(malack.getSkills()));
     }
 
-    @Test
     public void testEvaluateKarma()
     {
         assertEquals(1000, XPManager.evaluateKarma(100));
     }
-
 }

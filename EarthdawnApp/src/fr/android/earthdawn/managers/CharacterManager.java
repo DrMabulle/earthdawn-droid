@@ -5,6 +5,7 @@ package fr.android.earthdawn.managers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import android.content.Context;
@@ -402,21 +403,35 @@ public final class CharacterManager
      * @param ctx Android Context
      * @return all character available for loading
      */
-    public static String[] getAvailableCharacters(final Context ctx)
+    public static List<String> getAvailableCharacters(final Context ctx)
     {
+        final List<String> names = new ArrayList<String>(10);
+        final List<String> tmp = new ArrayList<String>(4);
+
+        // Load from code
+        tmp.add(FORGERON);
+        tmp.add(VOLEUR);
+        tmp.add(MALACK);
+        tmp.add(PURIFICATEUR);
+
+        // Load from file system
         final String[] files = ctx.fileList();
         if (files != null && files.length > 0)
         {
-            final String[] result = new String[files.length];
-            for (int i = 0; i < files.length; i++)
+            for (final String file : files)
             {
-                result[i] = files[i].replace(".ser", "");
+                names.add(file.replace(".ser", ""));
             }
-            return result;
         }
-        // TODO
-       // return new String[] {MALACK, ARDAMIR, FORGERON, PURIFICATEUR, MENESTREL};
-        return new String[] {MALACK, FORGERON, PURIFICATEUR, VOLEUR};
+
+        // Suppress/avoid double entries
+        names.removeAll(tmp);
+        names.addAll(tmp);
+
+        // Sort names for better looking
+        Collections.sort(names);
+
+        return names;
     }
 
 }

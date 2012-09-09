@@ -1,5 +1,7 @@
 package fr.android.earthdawn.activities;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +24,7 @@ public class ChooseCharacterActivity extends Activity implements View.OnClickLis
 
         final LinearLayout ll = (LinearLayout) findViewById(R.id.choice);
 
-        final String[] charNames = CharacterManager.getAvailableCharacters(this);
+        final List<String> charNames = CharacterManager.getAvailableCharacters(this);
 
         final LayoutParams layoutParams = new LayoutParams(250, 100);
         layoutParams.setMargins(25, 25, 25, 25);
