@@ -217,11 +217,11 @@ public class DicesLauncherTest extends TestCase
         dicesMax.add(initDiceToValue(4, 4));
 
         final int result = DicesLauncher.rerollMaxs(dicesMax);
-        assertTrue(result > 6);
 
         System.out.println("#### Test Reroll Max ####");
         System.out.println(DicesLauncher.getRollLogs());
         System.out.println(result);
+        assertTrue(result > 6);
     }
 
     @Test
@@ -257,11 +257,11 @@ public class DicesLauncherTest extends TestCase
         dicesMin.add(initDiceToValue(4, 1));
 
         final int result = DicesLauncher.rerollMins(dicesMin);
-        assertTrue(result < -6);
-
         System.out.println("#### Test Reroll Min ####");
         System.out.println(DicesLauncher.getRollLogs());
         System.out.println(result);
+        assertTrue(result < -6);
+
     }
 
     @Test
