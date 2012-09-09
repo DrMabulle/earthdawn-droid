@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sheet_karma"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:background="@android:drawable/gallery_thumb" >
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:layout_span="2"
+            android:layout_weight="5"
+            android:text="@string/sheet_karma_title" />
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/medium"
+            android:layout_weight="3"
+            android:text="@string/sheet_karma_available" />
+
+        <TextView
+            android:id="@+id/sheet_karma_available"
+            style="@style/medium"
+            android:layout_weight="2" />
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/medium"
+            android:layout_weight="3"
+            android:text="@string/sheet_karma_level" />
+
+        <TextView
+            android:id="@+id/sheet_karma_level"
+            style="@style/medium"
+            android:layout_weight="2" />
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            style="@style/medium"
+            android:layout_span="2"
+            android:layout_weight="5"
+            android:text="@string/sheet_karma_uses" />
+    </TableRow>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="2dp" >
+
+            <RadioButton
+                android:id="@+id/karma_dex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:clickable="false"
+                android:text="@string/sheet_karma_radio_dex" />
+
+            <RadioButton
+                android:id="@+id/karma_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="2dp"
+                android:clickable="false"
+                android:text="@string/sheet_karma_radio_str" />
+
+            <RadioButton
+                android:id="@+id/karma_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="2dp"
+                android:clickable="false"
+                android:text="@string/sheet_karma_radio_end" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="2dp" >
+
+            <RadioButton
+                android:id="@+id/karma_per"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:clickable="false"
+                android:text="@string/sheet_karma_radio_per" />
+
+            <RadioButton
+                android:id="@+id/karma_vol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="2dp"
+                android:clickable="false"
+                android:text="@string/sheet_karma_radio_vol" />
+
+            <RadioButton
+                android:id="@+id/karma_cha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="2dp"
+                android:clickable="false"
+                android:text="@string/sheet_karma_radio_cha" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/karma_buy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:padding="4dp"
+        android:text="@string/sheet_karma_buy" />
+
+</TableLayout>

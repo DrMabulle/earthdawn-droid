@@ -1,0 +1,8 @@
+syntax: glob
+EarthdawnApp/gen/*
+EarthdawnApp/bin/*
+Test/gen/*
+Test/bin/*
+EarthdawnApp/.settings/org.eclipse.ltk.core.refactoring.prefs
+EarthdawnApp/local.properties
+Test/local.properties
